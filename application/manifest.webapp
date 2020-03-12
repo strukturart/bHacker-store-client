@@ -1,0 +1,46 @@
+{
+	"version": "1.0.0",
+	"name": "bHacker-store",
+	"description": "An app to download apps",
+	"launch_path": "/index.html",
+	"type": "privileged",
+	"fullscreen": "true",
+
+
+
+	"icons": {
+		"56": "/icons/icon-56-56.png",
+		"112": "/icons/icon-112-112.png"
+	},
+	
+	"developer": 
+	{
+		"name": "strukturart",
+		"url": "https://strukturart.com"
+	},
+
+
+	"permissions": 
+	{
+
+	
+		
+		"browser": {},
+
+
+		"spatialnavigation-app-manage": {
+		"navigator.spatialNavigationEnabled": false
+		},
+
+		"systemXHR": {
+		"description": "Required to load remote content"
+		}
+
+
+
+ 
+	}
+
+
+ 
+}
