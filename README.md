@@ -9,9 +9,9 @@ The database of apps is hosted [here](https://banana-hackers.gitlab.io/store-db)
 + Download apps from the coders source
 
 
+![image-1](/images/image-1.png)
 ![image-2](/images/image-2.png)
-![image-2](/images/image-3.png)
-![image-4](/images/image-4.png)
+![image-3](/images/image-3.png)
 
 
 ### Manual

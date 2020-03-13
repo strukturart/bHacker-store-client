@@ -90,14 +90,22 @@
      font-weight: bold;
  }
  
- div#news-feed div#news-feed-list article div.author {
+ div#news-feed div#news-feed-list article div.meta-data {
      font-size: 0.8rem;
      display: none;
  }
  
- div#news-feed div#news-feed-list article div.author span {
+ div#news-feed div#news-feed-list article div.meta-data span {
      font-size: 0.8rem;
      font-weight: bold;
+ }
+ 
+ div#news-feed div#news-feed-list article div.icon {
+     display: none;
+ }
+ 
+ div#news-feed div#news-feed-list article div.icon img {
+     width: 30px;
  }
  
  div#news-feed div#news-feed-list article div.channel {
@@ -107,6 +115,38 @@
  div#news-feed div#news-feed-list article div.summary {
      display: none;
      padding: 0 0 20px 0;
+ }
+ 
+ div#source-page {
+     display: none;
+     position: absolute;
+     top: 0;
+     left: 0;
+     z-index: 2000;
+     background: white;
+     min-height: 100vh;
+     width: 101vw;
+     overflow: scroll;
+ }
+ 
+ div#source-page div#iframe-wrapper {
+     position: relative;
+     padding-bottom: 56.25%;
+     /* ratio 16x9 */
+     height: 0;
+     overflow: scroll;
+     width: 100%;
+     height: 15000px;
+     overflow: scroll;
+ }
+ 
+ div#source-page iframe {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 15000px;
+     overflow: scroll;
  }
  
  div#button-bar {
@@ -130,9 +170,8 @@
  
  div#button-bar div#button-left {
      background: black;
-     color: black;
+     color: white;
      padding: 2px;
-     width: 20px;
  }
  
  div#button-bar div#button-right {

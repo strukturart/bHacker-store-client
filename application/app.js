@@ -1,23 +1,15 @@
+let i = -1;
+let debug = "false";
+let page = 0;
+let pos_focus = 0
+let article_array;
+let tabindex_i = -0;
+let window_status = "article-list";
+let dataSet;
+
 $(document).ready(function() {
 
-
-    //
-
-    //Global lets
-    let redirection_counter = -1;
-    let i = -1;
-    let debug = "false";
-    let page = 0;
-    let pos_focus = 0
-    let article_array;
-    let tabindex_i = -0;
-    let window_status = "article-list";
-    let dataSet;
-
     check_iconnection();
-
-
-
 
     //////////////////////////////
     //fetch-database////
@@ -25,18 +17,14 @@ $(document).ready(function() {
 
 
     function getJson() {
-        // 1. Create a new XMLHttpRequest object
         let xhr = new XMLHttpRequest();
 
-        // 2. Configure it: GET-request for the URL /article/.../load
         xhr.open('GET', 'https://banana-hackers.gitlab.io/store-db/data.json');
         xhr.responseType = 'json';
 
 
-        // 3. Send the request over the network
         xhr.send();
 
-        // 4. This will be called after the response is received
         xhr.onload = function() {
             if (xhr.status != 200) { // analyze HTTP status of the response
                 toaster(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
@@ -60,7 +48,7 @@ $(document).ready(function() {
         };
 
         xhr.onerror = function() {
-            toaster("Request failed");
+            toaster("Request failed, please try later.");
         };
     }
 
@@ -72,19 +60,23 @@ $(document).ready(function() {
             let data = dataSet.apps[index];
 
 
-
-
             let item_title = data.name;
-            let item_summary = data.description
-            let item_link = data.download.url
-            let item_categorie = data.meta.categories
-            let item_author = data.author
+            let item_summary = data.description;
+            let item_link = data.download.url;
+            let item_url = data.git_repo;
+
+            let item_categorie = data.meta.categories;
+            let item_author = data.author;
+            let item_icon = data.icon;
+            let item_license = data.license;
+            let item_type = data.type;
+
+            let meta_data = "<div class='meta-data'><div><span>Author </span>" + item_author + "</div><div><span>License </span>" + item_license + "</div><div><span>Type </span>" + item_type + "</div></div>";
+            let urls = "data-download ='" + item_link + "'data-url ='" + item_url + "'";
 
 
-
-            let article = $('<article data-link = "' + item_link + '"><div class="channel">' + item_categorie + '</div><h1>' + item_title + '</h1><div class="summary">' + item_summary + '</div><div class="author"><span>Author </span>' + item_author + '</div></article>')
+            let article = $("<article " + urls + "><div class='icon'><img src='" + item_icon + "'></div><div class='channel'>" + item_categorie + "</div><h1>" + item_title + "</h1><div class='summary'>" + item_summary + "</div>" + meta_data + "</article>");
             $('div#news-feed-list').append(article);
-
 
 
         });
@@ -117,15 +109,6 @@ $(document).ready(function() {
         article_array = $('div#news-feed-list article')
         set_tabindex()
     }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -186,7 +169,11 @@ $(document).ready(function() {
         $('article').css('display', 'none')
         $focused.css('display', 'block')
         $('div.summary').css('display', 'block');
-        $('div.author').css('display', 'block')
+        $('div.meta-data').css('display', 'block');
+        $('div.icon').css('display', 'block');
+        $('div.channel').css('display', 'none');
+
+
 
         $('div#button-bar').css('display', 'block')
         window_status = "single-article";
@@ -196,35 +183,51 @@ $(document).ready(function() {
 
     function show_article_list() {
         let $focused = $(':focus');
+
+        $('div#news-feed-list').css('display', 'block');
         $('article').css('display', 'block')
         $('div.summary').css('display', 'none');
-        $('div.author').css('display', 'none');
-        $('div#button-bar').css('display', 'none')
+        $('div.meta-data').css('display', 'none');
+        $('div.channel').css('display', 'block');
+
+        $('div.icon').css('display', 'none');
 
         let targetElement = article_array[pos_focus];
         targetElement.focus();
 
         window.scrollTo(0, $(targetElement).offset().top);
 
-        $("div#source-page").css("display", "none")
-        $("div#source-page iframe").attr("src", "")
-        $('div#button-bar div#button-right').css('display', 'block');
+        $("div#source-page").css("display", "none");
+        $("div#source-page iframe").attr("src", "");
         window_status = "article-list";
-
-
-
 
     }
 
 
 
 
-    function open_url() {
+
+
+
+    function download() {
         let targetElement = article_array[pos_focus];
-        let link_target = $(targetElement).data('link');
+        let link_target = $(targetElement).data('download');
         window.location.assign(link_target)
 
     }
+
+    function open_url() {
+        let targetElement = article_array[pos_focus];
+        let link_target = $(targetElement).data('url');
+
+        $('div#news-feed-list').css('display', 'none');
+        $("div#source-page").css("display", "block");
+        $("div#source-page iframe").attr("src", link_target);
+        $('div#button-bar').css('display', 'none');
+        window_status = "source-page";
+
+    }
+
 
 
 
@@ -248,35 +251,39 @@ $(document).ready(function() {
 
             case 'ArrowDown':
                 nav("+1");
-                auto_scroll(30, "off");
                 break;
 
 
             case 'ArrowUp':
                 nav("-1");
-                auto_scroll(30, "off");
                 break;
 
 
             case 'SoftLeft':
-                show_article_list();
-                auto_scroll(30, "off");
+                if (window_status == "single-article") {
+                    open_url();
+                }
                 break;
 
             case 'SoftRight':
-                open_url();
+                download();
+                if (window_status == "single-article") {
+                    download();
+                }
                 break;
 
 
             case 'Backspace':
                 evt.preventDefault();
+                if (window_status == "single-article" || window_status == "source-page") {
+                    show_article_list();
+                    return;
+
+                }
                 if (window_status == "article-list") { window.close() }
-                show_article_list();
                 break;
 
-            case '2':
-                auto_scroll(30, "on");
-                break;
+
 
 
         }
