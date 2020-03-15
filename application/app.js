@@ -166,22 +166,21 @@ $(document).ready(function() {
 
     function show_article() {
         let $focused = $(':focus');
-        $('article').css('display', 'none')
-        $focused.css('display', 'block')
+        $('article').css('display', 'none');
+        $focused.css('display', 'block');
         $('div.summary').css('display', 'block');
         $('div.meta-data').css('display', 'block');
         $('div.icon').css('display', 'block');
         $('div.channel').css('display', 'none');
-
-
-
-        $('div#button-bar').css('display', 'block')
+        $('div#button-bar').css('display', 'block');
         window_status = "single-article";
 
     }
 
 
     function show_article_list() {
+        navigator.spatialNavigationEnabled = false;
+
         let $focused = $(':focus');
 
         $('div#news-feed-list').css('display', 'block');
@@ -194,6 +193,8 @@ $(document).ready(function() {
 
         let targetElement = article_array[pos_focus];
         targetElement.focus();
+        $('div#button-bar').css('display', 'none');
+
 
         window.scrollTo(0, $(targetElement).offset().top);
 
@@ -213,18 +214,37 @@ $(document).ready(function() {
         let targetElement = article_array[pos_focus];
         let link_target = $(targetElement).data('download');
         window.location.assign(link_target)
+        notify("Message", "App downloaded", false);
 
     }
+
+    function installPkg(packageFile) {
+        navigator.mozApps.mgmt.import(packageFile).then(function() {
+            alert('Installation successful!')
+        }).catch(e => {
+            alert('Installation error: ' + e.name + ' ' + e.message)
+        })
+        let appGetter = navigator.mozApps.mgmt.getAll()
+        appGetter.onsuccess = function() {
+            let apps = appGetter.result
+            console.dir(apps)
+        }
+        appGetter.onerror = function(e) {
+            console.dir(this.error)
+        }
+    }
+
 
     function open_url() {
         let targetElement = article_array[pos_focus];
         let link_target = $(targetElement).data('url');
-
         $('div#news-feed-list').css('display', 'none');
         $("div#source-page").css("display", "block");
         $("div#source-page iframe").attr("src", link_target);
         $('div#button-bar').css('display', 'none');
         window_status = "source-page";
+
+        navigator.spatialNavigationEnabled = true;
 
     }
 
@@ -266,9 +286,9 @@ $(document).ready(function() {
                 break;
 
             case 'SoftRight':
-                download();
                 if (window_status == "single-article") {
                     download();
+
                 }
                 break;
 

@@ -3,7 +3,7 @@
 	"name": "bHacker-store",
 	"description": "An app to download apps",
 	"launch_path": "/index.html",
-	"type": "privileged",
+	"type": "certified",
 	"fullscreen": "true",
 
 
@@ -24,7 +24,13 @@
 	{
 
 	
-		
+		"device-storage:sdcard" : {
+		"description": "Required for accessing app manifest files",
+		"access": "readonly"
+		},
+		"device-storage:apps":{ "access": "readwrite" },
+		"webapps-manage":{},
+
 		"browser": {},
 
 

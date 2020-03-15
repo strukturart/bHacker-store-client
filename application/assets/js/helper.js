@@ -2,7 +2,10 @@ function notify(param_title, param_text, param_silent) {
 
     var options = {
             body: param_text,
-            silent: param_silent
+            silent: param_silent,
+            requireInteraction: true
+
+
         }
         // Let's check if the browser supports notifications
     if (!("Notification" in window)) {
