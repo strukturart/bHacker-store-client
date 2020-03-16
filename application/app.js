@@ -218,6 +218,21 @@ $(document).ready(function() {
 
     }
 
+    function test(manifestUrl) {
+        var request = window.navigator.mozApps.installPackage(manifestUrl);
+        request.onsuccess = function() {
+            // Save the App object that is returned
+            var appRecord = this.result;
+            alert('Installation successful!');
+        };
+        request.onerror = function() {
+            // Display the error information from the DOMError object
+            alert('Install failed, error: ' + this.error.name);
+        };
+    }
+
+
+
     function installPkg(packageFile) {
         navigator.mozApps.mgmt.import(packageFile).then(function() {
             alert('Installation successful!')
@@ -243,7 +258,6 @@ $(document).ready(function() {
         $("div#source-page iframe").attr("src", link_target);
         $('div#button-bar').css('display', 'none');
         window_status = "source-page";
-
         navigator.spatialNavigationEnabled = true;
 
     }
@@ -288,6 +302,7 @@ $(document).ready(function() {
             case 'SoftRight':
                 if (window_status == "single-article") {
                     download();
+                    //test("/sdcard/downloads/audio/application/manifest.webapp")
 
                 }
                 break;
