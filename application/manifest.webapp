@@ -1,9 +1,9 @@
 {
 	"version": "1.0.0",
-	"name": "bHacker-store",
+	"name": "bHacker",
 	"description": "An app to download apps",
 	"launch_path": "/index.html",
-	"type": "certified",
+	"type": "privileged",
 	"fullscreen": "true",
 
 
@@ -22,7 +22,9 @@
 
 	"permissions": 
 	{
-
+		 "desktop-notification": {
+		      "description": "To show notifications"
+		    },
 	
 		"device-storage:sdcard" : {
 		"description": "Required for accessing app manifest files",
