@@ -65,7 +65,22 @@
  /*///////////////////////////
 ///FINDER////////////////*/
  
- div#news-feed {
+ div#navigation {
+     position: fixed;
+     height: 30px;
+     background: black;
+     width: 100%;
+     top: 0px;
+     left: 0px;
+ }
+ 
+ div#navigation div {
+     height: 20px;
+     color: yellow;
+     text-align: center;
+ }
+ 
+ div#app {
      position: relative;
      background: white;
      padding: 5px;
@@ -75,44 +90,48 @@
      font-weight: normal;
  }
  
- div#news-feed div#news-feed-list article {
+ div#app div#app-panels article {
      margin: 0 0 10px 0;
      font-weight: normal;
      min-width: 95vw;
  }
  
- div#news-feed div#news-feed-list article:focus {
+ div#app div#app-panels {
+     margin: 30px 0 0 0;
+ }
+ 
+ div#app div#app-panels article:focus {
      background: silver;
  }
  
- div#news-feed div#news-feed-list article h1 {
+ div#app div#app-panels article h1 {
      font-size: 1rem;
      font-weight: bold;
  }
  
- div#news-feed div#news-feed-list article div.meta-data {
+ div#app div#app-panels article div.meta-data {
      font-size: 0.8rem;
      display: none;
  }
  
- div#news-feed div#news-feed-list article div.meta-data span {
+ div#app div#app-panels article div.meta-data span {
      font-size: 0.8rem;
      font-weight: bold;
  }
  
- div#news-feed div#news-feed-list article div.icon {
+ div#app div#app-panels article div.icon {
      display: none;
  }
  
- div#news-feed div#news-feed-list article div.icon img {
+ div#app div#app-panels article div.icon img {
      width: 30px;
  }
  
- div#news-feed div#news-feed-list article div.channel {
+ div#app div#app-panels article div.channel {
      font-size: 0.8rem;
  }
  
- div#news-feed div#news-feed-list article div.summary {
+ div#app div#app-panels article div.summary {
      display: none;
      padding: 0 0 20px 0;
  }
