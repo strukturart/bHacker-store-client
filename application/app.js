@@ -1,11 +1,11 @@
-let i = -1;
-let debug = "false";
 let page = 0;
 let pos_focus = 0
 let article_array;
 let tabindex_i = -0;
 let window_status = "article-list";
 let dataSet;
+let panels = ["All"];
+let current_panel = 0;
 
 $(document).ready(function() {
 
@@ -44,6 +44,7 @@ $(document).ready(function() {
             if (xhr.status == 200) { // show the result
                 dataSet = xhr.response;
                 addAppList()
+                addCategories()
                 $("div#message-box").css('display', 'none');
 
             }
@@ -78,49 +79,82 @@ $(document).ready(function() {
             let item_link = data.download.url;
             let item_url = data.git_repo;
 
-            let item_categorie = data.meta.categories;
+            let str = data.meta.categories;
+            let item_categorie = str.toString().replace(",", " ");
+
+
+
+
             let item_author = data.author;
             let item_icon = data.icon;
             let item_license = data.license;
             let item_type = data.type;
 
             let meta_data = "<div class='meta-data'><div><span>Author </span>" + item_author + "</div><div><span>License </span>" + item_license + "</div><div><span>Type </span>" + item_type + "</div></div>";
-            let urls = "data-download ='" + item_link + "'data-url ='" + item_url + "'";
+            let urls = "data-download ='" + item_link + "' data-url ='" + item_url + "'";
 
 
-            let article = $("<article " + urls + "><div class='icon'><img src='" + item_icon + "'></div><div class='channel'>" + item_categorie + "</div><h1>" + item_title + "</h1><div class='summary'>" + item_summary + "</div>" + meta_data + "</article>");
-            $('div#news-feed-list').append(article);
+            let article = $("<article class= 'All " + item_categorie + "' " + urls + "><div class='icon'><img src='" + item_icon + "'></div><div class='channel'>" + item_categorie + "</div><h1>" + item_title + "</h1><div class='summary'>" + item_summary + "</div>" + meta_data + "</article>");
+            $('div#app-panels').append(article);
 
 
         });
+        set_tabindex()
 
-        sort_data()
     }
 
 
-    function set_tabindex() {
+    function addCategories() {
 
-        $('div#news-feed-list article').each(function(index) {
 
-            $(this).prop("tabindex", index);
-            $('div#news-feed-list article:first').focus()
 
+        $.each(dataSet.categories, function(key, val) {
+            panels.push(key)
 
         })
+        $("div#navigation").append("<div>" + panels[0] + "</div>")
+
+
+
+
+    }
+
+
+
+    function set_tabindex() {
+        $('div#app-panels article').removeAttr("tabindex")
+        $('div#app-panels article').filter(':visible').each(function(index) {
+            $(this).prop("tabindex", index);
+
+        })
+        article_array = $('div#app-panels article').filter(':visible')
+        sort_data()
+        $('body').find('article[tabindex = 0]').focus()
+
+
+
+
     }
 
 
     function sort_data() {
 
-        let $wrapper = $('div#news-feed-list');
+        let $wrapper = $('div#app-panels');
 
-        $wrapper.find('article').sort(function(a, b) {
-                return +b.dataset.order - +a.dataset.order;
+        $wrapper.find('article tabindex').sort(function(a, b) {
+                return b - a;
             })
             .appendTo($wrapper);
 
-        article_array = $('div#news-feed-list article')
-        set_tabindex()
+
+    }
+
+    function panels_list(panel) {
+
+        $("article").css("display", "none");
+        $("article." + panel).css("display", "block")
+        $('div#app-panels article').find([tabindex = "0"]).focus()
+
     }
 
 
@@ -129,7 +163,29 @@ $(document).ready(function() {
     //NAVIGATION
     /////////////////////////
 
+    function nav_panels(left_right) {
+        if (left_right == "left" && current_panel > 0) {
+            current_panel--;
+            $("div#navigation div").text(panels[current_panel])
+            panels_list(panels[current_panel])
+            set_tabindex()
+            pos_focus = 0;
 
+
+
+        }
+
+        if (left_right == "right" && current_panel < panels.length - 1) {
+            current_panel++;
+            $("div#navigation div").text(panels[current_panel])
+            panels_list(panels[current_panel])
+            set_tabindex()
+            pos_focus = 0;
+
+
+        }
+
+    }
 
     function nav(move) {
 
@@ -157,6 +213,7 @@ $(document).ready(function() {
                     targetElement.focus();
 
 
+
                 }
             }
 
@@ -180,6 +237,9 @@ $(document).ready(function() {
     function show_article() {
         let $focused = $(':focus');
         $('article').css('display', 'none');
+        $('div#navigation').css('display', 'none');
+        $('div#app-panels').css('margin', '0 0 0 0');
+
         $focused.css('display', 'block');
         $('div.summary').css('display', 'block');
         $('div.meta-data').css('display', 'block');
@@ -193,11 +253,11 @@ $(document).ready(function() {
 
     function show_article_list() {
         navigator.spatialNavigationEnabled = false;
+        $('div#app-panels').css('margin', '30px 0 0 0');
 
         let $focused = $(':focus');
-
-        $('div#news-feed-list').css('display', 'block');
-        $('article').css('display', 'block')
+        $('div#navigation').css('display', 'block');
+        $('div#app-panels').css('display', 'block');
         $('div.summary').css('display', 'none');
         $('div.meta-data').css('display', 'none');
         $('div.channel').css('display', 'block');
@@ -266,7 +326,7 @@ $(document).ready(function() {
     function open_url() {
         let targetElement = article_array[pos_focus];
         let link_target = $(targetElement).data('url');
-        $('div#news-feed-list').css('display', 'none');
+        $('div#app-panels').css('display', 'none');
         $("div#source-page").css("display", "block");
         $("div#source-page iframe").attr("src", link_target);
         $('div#button-bar').css('display', 'none');
@@ -304,6 +364,15 @@ $(document).ready(function() {
             case 'ArrowUp':
                 nav("-1");
                 break;
+
+            case 'ArrowLeft':
+                nav_panels("left");
+                break;
+
+            case 'ArrowRight':
+                nav_panels("right");
+                break;
+
 
 
             case 'SoftLeft':
