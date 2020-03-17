@@ -16,19 +16,32 @@ $(document).ready(function() {
     //////////////////////////////
 
 
-    function getJson() {
+    function getJson(url) {
         let xhr = new XMLHttpRequest();
-
-        xhr.open('GET', 'https://banana-hackers.gitlab.io/store-db/data.json');
+        xhr.open('GET', url);
+        xhr.timeout = 4000; // time in milliseconds
         xhr.responseType = 'json';
 
 
         xhr.send();
 
+        xhr.ontimeout = function(e) {
+            toaster("timeout please wait I try another source")
+
+            getJson('https://notabug.org/bananaphone/bhstore/src/master/data.json')
+        }
+
+
         xhr.onload = function() {
             if (xhr.status != 200) { // analyze HTTP status of the response
                 toaster(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
-            } else { // show the result
+            }
+            if (xhr.status == 403) { // analyze HTTP status of the response
+                toaster("database not found try another")
+                getJson('https://notabug.org/bananaphone/bhstore/src/master/data.json')
+
+            }
+            if (xhr.status == 200) { // show the result
                 dataSet = xhr.response;
                 addAppList()
                 $("div#message-box").css('display', 'none');
@@ -52,7 +65,7 @@ $(document).ready(function() {
         };
     }
 
-    getJson()
+    getJson('https://banana-hackers.gitlab.io/store-db/data.json');
 
     function addAppList() {
 

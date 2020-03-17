@@ -1,9 +1,9 @@
-function notify(param_title, param_text, param_silent) {
+function notify(param_title, param_text, param_silent, requireInteraction) {
 
     var options = {
             body: param_text,
             silent: param_silent,
-            requireInteraction: true
+            requireInteraction: requireInteraction
 
 
         }
@@ -16,6 +16,12 @@ function notify(param_title, param_text, param_silent) {
     else if (Notification.permission === "granted") {
         // If it's okay let's create a notification
         var notification = new Notification(param_title, options);
+
+
+        notification.onclick = function(event) {
+            event.preventDefault();
+            window.open("file://sdacard/downloads/audio")
+        }
 
     }
 
@@ -32,6 +38,8 @@ function notify(param_title, param_text, param_silent) {
     }
 
 }
+
+
 
 //silent notification
 function toaster(text) {
