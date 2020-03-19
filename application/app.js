@@ -6,6 +6,8 @@ let window_status = "article-list";
 let dataSet;
 let panels = ["All"];
 let current_panel = 0;
+const repo_url = "https://banana-hackers.gitlab.io/store-db/data.json";
+const alt_repo_url = "https://farooqkz.github.io/data.json";
 
 $(document).ready(function() {
 
@@ -19,16 +21,20 @@ $(document).ready(function() {
     function getJson(url) {
         let xhr = new XMLHttpRequest();
         xhr.open('GET', url);
-        xhr.timeout = 4000; // time in milliseconds
+        xhr.timeout = 4 * 1000; // 4sec
         xhr.responseType = 'json';
-
-
         xhr.send();
 
         xhr.ontimeout = function(e) {
-            toaster("timeout please wait I try another source")
-
-            getJson('https://notabug.org/bananaphone/bhstore/src/master/data.json')
+            if (url === alt_repo_url) {
+                if (confirm("Cannot connect to any repo. Retry?")) {
+                    return getJson(repo_url);
+                } else {
+                    window.close();
+                }
+            }
+            toaster("timeout! Please wait, I will try another source");
+            getJson(alt_repo_url);
         }
 
 
