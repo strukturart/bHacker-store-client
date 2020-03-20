@@ -7,6 +7,8 @@ let dataSet;
 let panels = ["All"];
 let current_panel = 0;
 
+let server_list = ["https://banana-hackers.gitlab.io/store-db/data.json", "https://notabug.org/bananaphone/bhstore/src/master/data.json"]
+
 $(document).ready(function() {
 
     check_iconnection();
@@ -28,7 +30,7 @@ $(document).ready(function() {
         xhr.ontimeout = function(e) {
             toaster("timeout please wait I try another source")
 
-            getJson('https://notabug.org/bananaphone/bhstore/src/master/data.json')
+            getJson(server_list[1])
         }
 
 
@@ -38,7 +40,7 @@ $(document).ready(function() {
             }
             if (xhr.status == 403) { // analyze HTTP status of the response
                 toaster("database not found try another")
-                getJson('https://notabug.org/bananaphone/bhstore/src/master/data.json')
+                getJson(server_list[1])
 
             }
             if (xhr.status == 200) { // show the result
@@ -66,7 +68,7 @@ $(document).ready(function() {
         };
     }
 
-    getJson('https://banana-hackers.gitlab.io/store-db/data.json');
+    getJson(server_list[0]);
 
     function addAppList() {
 
@@ -254,6 +256,7 @@ $(document).ready(function() {
     function show_article_list() {
         navigator.spatialNavigationEnabled = false;
         $('div#app-panels').css('margin', '30px 0 0 0');
+        panels_list(panels[current_panel])
 
         let $focused = $(':focus');
         $('div#navigation').css('display', 'block');
@@ -286,16 +289,12 @@ $(document).ready(function() {
     function download() {
         let targetElement = article_array[pos_focus];
         let link_target = $(targetElement).data('download');
-        let test = window.location.assign(link_target)
-        test.onload = function() {
-            toaster("loaded")
-        }
+        window.location.assign(link_target);
 
-        test.addEventListener('loadend', function(e) {
-            alert('Image load finished');
-        });
 
-        //notify("Message", "App downloaded", false, true);
+        notify("Message", "App downloaded", false, true);
+
+
 
     }
 
@@ -334,9 +333,7 @@ $(document).ready(function() {
     function open_url() {
         let targetElement = article_array[pos_focus];
         let link_target = $(targetElement).data('url');
-        $('div#app-panels').css('display', 'none');
-        $("div#source-page").css("display", "block");
-        $("div#source-page iframe").attr("src", link_target);
+        window.open(link_target, '_self ')
         $('div#button-bar').css('display', 'none');
         window_status = "source-page";
         navigator.spatialNavigationEnabled = true;

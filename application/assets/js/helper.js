@@ -1,13 +1,24 @@
 function notify(param_title, param_text, param_silent, requireInteraction) {
 
     var options = {
-            body: param_text,
-            silent: param_silent,
-            requireInteraction: requireInteraction
+        body: param_text,
+        silent: param_silent,
+        requireInteraction: requireInteraction
 
 
-        }
-        // Let's check if the browser supports notifications
+    }
+
+    var action = {
+        actions: [{
+            action: 'archive',
+            title: 'Archive'
+        }]
+    }
+
+
+
+
+    // Let's check if the browser supports notifications
     if (!("Notification" in window)) {
         alert("This browser does not support desktop notification");
     }
@@ -18,10 +29,6 @@ function notify(param_title, param_text, param_silent, requireInteraction) {
         var notification = new Notification(param_title, options);
 
 
-        notification.onclick = function(event) {
-            event.preventDefault();
-            window.open("file://sdacard/downloads/audio")
-        }
 
     }
 
@@ -30,7 +37,9 @@ function notify(param_title, param_text, param_silent, requireInteraction) {
         Notification.requestPermission().then(function(permission) {
             // If the user accepts, let's create a notification
             if (permission === "granted") {
-                var notification = new Notification(param_title, options);
+                var notification = new Notification(param_title, options, action);
+
+
 
 
             }
