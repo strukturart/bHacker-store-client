@@ -44,7 +44,7 @@ $(document).ready(function() {
             }
             if (xhr.status == 403) { // analyze HTTP status of the response
                 toaster("database not found try another")
-                getJson('https://notabug.org/bananaphone/bhstore/src/master/data.json')
+                getJson(repo_url);
 
             }
             if (xhr.status == 200) { // show the result
