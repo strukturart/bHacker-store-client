@@ -213,13 +213,27 @@
      z-index: 2000;
  }
  
- div#message-box div#redirections {
+ div#app div#app-panels article.About {
+     background: black!Important;
+     color: white!Important;
+     width: 100vw;
+     height: 100vh;
+     font-size: 0.8rem;
+     padding: 50px 3px 3px 3px;
+     margin: -5px 0 0 0;
      display: none;
  }
  
- div#message-box div#redirections h1 {
-     margin: 0 0 10px 0;
-     font-size: 1.2rem;
+ div.footer {
+     position: fixed;
+     bottom: 5px;
+     background: black!Important;
+     color: yellow!Important;
+     width: 100%;
+     height: 30px;
+     padding: 0px 3px 3px 3px;
+     text-align: center;
+     font-size: 0.8rem;
  }
  /* KaiOS portrait devices (240x320) */
  

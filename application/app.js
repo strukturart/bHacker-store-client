@@ -7,7 +7,7 @@ let dataSet;
 let panels = ["All"];
 let current_panel = 0;
 
-let server_list = ["https://banana-hackers.gitlab.io/store-db/data.json", "https://notabug.org/bananaphone/bhstore/src/master/data.json"]
+let server_list = ["https://banana-hackers.gitlab.io/store-db/data.json", " https://farooqkz.github.io/data.json"]
 
 $(document).ready(function() {
 
@@ -70,7 +70,11 @@ $(document).ready(function() {
 
     getJson(server_list[0]);
 
+    let contributors = [];
+
     function addAppList() {
+
+
 
         dataSet.apps.forEach(function(value, index) {
             let data = dataSet.apps[index];
@@ -87,10 +91,18 @@ $(document).ready(function() {
 
 
 
-            let item_author = data.author;
+            let item_author = data.author.toString();
             let item_icon = data.icon;
             let item_license = data.license;
             let item_type = data.type;
+
+            //unique author list
+            if (contributors.indexOf(item_author) === -1) {
+                contributors.push(data.author)
+            }
+
+
+
 
             let meta_data = "<div class='meta-data'><div><span>Author </span>" + item_author + "</div><div><span>License </span>" + item_license + "</div><div><span>Type </span>" + item_type + "</div></div>";
             let urls = "data-download ='" + item_link + "' data-url ='" + item_url + "'";
@@ -101,7 +113,13 @@ $(document).ready(function() {
 
 
         });
-        set_tabindex()
+        set_tabindex();
+        let update_time = moment(dataSet.generated_at).format('DD.MM.YYYY, HH:mm');
+
+        let about_text = "<h1>Contributors</h1>" + contributors.toString() + "<div class='footer'> Last update: " + update_time + "</div>"
+
+        let article = $("<article class='About'>" + about_text + "</article>");
+        $('div#app-panels').append(article);
 
     }
 
@@ -114,6 +132,7 @@ $(document).ready(function() {
             panels.push(key)
 
         })
+        panels.push("About");
         $("div#navigation").append("<div>" + panels[0] + "</div>")
 
 
