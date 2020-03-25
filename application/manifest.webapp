@@ -3,7 +3,7 @@
 	"name": "bHacker",
 	"description": "An app to download apps",
 	"launch_path": "/index.html",
-	"type": "privileged",
+	"type": "certified",
 	"fullscreen": "true",
 
 
@@ -43,6 +43,8 @@
 		"systemXHR": {
 		"description": "Required to load remote content"
 		}
+
+
 
 
 

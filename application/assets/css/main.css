@@ -216,22 +216,28 @@
  div#app div#app-panels article.About {
      background: black!Important;
      color: white!Important;
-     width: 100vw;
+     min-width: 100vw;
+     max-width: 100vw;
      height: 100vh;
      font-size: 0.8rem;
-     padding: 50px 3px 3px 3px;
+     padding: 10px 5px 40px 5px;
      margin: -5px 0 0 0;
      display: none;
  }
  
+ div#app div#app-panels article.About div#contributors {
+     margin: 8px 0 0 0;
+ }
+ 
  div.footer {
      position: fixed;
-     bottom: 5px;
+     bottom: 0px;
+     left: 0px;
+     right: 0px;
      background: black!Important;
      color: yellow!Important;
-     width: 100%;
+     width: 99%;
      height: 30px;
-     padding: 0px 3px 3px 3px;
      text-align: center;
      font-size: 0.8rem;
  }

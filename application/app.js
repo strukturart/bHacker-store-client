@@ -7,7 +7,8 @@ let dataSet;
 let panels = ["All"];
 let current_panel = 0;
 
-let server_list = ["https://banana-hackers.gitlab.io/store-db/data.json", " https://farooqkz.github.io/data.json"]
+let server_list = ["https://banana-hackers.gitlab.io/store-db/data.json", " https://farooqkz.github.io/data.json"];
+
 
 $(document).ready(function() {
 
@@ -70,7 +71,7 @@ $(document).ready(function() {
 
     getJson(server_list[0]);
 
-    let contributors = [];
+    let contributors = ["40min"];
 
     function addAppList() {
 
@@ -98,7 +99,7 @@ $(document).ready(function() {
 
             //unique author list
             if (contributors.indexOf(item_author) === -1) {
-                contributors.push(data.author)
+                contributors.push(item_author)
             }
 
 
@@ -116,7 +117,7 @@ $(document).ready(function() {
         set_tabindex();
         let update_time = moment(dataSet.generated_at).format('DD.MM.YYYY, HH:mm');
 
-        let about_text = "<h1>Contributors</h1>" + contributors.toString() + "<div class='footer'> Last update: " + update_time + "</div>"
+        let about_text = "<div>An alternative app store by free developers for free devices.The database of apps is hosted https://banana-hackers.gitlab.io/store-db , further can be added by a pull request.</div><div id='contributors'><h1>Contributors</h1>" + contributors.toString() + "</div><div class='footer'> Last update: " + update_time + "</div>"
 
         let article = $("<article class='About'>" + about_text + "</article>");
         $('div#app-panels').append(article);
@@ -311,7 +312,11 @@ $(document).ready(function() {
         window.location.assign(link_target);
 
 
-        notify("Message", "App downloaded", false, true);
+        //notify("Message", "App downloaded", false, true);
+
+        window.open('file://downloads/', '_self ')
+
+
 
 
 
@@ -390,11 +395,17 @@ $(document).ready(function() {
                 break;
 
             case 'ArrowLeft':
-                nav_panels("left");
+                if (window_status == "article-list") {
+                    nav_panels("left");
+
+                }
                 break;
 
             case 'ArrowRight':
-                nav_panels("right");
+                if (window_status == "article-list") {
+                    nav_panels("right");
+
+                }
                 break;
 
 
@@ -405,11 +416,7 @@ $(document).ready(function() {
                 }
                 break;
 
-            case '1':
-                if (window_status == "single-article") {
-                    open_url();
-                }
-                break;
+
 
             case 'SoftRight':
                 if (window_status == "single-article") {
