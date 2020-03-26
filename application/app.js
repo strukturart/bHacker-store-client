@@ -7,7 +7,10 @@ let dataSet;
 let panels = ["All"];
 let current_panel = 0;
 
-let server_list = ["https://banana-hackers.gitlab.io/store-db/data.json", " https://farooqkz.github.io/data.json"];
+let server_list = [
+    "https://banana-hackers.gitlab.io/store-db/data.json",
+    "https://farooqkz.github.io/data.json"
+];
 
 
 $(document).ready(function() {
@@ -186,27 +189,23 @@ $(document).ready(function() {
     /////////////////////////
 
     function nav_panels(left_right) {
-        if (left_right == "left" && current_panel > 0) {
+        if (left_right == "left") {
             current_panel--;
-            $("div#navigation div").text(panels[current_panel])
-            panels_list(panels[current_panel])
-            set_tabindex()
-            pos_focus = 0;
-
-
-
         }
 
-        if (left_right == "right" && current_panel < panels.length - 1) {
+        if (left_right == "right") {
             current_panel++;
-            $("div#navigation div").text(panels[current_panel])
-            panels_list(panels[current_panel])
-            set_tabindex()
-            pos_focus = 0;
-
-
         }
 
+        current_panel = current_panel % panels.length;
+        if (current_panel < 0) {
+            current_panel += panels.length;
+        }
+        
+        $("div#navigation div").text(panels[current_panel]);
+        panels_list(panels[current_panel]);
+        set_tabindex();
+        pos_focus = 0;
     }
 
     function nav(move) {
@@ -416,16 +415,12 @@ $(document).ready(function() {
                 }
                 break;
 
-
-
             case 'SoftRight':
                 if (window_status == "single-article") {
                     download();
                     //test("/sdcard/downloads/audio/application/manifest.webapp")
-
                 }
                 break;
-
 
             case 'Backspace':
                 evt.preventDefault();
@@ -436,21 +431,7 @@ $(document).ready(function() {
                 }
                 if (window_status == "article-list") { window.close() }
                 break;
-
-
-
-
         }
-
     };
-
-
-
     document.addEventListener('keydown', handleKeyDown);
-
-
-
-
-
-
 });
