@@ -70,7 +70,7 @@ $(document).ready(function() {
 
     getJson(server_list[0]);
 
-    let contributors = [];
+    let contributors = ["40min"];
 
     function addAppList() {
 
@@ -98,7 +98,7 @@ $(document).ready(function() {
 
             //unique author list
             if (contributors.indexOf(item_author) === -1) {
-                contributors.push(data.author)
+                contributors.push(item_author)
             }
 
 
@@ -116,7 +116,7 @@ $(document).ready(function() {
         set_tabindex();
         let update_time = moment(dataSet.generated_at).format('DD.MM.YYYY, HH:mm');
 
-        let about_text = "<h1>Contributors</h1>" + contributors.toString() + "<div class='footer'> Last update: " + update_time + "</div>"
+        let about_text = "<div>An alternative app store by free developers for free devices.The database of apps is hosted https://banana-hackers.gitlab.io/store-db , further can be added by a pull request.</div><div id='contributors'><h1>Contributors</h1>" + contributors.toString() + "</div><div class='footer'> Last update: " + update_time + "</div>"
 
         let article = $("<article class='About'>" + about_text + "</article>");
         $('div#app-panels').append(article);
@@ -125,18 +125,12 @@ $(document).ready(function() {
 
 
     function addCategories() {
-
-
-
         $.each(dataSet.categories, function(key, val) {
             panels.push(key)
 
         })
         panels.push("About");
         $("div#navigation").append("<div>" + panels[0] + "</div>")
-
-
-
 
     }
 
@@ -183,30 +177,32 @@ $(document).ready(function() {
     ////////////////////////
     //NAVIGATION
     /////////////////////////
+    ///thank you farooqkz 
+    //for the clever solution
+
 
     function nav_panels(left_right) {
-        if (left_right == "left" && current_panel > 0) {
+        if (left_right == "left") {
             current_panel--;
-            $("div#navigation div").text(panels[current_panel])
-            panels_list(panels[current_panel])
-            set_tabindex()
-            pos_focus = 0;
-
-
-
         }
 
-        if (left_right == "right" && current_panel < panels.length - 1) {
+        if (left_right == "right") {
             current_panel++;
-            $("div#navigation div").text(panels[current_panel])
-            panels_list(panels[current_panel])
-            set_tabindex()
-            pos_focus = 0;
-
-
         }
 
+        current_panel = current_panel % panels.length;
+        if (current_panel < 0) {
+            current_panel += panels.length;
+        }
+
+        $("div#navigation div").text(panels[current_panel]);
+        panels_list(panels[current_panel]);
+        set_tabindex();
+        pos_focus = 0;
     }
+
+
+
 
     function nav(move) {
 
@@ -254,19 +250,24 @@ $(document).ready(function() {
 
 
 
-
     function show_article() {
         let $focused = $(':focus');
         $('article').css('display', 'none');
         $('div#navigation').css('display', 'none');
-        $('div#app-panels').css('margin', '0 0 0 0');
+        $('div#app div#app-panels').css('margin', '5px 0 0 0')
 
         $focused.css('display', 'block');
         $('div.summary').css('display', 'block');
         $('div.meta-data').css('display', 'block');
         $('div.icon').css('display', 'block');
         $('div.channel').css('display', 'none');
+
+
         $('div#button-bar').css('display', 'block');
+        $('div#button-bar div#button-left').css('color', 'white');
+        $('div#button-bar div#button-center').css('color', 'black');
+        $('div#button-bar div#button-right').css('color', 'white');
+
         window_status = "single-article";
 
     }
@@ -274,8 +275,10 @@ $(document).ready(function() {
 
     function show_article_list() {
         navigator.spatialNavigationEnabled = false;
-        $('div#app-panels').css('margin', '30px 0 0 0');
         panels_list(panels[current_panel])
+        $('div#app div#app-panels').css('margin', '32px 0 0 0')
+
+
 
         let $focused = $(':focus');
         $('div#navigation').css('display', 'block');
@@ -288,13 +291,13 @@ $(document).ready(function() {
 
         let targetElement = article_array[pos_focus];
         targetElement.focus();
-        $('div#button-bar').css('display', 'none');
 
+        $('div#button-bar').css('display', 'block');
+        $('div#button-bar div#button-left').css('color', 'black');
+        $('div#button-bar div#button-center').css('color', 'white');
+        $('div#button-bar div#button-right').css('color', 'black');
 
         window.scrollTo(0, $(targetElement).offset().top);
-
-        $("div#source-page").css("display", "none");
-        $("div#source-page iframe").attr("src", "");
         window_status = "article-list";
 
     }
@@ -310,52 +313,15 @@ $(document).ready(function() {
         let link_target = $(targetElement).data('download');
         window.location.assign(link_target);
 
-
-        notify("Message", "App downloaded", false, true);
-
-
-
-    }
-
-    function test(manifestUrl) {
-        var request = window.navigator.mozApps.installPackage(manifestUrl);
-        request.onsuccess = function() {
-            // Save the App object that is returned
-            var appRecord = this.result;
-            alert('Installation successful!');
-        };
-        request.onerror = function() {
-            // Display the error information from the DOMError object
-            alert('Install failed, error: ' + this.error.name);
-        };
     }
 
 
-
-    function installPkg(packageFile) {
-        navigator.mozApps.mgmt.import(packageFile).then(function() {
-            alert('Installation successful!')
-        }).catch(e => {
-            alert('Installation error: ' + e.name + ' ' + e.message)
-        })
-        let appGetter = navigator.mozApps.mgmt.getAll()
-        appGetter.onsuccess = function() {
-            let apps = appGetter.result
-            console.dir(apps)
-        }
-        appGetter.onerror = function(e) {
-            console.dir(this.error)
-        }
-    }
 
 
     function open_url() {
         let targetElement = article_array[pos_focus];
         let link_target = $(targetElement).data('url');
         window.open(link_target, '_self ')
-        $('div#button-bar').css('display', 'none');
-        window_status = "source-page";
-        navigator.spatialNavigationEnabled = true;
 
     }
 
@@ -390,11 +356,17 @@ $(document).ready(function() {
                 break;
 
             case 'ArrowLeft':
-                nav_panels("left");
+                if (window_status == "article-list") {
+                    nav_panels("left");
+
+                }
                 break;
 
             case 'ArrowRight':
-                nav_panels("right");
+                if (window_status == "article-list") {
+                    nav_panels("right");
+
+                }
                 break;
 
 

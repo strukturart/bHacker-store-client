@@ -23,6 +23,7 @@ The database of apps is hosted [here](https://banana-hackers.gitlab.io/store-db)
 ### to do
 
 + design article page title + images
++ donation badge
 
 ## Donation
 <a href="https://www.buymeacoffee.com/vj6Q8lR" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/lato-orange.png" alt="Buy Me A Coffee" style="height: 25px !important;width: 108px !important;" ></a>

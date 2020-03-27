@@ -23,12 +23,13 @@
      width: 0!important;
      background-color: transparent!Important;
      display: none!Important;
+     overflow: -moz-scrollbars-none;
  }
  
  html,
  body {
      font-weight: 100;
-     width: 90%;
+     width: 100vw;
      position: relative;
      margin: 0px;
      padding: 0px;
@@ -48,6 +49,10 @@
      height: auto;
      display: block;
  }
+ 
+ .debug {
+     outline: 1px solid red;
+ }
  /*///////////////////////////
 ///HELPER////////////////*/
  
@@ -63,7 +68,7 @@
      padding: 5px;
  }
  /*///////////////////////////
-///FINDER////////////////*/
+///APPS////////////////*/
  
  div#navigation {
      position: fixed;
@@ -86,18 +91,22 @@
      padding: 5px;
      color: black;
      height: 100vh;
-     width: 90vw;
+     width: 100vw;
      font-weight: normal;
  }
  
  div#app div#app-panels article {
-     margin: 0 0 10px 0;
+     margin: 0px 0 10px 0;
      font-weight: normal;
      min-width: 95vw;
+     max-height: 100%;
+     overflow: scroll;
  }
  
  div#app div#app-panels {
-     margin: 30px 0 0 0;
+     margin: 32px 0 0 0;
+     max-height: 78%;
+     overflow: hidden;
  }
  
  div#app div#app-panels article:focus {
@@ -120,6 +129,7 @@
  }
  
  div#app div#app-panels article div.icon {
+     margin: 0 0 10px 0;
      display: none;
  }
  
@@ -136,45 +146,40 @@
      padding: 0 0 20px 0;
  }
  
- div#source-page {
+ div#app div#app-panels article.About {
+     background: white!Important;
+     color: black!Important;
+     width: 100vw;
+     height: 100vh;
+     font-size: 0.8rem;
+     padding: 0px 3px 3px 3px;
+     margin: -5px 0 0 0;
      display: none;
-     position: absolute;
-     top: 0;
-     left: 0;
-     z-index: 2000;
-     background: white;
-     min-height: 100vh;
-     width: 101vw;
-     overflow: scroll;
  }
  
- div#source-page div#iframe-wrapper {
-     position: relative;
-     padding-bottom: 56.25%;
-     /* ratio 16x9 */
-     height: 0;
-     overflow: scroll;
-     width: 100%;
-     height: 15000px;
-     overflow: scroll;
+ div.footer {
+     position: fixed;
+     bottom: 0px;
+     left: 0px;
+     background: black!Important;
+     color: yellow!Important;
+     width: 100vw;
+     height: 20px;
+     padding: 3px 3px 3px 3px;
+     text-align: center;
+     font-size: 0.8rem;
+     z-index: 3;
  }
- 
- div#source-page iframe {
-     position: absolute;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 15000px;
-     overflow: scroll;
- }
+ /*/////////////////
+ ///BUTTON BAR////
+ ////////////////*/
  
  div#button-bar {
      position: fixed;
      bottom: 16px;
      left: 0px;
-     display: none;
      height: 10px;
-     z-index: 3000;
+     z-index: 2;
  }
  
  div#button-bar div#inner {
@@ -189,16 +194,30 @@
  
  div#button-bar div#button-left {
      background: black;
+     color: black;
+     padding: 2px;
+     width: 30%;
+     text-align: left;
+ }
+ 
+ div#button-bar div#button-center {
+     background: black;
      color: white;
      padding: 2px;
+     width: 30%;
+     text-align: center;
  }
  
  div#button-bar div#button-right {
      background: black;
-     color: white;
+     color: black;
      padding: 2px;
-     width: 92px;
+     width: 30%;
+     text-align: right;
  }
+ /*/////////////////
+ ///INTRO////
+ ////////////////*/
  
  div#message-box {
      display: block;
@@ -210,30 +229,7 @@
      height: 100vh;
      background: black;
      color: white;
-     z-index: 2000;
- }
- 
- div#app div#app-panels article.About {
-     background: black!Important;
-     color: white!Important;
-     width: 100vw;
-     height: 100vh;
-     font-size: 0.8rem;
-     padding: 50px 3px 3px 3px;
-     margin: -5px 0 0 0;
-     display: none;
- }
- 
- div.footer {
-     position: fixed;
-     bottom: 5px;
-     background: black!Important;
-     color: yellow!Important;
-     width: 100%;
-     height: 30px;
-     padding: 0px 3px 3px 3px;
-     text-align: center;
-     font-size: 0.8rem;
+     z-index: 3;
  }
  /* KaiOS portrait devices (240x320) */
  
