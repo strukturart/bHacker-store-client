@@ -74,7 +74,7 @@ $(document).ready(function() {
 
     function addAppList() {
 
-
+        let i = 0;
 
         dataSet.apps.forEach(function(value, index) {
             let data = dataSet.apps[index];
@@ -100,15 +100,26 @@ $(document).ready(function() {
             if (contributors.indexOf(item_author) === -1) {
                 contributors.push(item_author)
             }
+            i++;
+            let elem_id = "elem-" + i;
 
 
+            //options page
+            $("div#options").append("<div class='flex justify-content-spacearound' id='" + elem_id + "'></div>");
+
+            if (item_url) {
+                $("div#options div#" + elem_id).append("<div tabindex='0' data-url='" + item_url + "'>open app source</div>")
+            }
+
+            $("div#options div#" + elem_id).append("<div tabindex='1'>donation</div>")
 
 
+            //article
             let meta_data = "<div class='meta-data'><div><span>Author </span>" + item_author + "</div><div><span>License </span>" + item_license + "</div><div><span>Type </span>" + item_type + "</div></div>";
             let urls = "data-download ='" + item_link + "' data-url ='" + item_url + "'";
 
 
-            let article = $("<article class= 'All " + item_categorie + "' " + urls + "><div class='icon'><img src='" + item_icon + "'></div><div class='channel'>" + item_categorie + "</div><h1>" + item_title + "</h1><div class='summary'>" + item_summary + "</div>" + meta_data + "</article>");
+            let article = $("<article id= '" + elem_id + "' class= 'All " + item_categorie + " ' " + urls + "><div class='icon'><img src='" + item_icon + "'></div><div class='channel'>" + item_categorie + "</div><h1>" + item_title + "</h1><div class='summary'>" + item_summary + "</div>" + meta_data + "</article>");
             $('div#app-panels').append(article);
 
 
@@ -201,54 +212,73 @@ $(document).ready(function() {
         pos_focus = 0;
     }
 
+    function nav(param) {
+
+        let focused = document.activeElement.tabIndex;
+        let siblingsLength = document.activeElement.parentNode.children.length - 1;
+        let siblings = document.activeElement.parentNode.children;
 
 
+        if (param == "+1" && focused < siblingsLength) {
+            focused++
+            siblings[focused].focus();
 
-    function nav(move) {
-
-        if (window_status == "article-list") {
-            let $focused = $(':focus')[0];
-
-
-
-            if (move == "+1" && pos_focus < article_array.length - 1) {
-                pos_focus++
-
-                if (pos_focus <= article_array.length) {
-
-                    let focusedElement = $(':focus')[0].offsetTop + 20;
-
-
-                    window.scrollTo({
-                        top: focusedElement,
-                        left: 100,
-                        behavior: 'smooth'
-                    });
-
-
-                    let targetElement = article_array[pos_focus];
-                    targetElement.focus();
-
-
-
-                }
-            }
-
-            if (move == "-1" && pos_focus > 0) {
-                pos_focus--
-                if (pos_focus >= 0) {
-                    let targetElement = article_array[pos_focus];
-                    targetElement.focus();
-                    let focusedElement = $(':focus')[0].offsetTop;
-                    window.scrollTo({ top: focusedElement + 20, behavior: 'smooth' });
-
-                }
-            }
         }
 
+        if (param == "-1" && focused > 0) {
+            focused--
+            siblings[focused].focus();
+        }
+
+
+
     }
+    /*
+        function nav(move) {
+
+            if (window_status == "article-list" || window_status == "options") {
+                let $focused = $(':focus')[0];
 
 
+
+                if (move == "+1" && pos_focus < article_array.length - 1) {
+                    pos_focus++
+
+                    if (pos_focus <= article_array.length) {
+
+                        let focusedElement = $(':focus')[0].offsetTop + 20;
+
+
+                        window.scrollTo({
+                            top: focusedElement,
+                            left: 100,
+                            behavior: 'smooth'
+                        });
+
+
+                        let targetElement = article_array[pos_focus];
+                        targetElement.focus();
+
+
+
+                    }
+                }
+
+                if (move == "-1" && pos_focus > 0) {
+                    pos_focus--
+                    if (pos_focus >= 0) {
+                        let targetElement = article_array[pos_focus];
+                        targetElement.focus();
+                        let focusedElement = $(':focus')[0].offsetTop;
+                        window.scrollTo({ top: focusedElement + 20, behavior: 'smooth' });
+
+                    }
+                }
+            }
+
+        }
+
+    */
 
     function show_article() {
         let $focused = $(':focus');
@@ -278,6 +308,7 @@ $(document).ready(function() {
         panels_list(panels[current_panel])
         $('div#app div#app-panels').css('margin', '32px 0 0 0')
 
+        $('div#options').css('display', 'none');
 
 
         let $focused = $(':focus');
@@ -326,6 +357,31 @@ $(document).ready(function() {
     }
 
 
+    function open_options() {
+
+        let $focused = $(':focus');
+
+        alert($focused.attr('id'))
+        let selected_article = $focused.attr('id');
+
+
+        $("div#options div").css("display", "none");
+
+        $("div#options").css("display", "block");
+        $("div#options div#" + selected_article).css("display", "block");
+
+
+        $("div#options div#" + selected_article + " div").css("display", "block");
+
+        $('div#button-bar div#button-left').css('color', 'black');
+        $('div#button-bar div#button-center').css('color', 'white');
+        $('div#button-bar div#button-right').css('color', 'black');
+
+        $("div#options div#" + selected_article + " div:first").focus();
+        window_status = "options";
+    }
+
+
 
 
 
@@ -342,7 +398,13 @@ $(document).ready(function() {
 
 
             case 'Enter':
-                show_article();
+                if (window_status == "article-list") {
+                    show_article();
+                }
+
+                if (window_status == "options") {
+                    alert($(":focus").data('url'))
+                }
                 break;
 
 
@@ -373,13 +435,16 @@ $(document).ready(function() {
 
             case 'SoftLeft':
                 if (window_status == "single-article") {
-                    open_url();
+                    open_options();
                 }
+
+
                 break;
+
 
             case '1':
                 if (window_status == "single-article") {
-                    open_url();
+                    open_options();
                 }
                 break;
 
@@ -394,7 +459,7 @@ $(document).ready(function() {
 
             case 'Backspace':
                 evt.preventDefault();
-                if (window_status == "single-article" || window_status == "source-page") {
+                if (window_status == "single-article" || window_status == "options") {
                     show_article_list();
                     return;
 

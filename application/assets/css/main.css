@@ -170,6 +170,37 @@
      font-size: 0.8rem;
      z-index: 3;
  }
+ 
+ div#options {
+     width: 100vw;
+     height: 100vh;
+     background: black;
+     position: fixed;
+     top: 0px;
+     left: 0px;
+     display: none;
+ }
+ 
+ div#options div {
+     width: 100vw;
+     height: 100vh;
+     background: black;
+     position: relative;
+ }
+ 
+ div#options div div {
+     width: 90vw;
+     height: 30px;
+     background: white;
+     color: black;
+     margin: 0 0 5px 0;
+     position: relative;
+     padding: 3px;
+ }
+ 
+ div#options div div:focus {
+     background: silver;
+ }
  /*/////////////////
  ///BUTTON BAR////
  ////////////////*/

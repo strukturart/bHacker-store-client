@@ -28,21 +28,6 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    var request = sdcard.get("my-file.txt");
-
-    request.onsuccess = function() {
-        var file = this.result;
-        console.log("Get the file: " + file.name);
-    }
-
-    request.onerror = function() {
-        console.warn("Unable to get the file: " + this.error);
-    }
-
-
-
-
-
 
     function fparts(fName) {
         let parts = fName.split('/')
@@ -73,21 +58,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
 
 
-    window.addEventListener('keydown', function(e) {
-        switch (e.key) {
-
-            case '1':
-                alert(path)
-                installPkg(path)
-
-                break;
-
-
-
-
-
-        }
-    })
 
 
 }, false)
