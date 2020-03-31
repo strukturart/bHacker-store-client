@@ -51,13 +51,15 @@ function notify(param_title, param_text, param_silent, requireInteraction) {
 
 
 //silent notification
-function toaster(text) {
+function toaster(text, time) {
 
-    $("div#toast").text(text)
+
+    $("div#toast").html(text)
+
     $("div#toast").animate({ top: "0px" }, 1000, "linear", function() {
+        $("div#toast").delay(time).animate({ top: "-100vh" }, 1000);
 
 
-        $("div#toast").delay(2000).animate({ top: "-100px" }, 1000);
 
 
     });

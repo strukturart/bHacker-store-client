@@ -77,57 +77,99 @@ $(document).ready(function() {
         let i = 0;
 
         dataSet.apps.forEach(function(value, index) {
+
+
             let data = dataSet.apps[index];
-
-
             let item_title = data.name;
             let item_summary = data.description;
             let item_link = data.download.url;
             let item_url = data.git_repo;
-
+            let donation = data.donation;
+            let ads = data.has_ads;
+            let tracking = data.has_tracking;
             let str = data.meta.categories;
             let item_categorie = str.toString().replace(",", " ");
-
-
-
-
             let item_author = data.author.toString();
             let item_icon = data.icon;
             let item_license = data.license;
             let item_type = data.type;
+            let images = "";
+            let images_collection = "";
+            let donation_icon = "none";
+            let ads_icon = "none";
+            let tracking_icon = "none";
+            i++;
+            let elem_id = "elem-" + i;
 
             //unique author list
             if (contributors.indexOf(item_author) === -1) {
                 contributors.push(item_author)
             }
-            i++;
-            let elem_id = "elem-" + i;
+            //apps thumbnails
+            if (data.screenshots) {
+                images = data.screenshots.toString()
+                images = images.split(',');
+
+                images.forEach(function(value, index) {
+                    images_collection += "<li><img src=" + images[index] + "></li>";
+                })
+            }
+
 
 
             //options page
-            $("div#options").append("<div class='flex justify-content-spacearound' id='" + elem_id + "'></div>");
+            $("div#options").append("<div id='" + elem_id + "'></div>");
 
             if (item_url) {
-                $("div#options div#" + elem_id).append("<div tabindex='0' data-url='" + item_url + "'>open app source</div>")
+                $("div#options div#" + elem_id).append("<div tabindex='0' data-url='" + item_url + "'>source code of the app</div>")
             }
 
-            $("div#options div#" + elem_id).append("<div tabindex='1'>donation</div>")
+            if (donation) {
+                donation_icon = "yes";
+                $("div#options div#" + elem_id).append("<div tabindex='1' data-url='" + donation + "'>make a donation</div>")
+            }
+
+            if (tracking) {
+                tracking_icon = "yes";
+            }
+
+
+            if (ads) {
+                donation_icon = "yes";
+            }
 
 
             //article
-            let meta_data = "<div class='meta-data'><div><span>Author </span>" + item_author + "</div><div><span>License </span>" + item_license + "</div><div><span>Type </span>" + item_type + "</div></div>";
+            let meta_data = "<div class='meta-data'>" +
+                "<div><span>Author </span>" + item_author + "</div>" +
+                "<div><span>License </span>" + item_license + "</div>" +
+                "<div><span>Type </span>" + item_type + "</div>" +
+                "<div><span>Donation </span>" + donation_icon + "</div>" +
+                "<div><span>Tracking </span>" + tracking_icon + "</div>" +
+                "<div><span>Ads </span>" + ads_icon + "</div>" +
+                "</div>";
+            //urls
             let urls = "data-download ='" + item_link + "' data-url ='" + item_url + "'";
+            let article = "<article id= '" + elem_id + "' class= 'All " + item_categorie + " ' " + urls + ">" +
+                "<div class='icon'><img src='" + item_icon + "'></div>" +
+                "<div class='channel'>" + item_categorie + "</div>" +
+                "<h1>" + item_title + "</h1><div class='summary'>" + item_summary + "</div>" + meta_data + "<div class='images'></div><ul class='images'>" + images_collection + "</article>";
 
-
-            let article = $("<article id= '" + elem_id + "' class= 'All " + item_categorie + " ' " + urls + "><div class='icon'><img src='" + item_icon + "'></div><div class='channel'>" + item_categorie + "</div><h1>" + item_title + "</h1><div class='summary'>" + item_summary + "</div>" + meta_data + "</article>");
             $('div#app-panels').append(article);
 
 
         });
+
         set_tabindex();
         let update_time = moment(dataSet.generated_at).format('DD.MM.YYYY, HH:mm');
 
-        let about_text = "<div>An alternative app store by free developers for free devices.The database of apps is hosted https://banana-hackers.gitlab.io/store-db , further can be added by a pull request.</div><div id='contributors'><h1>Contributors</h1>" + contributors.toString() + "</div><div class='footer'> Last update: " + update_time + "</div>"
+        let about_text = "<div>An alternative app store by free developers for free devices.The database of apps is hosted https://banana-hackers.gitlab.io/store-db , further can be added by a pull request.</div>" +
+            "<div id='contributors'><h1>Contributors</h1>" + contributors.toString() + "</div>" +
+            "<div><h1>Respect</h1>" +
+            "<div>Respect the licenses of the apps, it would be nice if you use app more often to support the developer with a donation.<br>Thanks!</div>"
+
+
+        "<div class='footer'> Last update: " + update_time + "</div>"
 
         let article = $("<article class='About'>" + about_text + "</article>");
         $('div#app-panels').append(article);
@@ -212,27 +254,54 @@ $(document).ready(function() {
         pos_focus = 0;
     }
 
+
+
+    //up - down
+
     function nav(param) {
 
-        let focused = document.activeElement.tabIndex;
-        let siblingsLength = document.activeElement.parentNode.children.length - 1;
-        let siblings = document.activeElement.parentNode.children;
+        let focused = $(':focus').attr('tabindex');
+        let siblings = $(':focus').parent().children(':visible');
+        let siblingsLength = $(':focus').parent().children(':visible').length;
 
 
-        if (param == "+1" && focused < siblingsLength) {
+        if (param == "+1" && focused < siblingsLength - 1) {
             focused++
             siblings[focused].focus();
+
+
+
+            let focusedElement = $(':focus')[0].offsetTop;
+            $('div#app-panels article').eq(-2).css("margin-bottom", "40px")
+
+            window.scrollTo({
+                top: focusedElement - 20,
+                behavior: 'smooth'
+            });
+
+
 
         }
 
         if (param == "-1" && focused > 0) {
             focused--
             siblings[focused].focus();
+            let focusedElement = $(':focus')[0].offsetTop;
+
+
+
+            window.scrollTo({
+                top: focusedElement - 35,
+                behavior: 'smooth'
+            });
+
         }
 
 
 
     }
+
+
     /*
         function nav(move) {
 
@@ -278,26 +347,28 @@ $(document).ready(function() {
 
         }
 
-    */
+        */
+
 
     function show_article() {
         let $focused = $(':focus');
         $('article').css('display', 'none');
         $('div#navigation').css('display', 'none');
-        $('div#app div#app-panels').css('margin', '5px 0 0 0')
+        $('div#app div#app-panels').css('margin', '5px 0 0 0');
+        $('div#app div#app-panels').css('max-height', '100%');
+        $('div#app div#app-panels').css('overflow-y', 'scroll');
 
         $focused.css('display', 'block');
         $('div.summary').css('display', 'block');
         $('div.meta-data').css('display', 'block');
         $('div.icon').css('display', 'block');
         $('div.channel').css('display', 'none');
-
+        $('ul.images').css('display', 'block');
 
         $('div#button-bar').css('display', 'block');
         $('div#button-bar div#button-left').css('color', 'white');
         $('div#button-bar div#button-center').css('color', 'black');
         $('div#button-bar div#button-right').css('color', 'white');
-
         window_status = "single-article";
 
     }
@@ -307,7 +378,7 @@ $(document).ready(function() {
         navigator.spatialNavigationEnabled = false;
         panels_list(panels[current_panel])
         $('div#app div#app-panels').css('margin', '32px 0 0 0')
-
+        $('div#app div#app-panels').css('max-height', '73%')
         $('div#options').css('display', 'none');
 
 
@@ -317,6 +388,8 @@ $(document).ready(function() {
         $('div.summary').css('display', 'none');
         $('div.meta-data').css('display', 'none');
         $('div.channel').css('display', 'block');
+        $('ul.images').css('display', 'none');
+
 
         $('div.icon').css('display', 'none');
 
@@ -340,8 +413,9 @@ $(document).ready(function() {
 
 
     function download() {
-        let targetElement = article_array[pos_focus];
-        let link_target = $(targetElement).data('download');
+        let link_target = "";
+        let targetElement = $(":focus");
+        link_target = $(targetElement).data('download');
         window.location.assign(link_target);
 
     }
@@ -350,7 +424,7 @@ $(document).ready(function() {
 
 
     function open_url() {
-        let targetElement = article_array[pos_focus];
+        let targetElement = $(":focus");
         let link_target = $(targetElement).data('url');
         window.open(link_target, '_self ')
 
@@ -360,8 +434,6 @@ $(document).ready(function() {
     function open_options() {
 
         let $focused = $(':focus');
-
-        alert($focused.attr('id'))
         let selected_article = $focused.attr('id');
 
 
@@ -403,7 +475,7 @@ $(document).ready(function() {
                 }
 
                 if (window_status == "options") {
-                    alert($(":focus").data('url'))
+                    open_url();
                 }
                 break;
 
@@ -451,8 +523,6 @@ $(document).ready(function() {
             case 'SoftRight':
                 if (window_status == "single-article") {
                     download();
-                    //test("/sdcard/downloads/audio/application/manifest.webapp")
-
                 }
                 break;
 
