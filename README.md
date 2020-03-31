@@ -12,6 +12,8 @@ The database of apps is hosted [here](https://banana-hackers.gitlab.io/store-db)
 ![image-1](/images/image-1.png)
 ![image-2](/images/image-2.png)
 ![image-3](/images/image-3.png)
+![image-4](/images/image-4.png)
+
 
 
 ### How to sideload the app on your device
@@ -22,7 +24,7 @@ The database of apps is hosted [here](https://banana-hackers.gitlab.io/store-db)
 
 ### to do
 
-+ design article page title + images
+- meassage after installation
 
 ## Donation
 <a href="https://www.buymeacoffee.com/vj6Q8lR" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/lato-orange.png" alt="Buy Me A Coffee" style="height: 25px !important;width: 108px !important;" ></a>

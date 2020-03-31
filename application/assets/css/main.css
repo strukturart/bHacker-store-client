@@ -26,6 +26,18 @@
      overflow: -moz-scrollbars-none;
  }
  
+ :focus {
+     outline: none;
+ }
+ 
+ ::-moz-focus-inner {
+     border: 0;
+ }
+ 
+ input[type=range]::-moz-focus-outer {
+     border: 0;
+ }
+ 
  html,
  body {
      font-weight: 100;
@@ -106,7 +118,6 @@
  div#app div#app-panels {
      margin: 32px 0 0 0;
      max-height: 78%;
-     overflow: hidden;
  }
  
  div#app div#app-panels article:focus {
@@ -135,15 +146,31 @@
  
  div#app div#app-panels article div.icon img {
      width: 30px;
+     margin: 7px 0 7px 0;
  }
  
  div#app div#app-panels article div.channel {
      font-size: 0.8rem;
+     font-weight: bold;
  }
  
  div#app div#app-panels article div.summary {
      display: none;
      padding: 0 0 20px 0;
+ }
+ 
+ div#app div#app-panels article ul.images {
+     display: none;
+     padding: 15px 0 50px 0;
+ }
+ 
+ div#app div#app-panels article ul.images li {
+     margin: 0 0 10px 0;
+     min-width: 100%;
+ }
+ 
+ div#app div#app-panels article ul.images li img {
+     min-width: 100%;
  }
  
  div#app div#app-panels article.About {
@@ -155,6 +182,12 @@
      padding: 0px 3px 3px 3px;
      margin: -5px 0 0 0;
      display: none;
+ }
+ 
+ div#app div#app-panels article.About h1 {
+     margin: 15px 0 0 0;
+     text-align: center;
+     font-size: 1rem;
  }
  
  div.footer {
@@ -186,6 +219,7 @@
      height: 100vh;
      background: black;
      position: relative;
+     padding: 5vw;
  }
  
  div#options div div {
@@ -202,8 +236,8 @@
      background: silver;
  }
  /*/////////////////
- ///BUTTON BAR////
- ////////////////*/
+///BUTTON BAR////
+////////////////*/
  
  div#button-bar {
      position: fixed;
@@ -247,8 +281,8 @@
      text-align: right;
  }
  /*/////////////////
- ///INTRO////
- ////////////////*/
+///INTRO////
+////////////////*/
  
  div#message-box {
      display: block;
