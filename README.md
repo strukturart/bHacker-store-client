@@ -17,6 +17,7 @@ The database of apps is hosted [here](https://banana-hackers.gitlab.io/store-db)
 
 
 ### How to sideload the app on your device
+https://www.martinkaptein.com/blog/sideloading-and-deploying-apps-to-kai-os/
 
 
 ### Thank you
