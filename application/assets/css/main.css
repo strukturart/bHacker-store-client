@@ -24,6 +24,7 @@
      background-color: transparent!Important;
      display: none!Important;
      overflow: -moz-scrollbars-none;
+     -webkit-appearance: none;
  }
  
  :focus {
@@ -201,7 +202,7 @@
      padding: 3px 3px 3px 3px;
      text-align: center;
      font-size: 0.8rem;
-     z-index: 3;
+     z-index: 6;
  }
  
  div#options {
@@ -285,6 +286,7 @@
 ////////////////*/
  
  div#message-box {
+     animation-name: example3;
      display: block;
      position: fixed;
      top: 0px;
@@ -295,6 +297,68 @@
      background: black;
      color: white;
      z-index: 3;
+     animation-duration: 2s;
+     animation-timing-function: ease-in;
+     animation-fill-mode: forwards;
+     animation-iteration-count: 1;
+     animation-play-state: paused;
+ }
+ 
+ div#message-box img.icon-1 {
+     animation-name: example;
+     animation-duration: 1s;
+     animation-timing-function: ease-out;
+     animation-fill-mode: forwards;
+     animation-play-state: paused;
+     position: absolute;
+     width: 90px;
+     left: 30%;
+     top: 40%;
+ }
+ 
+ div#message-box img.icon-2 {
+     animation-name: example2;
+     animation-duration: 1s;
+     animation-timing-function: ease-out;
+     animation-fill-mode: forwards;
+     position: absolute;
+     animation-play-state: paused;
+     transform: rotate(120deg);
+     width: 90px;
+     z-index: 5;
+     left: 30%;
+     top: 40%;
+ }
+ 
+ @keyframes example {
+     from {
+         left: 30%;
+         top: 40%
+     }
+     to {
+         left: 200px;
+         top: 300px;
+     }
+ }
+ 
+ @keyframes example2 {
+     from {
+         left: 30%;
+         top: 40%;
+     }
+     to {
+         left: -100px;
+         top: 300px;
+     }
+ }
+ 
+ @keyframes example3 {
+     from {
+         opacity: 100;
+     }
+     to {
+         opacity: 0;
+     }
  }
  /* KaiOS portrait devices (240x320) */
  

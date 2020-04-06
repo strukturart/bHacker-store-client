@@ -47,7 +47,21 @@ $(document).ready(function() {
                 dataSet = xhr.response;
                 addAppList()
                 addCategories()
-                $("div#message-box").css('display', 'none');
+
+                setTimeout(function() {
+                    //$("div#message-box").css('display', 'none');
+
+                }, 10000);
+
+                $("div#message-box").css("animation-play-state", "running");
+                $("div#message-box img.icon-2").css("animation-play-state", "running");
+                $("div#message-box img.icon-1").css("animation-play-state", "running");
+
+
+                $("div#message-box div").css("display", "none");
+
+
+
 
             }
         };
@@ -166,10 +180,8 @@ $(document).ready(function() {
         let about_text = "<div>An alternative app store by free developers for free devices.The database of apps is hosted https://banana-hackers.gitlab.io/store-db , further can be added by a pull request.</div>" +
             "<div id='contributors'><h1>Contributors</h1>" + contributors.toString() + "</div>" +
             "<div><h1>Respect</h1>" +
-            "<div>Respect the licenses of the apps, it would be nice if you use app more often to support the developer with a donation.<br>Thanks!</div>"
-
-
-        "<div class='footer'> Last update: " + update_time + "</div>"
+            "<div>Respect the licenses of the apps, it would be nice if you use app more often to support the developer with a donation.<br>Thanks!</div>" +
+            "<div class='footer'> Last update: " + update_time + "</div>"
 
         let article = $("<article class='About'>" + about_text + "</article>");
         $('div#app-panels').append(article);
@@ -302,74 +314,32 @@ $(document).ready(function() {
     }
 
 
-    /*
-        function nav(move) {
 
-            if (window_status == "article-list" || window_status == "options") {
-                let $focused = $(':focus')[0];
-
-
-
-                if (move == "+1" && pos_focus < article_array.length - 1) {
-                    pos_focus++
-
-                    if (pos_focus <= article_array.length) {
-
-                        let focusedElement = $(':focus')[0].offsetTop + 20;
-
-
-                        window.scrollTo({
-                            top: focusedElement,
-                            left: 100,
-                            behavior: 'smooth'
-                        });
-
-
-                        let targetElement = article_array[pos_focus];
-                        targetElement.focus();
-
-
-
-                    }
-                }
-
-                if (move == "-1" && pos_focus > 0) {
-                    pos_focus--
-                    if (pos_focus >= 0) {
-                        let targetElement = article_array[pos_focus];
-                        targetElement.focus();
-                        let focusedElement = $(':focus')[0].offsetTop;
-                        window.scrollTo({ top: focusedElement + 20, behavior: 'smooth' });
-
-                    }
-                }
-            }
-
-        }
-
-        */
 
 
     function show_article() {
         let $focused = $(':focus');
-        $('article').css('display', 'none');
-        $('div#navigation').css('display', 'none');
-        $('div#app div#app-panels').css('margin', '5px 0 0 0');
-        $('div#app div#app-panels').css('max-height', '100%');
-        $('div#app div#app-panels').css('overflow-y', 'scroll');
+        let getClass = $focused.attr('class');
+        if (getClass != "About") {
+            $('article').css('display', 'none');
+            $('div#navigation').css('display', 'none');
+            $('div#app div#app-panels').css('margin', '5px 0 0 0');
+            $('div#app div#app-panels').css('max-height', '100%');
+            $('div#app div#app-panels').css('overflow-y', 'scroll');
 
-        $focused.css('display', 'block');
-        $('div.summary').css('display', 'block');
-        $('div.meta-data').css('display', 'block');
-        $('div.icon').css('display', 'block');
-        $('div.channel').css('display', 'none');
-        $('ul.images').css('display', 'block');
+            $focused.css('display', 'block');
+            $('div.summary').css('display', 'block');
+            $('div.meta-data').css('display', 'block');
+            $('div.icon').css('display', 'block');
+            $('div.channel').css('display', 'none');
+            $('ul.images').css('display', 'block');
 
-        $('div#button-bar').css('display', 'block');
-        $('div#button-bar div#button-left').css('color', 'white');
-        $('div#button-bar div#button-center').css('color', 'black');
-        $('div#button-bar div#button-right').css('color', 'white');
-        window_status = "single-article";
+            $('div#button-bar').css('display', 'block');
+            $('div#button-bar div#button-left').css('color', 'white');
+            $('div#button-bar div#button-center').css('color', 'black');
+            $('div#button-bar div#button-right').css('color', 'white');
+            window_status = "single-article";
+        }
 
     }
 
