@@ -3,7 +3,7 @@
 ## bHacker-store
 
 An alternative app store by free developers for free devices.
-The database of apps is hosted [here](https://banana-hackers.gitlab.io/store-db), further can be added by a pull request.
+The database of apps is hosted [here](https://gitlab.com/banana-hackers/store-db/-/tree/master), further can be added by a pull request.
 
 ### Features
 + Install apps from the coders source
@@ -17,7 +17,15 @@ The database of apps is hosted [here](https://banana-hackers.gitlab.io/store-db)
 
 
 ### How to sideload the app on your device
-https://www.martinkaptein.com/blog/sideloading-and-deploying-apps-to-kai-os/
+## Omni SD
+Download [bHackerStore App](https://github.com/strukturart/kaiOs-alt-app-store/releases/download/0.5/bhacker-store.zip).
+Copy this zip file to the apps directory of the memory card.
+Open "OmniSD" and install this zip.
+## Web IDE
+Download  [bHackerStore App](https://github.com/strukturart/kaiOs-alt-app-store/releases/download/0.5/bhacker-store.zip).
+Extract this zip to a folder.
+Click "Open Packaged App" and select the folder from the previous step.
+Click "Install and Run" button.
 
 
 ### Thank you
