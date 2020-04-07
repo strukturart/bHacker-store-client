@@ -11,6 +11,8 @@ let server_list = ["https://banana-hackers.gitlab.io/store-db/data.json", " http
 
 $(document).ready(function() {
 
+
+
     check_iconnection();
 
     //////////////////////////////
@@ -387,6 +389,7 @@ $(document).ready(function() {
         let targetElement = $(":focus");
         link_target = $(targetElement).data('download');
         window.location.assign(link_target);
+        //after the download the installion 
 
     }
 
@@ -485,9 +488,11 @@ $(document).ready(function() {
 
 
             case '1':
-                if (window_status == "single-article") {
-                    open_options();
-                }
+                getAlarm();
+                break;
+
+            case '2':
+                setAlarm();
                 break;
 
             case 'SoftRight':
