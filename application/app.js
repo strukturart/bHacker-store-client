@@ -1,5 +1,5 @@
 let page = 0;
-let pos_focus = 0
+let pos_focus = 0;
 let article_array;
 let tabindex_i = -0;
 let window_status = "article-list";
@@ -7,9 +7,11 @@ let dataSet;
 let panels = ["All"];
 let current_panel = 0;
 
-let server_list = ["https://banana-hackers.gitlab.io/store-db/data.json", " https://farooqkz.github.io/data.json"]
+let server_list = ["https://banana-hackers.gitlab.io/store-db/data.json", " https://farooqkz.github.io/data.json"];
 
 $(document).ready(function() {
+
+
 
     check_iconnection();
 
@@ -387,6 +389,7 @@ $(document).ready(function() {
         let targetElement = $(":focus");
         link_target = $(targetElement).data('download');
         window.location.assign(link_target);
+        //after the download the installion 
 
     }
 
@@ -485,9 +488,11 @@ $(document).ready(function() {
 
 
             case '1':
-                if (window_status == "single-article") {
-                    open_options();
-                }
+                getAlarm();
+                break;
+
+            case '2':
+                setAlarm();
                 break;
 
             case 'SoftRight':

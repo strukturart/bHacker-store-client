@@ -39,9 +39,6 @@ function notify(param_title, param_text, param_silent, requireInteraction) {
             if (permission === "granted") {
                 var notification = new Notification(param_title, options, action);
 
-
-
-
             }
         });
     }
@@ -57,10 +54,7 @@ function toaster(text, time) {
     $("div#toast").html(text)
 
     $("div#toast").animate({ top: "0px" }, 1000, "linear", function() {
-        $("div#toast").delay(time).animate({ top: "-100vh" }, 1000);
-
-
-
+        $("div#toast").delay(time).animate({ top: "-110vh" }, 1000);
 
     });
 
@@ -80,16 +74,24 @@ function check_iconnection() {
 }
 
 
-
-//disable enable sleep mode
-function lock_screen(param1) {
-    var lock;
+//wake up screen
+function screenWakeLock(param1) {
     if (param1 == "lock") {
-        lock = window.navigator.requestWakeLock('screen');
+        lock = window.navigator.requestWakeLock("screen");
+
+        lock.onsuccess = function() {
+            toaster("screen-lock", 10000);
+
+        };
+
+        lock.onerror = function() {
+            alert("An error occurred: " + this.error.name);
+        };
     }
 
     if (param1 == "unlock") {
-        lock.unlock();
-
+        if (lock.topic == "screen") {
+            lock.unlock();
+        }
     }
 }

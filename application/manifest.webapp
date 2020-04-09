@@ -6,8 +6,6 @@
 	"type": "certified",
 	"fullscreen": "true",
 
-
-
 	"icons": {
 		"56": "/icons/icon-56-56.png",
 		"112": "/icons/icon-112-112.png"
@@ -19,21 +17,30 @@
 		"url": "https://strukturart.com"
 	},
 
+	
+
+
 
 	"permissions": 
 	{
-		 "desktop-notification": {
-		      "description": "To show notifications"
-		    },
-	
-		"device-storage:sdcard" : {
-		"description": "Required for accessing app manifest files",
-		"access": "readonly"
-		},
-		"device-storage:apps":{ "access": "readwrite" },
-		"webapps-manage":{},
+    	
+    	
+		"alarms": {
+      	"description": "Required to schedule alarms"
+    	},
 
-		"browser": {},
+
+
+
+		"open-remote-window":{}, 
+
+		"device-storage:apps":{ "access": "readwrite" },
+		"webapps-manage":{ },
+
+
+		"wake-lock":{},
+		"power":{},
+		"desktop-notification":{},
 
 
 		"spatialnavigation-app-manage": {
@@ -45,12 +52,15 @@
 		}
 
 
-
-
-
  
-	}
+	},
+	"messages": [
+		{ "alarm": "/index.html" },
+		{ "notification": "/index.html" }
 
+	]
+
+	
 
  
 }
