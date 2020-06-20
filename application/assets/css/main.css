@@ -66,6 +66,42 @@
  .debug {
      outline: 1px solid red;
  }
+ 
+ div.autocomplete-suggestions {
+     background: gray;
+     overflow: auto;
+     color: black;
+     padding: 5px 0px 0px 0;
+     white-space: nowrap;
+     overflow: hidden;
+     font-size: 1.1rem;
+ }
+ 
+ div.autocomplete-suggestions div {
+     border: 3px solid white;
+     background: silver;
+ }
+ 
+ .autocomplete-selected {
+     background: silver;
+     color: black;
+     font-weight: bold;
+ }
+ 
+ .autocomplete-suggestions strong {
+     font-weight: normal;
+ }
+ 
+ .autocomplete-group {
+     padding: 2px 5px;
+     color: black;
+     margin: 0 0 10px 0;
+ }
+ 
+ .autocomplete-group strong {
+     display: block;
+     border-bottom: 1px solid #000;
+ }
  /*///////////////////////////
 ///HELPER////////////////*/
  
@@ -122,6 +158,7 @@
      height: 100vh;
      width: 100vw;
      font-weight: normal;
+     margin: 0px 0 0 0;
  }
  
  div#app div#app-panels article {

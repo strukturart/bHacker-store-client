@@ -31,7 +31,6 @@ $(document).ready(function() {
 
         xhr.ontimeout = function(e) {
             toaster("timeout please wait I try another source")
-
             getJson(server_list[1])
         }
 
@@ -88,103 +87,119 @@ $(document).ready(function() {
 
     function addAppList() {
 
+
+
         let i = 0;
 
-        dataSet.apps.forEach(function(value, index) {
+
+        $.when(
+            dataSet.apps.forEach(function(value, index) {
 
 
-            let data = dataSet.apps[index];
-            let item_title = data.name;
-            let item_summary = data.description;
-            let item_link = data.download.url;
-            let item_url = data.git_repo;
-            let donation = data.donation;
-            let ads = data.has_ads;
-            let tracking = data.has_tracking;
-            let str = data.meta.categories;
-            let item_categorie = str.toString().replace(",", " ");
-            let item_author = data.author.toString();
-            let item_icon = data.icon;
-            let item_license = data.license;
-            let item_type = data.type;
-            let images = "";
-            let images_collection = "";
-            let donation_icon = "none";
-            let ads_icon = "none";
-            let tracking_icon = "none";
-            i++;
-            let elem_id = "elem-" + i;
+                let data = dataSet.apps[index];
+                let item_title = data.name;
+                let item_summary = data.description;
+                let item_link = data.download.url;
+                let item_url = data.git_repo;
+                let donation = data.donation;
+                let ads = data.has_ads;
+                let tracking = data.has_tracking;
+                let str = data.meta.categories;
+                let tag = data.meta.categories;
+                let item_categorie = str.toString().replace(",", " ");
+                let item_tags = tag.toString().replace(",", " ");
+                let item_author = data.author.toString();
+                let item_icon = data.icon;
+                let item_license = data.license;
+                let item_type = data.type;
+                let images = "";
+                let images_collection = "";
+                let donation_icon = "none";
+                let ads_icon = "none";
+                let tracking_icon = "none";
+                //i++;
+                let elem_id = "elem-" + index;
 
-            //unique author list
-            if (contributors.indexOf(item_author) === -1) {
-                contributors.push(item_author)
-            }
-            //apps thumbnails
-            if (data.screenshots) {
-                images = data.screenshots.toString()
-                images = images.split(',');
+                //unique author list
+                if (contributors.indexOf(item_author) === -1) {
+                    contributors.push(item_author)
+                }
+                //apps thumbnails
+                if (data.screenshots) {
+                    images = data.screenshots.toString()
+                    images = images.split(',');
 
-                images.forEach(function(value, index) {
-                    images_collection += "<li><img src=" + images[index] + "></li>";
-                })
-            }
-
-
-
-            //options page
-            $("div#options").append("<div id='" + elem_id + "'></div>");
-
-            if (item_url) {
-                $("div#options div#" + elem_id).append("<div tabindex='0' data-url='" + item_url + "'>source code of the app</div>")
-            }
-
-            if (donation) {
-                donation_icon = "yes";
-                $("div#options div#" + elem_id).append("<div tabindex='1' data-url='" + donation + "'>make a donation</div>")
-            }
-
-            if (tracking) {
-                tracking_icon = "yes";
-            }
+                    images.forEach(function(value, index) {
+                        images_collection += "<li><img src=" + images[index] + "></li>";
+                    })
+                }
 
 
-            if (ads) {
-                donation_icon = "yes";
-            }
+
+                //options page
+                $("div#options").append("<div id='" + elem_id + "'></div>");
+
+                if (item_url) {
+                    $("div#options div#" + elem_id).append("<div tabindex='0' data-url='" + item_url + "'>source code of the app</div>")
+                }
+
+                if (donation) {
+                    donation_icon = "yes";
+                    $("div#options div#" + elem_id).append("<div tabindex='1' data-url='" + donation + "'>make a donation</div>")
+                }
+
+                if (tracking) {
+                    tracking_icon = "yes";
+                }
 
 
-            //article
-            let meta_data = "<div class='meta-data'>" +
-                "<div><span>Author </span>" + item_author + "</div>" +
-                "<div><span>License </span>" + item_license + "</div>" +
-                "<div><span>Type </span>" + item_type + "</div>" +
-                "<div><span>Donation </span>" + donation_icon + "</div>" +
-                "<div><span>Tracking </span>" + tracking_icon + "</div>" +
-                "<div><span>Ads </span>" + ads_icon + "</div>" +
-                "</div>";
-            //urls
-            let urls = "data-download ='" + item_link + "' data-url ='" + item_url + "'";
-            let article = "<article id= '" + elem_id + "' class= 'All " + item_categorie + " ' " + urls + ">" +
-                "<div class='icon'><img src='" + item_icon + "'></div>" +
-                "<div class='channel'>" + item_categorie + "</div>" +
-                "<h1>" + item_title + "</h1><div class='summary'>" + item_summary + "</div>" + meta_data + "<div class='images'></div><ul class='images'>" + images_collection + "</article>";
+                if (ads) {
+                    donation_icon = "yes";
+                }
 
+
+                //article
+                let meta_data = "<div class='meta-data'>" +
+                    "<div><span>Author </span>" + item_author + "</div>" +
+                    "<div><span>License </span>" + item_license + "</div>" +
+                    "<div><span>Type </span>" + item_type + "</div>" +
+                    "<div><span>Donation </span>" + donation_icon + "</div>" +
+                    "<div><span>Tracking </span>" + tracking_icon + "</div>" +
+                    "<div><span>Ads </span>" + ads_icon + "</div>" +
+                    "</div>";
+                //urls
+                let urls = "data-download ='" + item_link + "' data-url ='" + item_url + "'  data-tags ='" + item_tags + "'";
+                let article = "<article id= '" + elem_id + "' class= 'All " + item_categorie + " ' " + urls + ">" +
+                    "<div class='icon'><img src='" + item_icon + "'></div>" +
+                    "<div class='channel'>" + item_categorie + "</div>" +
+                    "<h1>" + item_title + "</h1><div class='summary'>" + item_summary + "</div>" + meta_data + "<div class='images'></div><ul class='images'>" + images_collection + "</article>";
+
+                $('div#app-panels').append(article);
+
+            })
+
+        ).then(function() {
+            set_tabindex();
+            let update_time = moment(dataSet.generated_at).format('DD.MM.YYYY, HH:mm');
+
+            let about_text = "<div>An alternative app store by free developers for free devices.The database of apps is hosted https://banana-hackers.gitlab.io/store-db , further can be added by a pull request.</div>" +
+                "<div id='contributors'><h1>Contributors</h1>" + contributors.toString() + "</div>" +
+                "<div><h1>Respect</h1>" +
+                "<div>Respect the licenses of the apps, it would be nice if you use app more often to support the developer with a donation.<br>Thanks!</div>" +
+                "<div class='footer'> Last update: " + update_time + "</div>"
+
+            let article = $("<article class='About'>" + about_text + "</article>");
             $('div#app-panels').append(article);
+
+            getData()
+
             $("article#search input").focus();
 
-        });
 
-        set_tabindex();
-        let update_time = moment(dataSet.generated_at).format('DD.MM.YYYY, HH:mm');
+        })
 
-        let about_text = "<div>An alternative app store by free developers for free devices.The database of apps is hosted https://banana-hackers.gitlab.io/store-db , further can be added by a pull request.</div>" +
-            "<div id='contributors'><h1>Contributors</h1>" + contributors.toString() + "</div>" +
-            "<div><h1>Respect</h1>" +
-            "<div>Respect the licenses of the apps, it would be nice if you use app more often to support the developer with a donation.<br>Thanks!</div>" +
-            "<div class='footer'> Last update: " + update_time + "</div>"
 
-        let article = $("<article class='About'>" + about_text + "</article>");
-        $('div#app-panels').append(article);
+
 
     }
 
@@ -264,6 +279,12 @@ $(document).ready(function() {
         panels_list(panels[current_panel]);
         set_tabindex();
         pos_focus = 0;
+
+        if (current_panel == 0) {
+            $("input").val("")
+            $("input").focus()
+
+        }
     }
 
 
@@ -286,54 +307,12 @@ $(document).ready(function() {
         if (param == "+1" && focused < siblingsLength - 1) {
 
 
-
-
-
             focused++
             siblings[focused].focus();
 
 
-
-
             let focusedElement = $(':focus')[0].offsetTop;
-            $('div#app-panels article').eq(-2).css("margin-bottom", "40px")
-
-
-            window.scrollTo({
-                top: focusedElement - 20,
-                behavior: 'smooth'
-            });
-
-
-
-            if ($("article#search").is(":focus")) {
-                $("input").focus()
-
-            }
-
-
-
-
-
-
-
-
-
-
-        }
-
-        if (param == "-1" && focused > 0) {
-
-
-
-
-            focused--
-            siblings[focused].focus();
-            let focusedElement = $(':focus')[0].offsetTop;
-
-
-
-
+            //$('div#app-panels article').eq(-2).css("margin-bottom", "40px")
 
 
             window.scrollTo({
@@ -349,10 +328,25 @@ $(document).ready(function() {
             }
 
 
+        }
+
+        if (param == "-1" && focused > 0) {
+
+            focused--
+            siblings[focused].focus();
+            let focusedElement = $(':focus')[0].offsetTop;
+
+
+            window.scrollTo({
+                top: focusedElement - 35,
+                behavior: 'smooth'
+            });
 
 
 
-
+            if ($("article#search").is(":focus")) {
+                $("input").focus()
+            }
 
 
         }
@@ -554,7 +548,9 @@ $(document).ready(function() {
                     return;
 
                 }
-                if (window_status == "article-list") { window.close() }
+                if (window_status == "article-list" && !$("input").is(":focus")) {
+                    window.close();
+                }
                 break;
 
 
