@@ -7,7 +7,7 @@ let dataSet;
 let panels = ["All"];
 let current_panel = 0;
 
-let server_list = ["https://banana-hackers.gitlab.io/store-db/data.json", "https://bananahackers.github.io/data.json"];
+let server_list = ["https://banana-hackers.gitlab.io/store-db/data.json", " https://farooqkz.github.io/data.json"];
 
 $(document).ready(function() {
 
@@ -58,8 +58,6 @@ $(document).ready(function() {
                 $("div#message-box").css("animation-play-state", "running");
                 $("div#message-box img.icon-2").css("animation-play-state", "running");
                 $("div#message-box img.icon-1").css("animation-play-state", "running");
-
-
                 $("div#message-box div").css("display", "none");
 
 
@@ -172,7 +170,7 @@ $(document).ready(function() {
                 "<h1>" + item_title + "</h1><div class='summary'>" + item_summary + "</div>" + meta_data + "<div class='images'></div><ul class='images'>" + images_collection + "</article>";
 
             $('div#app-panels').append(article);
-
+            $("article#search input").focus();
 
         });
 
@@ -272,6 +270,7 @@ $(document).ready(function() {
 
     //up - down
 
+
     function nav(param) {
 
         let focused = $(':focus').attr('tabindex');
@@ -279,14 +278,26 @@ $(document).ready(function() {
         let siblingsLength = $(':focus').parent().children(':visible').length;
 
 
+        if ($("input").is(":focus")) {
+            $("article#search").next().focus()
+        }
+
+
         if (param == "+1" && focused < siblingsLength - 1) {
+
+
+
+
+
             focused++
             siblings[focused].focus();
 
 
 
+
             let focusedElement = $(':focus')[0].offsetTop;
             $('div#app-panels article').eq(-2).css("margin-bottom", "40px")
+
 
             window.scrollTo({
                 top: focusedElement - 20,
@@ -295,12 +306,33 @@ $(document).ready(function() {
 
 
 
+            if ($("article#search").is(":focus")) {
+                $("input").focus()
+
+            }
+
+
+
+
+
+
+
+
+
+
         }
 
         if (param == "-1" && focused > 0) {
+
+
+
+
             focused--
             siblings[focused].focus();
             let focusedElement = $(':focus')[0].offsetTop;
+
+
+
 
 
 
@@ -308,6 +340,20 @@ $(document).ready(function() {
                 top: focusedElement - 35,
                 behavior: 'smooth'
             });
+
+
+
+            if ($("article#search").is(":focus")) {
+                $("input").focus()
+
+            }
+
+
+
+
+
+
+
 
         }
 
@@ -322,7 +368,13 @@ $(document).ready(function() {
     function show_article() {
         let $focused = $(':focus');
         let getClass = $focused.attr('class');
-        if (getClass != "About") {
+        let getId = $(":focus").parent().attr('id');
+
+        if (getId == "search") {
+            return false;
+        }
+
+        if (getClass != "About" || getId != "search") {
             $('article').css('display', 'none');
             $('div#navigation').css('display', 'none');
             $('div#app div#app-panels').css('margin', '5px 0 0 0');
@@ -487,13 +539,6 @@ $(document).ready(function() {
                 break;
 
 
-            case '1':
-                getAlarm();
-                break;
-
-            case '2':
-                setAlarm();
-                break;
 
             case 'SoftRight':
                 if (window_status == "single-article") {

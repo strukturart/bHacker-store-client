@@ -83,6 +83,22 @@
  /*///////////////////////////
 ///APPS////////////////*/
  
+ article#search {
+     margin: 0px 0 10px 0;
+     font-weight: normal;
+     min-width: 95vw;
+     height: 40px;
+     padding: 5px;
+     background: silver;
+     text-align: center;
+ }
+ 
+ article#search input {
+     height: 30px;
+     padding: 3px;
+     width: 80%;
+ }
+ 
  div#navigation {
      position: fixed;
      height: 30px;
