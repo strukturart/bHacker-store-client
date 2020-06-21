@@ -2,19 +2,12 @@
 <html>
 
 <head>
-
-
-
-
     <title>bHacker-store</title>
     <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; img-src * data: 'unsafe-inline'; connect-src * 'unsafe-inline'; frame-src *;">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/grid.css" />
-
-
-
 </head>
 
 <body>
@@ -28,6 +21,9 @@
         <div id="app" class="flex width-100  height-100 page">
             <div id="navigation" class="width-100"></div>
             <div id="app-panels">
+                <article class="All" id="search" class="width-100 flex justify-content-spacearound" tabindex="0">
+                    <input type="search">
+                </article>
             </div>
             <div id="options"></div>
         </div>
@@ -41,8 +37,6 @@
         </div>
     </div>
 
-
-
     <div id="message-box" class="flex width-100 height-100">
         <div id="download" class="text-center">Please wait<br> downloading app-list</div>
         <img class="icon-1" src="icons/icon.png">
@@ -50,16 +44,13 @@
     </div>
 
 
-
-
-
     </div>
-
-
     <script src="assets/js/jQuery-3.1.0.js"></script>
+    <script src="assets/js/jquery.autocomplete.min.js"></script>
     <script src="assets/js/moments.min.js"></script>
     <script src="assets/js/helper.js"></script>
     <script src="assets/js/install.js"></script>
+    <script src="assets/js/search.js"></script>
     <script src="app.js"></script>
 
 
