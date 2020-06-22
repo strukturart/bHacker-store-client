@@ -33,7 +33,7 @@ Click "Install and Run" button.
 
 ### to do
 
-- message after installation
+offline version
 
 ## Donation
 <a href="https://www.buymeacoffee.com/vj6Q8lR" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/lato-orange.png" alt="Buy Me A Coffee" style="height: 25px !important;width: 108px !important;" ></a>

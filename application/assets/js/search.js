@@ -48,6 +48,7 @@ function buildAutocomplete(element, source, container) {
 }
 
 var search_list = [];
+var filter_search_list = [];
 
 function getData() {
 
@@ -58,7 +59,12 @@ function getData() {
     $.when(
         $('article').each(function(index) {
             if ($(this).attr('data-tags')) {
-                search_list.push({ "value": $(this).attr('data-tags'), "data": $(this).attr('data-tags') });
+
+                if ($.inArray($(this).attr('data-tags'), filter_search_list) == -1) {
+                    search_list.push({ "value": $(this).attr('data-tags'), "data": $(this).attr('data-tags') });
+                    filter_search_list.push($(this).attr('data-tags'))
+                };
+
             }
 
         })
