@@ -7,7 +7,7 @@ let dataSet;
 let panels = ["All"];
 let current_panel = 0;
 
-let server_list = ["https://banana-hackers.gitlab.io/store-db/data.json", " https://farooqkz.github.io/data.json"];
+let server_list = ["https://banana-hackers.gitlab.io/store-db/data.json", "https://bananahackers.github.io/data.json"];
 
 $(document).ready(function() {
 
@@ -81,7 +81,14 @@ $(document).ready(function() {
         };
     }
 
-    getJson(server_list[0]);
+    //check if internet connection 
+    if (navigator.onLine) {
+        //start download loop
+        getJson(server_list[0]);
+    } else {
+        $('#download').html("😴<br>Your device is offline, please connect it to the internet ")
+    }
+
 
     let contributors = ["40min"];
 

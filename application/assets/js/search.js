@@ -1,5 +1,4 @@
 //https://github.com/devbridge/jquery-Autocomplete
-
 function buildAutocomplete(element, source, container) {
     $(element).autocomplete({
         lookup: source,
@@ -51,11 +50,6 @@ var search_list = [];
 var filter_search_list = [];
 
 function getData() {
-
-
-
-
-
     $.when(
         $('article').each(function(index) {
             if ($(this).attr('data-tags')) {
@@ -66,11 +60,8 @@ function getData() {
                 };
 
             }
-
         })
     ).then(function() {
         buildAutocomplete("input", search_list, "div#app-panels")
     })
-
-
 }

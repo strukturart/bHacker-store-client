@@ -21,6 +21,8 @@ The database of apps is hosted [here](https://gitlab.com/banana-hackers/store-db
 Download [bHackerStore App](https://github.com/strukturart/kaiOs-alt-app-store/releases/download/0.5/bhacker-store.zip).
 Copy this zip file to the apps directory of the memory card.
 Open "OmniSD" and install this zip.
+
+
 ## Web IDE
 Download  [bHackerStore App](https://github.com/strukturart/kaiOs-alt-app-store/releases/download/0.5/bhacker-store.zip).
 Extract this zip to a folder.
