@@ -70,5 +70,5 @@ const { install, installPkg, download_counter } = ((_) => {
     };
   }
 
-  return { install, installPkg, download_counter }
+  return { install, installPkg, download_counter };
 })();
