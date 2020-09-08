@@ -1,10 +1,10 @@
-const { install, installPkg } = (_ => {
+const { install, installPkg } = ((_) => {
   var path, sdcard;
   var initialized = false;
 
   try {
     var sdcard = navigator.getDeviceStorage("sdcard");
-    sdcard.addEventListener("change", function(event) {
+    sdcard.addEventListener("change", function (event) {
       // var reason = event.reason;
       path = event.path;
       install(path);
@@ -19,12 +19,12 @@ const { install, installPkg } = (_ => {
 
     var request = sdcard.get(param);
 
-    request.onsuccess = function() {
+    request.onsuccess = function () {
       var file = this.result;
       installPkg(file);
     };
 
-    request.onerror = function() {
+    request.onerror = function () {
       alert("Unable to get the file: " + this.error);
     };
   }
@@ -33,21 +33,21 @@ const { install, installPkg } = (_ => {
     if (!initialized) throw new Error("install module is not initialized yet");
     navigator.mozApps.mgmt
       .import(packageFile)
-      .then(function() {
+      .then(function () {
         download_counter();
         toaster(
           "<br><br><br><br>THANK YOU<br> for installing the app.<br><br> If you like it I would be happy about a donation, press the option button.<br><br><br><br><br><br>",
           6000
         );
       })
-      .catch(e => {
+      .catch((e) => {
         alert("Installation error: " + e.name + " " + e.message);
       });
     let appGetter = navigator.mozApps.mgmt.getAll();
-    appGetter.onsuccess = function() {
+    appGetter.onsuccess = function () {
       let apps = appGetter.result;
     };
-    appGetter.onerror = function(e) {};
+    appGetter.onerror = function (e) {};
   }
 
   function download_counter() {
@@ -63,7 +63,7 @@ const { install, installPkg } = (_ => {
 
     xhttp.send(null);
 
-    xhttp.onload = function() {
+    xhttp.onload = function () {
       if (xhttp.readyState === xhttp.DONE && xhttp.status === 200) {
         let data = xhttp.response;
       }
