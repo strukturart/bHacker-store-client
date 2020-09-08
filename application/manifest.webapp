@@ -1,56 +1,41 @@
 {
-	"version": "1.0.0",
-	"name": "bHacker",
-	"description": "An app to download apps",
-	"launch_path": "/index.html",
-	"type": "certified",
-	"fullscreen": "true",
+  "version": "1.0.0",
+  "name": "bHacker",
+  "description": "An app to download apps",
+  "launch_path": "/index.html",
+  "type": "certified",
+  "fullscreen": "true",
 
+  "icons": {
+    "56": "/icons/icon-56-56.png",
+    "112": "/icons/icon-112-112.png"
+  },
 
+  "developer": {
+    "name": "strukturart",
+    "url": "https://strukturart.com"
+  },
 
-	"icons": {
-		"56": "/icons/icon-56-56.png",
-		"112": "/icons/icon-112-112.png"
-	},
-	
-	"developer": 
-	{
-		"name": "strukturart",
-		"url": "https://strukturart.com"
-	},
+  "permissions": {
+    "desktop-notification": {
+      "description": "To show notifications"
+    },
 
+    "device-storage:sdcard": {
+      "description": "Required for accessing app manifest files",
+      "access": "readonly"
+    },
+    "device-storage:apps": { "access": "readwrite" },
+    "webapps-manage": {},
 
-	"permissions": 
-	{
-		 "desktop-notification": {
-		      "description": "To show notifications"
-		    },
-	
-		"device-storage:sdcard" : {
-		"description": "Required for accessing app manifest files",
-		"access": "readonly"
-		},
-		"device-storage:apps":{ "access": "readwrite" },
-		"webapps-manage":{},
+    "browser": {},
 
-		"browser": {},
+    "spatialnavigation-app-manage": {
+      "navigator.spatialNavigationEnabled": false
+    },
 
-
-		"spatialnavigation-app-manage": {
-		"navigator.spatialNavigationEnabled": false
-		},
-
-		"systemXHR": {
-		"description": "Required to load remote content"
-		}
-
-
-
-
-
- 
-	}
-
-
- 
+    "systemXHR": {
+      "description": "Required to load remote content"
+    }
+  }
 }

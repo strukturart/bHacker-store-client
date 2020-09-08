@@ -1,0 +1,8 @@
+
+**/jQuery-3.1.0.js
+**/applait.finder.min.js
+**/jquery.autocomplete.min.js
+**/moments.min.js
+
+build
+node_modules

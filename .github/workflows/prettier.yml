@@ -1,12 +1,10 @@
-name: Build and upload artifact
+name: Prettier - Check Code Formatting
 on: push
 
 jobs:
-  build:
+  check-formatting:
     name: Build
-
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -19,10 +17,5 @@ jobs:
       - name: npm install
         run: npm install
 
-      - name: build
-        run: npm run package
-
-      - uses: actions/upload-artifact@v2
-        with:
-          name: App
-          path: build/bhacker-store.zip
+      - name: check formatting
+        run: npm run formatting:test
