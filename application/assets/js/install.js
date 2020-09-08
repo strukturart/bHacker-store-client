@@ -1,4 +1,4 @@
-const { install, installPkg } = ((_) => {
+const { install, installPkg, download_counter } = ((_) => {
   var path, sdcard;
   var initialized = false;
 
@@ -9,7 +9,7 @@ const { install, installPkg } = ((_) => {
       path = event.path;
       install(path);
     });
-    var initialized = true;
+    initialized = true;
   } catch (error) {
     console.error("initialisation of sdcard failed:", error);
   }
@@ -69,4 +69,6 @@ const { install, installPkg } = ((_) => {
       }
     };
   }
+
+  return { install, installPkg, download_counter }
 })();
