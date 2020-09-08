@@ -41,13 +41,33 @@ offline version
 
 <a href="https://www.buymeacoffee.com/vj6Q8lR" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/lato-orange.png" alt="Buy Me A Coffee" style="height: 25px !important;width: 108px !important;" ></a>
 
+## Contributing
+
+### Setup
+
+first install the dependencies
+
+```sh
+npm install
+```
+
 ### Packaging
 
 This only works on linux(and maybe osx) at the moment
 
 ```sh
-npm i
 npm run package
 ```
 
 The resulting package can be found in the build folder.
+
+### Formatting
+
+This project uses code formatting. Make sure to run the formatter before commiting, otherwise the CI will be sad 😢.
+
+```sh
+# check it
+npm run formatting:test
+# run the formatter
+npm run formatting:fix
+```
