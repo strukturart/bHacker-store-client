@@ -39,3 +39,14 @@ offline version
 
 ## Donation
 <a href="https://www.buymeacoffee.com/vj6Q8lR" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/lato-orange.png" alt="Buy Me A Coffee" style="height: 25px !important;width: 108px !important;" ></a>
+
+
+### Packaging
+
+This only works on linux(and maybe osx) at the moment
+```sh
+npm i
+npm run package
+```
+
+The resulting package can be found in the build folder.

@@ -1,0 +1,24 @@
+{
+  "name": "bhackers-store",
+  "version": "1.0.0",
+  "description": "An client for https://gitlab.com/banana-hackers/store-db",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "./tools/build.sh && ./tools/package.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strukturart/kaiOs-alt-app-store.git"
+  },
+  "author": "strukturart <https://github.com/strukturart>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/strukturart/kaiOs-alt-app-store/issues"
+  },
+  "devDependencies": {
+    "prettier": "2.1.1",
+    "terser": "^5.3.0"
+  },
+  "homepage": "https://github.com/strukturart/kaiOs-alt-app-store#readme"
+}
