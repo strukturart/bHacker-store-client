@@ -21,6 +21,8 @@ function buildAutocomplete(element, source, container) {
         onSelect: function(suggestion) {
             $("article:not(article#search)").css("display", "none")
             $('*[data-tags=' + suggestion.value + ']').css("display", "block")
+            $('*[data-slug=' + suggestion.value + ']').css("display", "block")
+
             $('div#app-panels article').removeAttr("tabindex")
             $('div#app-panels article').filter(':visible').each(function(index) {
                 $(this).prop("tabindex", index);
@@ -56,7 +58,9 @@ function getData() {
 
                 if ($.inArray($(this).attr('data-tags'), filter_search_list) == -1) {
                     search_list.push({ "value": $(this).attr('data-tags'), "data": $(this).attr('data-tags') });
-                    filter_search_list.push($(this).attr('data-tags'))
+                    search_list.push({ "value": $(this).attr('data-slug'), "data": $(this).attr('data-slug') });
+
+                    //filter_search_list.push($(this).attr('data-tags'))
                 };
 
             }

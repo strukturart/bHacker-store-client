@@ -6,6 +6,7 @@ let window_status = "article-list";
 let dataSet;
 let panels = ["All"];
 let current_panel = 0;
+let app_slug;
 
 let server_list = ["https://banana-hackers.gitlab.io/store-db/data.json", "https://bananahackers.github.io/data.json"];
 
@@ -49,19 +50,10 @@ $(document).ready(function() {
                 addAppList()
                 addCategories()
 
-                setTimeout(function() {
-                    //$("div#message-box").css('display', 'none');
-
-                }, 10000);
-
                 $("div#message-box").css("animation-play-state", "running");
                 $("div#message-box img.icon-2").css("animation-play-state", "running");
                 $("div#message-box img.icon-1").css("animation-play-state", "running");
                 $("div#message-box div").css("display", "none");
-
-
-
-
             }
         };
 
@@ -124,6 +116,7 @@ $(document).ready(function() {
                 let donation_icon = "none";
                 let ads_icon = "none";
                 let tracking_icon = "none";
+                let item_slug = data.slug;
                 //i++;
                 let elem_id = "elem-" + index;
 
@@ -175,7 +168,7 @@ $(document).ready(function() {
                     "<div><span>Ads </span>" + ads_icon + "</div>" +
                     "</div>";
                 //urls
-                let urls = "data-download ='" + item_link + "' data-url ='" + item_url + "'  data-tags ='" + item_tags + "'";
+                let urls = "data-download ='" + item_link + "' data-url ='" + item_url + "'  data-tags ='" + item_tags + "' data-slug ='" + item_slug + "'";
                 let article = "<article id= '" + elem_id + "' class= 'All " + item_categorie + " ' " + urls + ">" +
                     "<div class='icon'><img src='" + item_icon + "'></div>" +
                     "<div class='channel'>" + item_categorie + "</div>" +
@@ -186,13 +179,23 @@ $(document).ready(function() {
             })
 
         ).then(function() {
-            set_tabindex();
-            let update_time = moment(dataSet.generated_at).format('DD.MM.YYYY, HH:mm');
 
+
+            set_tabindex();
+
+            fetch("about.html")
+                .then(response => {
+                    return response.text()
+                })
+                .then(data => {
+                    $("div#privacy").html(data)
+                });
+            let update_time = moment(dataSet.generated_at).format('DD.MM.YYYY, HH:mm');
             let about_text = "<div>An alternative app store by free developers for free devices.The database of apps is hosted https://banana-hackers.gitlab.io/store-db , further can be added by a pull request.</div>" +
                 "<div id='contributors'><h1>Contributors</h1>" + contributors.toString() + "</div>" +
                 "<div><h1>Respect</h1>" +
                 "<div>Respect the licenses of the apps, it would be nice if you use app more often to support the developer with a donation.<br>Thanks!</div>" +
+                "<div id='privacy'></div>" +
                 "<div class='footer'> Last update: " + update_time + "</div>"
 
             let article = $("<article class='About'>" + about_text + "</article>");
@@ -364,12 +367,14 @@ $(document).ready(function() {
 
 
 
-
+    //store current article
+    let article_id;
 
     function show_article() {
         let $focused = $(':focus');
         let getClass = $focused.attr('class');
         let getId = $(":focus").parent().attr('id');
+        article_id = $(":focus").attr('id');
 
         if (getId == "search") {
             return false;
@@ -396,6 +401,8 @@ $(document).ready(function() {
             window_status = "single-article";
         }
 
+
+
     }
 
 
@@ -407,7 +414,6 @@ $(document).ready(function() {
         $('div#options').css('display', 'none');
 
 
-        let $focused = $(':focus');
         $('div#navigation').css('display', 'block');
         $('div#app-panels').css('display', 'block');
         $('div.summary').css('display', 'none');
@@ -441,8 +447,8 @@ $(document).ready(function() {
         let link_target = "";
         let targetElement = $(":focus");
         link_target = $(targetElement).data('download');
+        app_slug = $(targetElement).data('slug');
         window.location.assign(link_target);
-        //after the download the installion 
 
     }
 
@@ -453,6 +459,30 @@ $(document).ready(function() {
         let targetElement = $(":focus");
         let link_target = $(targetElement).data('url');
         window.open(link_target, '_self ')
+
+    }
+
+    function close_options() {
+
+        $("div#options").css("display", "none");
+        $('article#' + article_id).focus();
+
+        $('div#navigation').css('display', 'none');
+        $('div#app div#app-panels').css('margin', '5px 0 0 0');
+        $('div#app div#app-panels').css('max-height', '100%');
+        $('div#app div#app-panels').css('overflow-y', 'scroll');
+
+        $('div.summary').css('display', 'block');
+        $('div.meta-data').css('display', 'block');
+        $('div.icon').css('display', 'block');
+        $('div.channel').css('display', 'none');
+        $('ul.images').css('display', 'block');
+
+        $('div#button-bar').css('display', 'block');
+        $('div#button-bar div#button-left').css('color', 'white');
+        $('div#button-bar div#button-center').css('color', 'black');
+        $('div#button-bar div#button-right').css('color', 'white');
+        window_status = "single-article";
 
     }
 
@@ -550,8 +580,14 @@ $(document).ready(function() {
 
             case 'Backspace':
                 evt.preventDefault();
-                if (window_status == "single-article" || window_status == "options") {
+                if (window_status == "single-article") {
                     show_article_list();
+                    return;
+
+                }
+
+                if (window_status == "options") {
+                    close_options();
                     return;
 
                 }
