@@ -24,7 +24,7 @@ Open "OmniSD" and install this zip.
 
 ## Web IDE
 
-Download [bHackerStore App](https://github.com/strukturart/kaiOs-alt-app-store/releases/download/0.5/bhacker-store.zip).
+Download [bHackerStore App](https://github.com/strukturart/kaiOs-alt-app-store/releases/download/0.6/bhacker-store.zip).
 Extract this zip to a folder.
 Click "Open Packaged App" and select the folder from the previous step.
 Click "Install and Run" button.
