@@ -18,4 +18,7 @@ npx terser ./application/assets/js/*.js ./application/app.js \
     --ecma 5
 
 # copy index file
-cp ./application/index.html ./build/app/index.html
+#cp ./application/index.html ./build/app/index.html
+
+# copy all html file
+cp ./application/*.html ./build/app/
