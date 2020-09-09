@@ -112,8 +112,9 @@ $(document).ready(function () {
         let elem_id = "elem-" + index;
 
         //unique author list
-        if (contributors.indexOf(item_author) === -1) {
-          contributors.push(item_author);
+        const just_author_name = item_author.split("<")[0].trim();
+        if (contributors.indexOf(just_author_name) === -1) {
+          contributors.push(just_author_name);
         }
         //apps thumbnails
         if (data.screenshots) {
@@ -227,9 +228,7 @@ $(document).ready(function () {
       );
       let about_text =
         "<div>An alternative app store by free developers for free devices.The database of apps is hosted https://banana-hackers.gitlab.io/store-db , further can be added by a pull request.</div>" +
-        "<div id='contributors'><h1>Contributors</h1>" +
-        contributors.toString() +
-        "</div>" +
+        "<div><h1>Contributors</h1><div id='contributors'></div></div>" +
         "<div><h1>Respect</h1>" +
         "<div>Respect the licenses of the apps, it would be nice if you use app more often to support the developer with a donation.<br>Thanks!</div>" +
         "<div id='privacy'></div>" +
@@ -239,6 +238,8 @@ $(document).ready(function () {
 
       let article = $("<article class='About'>" + about_text + "</article>");
       $("div#app-panels").append(article);
+
+      $("div#contributors").text(contributors.sort().join(", "));
 
       getData();
 
