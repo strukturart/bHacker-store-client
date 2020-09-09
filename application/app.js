@@ -29,6 +29,20 @@ $(document).ready(function () {
       $("div#message-box img.icon-2").css("animation-play-state", "running");
       $("div#message-box img.icon-1").css("animation-play-state", "running");
       $("div#message-box div").css("display", "none");
+
+      DownloadCounter.load().then(_ => {
+        const apps = document.querySelectorAll(".APP");
+        apps.forEach(app => {
+          const appId = app.getAttribute("data-slug");
+          if (appId) {
+            const dl_section = app.querySelector("div.dl-cnt");
+            const count = DownloadCounter.getForApp(appId);
+            if (dl_section && count !== -1) {
+              dl_section.innerHTML = `<span>Downloads</span> ~${count}`;
+            }
+          }
+        });
+      });
     }
 
     if (!BackendApi.getData()) {
@@ -39,7 +53,7 @@ $(document).ready(function () {
       } else {
         BackendApi.update()
           .then(loadData)
-          .catch((error) => {
+          .catch(error => {
             console.log(error);
             toaster(error instanceof Error ? error.message : error);
           });
@@ -48,7 +62,7 @@ $(document).ready(function () {
       if (navigator.onLine) {
         BackendApi.update()
           .then(loadData)
-          .catch((error) => {
+          .catch(error => {
             console.log(error);
             toaster(error instanceof Error ? error.message : error);
             loadData();
@@ -155,7 +169,7 @@ $(document).ready(function () {
           "</div>" +
           "<div><span>Ads </span>" +
           ads_icon +
-          "</div>" +
+          '</div><div class="dl-cnt"></div>' +
           "</div>";
         //urls
         let urls =
@@ -171,7 +185,7 @@ $(document).ready(function () {
         let article =
           "<article id= '" +
           elem_id +
-          "' class= 'All " +
+          "' class= 'APP All " +
           item_categorie +
           " ' " +
           urls +
@@ -198,10 +212,10 @@ $(document).ready(function () {
       set_tabindex();
 
       fetch("about.html")
-        .then((response) => {
+        .then(response => {
           return response.text();
         })
-        .then((data) => {
+        .then(data => {
           $("div#privacy").html(data);
         });
       let update_time = moment(dataSet.generated_at).format(
@@ -320,7 +334,7 @@ $(document).ready(function () {
 
       window.scrollTo({
         top: focusedElement - 35,
-        behavior: "smooth",
+        behavior: "smooth"
       });
 
       if ($("article#search").is(":focus")) {
@@ -335,7 +349,7 @@ $(document).ready(function () {
 
       window.scrollTo({
         top: focusedElement - 35,
-        behavior: "smooth",
+        behavior: "smooth"
       });
 
       if ($("article#search").is(":focus")) {

@@ -1,4 +1,4 @@
-const { install, installPkg, download_counter } = ((_) => {
+const { install } = ((_) => {
   var path, sdcard;
   var initialized = false;
 
@@ -34,7 +34,7 @@ const { install, installPkg, download_counter } = ((_) => {
     navigator.mozApps.mgmt
       .import(packageFile)
       .then(function () {
-        download_counter();
+        BackendApi.count_download(app_slug)
         toaster(
           "<br><br><br><br>THANK YOU<br> for installing the app.<br><br> If you like it I would be happy about a donation, press the option button.<br><br><br><br><br><br>",
           6000
@@ -50,25 +50,5 @@ const { install, installPkg, download_counter } = ((_) => {
     appGetter.onerror = function (e) {};
   }
 
-  function download_counter() {
-    const url =
-      "https://bhackers.uber.space/srs/v1/download_counter/count/" + app_slug;
-    let xhttp = new XMLHttpRequest({ mozSystem: true });
-
-    xhttp.open("GET", url, true);
-    xhttp.withCredentials = true;
-    xhttp.timeout = 2000;
-
-    xhttp.responseType = "json";
-
-    xhttp.send(null);
-
-    xhttp.onload = function () {
-      if (xhttp.readyState === xhttp.DONE && xhttp.status === 200) {
-        let data = xhttp.response;
-      }
-    };
-  }
-
-  return { install, installPkg, download_counter };
+  return { install, installPkg };
 })();
