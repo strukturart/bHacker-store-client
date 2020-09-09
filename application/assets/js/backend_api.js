@@ -3,7 +3,7 @@ const LastUpdateFile =
 
 const server_list = [
   "https://banana-hackers.gitlab.io/store-db/data.json",
-  "https://bananahackers.github.io/data.json"
+  "https://bananahackers.github.io/data.json",
 ];
 
 const SimpleRatingServerInstance = "https://bhackers.uber.space/srs/v1";
@@ -59,7 +59,7 @@ const BackendApi = (() => {
 
   function _update() {
     return new Promise((resolve, reject) => {
-      const done = data => {
+      const done = (data) => {
         try {
           _saveData(data);
           console.log("Got data", data);
@@ -70,7 +70,7 @@ const BackendApi = (() => {
       };
       fetchData(server_list[0])
         .then(done)
-        .catch(error => {
+        .catch((error) => {
           statusCallback("First Server wasn't reachable, trying backup");
           console.error(error);
           fetchData(server_list[1]).then(done).catch(reject);
@@ -85,7 +85,7 @@ const BackendApi = (() => {
     console.log("Checking for newer data.");
     return new Promise((resolve, reject) => {
       fetchData(LastUpdateFile)
-        .then(response => {
+        .then((response) => {
           const ts = Number(response);
           resolve(ts > localStorage.getItem("DATA_Timestamp"));
         })
@@ -108,7 +108,7 @@ const BackendApi = (() => {
       } else {
         // try checking the version number
         checkForNewVersion()
-          .then(newVersionExists => {
+          .then((newVersionExists) => {
             if (newVersionExists) {
               _update().then(resolve).catch(reject);
             } else {
@@ -116,7 +116,7 @@ const BackendApi = (() => {
               resolve();
             }
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(err);
             // we couldn't check for versions,
             // either we have no connection or the update page is blocked, so try updating anyway.
@@ -144,24 +144,26 @@ const BackendApi = (() => {
     xhttp.send(null);
   }
 
-  function getDownloadCounts(){
-    return new Promise ((resolve, reject) => {
-      fetchData(`${SimpleRatingServerInstance}/download_counter`).then(data => {
-        try {
-          const json = JSON.parse(data);
-          resolve(json)
-        } catch (error) {
-          reject(error)
-        }
-      }).catch(reject)
-    })
+  function getDownloadCounts() {
+    return new Promise((resolve, reject) => {
+      fetchData(`${SimpleRatingServerInstance}/download_counter`)
+        .then((data) => {
+          try {
+            const json = JSON.parse(data);
+            resolve(json);
+          } catch (error) {
+            reject(error);
+          }
+        })
+        .catch(reject);
+    });
   }
 
   return {
     update,
     getData,
-    setStatusCallback: cb => (statusCallback = cb),
+    setStatusCallback: (cb) => (statusCallback = cb),
     count_download,
-    getDownloadCounts
+    getDownloadCounts,
   };
 })();

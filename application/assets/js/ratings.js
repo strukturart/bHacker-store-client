@@ -2,9 +2,12 @@ const DownloadCounter = (() => {
   let downloadCounts = {};
 
   function load() {
-    return new Promise((res, rej)=>{
-        BackendApi.getDownloadCounts().then(d => (downloadCounts = d)).then(res).catch(rej);
-    })
+    return new Promise((res, rej) => {
+      BackendApi.getDownloadCounts()
+        .then((d) => (downloadCounts = d))
+        .then(res)
+        .catch(rej);
+    });
   }
 
   function getForApp(appId) {
@@ -12,6 +15,6 @@ const DownloadCounter = (() => {
   }
   return {
     load,
-    getForApp
+    getForApp,
   };
 })();
