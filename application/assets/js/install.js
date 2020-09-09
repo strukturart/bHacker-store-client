@@ -5,7 +5,8 @@ const { install, installPkg, download_counter } = ((_) => {
   try {
     var sdcard = navigator.getDeviceStorage("sdcard");
     sdcard.addEventListener("change", function (event) {
-      // var reason = event.reason;
+      let reason = event.reason;
+      toaster(reason, 2000);
       path = event.path;
       install(path);
     });
@@ -41,7 +42,7 @@ const { install, installPkg, download_counter } = ((_) => {
         );
       })
       .catch((e) => {
-        alert("Installation error: " + e.name + " " + e.message);
+        toaster("Installation error: " + e.name + " " + e.message, 2000);
       });
     let appGetter = navigator.mozApps.mgmt.getAll();
     appGetter.onsuccess = function () {
