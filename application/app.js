@@ -484,6 +484,8 @@ $(document).ready(function () {
   /////////////////////////
 
   function handleKeyDown(evt) {
+    const isInSearchField = evt.target.id == "search";
+
     switch (evt.key) {
       case "Enter":
         if (window_status == "article-list") {
@@ -504,12 +506,14 @@ $(document).ready(function () {
         break;
 
       case "ArrowLeft":
+        if (isInSearchField) break;
         if (window_status == "article-list") {
           nav_panels("left");
         }
         break;
 
       case "ArrowRight":
+        if (isInSearchField) break;
         if (window_status == "article-list") {
           nav_panels("right");
         }
@@ -529,6 +533,7 @@ $(document).ready(function () {
         break;
 
       case "Backspace":
+        if (isInSearchField) break;
         evt.preventDefault();
         if (window_status == "single-article") {
           show_article_list();
