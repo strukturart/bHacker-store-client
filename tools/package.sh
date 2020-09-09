@@ -8,12 +8,11 @@ rm ./build/bhacker-store.zip || true
 
 echo "{\"version\": 1,\"manifestURL\":\"app://bHacker-Store.org/manifest.webapp\"}" > ./build/tmp/metadata.json
 
-cd build/tmp
 
-zip -jqr application.zip ../app
+cd build/app
+zip -qr ../tmp/application.zip .
 
-cd ..
-
-zip -jqr bhacker-store.zip tmp
+cd ../tmp
+zip -qr ../bhacker-store.zip .
 
 echo "Created bhacker-store.zip"
