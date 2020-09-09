@@ -1,54 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>bHacker-store</title>
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; img-src * data: 'unsafe-inline'; connect-src * 'unsafe-inline'; frame-src *;"
-    />
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; img-src * data: 'unsafe-inline'; connect-src * 'unsafe-inline'; frame-src *;" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/grid.css" />
-  </head>
+</head>
 
-  <body>
+<body>
     <div id="wrapper">
-      <div id="toast" class="width-100"></div>
-      <!---------------->
-      <!--app-list-->
-      <!---------------->
-      <div id="app" class="flex width-100 height-100 page">
-        <div id="navigation" class="width-100"></div>
-        <div id="app-panels">
-          <article
-            class="All"
-            id="search"
-            class="width-100 flex justify-content-spacearound"
-            tabindex="0"
-          >
-            <input id="search" type="search" />
-          </article>
+        <div id="toast" class="width-100"></div>
+        <!---------------->
+        <!--app-list-->
+        <!---------------->
+        <div id="app" class="flex width-100 height-100 page">
+            <div id="navigation" class="width-100"></div>
+            <div id="app-panels">
+                <article class="All" id="search" class="width-100 flex justify-content-spacearound" tabindex="0">
+                    <input id="search" type="search" />
+                </article>
+            </div>
+            <div id="options"></div>
         </div>
-        <div id="options"></div>
-      </div>
 
-      <div id="button-bar">
-        <div class="inner flex justify-content-spacebetween width-100">
-          <div id="button-left">options</div>
-          <div id="button-center">select</div>
-          <div id="button-right">install</div>
+        <div id="bottom-bar">
+            <div class="inner flex justify-content-spacebetween width-100">
+                <div id="button-left"></div>
+                <div id="button-center"></div>
+                <div id="button-right"></div>
+            </div>
         </div>
-      </div>
     </div>
 
     <div id="message-box" class="flex width-100 height-100">
-      <div id="download" class="text-center">
-        Please wait<br />
-        downloading app-list
-      </div>
-      <img class="icon-1" src="icons/icon.png" />
-      <img class="icon-2" src="icons/icon.png" />
+        <div id="download" class="text-center">
+            Please wait<br /> downloading app-list
+        </div>
+        <img class="icon-1" src="icons/icon.png" />
+        <img class="icon-2" src="icons/icon.png" />
     </div>
     <!-- for local development -->
     <script src="assets/js/jQuery-3.1.0.js"></script>
@@ -61,5 +53,6 @@
     <script src="app.js"></script>
     <!-- for packaged app -->
     <script src="bundle.min.js"></script>
-  </body>
+</body>
+
 </html>

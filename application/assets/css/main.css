@@ -175,6 +175,7 @@ div#app div#app-panels article {
     font-weight: normal;
     min-width: 95vw;
     max-height: 100%;
+    padding: 4px;
     overflow: scroll;
 }
 
@@ -301,36 +302,29 @@ div#options div div:focus {
 
 
 /*/////////////////
-///BUTTON BAR////
+///BOTTOM BAR////
 ////////////////*/
 
-div#button-bar {
+div#bottom-bar {
     position: fixed;
-    bottom: 16px;
+    bottom: 10px;
     left: 0px;
-    height: 10px;
+    height: 15px;
     z-index: 2;
+    background: black;
 }
 
-div#button-bar div#inner {
+div#bottom-bar div#inner {
     position: relative;
 }
 
-div#button-bar div {
+div#bottom-bar div {
     background: black;
     color: white;
     padding: 2px;
 }
 
-div#button-bar div#button-left {
-    background: black;
-    color: black;
-    padding: 2px;
-    width: 30%;
-    text-align: left;
-}
-
-div#button-bar div#button-center {
+div#bottom-bar div#button-center {
     background: black;
     color: white;
     padding: 2px;
@@ -338,9 +332,18 @@ div#button-bar div#button-center {
     text-align: center;
 }
 
-div#button-bar div#button-right {
+div#bottom-bar div#button-left {
     background: black;
-    color: black;
+    color: white;
+    padding: 2px;
+    width: 20px;
+    text-align: left;
+    width: 30%;
+}
+
+div#bottom-bar div#button-right {
+    background: black;
+    color: white;
     padding: 2px;
     width: 30%;
     text-align: right;
