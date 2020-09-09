@@ -8,11 +8,6 @@ let panels = ["All"];
 let current_panel = 0;
 let app_slug;
 
-let server_list = [
-  "https://banana-hackers.gitlab.io/store-db/data.json",
-  "https://bananahackers.github.io/data.json",
-];
-
 $(document).ready(function () {
   check_iconnection();
 
@@ -20,63 +15,49 @@ $(document).ready(function () {
   //fetch-database////
   //////////////////////////////
 
-  function getJson(url) {
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", url);
-    xhr.timeout = 4000; // time in milliseconds
-    xhr.responseType = "json";
+  function init() {
+    BackendApi.setStatusCallback(toaster);
 
-    xhr.send();
+    function loadData() {
+      // console.log("loadData");
+      dataSet = BackendApi.getData();
+      console.log(dataSet);
+      addAppList();
+      addCategories();
 
-    xhr.ontimeout = function (e) {
-      toaster("timeout please wait I try another source");
-      getJson(server_list[1]);
-    };
+      $("div#message-box").css("animation-play-state", "running");
+      $("div#message-box img.icon-2").css("animation-play-state", "running");
+      $("div#message-box img.icon-1").css("animation-play-state", "running");
+      $("div#message-box div").css("display", "none");
+    }
 
-    xhr.onload = function () {
-      if (xhr.status != 200) {
-        // analyze HTTP status of the response
-        toaster(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
-      }
-      if (xhr.status == 403) {
-        // analyze HTTP status of the response
-        toaster("database not found try another");
-        getJson(server_list[1]);
-      }
-      if (xhr.status == 200) {
-        // show the result
-        dataSet = xhr.response;
-        addAppList();
-        addCategories();
-
-        $("div#message-box").css("animation-play-state", "running");
-        $("div#message-box img.icon-2").css("animation-play-state", "running");
-        $("div#message-box img.icon-1").css("animation-play-state", "running");
-        $("div#message-box div").css("display", "none");
-      }
-    };
-
-    xhr.onprogress = function (event) {
-      if (event.lengthComputable) {
-        //toaster(`Received ${event.loaded} of ${event.total} bytes`);
+    if (!BackendApi.getData()) {
+      if (!navigator.onLine) {
+        $("#download").html(
+          "😴<br>Your device is offline, please connect it to the internet "
+        );
       } else {
-        //toaster(`Received ${event.loaded} bytes`); // no Content-Length
+        BackendApi.update()
+          .then(loadData)
+          .catch((error) => {
+            console.log(error);
+            toaster(error instanceof Error ? error.message : error);
+          });
       }
-    };
-
-    xhr.onerror = function () {
-      toaster("Request failed, please try later.");
-    };
-  }
-
-  //check if internet connection
-  if (navigator.onLine) {
-    //start download loop
-    getJson(server_list[0]);
-  } else {
-    $("#download").html(
-      "😴<br>Your device is offline, please connect it to the internet "
-    );
+    } else {
+      if (navigator.onLine) {
+        BackendApi.update()
+          .then(loadData)
+          .catch((error) => {
+            console.log(error);
+            toaster(error instanceof Error ? error.message : error);
+            loadData();
+          });
+      } else {
+        toaster("offline mode - loading data from cache");
+        loadData();
+      }
+    }
   }
 
   let contributors = ["40min"];
@@ -552,4 +533,5 @@ $(document).ready(function () {
   }
 
   document.addEventListener("keydown", handleKeyDown);
+  init();
 });
