@@ -463,7 +463,7 @@ $(document).ready(function() {
     /////////////////////////
 
     function handleKeyDown(evt) {
-        const isInSearchField = evt.target.id == "search";
+        const isInSearchField = evt.target.id == "search" && evt.target.value != "";
 
         switch (evt.key) {
             case "Enter":

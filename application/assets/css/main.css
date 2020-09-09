@@ -82,6 +82,16 @@ div.autocomplete-suggestions {
     font-size: 1.1rem;
 }
 
+div.no-result {
+    position: fixed;
+    top: 90px;
+    border: 3px solid white;
+    background: silver;
+    padding: 3px;
+    width: 90%;
+    left: 5%;
+}
+
 div.autocomplete-suggestions div {
     border: 3px solid white;
     background: silver;
