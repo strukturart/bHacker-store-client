@@ -52,9 +52,9 @@ function bottom_bar(left, center, right) {
   $("div#bottom-bar div#button-right").text(right);
 
   if (left == "" && center == "" && right == "") {
-    $("div#bottom-bar div#button-left").css("display", "none");
+    $("div#bottom-bar").css("display", "none");
   } else {
-    $("div#bottom-bar div#button-left").css("display", "block");
+    $("div#bottom-bar").css("display", "block");
   }
 }
 
