@@ -8,10 +8,9 @@ let panels = ["All"];
 let current_panel = 0;
 let app_slug;
 let offline = false;
+let apps_data = new Array();
 
 $(document).ready(function () {
-  check_iconnection();
-
   //////////////////////////////
   //fetch-database////
   //////////////////////////////
@@ -20,9 +19,7 @@ $(document).ready(function () {
     BackendApi.setStatusCallback(toaster);
 
     function loadData() {
-      // console.log("loadData");
       dataSet = BackendApi.getData();
-      console.log(dataSet);
       addAppList();
       addCategories();
 
@@ -123,6 +120,11 @@ $(document).ready(function () {
             images_collection += "<li><img src=" + images[index] + "></li>";
           });
         }
+
+        //to do
+        //push data in array
+        //to create elements in dom if needed
+        apps_data.push([item_title, item_summary, item_categorie, item_link]);
 
         //options page
         $("div#options").append("<div id='" + elem_id + "'></div>");
@@ -252,7 +254,7 @@ $(document).ready(function () {
       panels.push(key);
     });
     panels.push("About");
-    $("div#navigation").append("<div>" + panels[0] + "</div>");
+    $("div#navigation div").text(panels[0]);
   }
 
   function set_tabindex() {
@@ -333,7 +335,6 @@ $(document).ready(function () {
       siblings[focused].focus();
 
       let focusedElement = $(":focus")[0].offsetTop;
-      //$('div#app-panels article').eq(-2).css("margin-bottom", "40px")
 
       window.scrollTo({
         top: focusedElement - 35,
@@ -398,7 +399,6 @@ $(document).ready(function () {
   }
 
   function show_article_list() {
-    navigator.spatialNavigationEnabled = false;
     panels_list(panels[current_panel]);
     $("div#app div#app-panels").css("margin", "32px 0 0 0");
     $("div#app div#app-panels").css("max-height", "73%");
@@ -522,7 +522,6 @@ $(document).ready(function () {
         if (isInSearchField) break;
         evt.preventDefault();
         if (evt.target.id == "search" && evt.target.value == "") {
-          bottom_bar("cancel", "select", "");
           $("article:not(article#search)").css("display", "block");
         }
 
