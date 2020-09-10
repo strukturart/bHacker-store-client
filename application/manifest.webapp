@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "name": "bHacker",
-  "description": "An app to download apps",
+  "description": "An app to download and install apps",
   "launch_path": "/index.html",
   "type": "certified",
   "fullscreen": "true",
@@ -21,6 +21,9 @@
   "permissions": {
     "desktop-notification": {
       "description": "To show notifications"
+    },
+    "video-capture": {
+      "description": "Reading Codes using the Camera"
     },
 
     "device-storage:sdcard": {
