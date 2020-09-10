@@ -427,38 +427,28 @@ $(document).ready(function () {
   function close_options() {
     $("div#options").css("display", "none");
     $("article#" + article_id).focus();
-
     $("div#navigation").css("display", "none");
     $("div#app div#app-panels").css("margin", "5px 0 0 0");
     $("div#app div#app-panels").css("max-height", "100%");
     $("div#app div#app-panels").css("overflow-y", "scroll");
-
     $("div.summary").css("display", "block");
     $("div.meta-data").css("display", "block");
     $("div.icon").css("display", "block");
     $("div.channel").css("display", "none");
     $("ul.images").css("display", "block");
-
     bottom_bar("options", "", "install");
-
     window_status = "single-article";
   }
 
   function open_options() {
     let $focused = $(":focus");
     let selected_article = $focused.attr("id");
-
     $("div#options div").css("display", "none");
-
     $("div#options").css("display", "block");
     $("div#options div#" + selected_article).css("display", "block");
-
     $("div#options div#" + selected_article + " div").css("display", "block");
-
     bottom_bar("", "", "");
-
     $("div#options div#" + selected_article + " div:first").focus();
-
     window_status = "options";
   }
 
@@ -506,7 +496,6 @@ $(document).ready(function () {
         if (window_status == "single-article") {
           open_options();
         }
-
         break;
 
       case "SoftRight":
@@ -518,6 +507,11 @@ $(document).ready(function () {
       case "Backspace":
         if (isInSearchField) break;
         evt.preventDefault();
+        if (evt.target.id == "search" && evt.target.value == "") {
+          bottom_bar("cancel", "select", "");
+          $("article:not(article#search)").css("display", "block");
+        }
+
         if (window_status == "single-article") {
           show_article_list();
           return;

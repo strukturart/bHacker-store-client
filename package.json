@@ -11,16 +11,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/strukturart/kaiOs-alt-app-store.git"
+    "url": "git+https://github.com/strukturart/bHacker-store-client.git"
   },
   "author": "strukturart <https://github.com/strukturart>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/strukturart/kaiOs-alt-app-store/issues"
+    "url": "https://github.com/strukturart/bHacker-store-client/issues"
   },
   "devDependencies": {
     "prettier": "2.1.1",
     "terser": "^5.3.0"
   },
-  "homepage": "https://github.com/strukturart/kaiOs-alt-app-store#readme"
+  "homepage": "https://github.com/strukturart/bHacker-store-client#readme"
 }
