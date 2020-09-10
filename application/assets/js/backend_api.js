@@ -6,6 +6,8 @@ const server_list = [
   "https://bananahackers.github.io/data.json",
 ];
 
+const SimpleRatingServerInstance = "https://bhackers.uber.space/srs/v1";
+
 const BackendApi = (() => {
   const TIMEOUT_ERROR = "TimeOutError";
   const FORBIDDEN_ERROR = "TimeOutError";
@@ -130,9 +132,38 @@ const BackendApi = (() => {
     else return null;
   }
 
+  /**
+   * Counts a download.
+   * @param {string} appId id/slug of the app that was downloaded
+   */
+  function count_download(appId) {
+    const url = `${SimpleRatingServerInstance}/download_counter/count/${appId}`;
+    let xhttp = new XMLHttpRequest({ mozSystem: true });
+    xhttp.open("GET", url, true);
+    xhttp.timeout = 2000;
+    xhttp.send(null);
+  }
+
+  function getDownloadCounts() {
+    return new Promise((resolve, reject) => {
+      fetchData(`${SimpleRatingServerInstance}/download_counter`)
+        .then((data) => {
+          try {
+            const json = JSON.parse(data);
+            resolve(json);
+          } catch (error) {
+            reject(error);
+          }
+        })
+        .catch(reject);
+    });
+  }
+
   return {
     update,
     getData,
     setStatusCallback: (cb) => (statusCallback = cb),
+    count_download,
+    getDownloadCounts,
   };
 })();

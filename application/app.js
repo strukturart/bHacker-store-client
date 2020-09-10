@@ -30,6 +30,20 @@ $(document).ready(function () {
       $("div#message-box img.icon-2").css("animation-play-state", "running");
       $("div#message-box img.icon-1").css("animation-play-state", "running");
       $("div#message-box div").css("display", "none");
+
+      DownloadCounter.load().then((_) => {
+        const apps = document.querySelectorAll(".APP");
+        apps.forEach((app) => {
+          const appId = app.getAttribute("data-slug");
+          if (appId) {
+            const dl_section = app.querySelector("div.dl-cnt");
+            const count = DownloadCounter.getForApp(appId);
+            if (dl_section && count !== -1) {
+              dl_section.innerHTML = `<span>Downloads</span> ~${count}`;
+            }
+          }
+        });
+      });
     }
 
     if (!BackendApi.getData()) {
@@ -158,7 +172,7 @@ $(document).ready(function () {
           "</div>" +
           "<div><span>Ads </span>" +
           ads_icon +
-          "</div>" +
+          '</div><div class="dl-cnt"></div>' +
           "</div>";
         //urls
         let urls =
@@ -174,7 +188,7 @@ $(document).ready(function () {
         let article =
           "<article id= '" +
           elem_id +
-          "' class= 'All " +
+          "' class= 'APP All " +
           item_categorie +
           " ' " +
           urls +
