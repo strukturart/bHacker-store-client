@@ -316,6 +316,9 @@ $(document).ready(function () {
     if (current_panel == 0) {
       $("input").val("");
       $("input").focus();
+      $("div#navigation").css("display", "none");
+    } else {
+      $("div#navigation").css("display", "block");
     }
   }
 
@@ -365,10 +368,15 @@ $(document).ready(function () {
   //store current article
   let article_id;
 
-  function show_article() {
+  function show_article(app) {
+    $("article")
+      .find("[data-slug='" + app + "']")
+      .focus();
     let $focused = $(":focus");
+
     let getClass = $focused.attr("class");
     let getId = $(":focus").parent().attr("id");
+
     article_id = $(":focus").attr("id");
 
     if (getId == "search") {
@@ -380,8 +388,6 @@ $(document).ready(function () {
       $("div#navigation").css("display", "none");
       $("div#app div#app-panels").css("margin", "5px 0 0 0");
       $("div#app div#app-panels").css("max-height", "100%");
-      $("div#app div#app-panels").css("overflow-y", "scroll");
-
       $focused.css("display", "block");
       $("div.summary").css("display", "block");
       $("div.meta-data").css("display", "block");
@@ -400,17 +406,18 @@ $(document).ready(function () {
 
   function show_article_list() {
     panels_list(panels[current_panel]);
-    $("div#app div#app-panels").css("margin", "32px 0 0 0");
-    $("div#app div#app-panels").css("max-height", "73%");
-    $("div#options").css("display", "none");
+    $("div#app div#app-panels").css("margin", "35px 0 50px 0px");
 
-    $("div#navigation").css("display", "block");
+    $("article#search").css("margin", "-35px 0 0 0!Important");
+    $("div#options").css("display", "none");
+    if (current_panel != 0) {
+      $("div#navigation").css("display", "block");
+    }
     $("div#app-panels").css("display", "block");
     $("div.summary").css("display", "none");
     $("div.meta-data").css("display", "none");
     $("div.channel").css("display", "block");
     $("ul.images").css("display", "none");
-
     $("div.icon").css("display", "none");
 
     let targetElement = article_array[pos_focus];
@@ -466,7 +473,17 @@ $(document).ready(function () {
     window_status = "options";
   }
 
-  function qr_scan() {}
+  const search_listener = document.querySelector('input[type="search"]');
+
+  search_listener.addEventListener("focus", (event) => {
+    bottom_bar("scan", "select", "");
+    window_status = "search";
+  });
+
+  search_listener.addEventListener("blur", (event) => {
+    bottom_bar("", "select", "");
+    window_status = "article-list";
+  });
 
   //////////////////////////
   ////KEYPAD TRIGGER////////////
@@ -476,10 +493,6 @@ $(document).ready(function () {
     const isInSearchField = evt.target.id == "search" && evt.target.value != "";
 
     switch (evt.key) {
-      case "1": {
-        //qr_scan();
-        start_scan();
-      }
       case "Enter":
         if (window_status == "article-list") {
           show_article();
@@ -513,6 +526,12 @@ $(document).ready(function () {
         break;
 
       case "SoftLeft":
+        if (window_status == "search") {
+          let app_slug = start_scan();
+          bottom_bar("", "", "");
+          window_status = "scan";
+        }
+
         if (window_status == "single-article") {
           open_options();
         }
@@ -533,6 +552,12 @@ $(document).ready(function () {
 
         if (window_status == "single-article") {
           show_article_list();
+          return;
+        }
+
+        if (window_status == "scan") {
+          document.getElementById("qr-screen").hidden = true;
+
           return;
         }
 
