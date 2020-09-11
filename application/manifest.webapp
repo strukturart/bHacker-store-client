@@ -2,6 +2,7 @@
   "version": "1.0.0",
   "name": "bHacker",
   "description": "An app to download and install apps",
+  "origin": "app://bhstore.bananahackers.net",
   "launch_path": "/index.html",
   "type": "certified",
   "fullscreen": "true",
