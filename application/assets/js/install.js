@@ -76,6 +76,7 @@ const { install } = (_ => {
         toaster("Installation error: " + error.name + " " + error.message, 2000);
         if(error.name === "InvalidPrivilegeLevel"){
           alert("Error: You probably need to do the priviliged factory reset first.")
+          // TODO open an guide that explains it, with links to a backup guide.
         }
       });
     // todo? check if app was installed:
