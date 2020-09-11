@@ -8,9 +8,7 @@
 
   "icons": {
     "56": "/icons/icon-56-56.png",
-    "112": "/icons/icon-112-112.png",
-    "56": "icon-56-56.png",
-    "112": "icon-112-112.png"
+    "112": "/icons/icon-112-112.png"
   },
 
   "developer": {
