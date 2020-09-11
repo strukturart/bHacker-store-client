@@ -1,4 +1,4 @@
-const mozAppsWrapper = (_ => {
+const mozAppsWrapper = ((_) => {
   function _domRequest2Promise(domRequest) {
     return new Promise((resolve, reject) => {
       domRequest.onsuccess = () => resolve(domRequest.result);
@@ -25,7 +25,7 @@ const mozAppsWrapper = (_ => {
   return { getAll, getInstalled };
 })();
 
-const { install } = (_ => {
+const { install } = ((_) => {
   var path, sdcard;
   var initialized = false;
 
@@ -50,7 +50,7 @@ const { install } = (_ => {
 
     request.onsuccess = function () {
       var file = this.result;
-      console.log(this.result)
+      console.log(this.result);
       installPkg(file);
     };
 
@@ -71,11 +71,16 @@ const { install } = (_ => {
           6000
         );
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
-        toaster("Installation error: " + error.name + " " + error.message, 2000);
-        if(error.name === "InvalidPrivilegeLevel"){
-          alert("Error: You probably need to do the priviliged factory reset first.")
+        toaster(
+          "Installation error: " + error.name + " " + error.message,
+          2000
+        );
+        if (error.name === "InvalidPrivilegeLevel") {
+          alert(
+            "Error: You probably need to do the priviliged factory reset first."
+          );
           // TODO open an guide that explains it, with links to a backup guide.
         }
       });
