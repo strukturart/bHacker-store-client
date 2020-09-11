@@ -369,21 +369,23 @@ $(document).ready(function () {
   let article_id;
 
   function show_article(app) {
-    $("article")
-      .find("[data-slug='" + app + "']")
-      .focus();
-    let $focused = $(":focus");
-
-    let getClass = $focused.attr("class");
-    let getId = $(":focus").parent().attr("id");
-
-    article_id = $(":focus").attr("id");
-
-    if (getId == "search") {
-      return false;
+    let $focused;
+    if (app) {
+      $focused = $('[data-slug="' + app + '"]');
+      $('[data-slug="' + app + '"]').focus();
+    } else {
+      $focused = $(":focus");
     }
 
-    if (getClass != "About" || getId != "search") {
+    let getClass = $focused.attr("class");
+    let getId = $focused.parent().attr("id");
+    article_id = $focused.attr("id");
+
+    if (getId == "search") {
+      //return false;
+    }
+
+    if (getClass != "About") {
       $("article").css("display", "none");
       $("div#navigation").css("display", "none");
       $("div#app div#app-panels").css("margin", "5px 0 0 0");
@@ -527,7 +529,11 @@ $(document).ready(function () {
 
       case "SoftLeft":
         if (window_status == "search") {
-          let app_slug = start_scan();
+          start_scan(function (callback) {
+            let slug = callback.replace("bhackers:", "");
+            show_article(slug);
+          });
+
           bottom_bar("", "", "");
           window_status = "scan";
         }
