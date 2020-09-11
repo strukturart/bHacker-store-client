@@ -1,10 +1,38 @@
-const { install } = ((_) => {
+const mozAppsWrapper = (_ => {
+  function _domRequest2Promise(domRequest) {
+    return new Promise((resolve, reject) => {
+      domRequest.onsuccess = () => resolve(domRequest.result);
+      domRequest.onerror = () => reject(domRequest.error);
+    });
+  }
+
+  /**
+   * get a list of all installed apps
+   */
+  function getAll() {
+    return _domRequest2Promise(navigator.mozApps.mgmt.getAll());
+  }
+
+  /**
+   * Get a list of all installed apps from this origin.
+   * For example, if you call this on the Firefox Marketplace,
+   * you will get the list of apps installed by the Firefox Marketplace.
+   */
+  function getInstalled() {
+    return _domRequest2Promise(navigator.mozApps.getInstalled());
+  }
+
+  return { getAll, getInstalled };
+})();
+
+const { install } = (_ => {
   var path, sdcard;
   var initialized = false;
 
   try {
     var sdcard = navigator.getDeviceStorage("sdcard");
     sdcard.addEventListener("change", function (event) {
+      console.log("sdcard change event", event, event.path);
       let reason = event.reason;
       toaster(reason, 2000);
       path = event.path;
@@ -22,6 +50,7 @@ const { install } = ((_) => {
 
     request.onsuccess = function () {
       var file = this.result;
+      console.log(this.result)
       installPkg(file);
     };
 
@@ -35,20 +64,22 @@ const { install } = ((_) => {
     navigator.mozApps.mgmt
       .import(packageFile)
       .then(function () {
+        console.info("Installation was successfull", arguments);
         BackendApi.count_download(app_slug);
         toaster(
           "<br><br><br><br>THANK YOU<br> for installing the app.<br><br> If you like it I would be happy about a donation, press the option button.<br><br><br><br><br><br>",
           6000
         );
       })
-      .catch((e) => {
-        toaster("Installation error: " + e.name + " " + e.message, 2000);
+      .catch(error => {
+        console.error(error);
+        toaster("Installation error: " + error.name + " " + error.message, 2000);
+        if(error.name === "InvalidPrivilegeLevel"){
+          alert("Error: You probably need to do the priviliged factory reset first.")
+        }
       });
-    let appGetter = navigator.mozApps.mgmt.getAll();
-    appGetter.onsuccess = function () {
-      let apps = appGetter.result;
-    };
-    appGetter.onerror = function (e) {};
+    // todo? check if app was installed:
+    // mozAppsWrapper.getInstalled().then(apps => console.log(apps));
   }
 
   return { install, installPkg };
