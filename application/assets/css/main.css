@@ -49,6 +49,8 @@ body {
   font-family: "Lato-Regular";
   font-weight: 100;
   width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
   position: relative;
   margin: 0px;
   padding: 0px;
@@ -136,22 +138,6 @@ div#toast {
 /*///////////////////////////
 ///APPS////////////////*/
 
-article#search {
-  margin: 0px 0 10px 0;
-  font-weight: normal;
-  min-width: 95vw;
-  height: 40px;
-  padding: 5px;
-  background: silver;
-  text-align: center;
-}
-
-article#search input {
-  height: 30px;
-  padding: 3px;
-  width: 80%;
-}
-
 div#navigation {
   position: fixed;
   height: 30px;
@@ -159,6 +145,7 @@ div#navigation {
   width: 100%;
   top: 0px;
   left: 0px;
+  display: none;
 }
 
 div#navigation div {
@@ -184,12 +171,27 @@ div#app div#app-panels article {
   min-width: 95vw;
   max-height: 100%;
   padding: 4px;
-  overflow: scroll;
+  overflow-y: scroll;
+}
+
+article#search {
+  margin: -35px 0 10px 0 !important;
+  font-weight: normal;
+  min-width: 95vw;
+  height: 40px;
+  padding: 5px;
+  background: silver;
+  text-align: center;
+}
+
+article#search input {
+  height: 30px;
+  padding: 3px;
+  width: 80%;
 }
 
 div#app div#app-panels {
-  margin: 32px 0 0 0;
-  max-height: 75%;
+  margin: 35px 0 50px 0px;
 }
 
 div#app div#app-panels article:focus {

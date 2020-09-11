@@ -7,6 +7,8 @@ rm -rf ./build/app/* || true
 mkdir -p ./build/app/assets
 cp -r ./application/assets/css ./build/app/assets/css
 cp -r ./application/icons ./build/app/icons
+cp -r ./application/assets/exclude-js ./build/app/assets/exclude-js
+
 # copy metadata file
 cp ./application/manifest.webapp ./build/app/manifest.webapp
 

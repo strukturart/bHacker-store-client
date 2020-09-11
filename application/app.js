@@ -247,7 +247,7 @@ $(document).ready(function () {
     });
   }
 
-  bottom_bar("", "select", "");
+  bottom_bar("settings", "select", "");
 
   function addCategories() {
     $.each(dataSet.categories, function (key, val) {
@@ -316,6 +316,9 @@ $(document).ready(function () {
     if (current_panel == 0) {
       $("input").val("");
       $("input").focus();
+      $("div#navigation").css("display", "none");
+    } else {
+      $("div#navigation").css("display", "block");
     }
   }
 
@@ -365,23 +368,28 @@ $(document).ready(function () {
   //store current article
   let article_id;
 
-  function show_article() {
-    let $focused = $(":focus");
-    let getClass = $focused.attr("class");
-    let getId = $(":focus").parent().attr("id");
-    article_id = $(":focus").attr("id");
-
-    if (getId == "search") {
-      return false;
+  function show_article(app) {
+    let $focused;
+    if (app) {
+      $focused = $('[data-slug="' + app + '"]');
+      $('[data-slug="' + app + '"]').focus();
+    } else {
+      $focused = $(":focus");
     }
 
-    if (getClass != "About" || getId != "search") {
+    let getClass = $focused.attr("class");
+    let getId = $focused.parent().attr("id");
+    article_id = $focused.attr("id");
+
+    if (getId == "search") {
+      //return false;
+    }
+
+    if (getClass != "About") {
       $("article").css("display", "none");
       $("div#navigation").css("display", "none");
       $("div#app div#app-panels").css("margin", "5px 0 0 0");
       $("div#app div#app-panels").css("max-height", "100%");
-      $("div#app div#app-panels").css("overflow-y", "scroll");
-
       $focused.css("display", "block");
       $("div.summary").css("display", "block");
       $("div.meta-data").css("display", "block");
@@ -400,17 +408,18 @@ $(document).ready(function () {
 
   function show_article_list() {
     panels_list(panels[current_panel]);
-    $("div#app div#app-panels").css("margin", "32px 0 0 0");
-    $("div#app div#app-panels").css("max-height", "73%");
-    $("div#options").css("display", "none");
+    $("div#app div#app-panels").css("margin", "35px 0 50px 0px");
 
-    $("div#navigation").css("display", "block");
+    $("article#search").css("margin", "-35px 0 0 0!Important");
+    $("div#options").css("display", "none");
+    if (current_panel != 0) {
+      $("div#navigation").css("display", "block");
+    }
     $("div#app-panels").css("display", "block");
     $("div.summary").css("display", "none");
     $("div.meta-data").css("display", "none");
     $("div.channel").css("display", "block");
     $("ul.images").css("display", "none");
-
     $("div.icon").css("display", "none");
 
     let targetElement = article_array[pos_focus];
@@ -466,6 +475,18 @@ $(document).ready(function () {
     window_status = "options";
   }
 
+  const search_listener = document.querySelector('input[type="search"]');
+
+  search_listener.addEventListener("focus", (event) => {
+    bottom_bar("scan", "select", "");
+    window_status = "search";
+  });
+
+  search_listener.addEventListener("blur", (event) => {
+    bottom_bar("", "select", "");
+    window_status = "article-list";
+  });
+
   //////////////////////////
   ////KEYPAD TRIGGER////////////
   /////////////////////////
@@ -507,6 +528,16 @@ $(document).ready(function () {
         break;
 
       case "SoftLeft":
+        if (window_status == "search") {
+          start_scan(function (callback) {
+            let slug = callback.replace("bhackers:", "");
+            show_article(slug);
+          });
+
+          bottom_bar("", "", "");
+          window_status = "scan";
+        }
+
         if (window_status == "single-article") {
           open_options();
         }
@@ -527,6 +558,12 @@ $(document).ready(function () {
 
         if (window_status == "single-article") {
           show_article_list();
+          return;
+        }
+
+        if (window_status == "scan") {
+          document.getElementById("qr-screen").hidden = true;
+
           return;
         }
 

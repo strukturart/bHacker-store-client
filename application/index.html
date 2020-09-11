@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/grid.css" />
+    <link rel="stylesheet" href="assets/css/qr_reader.css" />
   </head>
 
   <body>
@@ -53,12 +54,21 @@
       <img class="icon-1" src="icons/icon.png" onerror="this.src='icon.png'" />
       <img class="icon-2" src="icons/icon.png" onerror="this.src='icon.png'" />
     </div>
+    <div id="qr-screen" hidden>
+      <video id="video"></video>
+      <div id="corner-nw"></div>
+      <div id="corner-no"></div>
+      <div id="corner-so"></div>
+      <div id="corner-sw"></div>
+      <div id="startDecoding" hidden>Start Scanning</div>
+    </div>
     <!-- for local development -->
     <script src="assets/js/jQuery-3.1.0.js"></script>
     <script src="assets/js/jquery.autocomplete.min.js"></script>
     <script src="assets/js/moments.min.js"></script>
     <script src="assets/js/helper.js"></script>
     <script src="assets/js/install.js"></script>
+    <script src="assets/js/qr_reader.js"></script>
     <script src="assets/js/search.js"></script>
     <script src="assets/js/backend_api.js"></script>
     <script src="app.js"></script>
