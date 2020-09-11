@@ -9,6 +9,7 @@ let current_panel = 0;
 let app_slug;
 let offline = false;
 let apps_data = new Array();
+let update_time;
 
 $(document).ready(function () {
   //////////////////////////////
@@ -221,25 +222,13 @@ $(document).ready(function () {
           return response.text();
         })
         .then((data) => {
-          $("div#privacy").html(data);
+          $("div#about").html(data);
+          update_time =
+            "updated: " +
+            moment(dataSet.generated_at).format("DD.MM.YYYY, HH:mm");
+
+          $("div#contributors").text(contributors.sort().join(", "));
         });
-      let update_time = moment(dataSet.generated_at).format(
-        "DD.MM.YYYY, HH:mm"
-      );
-      let about_text =
-        "<div>An alternative app store by free developers for free devices.The database of apps is hosted https://banana-hackers.gitlab.io/store-db , further can be added by a pull request.</div>" +
-        "<div><h1>Contributors</h1><div id='contributors'></div></div>" +
-        "<div><h1>Respect</h1>" +
-        "<div>Respect the licenses of the apps, it would be nice if you use app more often to support the developer with a donation.<br>Thanks!</div>" +
-        "<div id='privacy'></div>" +
-        "<div class='footer'> Last update: " +
-        update_time +
-        "</div>";
-
-      let article = $("<article class='About'>" + about_text + "</article>");
-      $("div#app-panels").append(article);
-
-      $("div#contributors").text(contributors.sort().join(", "));
 
       getData();
 
@@ -253,7 +242,6 @@ $(document).ready(function () {
     $.each(dataSet.categories, function (key, val) {
       panels.push(key);
     });
-    panels.push("About");
     $("div#navigation div").text(panels[0]);
   }
 
@@ -478,12 +466,12 @@ $(document).ready(function () {
   const search_listener = document.querySelector('input[type="search"]');
 
   search_listener.addEventListener("focus", (event) => {
-    bottom_bar("scan", "select", "");
+    bottom_bar("scan", "select", "about");
     window_status = "search";
   });
 
   search_listener.addEventListener("blur", (event) => {
-    bottom_bar("", "select", "");
+    bottom_bar("", "select", "about");
     window_status = "article-list";
   });
 
@@ -514,7 +502,15 @@ $(document).ready(function () {
         break;
 
       case "ArrowLeft":
-        if (isInSearchField) break;
+        if (isInSearchField) {
+          evt.preventDefault;
+          break;
+        }
+        if (evt.target.id == "search" && evt.target.value == "") {
+          nav_panels("left");
+          break;
+        }
+
         if (window_status == "article-list") {
           nav_panels("left");
         }
@@ -522,6 +518,11 @@ $(document).ready(function () {
 
       case "ArrowRight":
         if (isInSearchField) break;
+
+        if (evt.target.id == "search" && evt.target.value == "") {
+          nav_panels("right");
+          break;
+        }
         if (window_status == "article-list") {
           nav_panels("right");
         }
@@ -544,6 +545,14 @@ $(document).ready(function () {
         break;
 
       case "SoftRight":
+        if (window_status == "article-list" || window_status == "search") {
+          $("div#about").css("display", "block");
+          window_status = "about";
+          bottom_bar("", update_time, "");
+
+          break;
+        }
+
         if (window_status == "single-article") {
           download();
         }
@@ -558,18 +567,24 @@ $(document).ready(function () {
 
         if (window_status == "single-article") {
           show_article_list();
-          return;
+          break;
+        }
+
+        if (window_status == "about") {
+          $("div#about").css("display", "none");
+          show_article_list();
+          break;
         }
 
         if (window_status == "scan") {
           document.getElementById("qr-screen").hidden = true;
 
-          return;
+          break;
         }
 
         if (window_status == "options") {
           close_options();
-          return;
+          break;
         }
         if (window_status == "article-list" && !$("input").is(":focus")) {
           window.close();
