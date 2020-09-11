@@ -216,18 +216,20 @@ $(document).ready(function () {
       })
     ).then(function () {
       set_tabindex();
-
+      //write about page
       fetch("about.html")
         .then((response) => {
           return response.text();
         })
         .then((data) => {
-          $("div#about").html(data);
+          $("div#about div#inner").html(data);
           update_time =
             "updated: " +
             moment(dataSet.generated_at).format("DD.MM.YYYY, HH:mm");
 
-          $("div#contributors").text(contributors.sort().join(", "));
+          $("div#about div#inner div#contributors").text(
+            contributors.sort().join(", ")
+          );
         });
 
       getData();

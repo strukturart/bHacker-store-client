@@ -171,8 +171,13 @@ div#about {
   z-index: 10000;
   min-height: 100vh;
   display: none;
-  padding: 5px;
+}
+
+div#about div#inner {
+  position: relative;
+  padding: 10px 5px 35px 5px;
   overflow: scroll;
+  background: silver;
 }
 
 div#about h1 {
