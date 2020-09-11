@@ -1,451 +1,447 @@
 /*GENERAL*/
 
 :root {
-  --color-one: black;
-  --color-two: yellow;
-  --color-three: silver;
-  --color-four: rgb(99, 99, 99);
-  --color-five: rgb(38, 38, 38);
-  --color-six: rgb(78, 206, 144);
-  --color-seven: gainsboro;
+    --color-one: black;
+    --color-two: yellow;
+    --color-three: silver;
+    --color-four: rgb(99, 99, 99);
+    --color-five: rgb(38, 38, 38);
+    --color-six: rgb(78, 206, 144);
+    --color-seven: gainsboro;
 }
 
 @font-face {
-  font-family: "Lato-Regular";
-  src: url("/assets/fonts/Lato-Regular.ttf");
+    font-family: "Lato-Regular";
+    src: url("/assets/fonts/Lato-Regular.ttf");
 }
 
 *,
 *:before,
 *:after {
-  border: 0px;
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
-  -webkit-appearance: none;
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    -webkit-appearance: none;
 }
 
 *::-webkit-scrollbar {
-  width: 0 !important;
-  background-color: transparent !important;
-  display: none !important;
-  overflow: -moz-scrollbars-none;
+    width: 0 !important;
+    background-color: transparent !important;
+    display: none !important;
+    overflow: -moz-scrollbars-none;
 }
 
 :focus {
-  outline: none;
+    outline: none;
 }
 
 ::-moz-focus-inner {
-  border: 0;
+    border: 0;
 }
 
 input[type="range"]::-moz-focus-outer {
-  border: 0;
+    border: 0;
 }
 
 html,
 body {
-  font-family: "Lato-Regular";
-  font-weight: 100;
-  width: 100vw;
-  max-width: 100vw;
-  overflow-x: hidden;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  font-size: 1rem;
-  line-height: 1.4rem;
-  height: 100%;
-  margin: 0;
+    font-family: "Lato-Regular";
+    font-weight: 100;
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    font-size: 1rem;
+    line-height: 1.4rem;
+    height: 100%;
+    margin: 0;
 }
 
 h1 {
-  font-size: 1rem;
+    font-size: 1rem;
 }
 
 img {
-  max-width: 90vw;
-  height: auto;
-  display: block;
+    max-width: 90vw;
+    height: auto;
+    display: block;
 }
 
 .debug {
-  outline: 1px solid red;
+    outline: 1px solid red;
 }
 
 div.autocomplete-suggestions {
-  background: gray;
-  overflow: auto;
-  color: black;
-  padding: 5px 0px 0px 0;
-  white-space: nowrap;
-  overflow: hidden;
-  font-size: 1.1rem;
+    background: gray;
+    overflow: auto;
+    color: black;
+    padding: 5px 0px 0px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 1.1rem;
 }
 
 div.no-result {
-  position: fixed;
-  top: 90px;
-  border: 3px solid white;
-  background: silver;
-  padding: 3px;
-  width: 90%;
-  left: 5%;
+    position: fixed;
+    top: 90px;
+    border: 3px solid white;
+    background: silver;
+    padding: 3px;
+    width: 90%;
+    left: 5%;
 }
 
 div.autocomplete-suggestions div {
-  border: 3px solid white;
-  background: silver;
+    border: 3px solid white;
+    background: silver;
 }
 
 .autocomplete-selected {
-  background: silver;
-  color: black;
-  font-weight: bold;
+    background: silver;
+    color: black;
+    font-weight: bold;
 }
 
 .autocomplete-suggestions strong {
-  font-weight: normal;
+    font-weight: normal;
 }
 
 .autocomplete-group {
-  padding: 2px 5px;
-  color: black;
-  margin: 0 0 10px 0;
+    padding: 2px 5px;
+    color: black;
+    margin: 0 0 10px 0;
 }
 
 .autocomplete-group strong {
-  display: block;
-  border-bottom: 1px solid #000;
+    display: block;
+    border-bottom: 1px solid #000;
 }
+
 
 /*///////////////////////////
 ///HELPER////////////////*/
 
 div#toast {
-  position: fixed;
-  height: auto;
-  overflow: none;
-  top: -100px;
-  background: black;
-  color: white;
-  z-index: 5000;
-  min-width: 100%;
-  padding: 5px;
+    position: fixed;
+    height: auto;
+    overflow: none;
+    top: -100px;
+    background: black;
+    color: white;
+    z-index: 5000;
+    min-width: 100%;
+    padding: 5px;
 }
+
 
 /*///////////////////////////
 ///APPS////////////////*/
 
 div#navigation {
-  position: fixed;
-  height: 30px;
-  background: black;
-  width: 100%;
-  top: 0px;
-  left: 0px;
-  display: none;
+    position: fixed;
+    height: 30px;
+    background: black;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    display: none;
 }
 
 div#navigation div {
-  height: 20px;
-  color: yellow;
-  text-align: center;
+    height: 20px;
+    color: yellow;
+    text-align: center;
 }
 
 div#app {
-  position: relative;
-  background: white;
-  padding: 5px;
-  color: black;
-  height: 100vh;
-  width: 100vw;
-  font-weight: normal;
-  margin: 0px 0 0 0;
+    position: relative;
+    background: white;
+    padding: 5px;
+    color: black;
+    height: 100vh;
+    width: 100vw;
+    font-weight: normal;
+    margin: 0px 0 0 0;
+}
+
+div#about {
+    position: fixed;
+    background: white;
+    z-index: 10000;
+    min-height: 100vh;
+    display: none;
+    padding: 5px;
+}
+
+div#about h1 {
+    margin: 15px 0 0 0;
+    text-align: center;
+    font-size: 1rem;
+}
+
+div#about h2 {
+    margin: 15px 0 0 0;
+    text-align: center;
+    font-size: 1rem;
 }
 
 div#app div#app-panels article {
-  margin: 0px 0 10px 0;
-  font-weight: normal;
-  min-width: 95vw;
-  max-height: 100%;
-  padding: 4px;
-  overflow-y: scroll;
+    margin: 0px 0 10px 0;
+    font-weight: normal;
+    min-width: 95vw;
+    max-height: 100%;
+    padding: 4px;
+    overflow-y: scroll;
 }
 
 article#search {
-  margin: -35px 0 10px 0 !important;
-  font-weight: normal;
-  min-width: 95vw;
-  height: 40px;
-  padding: 5px;
-  background: silver;
-  text-align: center;
+    margin: -35px 0 10px 0 !important;
+    font-weight: normal;
+    min-width: 95vw;
+    height: 40px;
+    padding: 5px;
+    background: silver;
+    text-align: center;
 }
 
 article#search input {
-  height: 30px;
-  padding: 3px;
-  width: 80%;
+    height: 30px;
+    padding: 3px;
+    width: 80%;
 }
 
 div#app div#app-panels {
-  margin: 35px 0 50px 0px;
+    margin: 35px 0 50px 0px;
 }
 
 div#app div#app-panels article:focus {
-  background: silver;
+    background: silver;
 }
 
 div#app div#app-panels article h1 {
-  font-size: 1rem;
-  font-weight: bold;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 div#app div#app-panels article div.meta-data {
-  font-size: 0.8rem;
-  display: none;
+    font-size: 0.8rem;
+    display: none;
 }
 
 div#app div#app-panels article div.meta-data span {
-  font-size: 0.8rem;
-  font-weight: bold;
+    font-size: 0.8rem;
+    font-weight: bold;
 }
 
 div#app div#app-panels article div.icon {
-  margin: 0 0 10px 0;
-  display: none;
+    margin: 0 0 10px 0;
+    display: none;
 }
 
 div#app div#app-panels article div.icon img {
-  width: 30px;
-  margin: 7px 0 7px 0;
+    width: 30px;
+    margin: 7px 0 7px 0;
 }
 
 div#app div#app-panels article div.channel {
-  font-size: 0.8rem;
-  font-weight: bold;
+    font-size: 0.8rem;
+    font-weight: bold;
 }
 
 div#app div#app-panels article div.summary {
-  display: none;
-  padding: 0 0 20px 0;
+    display: none;
+    padding: 0 0 20px 0;
 }
 
 div#app div#app-panels article ul.images {
-  display: none;
-  padding: 15px 0 50px 0;
+    display: none;
+    padding: 15px 0 50px 0;
 }
 
 div#app div#app-panels article ul.images li {
-  margin: 0 0 10px 0;
-  min-width: 100%;
+    margin: 0 0 10px 0;
+    min-width: 100%;
 }
 
 div#app div#app-panels article ul.images li img {
-  min-width: 100%;
-}
-
-div#app div#app-panels article.About {
-  background: white !important;
-  color: black !important;
-  width: 96vw;
-  height: 100vh;
-  font-size: 0.8rem;
-  padding: 0px 5px 3px 5px;
-  margin: -5px 0 0 0;
-  display: none;
-}
-
-div#app div#app-panels article.About h1 {
-  margin: 15px 0 0 0;
-  text-align: center;
-  font-size: 1rem;
-}
-
-div.footer {
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  background: black !important;
-  color: yellow !important;
-  width: 100vw;
-  height: 20px;
-  padding: 3px 3px 3px 3px;
-  text-align: center;
-  font-size: 0.8rem;
-  z-index: 6;
+    min-width: 100%;
 }
 
 div#options {
-  width: 100vw;
-  height: 100vh;
-  background: black;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  display: none;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: none;
 }
 
 div#options div {
-  width: 100vw;
-  height: 100vh;
-  background: black;
-  position: relative;
-  padding: 5vw;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    position: relative;
+    padding: 5vw;
 }
 
 div#options div div {
-  width: 90vw;
-  height: 30px;
-  background: white;
-  color: black;
-  margin: 0 0 5px 0;
-  position: relative;
-  padding: 3px;
+    width: 90vw;
+    height: 30px;
+    background: white;
+    color: black;
+    margin: 0 0 5px 0;
+    position: relative;
+    padding: 3px;
 }
 
 div#options div div:focus {
-  background: silver;
+    background: silver;
 }
+
 
 /*/////////////////
 ///BOTTOM BAR////
 ////////////////*/
 
 div#bottom-bar {
-  position: fixed;
-  bottom: 10px;
-  left: 0px;
-  height: 15px;
-  z-index: 2;
-  background: black;
+    position: fixed;
+    bottom: 10px;
+    left: 0px;
+    height: 15px;
+    z-index: 2;
+    background: black;
 }
 
 div#bottom-bar div#inner {
-  position: relative;
+    position: relative;
 }
 
 div#bottom-bar div {
-  background: black;
-  color: white;
-  padding: 2px;
+    background: black;
+    color: white;
+    padding: 2px;
 }
 
 div#bottom-bar div#button-center {
-  background: black;
-  color: white;
-  padding: 2px;
-  width: 30%;
-  text-align: center;
+    background: black;
+    color: white;
+    padding: 2px;
+    width: 30%;
+    text-align: center;
 }
 
 div#bottom-bar div#button-left {
-  background: black;
-  color: white;
-  padding: 2px;
-  width: 20px;
-  text-align: left;
-  width: 30%;
+    background: black;
+    color: white;
+    padding: 2px;
+    width: 20px;
+    text-align: left;
+    width: 30%;
 }
 
 div#bottom-bar div#button-right {
-  background: black;
-  color: white;
-  padding: 2px;
-  width: 30%;
-  text-align: right;
+    background: black;
+    color: white;
+    padding: 2px;
+    width: 30%;
+    text-align: right;
 }
+
 
 /*/////////////////
 ///INTRO////
 ////////////////*/
 
 div#message-box {
-  animation-name: example3;
-  display: block;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  padding: 40px 10px 10px 10px;
-  min-width: 100vw;
-  height: 100vh;
-  background: black;
-  color: white;
-  z-index: 3;
-  animation-duration: 2s;
-  animation-timing-function: ease-in;
-  animation-fill-mode: forwards;
-  animation-iteration-count: 1;
-  animation-play-state: paused;
+    animation-name: example3;
+    display: block;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    padding: 40px 10px 10px 10px;
+    min-width: 100vw;
+    height: 100vh;
+    background: black;
+    color: white;
+    z-index: 3;
+    animation-duration: 2s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
 }
 
 div#message-box img.icon-1 {
-  animation-name: example;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-  animation-fill-mode: forwards;
-  animation-play-state: paused;
-  position: absolute;
-  width: 90px;
-  left: 30%;
-  top: 40%;
+    animation-name: example;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+    position: absolute;
+    width: 90px;
+    left: 30%;
+    top: 40%;
 }
 
 div#message-box img.icon-2 {
-  animation-name: example2;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-  animation-fill-mode: forwards;
-  position: absolute;
-  animation-play-state: paused;
-  transform: rotate(120deg);
-  width: 90px;
-  z-index: 5;
-  left: 30%;
-  top: 40%;
+    animation-name: example2;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    position: absolute;
+    animation-play-state: paused;
+    transform: rotate(120deg);
+    width: 90px;
+    z-index: 5;
+    left: 30%;
+    top: 40%;
 }
 
 @keyframes example {
-  from {
-    left: 30%;
-    top: 40%;
-  }
-  to {
-    left: 200px;
-    top: 300px;
-  }
+    from {
+        left: 30%;
+        top: 40%;
+    }
+    to {
+        left: 200px;
+        top: 300px;
+    }
 }
 
 @keyframes example2 {
-  from {
-    left: 30%;
-    top: 40%;
-  }
-  to {
-    left: -100px;
-    top: 300px;
-  }
+    from {
+        left: 30%;
+        top: 40%;
+    }
+    to {
+        left: -100px;
+        top: 300px;
+    }
 }
 
 @keyframes example3 {
-  from {
-    opacity: 100;
-  }
-  to {
-    opacity: 0;
-  }
+    from {
+        opacity: 100;
+    }
+    to {
+        opacity: 0;
+    }
 }
+
 
 /* KaiOS portrait devices (240x320) */
 
 @media only screen and (orientation: portrait) {
-  /* styles */
+    /* styles */
 }
+
 
 /* KaiOS landscape devices (320x240) */
 
 @media screen and (orientation: landscape) {
-  /* styles */
+    /* styles */
 }
