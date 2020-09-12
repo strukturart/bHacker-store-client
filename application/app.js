@@ -465,6 +465,13 @@ $(document).ready(function () {
     window_status = "options";
   }
 
+  function open_about() {
+    $("div#app-panels").css("display", "none");
+    $("div#about").css("display", "block");
+    bottom_bar("", update_time, "");
+    window_status = "about";
+  }
+
   const search_listener = document.querySelector('input[type="search"]');
 
   search_listener.addEventListener("focus", (event) => {
@@ -496,10 +503,18 @@ $(document).ready(function () {
         break;
 
       case "ArrowDown":
+        if (window_status == "about") {
+          break;
+        }
+
         nav("+1");
         break;
 
       case "ArrowUp":
+        if (window_status == "about") {
+          break;
+        }
+
         nav("-1");
         break;
 
@@ -548,10 +563,18 @@ $(document).ready(function () {
 
       case "SoftRight":
         if (window_status == "article-list" || window_status == "search") {
-          $("div#about").css("display", "block");
-          window_status = "about";
-          bottom_bar("", update_time, "");
+          open_about();
+          break;
+        }
 
+        if (window_status == "single-article") {
+          download();
+        }
+        break;
+
+      case "2":
+        if (window_status == "article-list" || window_status == "search") {
+          open_about();
           break;
         }
 
