@@ -167,8 +167,10 @@ div#app {
 
 div#about {
   position: fixed;
+  top: 0;
+  left: 0;
   background: white;
-  z-index: 1000;
+  z-index: 1;
   overflow: scroll;
   height: 100%;
   display: none;
@@ -178,8 +180,19 @@ div#about div#inner {
   position: relative;
   padding: 10px 5px 35px 5px;
   overflow: scroll;
-  height: 100%;
+  height: 98%;
   background: silver;
+}
+
+div#about div#update {
+  width: 100%;
+  height: 20px;
+  background: black;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: white;
 }
 
 div#about h1 {
@@ -314,7 +327,7 @@ div#options div div:focus {
 
 div#bottom-bar {
   position: fixed;
-  z-index: 101;
+  z-index: 2000;
   bottom: 10px;
   left: 0px;
   height: 15px;

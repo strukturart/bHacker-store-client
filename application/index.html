@@ -16,9 +16,6 @@
   <body>
     <div id="wrapper">
       <div id="toast" class="width-100"></div>
-      <div id="about" class="width-100 height-100">
-        <div id="inner" tabindex="0"></div>
-      </div>
 
       <!---------------->
       <!--app-list-->
@@ -47,6 +44,104 @@
           <div id="button-right"></div>
         </div>
       </div>
+    </div>
+
+    <div id="about" class="width-100 height-100">
+      <div id="inner" tabindex="0">
+        <p>
+          An alternative app store by free developers for free devices. The
+          database of apps is hosted https://banana-hackers.gitlab.io/store-db ,
+          further can be added by a pull request.
+        </p>
+        <div>
+          <h1>Contributors</h1>
+          <div id="contributors"></div>
+        </div>
+        <div>
+          <h1>Respect</h1>
+          <div>
+            Respect the licenses of the apps, it would be nice if you use app
+            more often to support the developer with a donation.<br />Thanks!
+          </div>
+
+          <h1>Privacy Policy and Terms of use</h1>
+          <p>
+            Your privacy is important to us, that&#39;s why we try to collect
+            only the data that we need to provide the service to you.
+          </p>
+          <h2>Data that might get collected while using the app</h2>
+          <p>
+            We rely on gitlab pages for hosting the data, this service might
+            store cookies and save your ip address
+            <a href="https://about.gitlab.com/privacy/"
+              >https://about.gitlab.com/privacy/</a
+            >
+          </p>
+          <p>
+            We only link to the app packages, we don&#39;t host them ourselves
+            so when downloading apps you will download them from thirdparty
+            servers who can then see your ip address.
+          </p>
+          <h2>Data that might be shared with third paries</h2>
+          <ul>
+            <li>
+              IP address when browsing apps
+              <a href="https://gitlab.com/banana-hackers/store-db/-/issues/13"
+                >we plan on fixing that</a
+              >
+            </li>
+            <li>IP address when downloading apps</li>
+          </ul>
+          <h2>Download Counter and ratings</h2>
+          <p>
+            When using the app we fetch the download count for all apps from our
+            ratings server. This request might be logged, but we don&#39;t
+            explicitly store your ip address.
+          </p>
+          <p>
+            When downloading apps a request to the download counter will be made
+            to increase it, this request contains:
+          </p>
+          <ul>
+            <li>The name of the downloaded app</li>
+            <li>the time of the download</li>
+            <li>
+              The IP address of the user, but its not explicitly saved at the
+              moment.
+            </li>
+          </ul>
+          <p>
+            When fetching the ratings for an app the server gets the requested
+            appname and the ip address but it is not explicitly saved.
+          </p>
+          <p>
+            When rating apps we store your nickname and your ratings on our
+            server to make the service possible.
+          </p>
+          <h2>Analytics</h2>
+          <p>
+            Besides from counting downloads we don&#39;t do any analytics. But
+            the apps you download might do it, have ads or even track you. We
+            try to label apps that have tracking and/or advertisement.
+          </p>
+          <h2>Liability &amp; Warranty</h2>
+          <p>
+            This service is community maintained and provided on a best-effort
+            basis. We try our best make sure the data is correct, but we do not
+            give any warranties that the information is correct. Use this
+            service on your own risk.
+          </p>
+          <h2>Abuse</h2>
+          <p>
+            If you see an app that violates you rights or does bad stuff with
+            your device, please report it on
+            <a href="https://gitlab.com/banana-hackers/store-db/-/issues"
+              >gitlab issues</a
+            >
+          </p>
+        </div>
+      </div>
+      <div id="update"></div>
     </div>
 
     <div id="message-box" class="flex width-100 height-100">

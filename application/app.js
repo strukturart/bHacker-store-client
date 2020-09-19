@@ -215,22 +215,15 @@ $(document).ready(function () {
         $("div#app-panels").append(article);
       })
     ).then(function () {
+      update_time = moment(dataSet.generated_at).format("DD.MM.YYYY, HH:mm");
+      $("#update").text(update_time);
       set_tabindex();
       //write about page
-      fetch("about.html")
-        .then((response) => {
-          return response.text();
-        })
-        .then((data) => {
-          $("div#about div#inner").html(data);
-          update_time =
-            "updated: " +
-            moment(dataSet.generated_at).format("DD.MM.YYYY, HH:mm");
 
-          $("div#about div#inner div#contributors").text(
-            contributors.sort().join(", ")
-          );
-        });
+      $("div#about div#inner").html(data);
+      $("div#about div#inner div#contributors").text(
+        contributors.sort().join(", ")
+      );
 
       getData();
 
@@ -329,10 +322,7 @@ $(document).ready(function () {
 
       let focusedElement = $(":focus")[0].offsetTop;
 
-      window.scrollTo({
-        top: focusedElement - 35,
-        behavior: "smooth",
-      });
+      window.scrollTo(0, focusedElement + 50);
 
       if ($("article#search").is(":focus")) {
         $("input").focus();
@@ -344,10 +334,7 @@ $(document).ready(function () {
       siblings[focused].focus();
       let focusedElement = $(":focus")[0].offsetTop;
 
-      window.scrollTo({
-        top: focusedElement - 35,
-        behavior: "smooth",
-      });
+      window.scrollTo(0, focusedElement - 50);
 
       if ($("article#search").is(":focus")) {
         $("input").focus();
@@ -370,10 +357,6 @@ $(document).ready(function () {
     let getClass = $focused.attr("class");
     let getId = $focused.parent().attr("id");
     article_id = $focused.attr("id");
-
-    if (getId == "search") {
-      //return false;
-    }
 
     if (getClass != "About") {
       $("article").css("display", "none");
@@ -466,9 +449,10 @@ $(document).ready(function () {
   }
 
   function open_about() {
-    $("div#app-panels").css("display", "none");
     $("div#about").css("display", "block");
-    bottom_bar("", update_time, "");
+    $("div#about div#inner").focus();
+    bottom_bar("", "", "");
+
     window_status = "about";
   }
 
@@ -598,6 +582,8 @@ $(document).ready(function () {
         if (window_status == "about") {
           $("div#about").css("display", "none");
           show_article_list();
+          $("div#bottom-bar div#button-center").css("width", "30%");
+
           break;
         }
 
