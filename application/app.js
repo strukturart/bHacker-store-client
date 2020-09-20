@@ -218,12 +218,9 @@ $(document).ready(function () {
       update_time = moment(dataSet.generated_at).format("DD.MM.YYYY, HH:mm");
       $("#update").text(update_time);
       set_tabindex();
-      //write about page
-
-      $("div#about div#inner").html(data);
-      $("div#about div#inner div#contributors").text(
-        contributors.sort().join(", ")
-      );
+      let co = contributors.sort().join(", ");
+      //add to about page
+      $("div#about div#inner div#contributors").text(co);
 
       getData();
 
@@ -231,7 +228,7 @@ $(document).ready(function () {
     });
   }
 
-  bottom_bar("settings", "select", "");
+  bottom_bar("", "select", "about");
 
   function addCategories() {
     $.each(dataSet.categories, function (key, val) {
@@ -318,11 +315,12 @@ $(document).ready(function () {
 
     if (param == "+1" && focused < siblingsLength - 1) {
       focused++;
+
+      var focusedElement = $(":focus")[0].offsetTop;
+
+      $("html, body").animate({ scrollTop: focusedElement }, 200);
+
       siblings[focused].focus();
-
-      let focusedElement = $(":focus")[0].offsetTop;
-
-      window.scrollTo(0, focusedElement + 50);
 
       if ($("article#search").is(":focus")) {
         $("input").focus();
@@ -331,10 +329,10 @@ $(document).ready(function () {
 
     if (param == "-1" && focused > 0) {
       focused--;
-      siblings[focused].focus();
       let focusedElement = $(":focus")[0].offsetTop;
+      //$('html, body').animate({ scrollTo: focusedElement }, 1500);
 
-      window.scrollTo(0, focusedElement - 50);
+      siblings[focused].focus();
 
       if ($("article#search").is(":focus")) {
         $("input").focus();
