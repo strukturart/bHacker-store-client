@@ -10,7 +10,7 @@ const SimpleRatingServerInstance = "https://bhackers.uber.space/srs/v1";
 
 const BackendApi = (() => {
   const TIMEOUT_ERROR = "TimeOutError";
-  const FORBIDDEN_ERROR = "TimeOutError";
+  const FORBIDDEN_ERROR = "ForbidddenError";
 
   let statusCallback = () => {};
 
@@ -28,13 +28,13 @@ const BackendApi = (() => {
         if (xhr.status == 200) {
           resolve(xhr.responseText);
         }
-        // analyze HTTP status of the response
-        if (xhr.status != 200) {
-          reject(new Error(`Error ${xhr.status}: ${xhr.statusText}`)); // e.g. 404: Not Found
-        }
         if (xhr.status == 403) {
           // access forbidden
           reject(FORBIDDEN_ERROR);
+        }
+        // analyze HTTP status of the response
+        if (xhr.status != 200) {
+          reject(new Error(`Error ${xhr.status}: ${xhr.statusText}`)); // e.g. 404: Not Found
         }
       };
 

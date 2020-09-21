@@ -4,8 +4,18 @@ const DownloadCounter = (() => {
   function load() {
     return new Promise((res, rej) => {
       BackendApi.getDownloadCounts()
-        .then((d) => (downloadCounts = d))
-        .then(res)
+        .then((d) => {
+          if (typeof downloadCounts !== "object") {
+            console.error(
+              "DownloadCounter.load",
+              "invalid format",
+              downloadCounts
+            );
+            rej(new Error("Invalid Format"));
+          }
+          downloadCounts = d;
+          res();
+        })
         .catch(rej);
     });
   }
