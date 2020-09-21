@@ -70,6 +70,7 @@ const { install } = ((_) => {
           "<br><br><br><br>THANK YOU<br> for installing the app.<br><br> If you like it I would be happy about a donation, press the option button.<br><br><br><br><br><br>",
           6000
         );
+        bottom_bar("options", "select", "open");
       })
       .catch((error) => {
         console.error(error);
