@@ -39,7 +39,7 @@ $(document).ready(function () {
             const count = DownloadCounter.getForApp(appId);
 
             if (dl_section && count !== -1) {
-              dl_section.innerHTML = `<span>Downloads</span> ~${count}`;
+              dl_section.innerHTML = "<span>Downloads </span>" + count;
             }
           }
         });
