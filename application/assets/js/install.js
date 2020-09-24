@@ -11,8 +11,6 @@ const mozAppsWrapper = ((_) => {
      */
     function getAll() {
         return _domRequest2Promise(navigator.mozApps.mgmt.getAll());
-
-
     }
 
     /**
@@ -61,21 +59,22 @@ const { install } = ((_) => {
         };
     }
 
-    var request = window.navigator.mozApps.getInstalled();
-    request.onerror = function(e) {
-        alert("Error calling getInstalled: " + request.error.name);
-    };
-    request.onsuccess = function(e) {
-        alert("Success, number of apps: " + request.result.length);
-        var appsRecord = request.result;
-    };
-
     function installPkg(packageFile) {
         if (!initialized) throw new Error("install module is not initialized yet");
         navigator.mozApps.mgmt
             .import(packageFile)
-            .then(function() {
+            .then(function(e) {
                 bottom_bar("options", "", "open");
+                console.log(e);
+                var request = window.navigator.mozApps.getAll();
+                request.onerror = function(e) {
+                    console.log("Error calling getInstalled: " + request.error.name);
+                };
+                request.onsuccess = function(e) {
+                    console.log("Success, number of apps: " + request.result.length);
+                    var appsRecord = request.result;
+                    console.log(appsRecord)
+                };
 
                 console.info("Installation was successfull", arguments);
                 BackendApi.count_download(app_slug);
@@ -86,10 +85,7 @@ const { install } = ((_) => {
             })
             .catch((error) => {
                 console.error(error);
-                alert(
-                    "Installation error: " + error.name + " " + error.message
-
-                );
+                alert("Installation error: " + error.name + " " + error.message);
                 if (error.name === "InvalidPrivilegeLevel") {
                     alert(
                         "Error: You probably need to do the priviliged factory reset first."
