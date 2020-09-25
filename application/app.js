@@ -469,6 +469,19 @@ $(document).ready(function () {
     window_status = "article-list";
   });
 
+  ///launch app after installation
+
+  function launch_app() {
+    var request = window.navigator.mozApps.mgmt.getAll();
+    request.onerror = function (e) {
+      console.log("Error calling getInstalled: " + request.error.name);
+    };
+    request.onsuccess = function (e) {
+      var appsRecord = request.result;
+      appsRecord[appsRecord.length - 1].launch();
+    };
+  }
+
   //////////////////////////
   ////KEYPAD TRIGGER////////////
   /////////////////////////
@@ -528,6 +541,7 @@ $(document).ready(function () {
         if (window_status == "article-list") {
           nav_panels("right");
         }
+
         break;
 
       case "SoftLeft":
@@ -543,8 +557,8 @@ $(document).ready(function () {
 
         if (window_status == "single-article") {
           open_options();
+          break;
         }
-        break;
 
       case "SoftRight":
         if (window_status == "article-list" || window_status == "search") {
@@ -556,20 +570,11 @@ $(document).ready(function () {
           download();
         }
 
-        if (window_status == "after-install") {
-          open_app();
-        }
-        break;
-
-      case "2":
-        if (window_status == "article-list" || window_status == "search") {
-          open_about();
+        if (window_status == "post_installation") {
+          launch_app();
           break;
         }
 
-        if (window_status == "single-article") {
-          download();
-        }
         break;
 
       case "Backspace":
@@ -579,7 +584,10 @@ $(document).ready(function () {
           $("article:not(article#search)").css("display", "block");
         }
 
-        if (window_status == "single-article") {
+        if (
+          window_status == "single-article" ||
+          window_status == "post_installation"
+        ) {
           show_article_list();
           break;
         }
