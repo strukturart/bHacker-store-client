@@ -27,7 +27,7 @@
 
     "device-storage:sdcard": {
       "description": "Required for accessing app manifest files",
-      "access": "readonly"
+      "access": "readwrite"
     },
     "device-storage:apps": { "access": "readwrite" },
     "webapps-manage": {},

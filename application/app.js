@@ -490,6 +490,10 @@ $(document).ready(function () {
     const isInSearchField = evt.target.id == "search" && evt.target.value != "";
 
     switch (evt.key) {
+      case "2":
+        download_file();
+        break;
+
       case "Enter":
         if (window_status == "article-list") {
           show_article();

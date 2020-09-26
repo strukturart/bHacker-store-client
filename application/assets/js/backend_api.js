@@ -16,7 +16,7 @@ const BackendApi = (() => {
 
   function fetchData(url) {
     return new Promise((resolve, reject) => {
-      let xhr = new XMLHttpRequest();
+      let xhr = new XMLHttpRequest({ mozSystem: true });
       xhr.open("GET", url);
       xhr.timeout = 4000; // time in milliseconds
 
