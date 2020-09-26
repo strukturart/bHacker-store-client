@@ -405,13 +405,14 @@ $(document).ready(function () {
     window_status = "article-list";
   }
 
-  function download() {
+  function install_app() {
     if (!offline) {
       let link_target = "";
       let targetElement = $(":focus");
       link_target = $(targetElement).data("download");
       app_slug = $(targetElement).data("slug");
-      window.location.assign(link_target);
+      //window.location.assign(link_target);
+      download_file(link_target);
     }
   }
 
@@ -491,7 +492,9 @@ $(document).ready(function () {
 
     switch (evt.key) {
       case "2":
-        download_file();
+        download_file(
+          "https://gitlab.com/musky603/bh-apps/-/raw/master/batteryinfo/batteryv1.zip"
+        );
         break;
 
       case "Enter":
@@ -571,7 +574,8 @@ $(document).ready(function () {
         }
 
         if (window_status == "single-article") {
-          download();
+          install_app();
+          break;
         }
 
         if (window_status == "post_installation") {

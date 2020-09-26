@@ -86,27 +86,3 @@ function screenWakeLock(param1) {
     }
   }
 }
-
-//
-function download_file() {
-  let sdcard = navigator.getDeviceStorages("sdcard");
-
-  sdcard.forEach(function (item, index) {
-    if (item.default == true) {
-      let file = new Blob(["This is a text file."], { type: "text/plain" });
-
-      let request = sdcard[index].addNamed(file, "downloads/myFile.txt");
-
-      request.onsuccess = function () {
-        let name = this.result.name;
-        alert(
-          'File "' + name + '" successfully wrote on the sdcard storage area'
-        );
-      };
-
-      request.onerror = function (e) {
-        alert(JSON.stringify(e));
-      };
-    }
-  });
-}

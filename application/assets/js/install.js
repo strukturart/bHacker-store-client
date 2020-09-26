@@ -25,6 +25,79 @@ const mozAppsWrapper = ((_) => {
   return { getAll, getInstalled };
 })();
 
+/////////////////////////////////
+//delete file after installation
+////////////////////////////////
+function deleteFile() {
+  let sdcard = navigator.getDeviceStorages("sdcard");
+  sdcard.forEach(function (item, index) {
+    if (item.default == true) {
+      let requestDel = sdcard[index].delete("app.zip");
+
+      requestDel.onsuccess = function () {
+        if (notification == "notification") {
+          console.log(
+            'File "' +
+              name +
+              '" successfully deleted frome the sdcard storage area'
+          );
+        }
+      };
+
+      requestDel.onerror = function () {
+        console.log("Unable to delete the file: " + this.error);
+      };
+    }
+  });
+}
+
+///////////////
+//download file
+///////////////
+function download_file(url) {
+  var xhttp = new XMLHttpRequest({ mozSystem: true });
+
+  xhttp.open("GET", url, true);
+  xhttp.withCredentials = true;
+  xhttp.responseType = "blob";
+
+  xhttp.onload = function () {
+    if (xhttp.readyState === xhttp.DONE && xhttp.status === 200) {
+      var blob = xhttp.response;
+
+      //create file
+      let sdcard = navigator.getDeviceStorages("sdcard");
+
+      sdcard.forEach(function (item, index) {
+        if (item.default == true) {
+          let file = new Blob([blob], { type: "application/zip" });
+          let request = sdcard[index].addNamed(file, "app.zip");
+
+          request.onsuccess = function () {
+            let name = this.result.name;
+            console.log(
+              'File "' +
+                name +
+                '" successfully wrote on the sdcard storage area'
+            );
+          };
+
+          request.onerror = function (e) {
+            console.log(JSON.stringify(e));
+          };
+        }
+        return;
+      });
+    }
+  };
+
+  xhttp.onerror = function () {
+    toaster(" status: " + xhttp.status + xhttp.getAllResponseHeaders(), 3000);
+  };
+
+  xhttp.send(null);
+}
+
 const { install } = ((_) => {
   var path, sdcard;
   var initialized = false;
@@ -43,28 +116,6 @@ const { install } = ((_) => {
     console.error("initialisation of sdcard failed:", error);
   }
 
-  function deleteFile(storage, path) {
-    let sdcard = navigator.getDeviceStorages("sdcard");
-
-    let requestDel = sdcard[storage].delete(path);
-
-    requestDel.onsuccess = function () {
-      if (notification == "notification") {
-        toaster(
-          'File "' +
-            name +
-            '" successfully deleted frome the sdcard storage area'
-        );
-      }
-    };
-
-    requestDel.onerror = function () {
-      toaster("Unable to delete the file: " + this.error);
-    };
-  }
-
-  let file_path;
-
   function install(param) {
     if (!initialized) throw new Error("install module is not initialized yet");
 
@@ -76,7 +127,7 @@ const { install } = ((_) => {
     };
 
     request.onerror = function () {
-      alert("Unable to get the file: " + this.error);
+      console.log("Unable to get the file: " + this.error);
     };
   }
 
@@ -86,8 +137,8 @@ const { install } = ((_) => {
       .import(packageFile)
       .then(function (e) {
         bottom_bar("options", "", "open");
+        deleteFile();
         window_status = "post_installation";
-        console.log(e);
 
         console.info("Installation was successfull", arguments);
         BackendApi.count_download(app_slug);
@@ -98,7 +149,12 @@ const { install } = ((_) => {
       })
       .catch((error) => {
         console.error(error);
-        alert("Installation error: " + error.name + " " + error.message);
+        deleteFile();
+        //alert("Installation error: " + error.name + " " + error.message);
+        if (error.name === "AppAlreadyInstalled") {
+          alert("Error: App Already Installed.");
+        }
+
         if (error.name === "InvalidPrivilegeLevel") {
           alert(
             "Error: You probably need to do the priviliged factory reset first."
