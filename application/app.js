@@ -29,27 +29,25 @@ $(document).ready(function() {
             $("div#message-box img.icon-1").css("animation-play-state", "running");
             $("div#message-box div").css("display", "none");
 
-
-
-
             DownloadCounter.load().then((_) => {
-                //const apps = document.querySelectorAll(".APP");
                 const apps = $("div#app-panels article");
-
-
-                apps.forEach((item) => {
-                    const appId = item.getAttribute("data-slug");
+                for (let i = 0; i < apps.length; i++) {
+                    const appId = apps[i].getAttribute("data-slug");
+                    console.log(appId)
 
                     if (appId) {
-                        const dl_section = item.querySelector("div.dl-cnt");
+                        const dl_section = apps[i].querySelector("div.dl-cnt");
                         const count = DownloadCounter.getForApp(appId);
 
                         if (dl_section && count !== -1) {
                             dl_section.innerHTML = "<span>Downloads </span>" + count;
                         }
                     }
-                });
+
+                }
+
             });
+
 
 
         }
@@ -91,7 +89,7 @@ $(document).ready(function() {
 
     let contributors = ["40min"];
 
-    function addAppList() {
+    function addAppList(callback) {
         let i = 0;
 
         $.when(
@@ -238,9 +236,6 @@ $(document).ready(function() {
             $("div#about div#inner div#contributors").text(co);
 
             getData();
-
-
-
 
             $("article#search input").focus();
         });
