@@ -81,7 +81,7 @@ const { install } = ((_) => {
     sdcard.addEventListener("change", function (event) {
       console.log("sdcard change event", event, event.path);
       let reason = event.reason;
-      toaster(reason, 2000);
+      //toaster(reason, 2000);
       path = event.path;
       install(path);
     });
