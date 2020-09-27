@@ -30,19 +30,20 @@ $(document).ready(function () {
       $("div#message-box div").css("display", "none");
 
       DownloadCounter.load().then((_) => {
-        const apps = document.querySelectorAll(".APP");
-        apps.forEach((app) => {
-          const appId = app.getAttribute("data-slug");
+        const apps = $("div#app-panels article");
+        for (let i = 0; i < apps.length; i++) {
+          const appId = apps[i].getAttribute("data-slug");
+          console.log(appId);
 
           if (appId) {
-            const dl_section = app.querySelector("div.dl-cnt");
+            const dl_section = apps[i].querySelector("div.dl-cnt");
             const count = DownloadCounter.getForApp(appId);
 
             if (dl_section && count !== -1) {
               dl_section.innerHTML = "<span>Downloads </span>" + count;
             }
           }
-        });
+        }
       });
     }
 
@@ -79,7 +80,7 @@ $(document).ready(function () {
 
   let contributors = ["40min"];
 
-  function addAppList() {
+  function addAppList(callback) {
     let i = 0;
 
     $.when(
@@ -452,7 +453,7 @@ $(document).ready(function () {
   function open_about() {
     $("div#about").css("display", "block");
     $("div#about div#inner").focus();
-    document.getElementById("inner").scrollIntoView();
+    document.getElementById("top").scrollIntoView();
 
     bottom_bar("", "", "");
 
@@ -492,12 +493,6 @@ $(document).ready(function () {
     const isInSearchField = evt.target.id == "search" && evt.target.value != "";
 
     switch (evt.key) {
-      case "2":
-        download_file(
-          "https://gitlab.com/musky603/bh-apps/-/raw/master/batteryinfo/batteryv1.zip"
-        );
-        break;
-
       case "Enter":
         if (window_status == "article-list") {
           show_article();
