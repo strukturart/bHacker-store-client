@@ -25,32 +25,6 @@ const mozAppsWrapper = ((_) => {
   return { getAll, getInstalled };
 })();
 
-/////////////////////////////////
-//delete file after installation
-////////////////////////////////
-function deleteFile() {
-  let sdcard = navigator.getDeviceStorages("sdcard");
-  sdcard.forEach(function (item, index) {
-    if (item.default == true) {
-      let requestDel = sdcard[index].delete("app.zip");
-
-      requestDel.onsuccess = function () {
-        if (notification == "notification") {
-          console.log(
-            'File "' +
-              name +
-              '" successfully deleted frome the sdcard storage area'
-          );
-        }
-      };
-
-      requestDel.onerror = function () {
-        console.log("Unable to delete the file: " + this.error);
-      };
-    }
-  });
-}
-
 ///////////////
 //download file
 ///////////////
@@ -164,6 +138,32 @@ const { install } = ((_) => {
       });
     // todo? check if app was installed:
     // mozAppsWrapper.getInstalled().then(apps => console.log(apps));
+  }
+
+  /////////////////////////////////
+  //delete file after installation
+  ////////////////////////////////
+  function deleteFile() {
+    let sdcard = navigator.getDeviceStorages("sdcard");
+    sdcard.forEach(function (item, index) {
+      if (item.default == true) {
+        let requestDel = sdcard[index].delete("app.zip");
+
+        requestDel.onsuccess = function () {
+          if (notification == "notification") {
+            console.log(
+              'File "' +
+                name +
+                '" successfully deleted frome the sdcard storage area'
+            );
+          }
+        };
+
+        requestDel.onerror = function () {
+          console.log("Unable to delete the file: " + this.error);
+        };
+      }
+    });
   }
 
   return { install, installPkg };

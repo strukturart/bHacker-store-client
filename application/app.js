@@ -399,7 +399,7 @@ $(document).ready(function () {
     let targetElement = article_array[pos_focus];
     targetElement.focus();
 
-    bottom_bar("", "select", "");
+    bottom_bar("", "select", "about");
 
     window.scrollTo(0, $(targetElement).offset().top);
     window_status = "article-list";
@@ -411,7 +411,6 @@ $(document).ready(function () {
       let targetElement = $(":focus");
       link_target = $(targetElement).data("download");
       app_slug = $(targetElement).data("slug");
-      //window.location.assign(link_target);
       download_file(link_target);
     }
   }
@@ -453,6 +452,8 @@ $(document).ready(function () {
   function open_about() {
     $("div#about").css("display", "block");
     $("div#about div#inner").focus();
+    document.getElementById("inner").scrollIntoView();
+
     bottom_bar("", "", "");
 
     window_status = "about";

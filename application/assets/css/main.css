@@ -173,12 +173,14 @@ div#about {
   z-index: 1;
   overflow: scroll;
   height: 100%;
+  margin: 0 0 50px 0;
   display: none;
 }
 
 div#about div#inner {
   position: relative;
-  padding: 10px 5px 35px 5px;
+  padding: 10px 5px 55px 5px;
+  margin: 0 0 80px 0;
   overflow: scroll;
   height: 98%;
   background: silver;
