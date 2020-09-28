@@ -116,13 +116,15 @@ $(document).ready(function () {
           contributors.push(just_author_name);
         }
         //apps thumbnails
-        if (data.screenshots) {
+        if (data.screenshots != "") {
           images = data.screenshots.toString();
           images = images.split(",");
 
           images.forEach(function (value, index) {
             images_collection += "<li><img src=" + images[index] + "></li>";
           });
+        } else {
+          images_collection = "";
         }
 
         //to do
@@ -279,6 +281,8 @@ $(document).ready(function () {
   //for the clever solution
 
   function nav_panels(left_right) {
+    window.scrollTo(0, 0);
+
     if (left_right == "left") {
       current_panel--;
     }
@@ -464,6 +468,7 @@ $(document).ready(function () {
 
   search_listener.addEventListener("focus", (event) => {
     bottom_bar("scan", "select", "about");
+    window.scrollTo(0, 0);
     window_status = "search";
   });
 
