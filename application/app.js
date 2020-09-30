@@ -386,6 +386,8 @@ $(document).ready(function () {
   }
 
   function show_article_list() {
+    let article_id = $(":focus").attr("id");
+
     panels_list(panels[current_panel]);
     $("div#app div#app-panels").css("margin", "35px 0 50px 0px");
 
@@ -401,12 +403,8 @@ $(document).ready(function () {
     $("ul.images").css("display", "none");
     $("div.icon").css("display", "none");
 
-    let targetElement = article_array[pos_focus];
-    targetElement.focus();
-
     bottom_bar("", "select", "about");
-
-    window.scrollTo(0, $(targetElement).offset().top);
+    document.getElementById(article_id).scrollIntoView();
     window_status = "article-list";
   }
 
@@ -430,9 +428,6 @@ $(document).ready(function () {
     $("div#options").css("display", "none");
     $("article#" + article_id).focus();
     $("div#navigation").css("display", "none");
-    $("div#app div#app-panels").css("margin", "5px 0 0 0");
-    $("div#app div#app-panels").css("max-height", "100%");
-    $("div#app div#app-panels").css("overflow-y", "scroll");
     $("div.summary").css("display", "block");
     $("div.meta-data").css("display", "block");
     $("div.icon").css("display", "block");
