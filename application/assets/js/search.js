@@ -64,6 +64,6 @@ function getData() {
       }
     })
   ).then(function () {
-    buildAutocomplete("input", search_list, "div#app-panels");
+    buildAutocomplete("input#search", search_list, "div#app-panels");
   });
 }
