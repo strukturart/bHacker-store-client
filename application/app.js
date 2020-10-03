@@ -134,11 +134,10 @@ $(document).ready(function () {
 
         //options page
         $("div#options").append("<div id='" + elem_id + "'></div>");
-        if (item_url) {
-          $("div#options div#" + elem_id).append(
-            "<div tabindex='0' data-appslug='" + item_slug + "'>ratting</div>"
-          );
-        }
+
+        $("div#options div#" + elem_id).append(
+          "<div tabindex='0' data-appslug='" + item_slug + "'>rating</div>"
+        );
 
         if (item_url) {
           $("div#options div#" + elem_id).append(
@@ -368,7 +367,7 @@ $(document).ready(function () {
     }
 
     let getClass = $focused.attr("class");
-    let getId = $focused.parent().attr("id");
+    //let getId = $focused.parent().attr("id");
     article_id = $focused.attr("id");
 
     if (getClass != "About") {
@@ -387,9 +386,22 @@ $(document).ready(function () {
       } else {
         bottom_bar("", "", "");
       }
+      get_ratings($("#" + article_id).data("slug"), ratings_callback);
 
       window_status = "single-article";
     }
+  }
+
+  function ratings_callback(data) {
+    data.ratings.forEach(function (item) {
+      $("#" + article_id).append(
+        "<div class='rating-item'><div class='points'>" +
+          item.points +
+          "</div><div>" +
+          item.description +
+          "</div></div>"
+      );
+    });
   }
 
   function show_article_list() {
@@ -409,6 +421,7 @@ $(document).ready(function () {
     $("div.channel").css("display", "block");
     $("ul.images").css("display", "none");
     $("div.icon").css("display", "none");
+    $("div.rating-item").remove();
 
     bottom_bar("", "select", "about");
     document.getElementById(article_id).scrollIntoView();
@@ -431,17 +444,22 @@ $(document).ready(function () {
     window.open(link_target, "_self ");
   }
 
-  function open_ratting() {
-    $("div#ratting-wrapper").css("display", "block");
-    $("div#ratting-wrapper input.star ").focus();
+  function open_rating() {
+    $("div#rating-wrapper").css("display", "block");
+    $("div#rating-wrapper input.star ").focus();
     bottom_bar("send", "", "close");
-    window_status = "ratting";
+    rating_stars = 0;
+    $("div#stars span").css("color", "white");
+    window_status = "rating";
   }
 
-  function close_ratting() {
-    $("div#ratting-wrapper").css("display", "none");
+  function close_rating() {
+    $("div#rating-wrapper").css("display", "none");
     bottom_bar("", "", "");
-    window_status = "options";
+    $("div#rating-wrapper input").val("");
+    $("div#rating-wrapper textarea").val("");
+    rating_stars = 0;
+    open_options();
   }
 
   function close_options() {
@@ -459,13 +477,12 @@ $(document).ready(function () {
 
   function open_options() {
     let $focused = $(":focus");
-    let selected_article = $focused.attr("id");
     $("div#options div").css("display", "none");
     $("div#options").css("display", "block");
-    $("div#options div#" + selected_article).css("display", "block");
-    $("div#options div#" + selected_article + " div").css("display", "block");
+    $("div#options div#" + article_id).css("display", "block");
+    $("div#options div#" + article_id + " div").css("display", "block");
     bottom_bar("", "", "");
-    $("div#options div#" + selected_article + " div:first").focus();
+    $("div#options div#" + article_id + " div:first").focus();
     window_status = "options";
   }
 
@@ -503,10 +520,8 @@ $(document).ready(function () {
     };
   }
 
-  let rating_stars;
-  $("div#ratting-wrapper input.star").bind("keyup", function () {
-    rating_stars = $(this).val();
-
+  let rating_stars = 0;
+  $("div#rating-wrapper input.star").bind("keyup", function () {
     switch ($(this).val()) {
       case "0":
         $("div#stars span:nth-child(1)").css("color", "white");
@@ -514,6 +529,7 @@ $(document).ready(function () {
         $("div#stars span:nth-child(3)").css("color", "white");
         $("div#stars span:nth-child(4)").css("color", "white");
         $("div#stars span:nth-child(5)").css("color", "white");
+        rating_stars = $(this).val();
 
         break;
       case "1":
@@ -522,6 +538,7 @@ $(document).ready(function () {
         $("div#stars span:nth-child(3)").css("color", "white");
         $("div#stars span:nth-child(4)").css("color", "white");
         $("div#stars span:nth-child(5)").css("color", "white");
+        rating_stars = $(this).val();
 
         break;
       case "2":
@@ -530,6 +547,7 @@ $(document).ready(function () {
         $("div#stars span:nth-child(3)").css("color", "white");
         $("div#stars span:nth-child(4)").css("color", "white");
         $("div#stars span:nth-child(5)").css("color", "white");
+        rating_stars = $(this).val();
 
         break;
       case "3":
@@ -538,6 +556,7 @@ $(document).ready(function () {
         $("div#stars span:nth-child(3)").css("color", "yellow");
         $("div#stars span:nth-child(4)").css("color", "white");
         $("div#stars span:nth-child(5)").css("color", "white");
+        rating_stars = $(this).val();
 
         break;
       case "4":
@@ -546,6 +565,7 @@ $(document).ready(function () {
         $("div#stars span:nth-child(3)").css("color", "yellow");
         $("div#stars span:nth-child(4)").css("color", "yellow");
         $("div#stars span:nth-child(5)").css("color", "white");
+        rating_stars = $(this).val();
 
         break;
       case "5":
@@ -554,26 +574,27 @@ $(document).ready(function () {
         $("div#stars span:nth-child(3)").css("color", "yellow");
         $("div#stars span:nth-child(4)").css("color", "yellow");
         $("div#stars span:nth-child(5)").css("color", "yellow");
+        rating_stars = $(this).val();
 
         break;
     }
   });
 
-  $("div#ratting-wrapper input.star").focus(function () {
+  $("div#rating-wrapper input.star").focus(function () {
     $("div#stars").css("font-size", "1rem");
   });
-  $("div#ratting-wrapper textarea").focus(function () {
+  $("div#rating-wrapper textarea").focus(function () {
     $("div#stars").css("font-size", "0.8rem");
   });
 
-  $("div#ratting-wrapper input.star").bind("keydown", function () {
+  $("div#rating-wrapper input.star").bind("keydown", function () {
     $(this).val("");
   });
 
   function xhr_callback(data) {
     if (data == 201) {
       toaster("Thank you for your rating!", 3000);
-      close_ratting();
+      close_rating();
     }
     if (data == 400) {
       toaster("I can't send anything without a rating", 3000);
@@ -603,7 +624,7 @@ $(document).ready(function () {
           console.log($(":focus").attr("tabindex"));
 
           if ($(":focus").attr("tabindex") === "0") {
-            open_ratting();
+            open_rating();
           }
           if (
             $(":focus").attr("tabindex") == "1" ||
@@ -665,14 +686,14 @@ $(document).ready(function () {
         }
 
       case "9":
-        if (window_status == "ratting") {
+        if (window_status == "rating") {
           send_rating(
             get_userId(),
             get_userId(),
             $("#" + article_id).data("slug"),
             $("#" + article_id).data("name"),
-            rating_stars,
-            $("div#ratting-wrapper textarea").val(),
+            Number(rating_stars),
+            $("div#rating-wrapper textarea").val(),
             xhr_callback
           );
           break;
@@ -690,14 +711,14 @@ $(document).ready(function () {
           window_status = "scan";
         }
 
-        if (window_status == "ratting") {
+        if (window_status == "rating") {
           send_rating(
             get_userId(),
             get_userId(),
             $("#" + article_id).data("slug"),
             $("#" + article_id).data("name"),
-            rating_stars,
-            $("div#ratting-wrapper textarea").val(),
+            Number(rating_stars),
+            $("div#rating-wrapper textarea").val(),
             xhr_callback
           );
           break;
@@ -723,8 +744,8 @@ $(document).ready(function () {
           launch_app();
           break;
         }
-        if ((window_status = "ratting")) {
-          close_ratting();
+        if ((window_status = "rating")) {
+          close_rating();
           break;
         }
 
@@ -772,7 +793,10 @@ $(document).ready(function () {
           close_options();
           break;
         }
-        if (window_status == "article-list" && !$("input").is(":focus")) {
+        if (
+          window_status == "article-list" &&
+          !$("input#search").is(":focus")
+        ) {
           window.close();
         }
         break;

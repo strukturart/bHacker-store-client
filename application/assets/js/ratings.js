@@ -147,3 +147,30 @@ function send_rating(
   // Sending data with the request
   xhr.send(JSON.stringify(json));
 }
+
+function get_ratings(app_slug, callback) {
+  let xhr = new XMLHttpRequest({ mozSystem: true });
+  let url = "https://bhackers.uber.space/srs/v1/ratings/" + app_slug;
+
+  xhr.open("GET", url, true);
+
+  xhr.responseType = "json";
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      callback(xhr.response);
+    } else {
+      //callback(xhr.status);
+      //console.log(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
+    }
+  };
+
+  xhr.onerror = function () {
+    // only triggers if the request couldn't be made at all
+    //alert(`Network Error`);
+    callback("Network Error");
+  };
+
+  // Sending data with the request
+  xhr.send("");
+}
