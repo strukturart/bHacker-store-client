@@ -196,6 +196,8 @@ $(document).ready(function () {
           item_url +
           "'  data-tags ='" +
           item_tags +
+          "'  data-name ='" +
+          item_title +
           "' data-slug ='" +
           item_slug +
           "'";
@@ -432,9 +434,14 @@ $(document).ready(function () {
   function open_ratting() {
     $("div#ratting-wrapper").css("display", "block");
     $("div#ratting-wrapper input.star ").focus();
-    bottom_bar("", "save", "close");
-
+    bottom_bar("send", "", "close");
     window_status = "ratting";
+  }
+
+  function close_ratting() {
+    $("div#ratting-wrapper").css("display", "none");
+    bottom_bar("", "", "");
+    window_status = "options";
   }
 
   function close_options() {
@@ -466,9 +473,7 @@ $(document).ready(function () {
     $("div#about").css("display", "block");
     $("div#about div#inner").focus();
     document.getElementById("top").scrollIntoView();
-
     bottom_bar("", "", "");
-
     window_status = "about";
   }
 
@@ -498,7 +503,10 @@ $(document).ready(function () {
     };
   }
 
+  let rating_stars;
   $("div#ratting-wrapper input.star").bind("keyup", function () {
+    rating_stars = $(this).val();
+
     switch ($(this).val()) {
       case "0":
         $("div#stars span:nth-child(1)").css("color", "white");
@@ -506,7 +514,6 @@ $(document).ready(function () {
         $("div#stars span:nth-child(3)").css("color", "white");
         $("div#stars span:nth-child(4)").css("color", "white");
         $("div#stars span:nth-child(5)").css("color", "white");
-        $(this).val("");
 
         break;
       case "1":
@@ -515,7 +522,6 @@ $(document).ready(function () {
         $("div#stars span:nth-child(3)").css("color", "white");
         $("div#stars span:nth-child(4)").css("color", "white");
         $("div#stars span:nth-child(5)").css("color", "white");
-        $(this).val("");
 
         break;
       case "2":
@@ -563,6 +569,22 @@ $(document).ready(function () {
   $("div#ratting-wrapper input.star").bind("keydown", function () {
     $(this).val("");
   });
+
+  function xhr_callback(data) {
+    if (data == 201) {
+      toaster("Thank you for your rating!", 3000);
+      close_ratting();
+    }
+    if (data == 400) {
+      toaster("I can't send anything without a rating", 3000);
+    }
+    if (data == 409) {
+      toaster("You already posted a review for this app", 3000);
+    }
+    if (data == "Network Error") {
+      toaster("Network Error", 3000);
+    }
+  }
 
   //////////////////////////
   ////KEYPAD TRIGGER////////////
@@ -637,12 +659,25 @@ $(document).ready(function () {
         break;
 
       case "8":
-        if (window_status == "search") {
-          if (window_status == "single-article") {
-            open_options();
-            break;
-          }
+        if (window_status == "single-article") {
+          open_options();
+          break;
         }
+
+      case "9":
+        if (window_status == "ratting") {
+          send_rating(
+            get_userId(),
+            get_userId(),
+            $("#" + article_id).data("slug"),
+            $("#" + article_id).data("name"),
+            rating_stars,
+            $("div#ratting-wrapper textarea").val(),
+            xhr_callback
+          );
+          break;
+        }
+        break;
 
       case "SoftLeft":
         if (window_status == "search") {
@@ -653,6 +688,19 @@ $(document).ready(function () {
 
           bottom_bar("", "", "");
           window_status = "scan";
+        }
+
+        if (window_status == "ratting") {
+          send_rating(
+            get_userId(),
+            get_userId(),
+            $("#" + article_id).data("slug"),
+            $("#" + article_id).data("name"),
+            rating_stars,
+            $("div#ratting-wrapper textarea").val(),
+            xhr_callback
+          );
+          break;
         }
 
         if (window_status == "single-article") {
@@ -673,6 +721,10 @@ $(document).ready(function () {
 
         if (window_status == "post_installation") {
           launch_app();
+          break;
+        }
+        if ((window_status = "ratting")) {
+          close_ratting();
           break;
         }
 

@@ -50,8 +50,7 @@ function get_userId() {
   //if id not set - do it
   if (userId == null) {
     localStorage.setItem("userId", createUserId());
-    create_user(userId, userId);
-    alert(userId);
+    create_user(localStorage.getItem("userId"), localStorage.getItem("userId"));
     return userId;
 
     //return the id
@@ -62,16 +61,9 @@ function get_userId() {
 
 get_userId();
 
-send_rating(
-  get_userId(),
-  get_userId(),
-  "rss-reader",
-  3,
-  "comment test",
-  "rss-reader"
-);
-
 ////create user
+let max_tryout = 5;
+let i = 0;
 
 function create_user(_username, _logintoken) {
   // Creating a XHR object
@@ -92,7 +84,15 @@ function create_user(_username, _logintoken) {
 
   xhr.onerror = function () {
     // only triggers if the request couldn't be made at all
-    alert(`Network Error`);
+    i++;
+    if (i < max_tryout) {
+      localStorage.removeItem("userId");
+      get_userId();
+    }
+    if (i == max_tryout) {
+      localStorage.removeItem("userId");
+      toaster(`Network Error`, 3000);
+    }
   };
 
   const json = {
@@ -107,31 +107,32 @@ function create_user(_username, _logintoken) {
 function send_rating(
   username,
   logintoken,
+  appid_slug,
   appid,
   points,
   description,
-  appid_slug
+  callback
 ) {
   let xhr = new XMLHttpRequest({ mozSystem: true });
-  let url =
-    "https://bhackers.uber.space/srs/v1/ratings/" + _appid_slug + "/add";
+  let url = "https://bhackers.uber.space/srs/v1/ratings/" + appid_slug + "/add";
 
   xhr.open("POST", url, true);
 
   xhr.setRequestHeader("Content-Type", "application/json");
-
   xhr.onload = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
+    if ((xhr.readyState === 4 && xhr.status === 200) || xhr.status === 201) {
       // Print received data from server
-      console.log(this.responseText);
+      //console.log(this.responseText);
     } else {
-      console.log(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
+      //console.log(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
     }
+    callback(xhr.status);
   };
 
   xhr.onerror = function () {
     // only triggers if the request couldn't be made at all
-    alert(`Network Error`);
+    //alert(`Network Error`);
+    callback("Network Error");
   };
 
   // Converting JSON data to string
