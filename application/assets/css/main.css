@@ -358,6 +358,29 @@ div.rating-item {
   margin: 0 0 30px 0;
 }
 
+div.rating-item div div {
+  height: 15px;
+  color: black;
+  font-size: 1.1rem;
+  margin: 0 0 5px 0;
+}
+
+div.points-1 {
+  content: "hello";
+}
+
+div.points-2 {
+  content: "hello";
+}
+
+div.points-3 {
+  content: "•";
+}
+
+div.points-4 {
+  content: "hello";
+}
+
 /*/////////////////
 ///BOTTOM BAR////
 ////////////////*/

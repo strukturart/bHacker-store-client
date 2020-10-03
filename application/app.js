@@ -394,10 +394,32 @@ $(document).ready(function () {
 
   function ratings_callback(data) {
     data.ratings.forEach(function (item) {
+      let stars = "";
+      switch (item.points) {
+        case 0:
+          stars = "";
+          break;
+        case 1:
+          stars = "★";
+          break;
+        case 2:
+          stars = "★ ★";
+          break;
+        case 3:
+          stars = "★ ★ ★";
+          break;
+        case 4:
+          stars = "★ ★ ★ ★";
+          break;
+        case 5:
+          stars = "★ ★ ★  ★  ★";
+          break;
+      }
+
       $("#" + article_id).append(
-        "<div class='rating-item'><div class='points'>" +
-          item.points +
-          "</div><div>" +
+        "<div class='rating-item'><div><div class='points'>" +
+          stars +
+          "</div></div><div>" +
           item.description +
           "</div></div>"
       );
