@@ -416,11 +416,15 @@ $(document).ready(function () {
           break;
       }
 
+      temp = document.createElement("div");
+      temp.innerHTML = item.description;
+      let description = temp.textContent || temp.innerText;
+
       $("#" + article_id).append(
         "<div class='rating-item'><div><div class='points'>" +
           stars +
           "</div></div><div>" +
-          item.description +
+          description +
           "</div></div>"
       );
     });
@@ -709,15 +713,22 @@ $(document).ready(function () {
 
       case "9":
         if (window_status == "rating") {
+          //sanitizer
+          let body = $("div#rating-wrapper textarea").val(),
+            temp = document.createElement("div");
+          temp.innerHTML = body;
+          let comment = temp.textContent || temp.innerText;
+
           send_rating(
             get_userId(),
             get_userId(),
             $("#" + article_id).data("slug"),
             $("#" + article_id).data("name"),
             Number(rating_stars),
-            $("div#rating-wrapper textarea").val(),
+            comment,
             xhr_callback
           );
+
           break;
         }
         break;
@@ -734,15 +745,22 @@ $(document).ready(function () {
         }
 
         if (window_status == "rating") {
+          //sanitizer
+          let body = $("div#rating-wrapper textarea").val(),
+            temp = document.createElement("div");
+          temp.innerHTML = body;
+          let comment = temp.textContent || temp.innerText;
+
           send_rating(
             get_userId(),
             get_userId(),
             $("#" + article_id).data("slug"),
             $("#" + article_id).data("name"),
             Number(rating_stars),
-            $("div#rating-wrapper textarea").val(),
+            comment,
             xhr_callback
           );
+
           break;
         }
 
