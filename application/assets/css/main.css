@@ -238,6 +238,10 @@ div#app div#app-panels {
   margin: 35px 0 50px 0px;
 }
 
+div#app div#app-panels article {
+  padding: 2px;
+}
+
 div#app div#app-panels article:focus {
   background: silver;
 }
@@ -274,7 +278,7 @@ div#app div#app-panels article div.channel {
 
 div#app div#app-panels article div.summary {
   display: none;
-  padding: 0 0 20px 0;
+  padding: 0 10px 20px 0px;
 }
 
 div#app div#app-panels article ul.images {
@@ -365,8 +369,13 @@ div.rating-item div div {
   margin: 0 0 5px 0;
 }
 
+div.rating-item {
+  font-size: 0.8rem;
+}
+
 div.points-1 {
   content: "hello";
+  padding: 2px;
 }
 
 div.points-2 {

@@ -343,8 +343,6 @@ $(document).ready(function () {
 
     if (param == "-1" && focused > 0) {
       focused--;
-      let focusedElement = $(":focus")[0].offsetTop;
-      //$('html, body').animate({ scrollTo: focusedElement }, 1500);
 
       siblings[focused].focus();
 
@@ -431,7 +429,13 @@ $(document).ready(function () {
   }
 
   function show_article_list() {
-    let article_id = $(":focus").attr("id");
+    if (article_id == "search") {
+      $("input#search").focus();
+    }
+
+    if (article_id !== "search") {
+      $("#" + article_id).focus();
+    }
 
     panels_list(panels[current_panel]);
     $("div#app div#app-panels").css("margin", "35px 0 50px 0px");
@@ -513,6 +517,8 @@ $(document).ready(function () {
   }
 
   function open_about() {
+    article_id = $(":focus").attr("id");
+    alert(article_id);
     $("div#about").css("display", "block");
     $("div#about div#inner").focus();
     document.getElementById("top").scrollIntoView();
@@ -706,33 +712,6 @@ $(document).ready(function () {
         break;
 
       case "8":
-        if (window_status == "single-article") {
-          open_options();
-          break;
-        }
-
-      case "9":
-        if (window_status == "rating") {
-          //sanitizer
-          let body = $("div#rating-wrapper textarea").val(),
-            temp = document.createElement("div");
-          temp.innerHTML = body;
-          let comment = temp.textContent || temp.innerText;
-
-          send_rating(
-            get_userId(),
-            get_userId(),
-            $("#" + article_id).data("slug"),
-            $("#" + article_id).data("name"),
-            Number(rating_stars),
-            comment,
-            xhr_callback
-          );
-
-          break;
-        }
-        break;
-
       case "SoftLeft":
         if (window_status == "search") {
           start_scan(function (callback) {
@@ -769,6 +748,7 @@ $(document).ready(function () {
           break;
         }
 
+      case "9":
       case "SoftRight":
         if (window_status == "article-list" || window_status == "search") {
           open_about();
@@ -814,7 +794,7 @@ $(document).ready(function () {
 
           $("div#about").css("display", "none");
           show_article_list();
-          $("div#bottom-bar div#button-center").css("width", "30%");
+          //$("div#bottom-bar div#button-center").css("width", "30%");
 
           break;
         }
