@@ -1,101 +1,134 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>bHacker-store</title>
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; img-src * data: 'unsafe-inline'; connect-src * 'unsafe-inline'; frame-src *;"
-    />
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; img-src * data: 'unsafe-inline'; connect-src * 'unsafe-inline'; frame-src *;" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/grid.css" />
     <link rel="stylesheet" href="assets/css/qr_reader.css" />
-  </head>
+</head>
 
-  <body>
+<body>
     <div id="wrapper">
-      <div id="toast" class="width-100"></div>
+        <div id="toast" class="width-100"></div>
 
-      <!---------------->
-      <!--app-list-->
-      <!---------------->
-      <div id="app" class="flex width-100 height-100 page">
-        <div id="navigation" class="width-100">
-          <div></div>
+        <!---------------->
+        <!--app-list-->
+        <!---------------->
+        <div id="app" class="flex width-100 height-100 page">
+            <div id="navigation" class="width-100">
+                <div></div>
+            </div>
+            <div id="app-panels">
+                <article class="All" id="search" class="width-100 flex justify-content-spacearound" tabindex="0">
+                    <input id="search" type="search" />
+                </article>
+                <template v-for="(item,index ) in items">
+            <article v-bind:class="item.categorie"  v-bind:id="item.slug"  v-bind:data-name="item.title"  v-bind:data-slug="item.slug"  v-bind:data-tags="item.tags"  v-bind:data-url="item.data-url"  v-bind:data-download="item.data-link">
+              <div class='icon'><img v-bind:src="item.icon"></div>
+              <h1>{{item.titel}}</h1>
+              <div class="meta-data">
+                <div><span>Author </span> {{item.author}}</div>
+                <div>
+                  <span>License </span>
+                  {{item.license}}
+                </div>
+                <div>
+                  <span>Type </span>
+                  {{item.type}}
+                </div>
+                <div>
+                  <span>Donation </span>
+                  {{item.donationIs}}
+                </div>
+                <div>
+                  <span>Tracking </span>
+                  {{item.tracking}}
+                </div>
+                <div>
+                  <span>Ads </span>
+                  {{item.ads}}
+                </div>
+                <div class="dl-cnt"></div>
+              </div>
+
+              <div class='summary'>
+                {{item.summary}}
+                </div>
+
+              <div class='channel'>
+                  {{item.categorie}}
+                  </div>
+
+              <div class='images'>
+                <ul class='images'>
+                  <li v-for="(images,index) in item.images">
+                   <img v-bind:src="images[index]">
+                  </li> 
+                
+                </ul>
+              </div>
+
+
+                
+
+
+
+                
+            </article>
+          </template>
+            </div>
+            <div id="options"></div>
         </div>
-        <div id="app-panels">
-          <article
-            class="All"
-            id="search"
-            class="width-100 flex justify-content-spacearound"
-            tabindex="0"
-          >
-            <input id="search" type="search" />
-          </article>
-        </div>
-        <div id="options"></div>
-      </div>
     </div>
 
     <div id="rating-wrapper" class="flex width-100 height-100">
-      <input
-        class="star width-100"
-        tabindex="0"
-        min="0"
-        maxlength="1"
-        size="1"
-        type="tel"
-        autocomplete="off"
-      />
-      <textarea class="text" tabindex="1" rows="5" type="text"></textarea>
-      <div id="stars">
-        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-      </div>
-      <div>
-        Press 1-5 to rate the app, if you want you can also write a comment.
-      </div>
+        <input class="star width-100" tabindex="0" min="0" maxlength="1" size="1" type="tel" autocomplete="off" />
+        <textarea class="text" tabindex="1" rows="5" type="text"></textarea>
+        <div id="stars">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <div>
+            Press 1-5 to rate the app, if you want you can also write a comment.
+        </div>
     </div>
 
     <div id="bottom-bar">
-      <div class="inner flex justify-content-spacebetween width-100">
-        <div id="button-left"></div>
-        <div id="button-center"></div>
-        <div id="button-right"></div>
-      </div>
+        <div class="inner flex justify-content-spacebetween width-100">
+            <div id="button-left"></div>
+            <div id="button-center"></div>
+            <div id="button-right"></div>
+        </div>
     </div>
 
     <div id="about" class="width-100 height-100">
-      <div id="inner" tabindex="0">
-        <br />
-        <h1 id="top">bHackers</h1>
-        <p>
-          An alternative app store by free developers for free devices. The
-          database of apps is hosted https://banana-hackers.gitlab.io/store-db ,
-          further can be added by a pull request.
-        </p>
-        <div>
-          <h1>Contributors</h1>
-          <div id="contributors"></div>
-        </div>
-        <div>
-          <h1>Respect</h1>
-          <div>
-            Respect the licenses of the apps, it would be nice if you use app
-            more often to support the developer with a donation.<br />Thanks!
-          </div>
+        <div id="inner" tabindex="0">
+            <br />
+            <h1 id="top">bHackers</h1>
+            <p>
+                An alternative app store by free developers for free devices. The database of apps is hosted https://banana-hackers.gitlab.io/store-db , further can be added by a pull request.
+            </p>
+            <div>
+                <h1>Contributors</h1>
+                <div id="contributors"></div>
+            </div>
+            <div>
+                <h1>Respect</h1>
+                <div>
+                    Respect the licenses of the apps, it would be nice if you use app more often to support the developer with a donation.<br />Thanks!
+                </div>
 
-          <h1>Privacy Policy and Terms of use</h1>
-          <p>
-            Your privacy is important to us, that&#39;s why we try to collect
-            only the data that we need to provide the service to you.
-          </p>
-          <h2>Data that might get collected while using the app</h2>
-          <p>
-            We rely on gitlab pages for hosting the data, this service might
-            store cookies and save your ip address
-            <a href="https://about.gitlab.com/privacy/"
-              >https://about.gitlab.com/privacy/</a
+                <h1>Privacy Policy and Terms of use</h1>
+                <p>
+                    Your privacy is important to us, that&#39;s why we try to collect only the data that we need to provide the service to you.
+                </p>
+                <h2>Data that might get collected while using the app</h2>
+                <p>
+                    We rely on gitlab pages for hosting the data, this service might store cookies and save your ip address
+                    <a href="https://about.gitlab.com/privacy/">https://about.gitlab.com/privacy/</a
             >
           </p>
           <p>
@@ -188,7 +221,8 @@
     <script src="assets/js/search.js"></script>
     <script src="assets/js/backend_api.js"></script>
     <script src="assets/js/ratings.js"></script>
-    <script src="assets/js/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="assets/js/vue_app.js"></script>
 
     <script src="app.js"></script>
     <!-- for packaged app -->
