@@ -27,8 +27,16 @@
                     <input id="search" type="search" />
                 </article>
                 <template v-for="(item,index ) in items">
-            <article v-bind:class="item.categorie"  v-bind:id="item.slug"  v-bind:data-name="item.title"  v-bind:data-slug="item.slug"  v-bind:data-tags="item.tags"  v-bind:data-url="item.data-url"  v-bind:data-download="item.data-link">
-              <div class='icon'><img v-bind:src="item.icon"></div>
+            <article class="All"
+              v-bind:class="item.categorie"
+              v-bind:id="item.slug"
+              v-bind:data-name="item.title"
+              v-bind:data-slug="item.slug"
+              v-bind:data-tags="item.tags"
+              v-bind:data-url="item.url"
+              v-bind:data-download="item.link"
+            >
+              <div class="icon"><img v-bind:src="item.icon" /></div>
               <h1>{{item.titel}}</h1>
               <div class="meta-data">
                 <div><span>Author </span> {{item.author}}</div>
@@ -55,33 +63,27 @@
                 <div class="dl-cnt"></div>
               </div>
 
-              <div class='summary'>
-                {{item.summary}}
-                </div>
+              <div class="summary">{{item.summary}}</div>
 
-              <div class='channel'>
-                  {{item.categorie}}
-                  </div>
+              <div class="channel">{{item.categorie}}</div>
 
-              <div class='images'>
-                <ul class='images'>
+              <div class="images">
+                <ul class="images">
                   <li v-for="(images,index) in item.images">
-                   <img v-bind:src="images[index]">
-                  </li> 
-                
+                    <img v-bind:src="images[index]" />
+                  </li>
                 </ul>
               </div>
-
-
-                
-
-
-
-                
             </article>
+            <div class="options" class="felx justify-content-spacearound">
+                <div tabindex='0'  v-bind:data-slug="item.slug">rating</div>
+                <div tabindex='1'  v-bind:data-url="item.url">source</div>
+                <div tabindex='2'  v-bind:data-donation="donation_url">donate</div>
+            </div>
+
           </template>
             </div>
-            <div id="options"></div>
+
         </div>
     </div>
 

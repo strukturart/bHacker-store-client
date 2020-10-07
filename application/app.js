@@ -137,14 +137,11 @@ $(document).ready(function() {
                     item_ads = "no";
                 }
 
-
-
                 if (item_tracking) {
                     item_tracking = "yes";
                 } else {
                     item_tracking = "no";
                 }
-
 
                 //to do
                 //push data in array
@@ -167,41 +164,12 @@ $(document).ready(function() {
                     slug: item_slug,
                     tags: item_tags,
                     url: item_url,
-                    link: item_link
-
+                    link: item_link,
                 });
 
-                //options page
-                $("div#options").append("<div id='" + elem_id + "'></div>");
 
-                $("div#options div#" + elem_id).append(
-                    "<div tabindex='0' data-appslug='" + item_slug + "'>rating</div>"
-                );
-
-                if (item_url) {
-                    $("div#options div#" + elem_id).append(
-                        "<div tabindex='1' data-url='" +
-                        item_url +
-                        "'>source code of the app</div>"
-                    );
-                }
-
-                if (item_donation) {
-                    donation_icon = "yes";
-                    $("div#options div#" + elem_id).append(
-                        "<div tabindex='2' data-url='" +
-                        item_donation +
-                        "'>make a donation</div>"
-                    );
-                }
-
-
-
-
-
-
-
-            })).then(function() {
+            })
+        ).then(function() {
             let vueapp = new Vue({
                 el: "#app-panels",
                 data: {
@@ -260,9 +228,7 @@ $(document).ready(function() {
     function panels_list(panel) {
         $("article").css("display", "none");
         $("article." + panel).css("display", "block");
-        $("div#app-panels article")
-            .find([(tabindex = "0")])
-            .focus();
+        $("article:first").focus();
     }
 
     ////////////////////////
@@ -414,6 +380,11 @@ $(document).ready(function() {
     }
 
     function show_article_list() {
+
+        $("#" + article_id).focus();
+        document.getElementById(article_id).scrollIntoView();
+
+
         if (article_id == "search") {
             $("input#search").focus();
         }
@@ -421,6 +392,8 @@ $(document).ready(function() {
         if (article_id !== "search") {
             $("#" + article_id).focus();
         }
+
+
 
         panels_list(panels[current_panel]);
         $("div#app div#app-panels").css("margin", "35px 0 50px 0px");
@@ -437,9 +410,7 @@ $(document).ready(function() {
         $("ul.images").css("display", "none");
         $("div.icon").css("display", "none");
         $("div.rating-item").remove();
-
         bottom_bar("", "select", "about");
-        document.getElementById(article_id).scrollIntoView();
         window_status = "article-list";
     }
 
@@ -478,7 +449,7 @@ $(document).ready(function() {
     }
 
     function close_options() {
-        $("div#options").css("display", "none");
+        $("div.options").css("display", "none");
         $("article#" + article_id).focus();
         $("div#navigation").css("display", "none");
         $("div.summary").css("display", "block");
@@ -492,12 +463,12 @@ $(document).ready(function() {
 
     function open_options() {
         let $focused = $(":focus");
-        $("div#options div").css("display", "none");
-        $("div#options").css("display", "block");
-        $("div#options div#" + article_id).css("display", "block");
-        $("div#options div#" + article_id + " div").css("display", "block");
+        $("div.options").css("display", "none");
+        $("article#" + article_id).next().css("display", "block")
+        $("article#" + article_id).next().children().first().focus()
+
+
         bottom_bar("", "", "");
-        $("div#options div#" + article_id + " div:first").focus();
         window_status = "options";
     }
 
