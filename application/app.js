@@ -14,792 +14,783 @@ let apps_data = new Array();
 let update_time;
 let apps_rating = new Array();
 
-$(document).ready(function () {
-  //////////////////////////////
-  //fetch-database////
-  //////////////////////////////
+$(document).ready(function() {
+    //////////////////////////////
+    //fetch-database////
+    //////////////////////////////
 
-  function init() {
-    BackendApi.setStatusCallback(toaster);
+    function init() {
+        BackendApi.setStatusCallback(toaster);
 
-    function loadData() {
-      dataSet = BackendApi.getData();
-      addAppList();
-      addCategories();
+        function loadData() {
+            dataSet = BackendApi.getData();
+            addAppList();
+            addCategories();
 
-      $("div#message-box").css("animation-play-state", "running");
-      $("div#message-box img.icon-2").css("animation-play-state", "running");
-      $("div#message-box img.icon-1").css("animation-play-state", "running");
-      $("div#message-box div").css("display", "none");
+            $("div#message-box").css("animation-play-state", "running");
+            $("div#message-box img.icon-2").css("animation-play-state", "running");
+            $("div#message-box img.icon-1").css("animation-play-state", "running");
+            $("div#message-box div").css("display", "none");
 
-      DownloadCounter.load().then((_) => {
-        const apps = $("div#app-panels article");
-        for (let i = 0; i < apps.length; i++) {
-          const appId = apps[i].getAttribute("data-slug");
+            DownloadCounter.load().then((_) => {
+                const apps = $("div#app-panels article");
+                for (let i = 0; i < apps.length; i++) {
+                    const appId = apps[i].getAttribute("data-slug");
 
-          if (appId) {
-            const dl_section = apps[i].querySelector("div.dl-cnt");
-            const count = DownloadCounter.getForApp(appId);
+                    if (appId) {
+                        const dl_section = apps[i].querySelector("div.dl-cnt");
+                        const count = DownloadCounter.getForApp(appId);
 
-            if (dl_section && count !== -1) {
-              dl_section.innerHTML = "<span>Downloads </span>" + count;
+                        if (dl_section && count !== -1) {
+                            dl_section.innerHTML = "<span>Downloads </span>" + count;
+                        }
+                    }
+                }
+            });
+        }
+
+        if (!BackendApi.getData()) {
+            if (!navigator.onLine) {} else {
+                BackendApi.update()
+                    .then(loadData)
+                    .catch((error) => {
+                        console.log(error);
+                        toaster(error instanceof Error ? error.message : error);
+                    });
             }
-          }
+        } else {
+            if (navigator.onLine) {
+                BackendApi.update()
+                    .then(loadData)
+                    .catch((error) => {
+                        console.log(error);
+                        toaster(error instanceof Error ? error.message : error);
+                        loadData();
+                    });
+            } else {
+                offline = true;
+                toaster(
+                    "<br> your device is offline, you can view the app but you cannot install it.",
+                    3000
+                );
+
+                loadData();
+            }
         }
-      });
     }
 
-    if (!BackendApi.getData()) {
-      if (!navigator.onLine) {
-      } else {
-        BackendApi.update()
-          .then(loadData)
-          .catch((error) => {
-            console.log(error);
-            toaster(error instanceof Error ? error.message : error);
-          });
-      }
-    } else {
-      if (navigator.onLine) {
-        BackendApi.update()
-          .then(loadData)
-          .catch((error) => {
-            console.log(error);
-            toaster(error instanceof Error ? error.message : error);
-            loadData();
-          });
-      } else {
-        offline = true;
-        toaster(
-          "<br> your device is offline, you can view the app but you cannot install it.",
-          3000
-        );
+    let contributors = ["40min"];
 
-        loadData();
-      }
-    }
-  }
+    function addAppList(callback) {
+        let i = 0;
 
-  let contributors = ["40min"];
+        $.when(
+            dataSet.apps.forEach(function(value, index) {
+                let data = dataSet.apps[index];
+                let item_title = data.name;
+                let item_summary = data.description;
+                let item_link = data.download.url;
+                let item_url = data.git_repo;
+                let item_donation = data.donation;
+                let item_ads = data.has_ads;
+                let item_tracking = data.has_tracking;
+                let str = data.meta.categories;
+                let tag = data.meta.categories;
+                let item_categorie = str.toString().replace(",", " ");
+                let item_tags = tag.toString().replace(",", " ");
+                let item_author = data.author.toString();
+                let item_icon = data.icon;
+                let item_license = data.license;
+                let item_type = data.type;
+                let images = "";
+                let images_collection = "";
+                let donation_icon = "none";
+                let item_slug = data.slug;
+                //i++;
+                let elem_id = "elem-" + index;
 
-  function addAppList(callback) {
-    let i = 0;
+                //unique author list
+                const just_author_name = item_author.split("<")[0].trim();
+                if (contributors.indexOf(just_author_name) === -1) {
+                    contributors.push(just_author_name);
+                }
+                //apps thumbnails
+                if (data.screenshots != "") {
+                    images = data.screenshots.toString();
+                    images = images.split(",");
 
-    $.when(
-      dataSet.apps.forEach(function (value, index) {
-        let data = dataSet.apps[index];
-        let item_title = data.name;
-        let item_summary = data.description;
-        let item_link = data.download.url;
-        let item_url = data.git_repo;
-        let item_donation = data.donation;
-        let item_ads = data.has_ads;
-        let item_tracking = data.has_tracking;
-        let str = data.meta.categories;
-        let tag = data.meta.categories;
-        let item_categorie = str.toString().replace(",", " ");
-        let item_tags = tag.toString().replace(",", " ");
-        let item_author = data.author.toString();
-        let item_icon = data.icon;
-        let item_license = data.license;
-        let item_type = data.type;
-        let images = "";
-        let images_collection = "";
-        let donation_icon = "none";
-        let item_slug = data.slug;
-        //i++;
-        let elem_id = "elem-" + index;
+                    images.forEach(function(value, index) {
+                        images_collection += "<li><img src=" + images[index] + "></li>";
+                    });
+                } else {
+                    images_collection = "";
+                }
 
-        //unique author list
-        const just_author_name = item_author.split("<")[0].trim();
-        if (contributors.indexOf(just_author_name) === -1) {
-          contributors.push(just_author_name);
-        }
-        //apps thumbnails
-        if (data.screenshots != "") {
-          images = data.screenshots.toString();
-          images = images.split(",");
+                if (item_donation == "") {
+                    donation_icon = "no";
+                } else {
+                    donation_icon = "yes";
+                }
 
-          images.forEach(function (value, index) {
-            images_collection += "<li><img src=" + images[index] + "></li>";
-          });
-        } else {
-          images_collection = "";
-        }
+                if (item_ads) {
+                    item_ads = "yes";
+                } else {
+                    item_ads = "no";
+                }
 
-        if (item_donation == "") {
-          donation_icon = "no";
-        } else {
-          donation_icon = "yes";
-        }
+                if (item_tracking) {
+                    item_tracking = "yes";
+                } else {
+                    item_tracking = "no";
+                }
 
-        if (item_ads) {
-          item_ads = "yes";
-        } else {
-          item_ads = "no";
-        }
+                //get_ratings(item_slug, ratings_callback);
 
-        if (item_tracking) {
-          item_tracking = "yes";
-        } else {
-          item_tracking = "no";
-        }
+                //to do
+                //push data in array
+                //to create elements in dom if needed
+                apps_data.push({
+                    titel: item_title,
+                    author: item_author,
+                    summary: item_summary,
+                    categorie: item_categorie,
+                    link: item_link,
+                    license: item_license,
+                    ads: item_ads,
+                    donation_url: item_donation,
+                    donation: donation_icon,
+                    tracking: item_tracking,
+                    type: item_type,
+                    images: [data.screenshots],
+                    summarie: item_summary,
+                    icon: item_icon,
+                    slug: item_slug,
+                    tags: item_tags,
+                    url: item_url,
+                    link: item_link,
+                });
+            })
+        ).then(function() {
+            update_time = moment(dataSet.generated_at).format("DD.MM.YYYY, HH:mm");
+            let co = contributors.sort().join(", ");
+            //add to about page
+            searchGetData()
 
-        get_ratings(item_slug, ratings_callback);
+            let vueapp = new Vue({
+                el: "#app-panels",
+                data: {
+                    items: apps_data,
+                },
+            });
 
-        //to do
-        //push data in array
-        //to create elements in dom if needed
-        apps_data.push({
-          titel: item_title,
-          author: item_author,
-          summary: item_summary,
-          categorie: item_categorie,
-          link: item_link,
-          license: item_license,
-          ads: item_ads,
-          donation_url: item_donation,
-          donation: donation_icon,
-          tracking: item_tracking,
-          type: item_type,
-          images: [data.screenshots],
-          summarie: item_summary,
-          icon: item_icon,
-          slug: item_slug,
-          tags: item_tags,
-          url: item_url,
-          link: item_link,
+            document.querySelector("#update").innerText = update_time;
+            document.querySelector("div#about div#inner div#contributors").innerText = co;
+            document.querySelector("article#search input").focus();
+
+
+            set_tabindex();
+
+            bottom_bar("", "select", "about");
         });
-      })
-    ).then(function () {
-      /*
-                  Vue.component("testcomponent", {
-                    template: "<button>Greet</button>",
-                    data: function () {
-                      return {
-                        rating: apps_rating,
-                      };
-                    },
-                  });
-                  */
-
-      let vueapp = new Vue({
-        el: "#app-panels",
-        data: {
-          items: apps_data,
-        },
-      });
-
-      update_time = moment(dataSet.generated_at).format("DD.MM.YYYY, HH:mm");
-      $("#update").text(update_time);
-      set_tabindex();
-      let co = contributors.sort().join(", ");
-      //add to about page
-      $("div#about div#inner div#contributors").text(co);
-
-      getData();
-
-      $("article#search input").focus();
-    });
-  }
-
-  bottom_bar("", "select", "about");
-
-  function addCategories() {
-    $.each(dataSet.categories, function (key, val) {
-      panels.push(key);
-    });
-    $("div#navigation div").text(panels[0]);
-  }
-
-  function set_tabindex() {
-    $("div#app-panels article").removeAttr("tabindex");
-    $("div#app-panels article")
-      .filter(":visible")
-      .each(function (index) {
-        $(this).prop("tabindex", index);
-      });
-    article_array = $("div#app-panels article").filter(":visible");
-    sort_data();
-    $("body").find("article[tabindex = 0]").focus();
-  }
-
-  function sort_data() {
-    let $wrapper = $("div#app-panels");
-
-    $wrapper
-      .find("article tabindex")
-      .sort(function (a, b) {
-        return b - a;
-      })
-      .appendTo($wrapper);
-  }
-
-  function panels_list(panel) {
-    $("article").css("display", "none");
-    $("article." + panel).css("display", "block");
-    $("article:first").focus();
-  }
-
-  ////////////////////////
-  //NAVIGATION
-  /////////////////////////
-  ///thank you farooqkz
-  //for the clever solution
-
-  function nav_panels(left_right) {
-    window.scrollTo(0, 0);
-
-    if (left_right == "left") {
-      current_panel--;
     }
 
-    if (left_right == "right") {
-      current_panel++;
+
+
+    function addCategories() {
+        $.each(dataSet.categories, function(key, val) {
+            panels.push(key);
+        });
+        $("div#navigation div").text(panels[0]);
     }
 
-    current_panel = current_panel % panels.length;
-    if (current_panel < 0) {
-      current_panel += panels.length;
+    function set_tabindex() {
+        $("div#app-panels article").removeAttr("tabindex");
+        $("div#app-panels article")
+            .filter(":visible")
+            .each(function(index) {
+                $(this).prop("tabindex", index);
+            });
+        article_array = $("div#app-panels article").filter(":visible");
+        sort_data();
+        $("body").find("article[tabindex = 0]").focus();
     }
 
-    $("div#navigation div").text(panels[current_panel]);
-    panels_list(panels[current_panel]);
-    set_tabindex();
-    pos_focus = 0;
+    function sort_data() {
+        let $wrapper = $("div#app-panels");
 
-    if (current_panel == 0) {
-      $("input").val("");
-      $("input").focus();
-      $("div#navigation").css("display", "none");
-    } else {
-      $("div#navigation").css("display", "block");
-    }
-  }
-
-  //up - down
-
-  function nav(param) {
-    let focused = $(":focus").attr("tabindex");
-    let siblings = $(":focus").parent().children(":visible");
-    let siblingsLength = $(":focus").parent().children(":visible").length;
-
-    if ($("input").is(":focus")) {
-      $("article#search").next().focus();
+        $wrapper
+            .find("article tabindex")
+            .sort(function(a, b) {
+                return b - a;
+            })
+            .appendTo($wrapper);
     }
 
-    if (param == "+1" && focused < siblingsLength - 1) {
-      focused++;
-
-      var focusedElement = $(":focus")[0].offsetTop;
-
-      $("html, body").animate({ scrollTop: focusedElement }, 200);
-
-      siblings[focused].focus();
-
-      if ($("article#search").is(":focus")) {
-        $("input").focus();
-      }
+    function panels_list(panel) {
+        $("article").css("display", "none");
+        $("article." + panel).css("display", "block");
+        $("article:first").focus();
     }
 
-    if (param == "-1" && focused > 0) {
-      focused--;
+    ////////////////////////
+    //NAVIGATION
+    /////////////////////////
+    ///thank you farooqkz
+    //for the clever solution
 
-      siblings[focused].focus();
+    function nav_panels(left_right) {
+        window.scrollTo(0, 0);
 
-      if ($("article#search").is(":focus")) {
-        $("input").focus();
-      }
+        if (left_right == "left") {
+            current_panel--;
+        }
+
+        if (left_right == "right") {
+            current_panel++;
+        }
+
+        current_panel = current_panel % panels.length;
+        if (current_panel < 0) {
+            current_panel += panels.length;
+        }
+
+        $("div#navigation div").text(panels[current_panel]);
+        panels_list(panels[current_panel]);
+        set_tabindex();
+        pos_focus = 0;
+
+        if (current_panel == 0) {
+            $("input").val("");
+            $("input").focus();
+            $("div#navigation").css("display", "none");
+        } else {
+            $("div#navigation").css("display", "block");
+        }
     }
-  }
 
-  //store current article
-  let article_id;
+    //up - down
 
-  function show_article(app) {
-    apps_data.forEach(function (item, index) {
-      console.log(item);
-    });
-    let $focused;
-    if (app) {
-      $focused = $('[data-slug="' + app + '"]');
-      $('[data-slug="' + app + '"]').focus();
-    } else {
-      $focused = $(":focus");
+    function nav(param) {
+        let focused = $(":focus").attr("tabindex");
+        let siblings = $(":focus").parent().children(":visible");
+        let siblingsLength = $(":focus").parent().children(":visible").length;
+
+        if ($("input").is(":focus")) {
+            $("article#search").next().focus();
+        }
+
+        if (param == "+1" && focused < siblingsLength - 1) {
+            focused++;
+
+            var focusedElement = $(":focus")[0].offsetTop;
+
+            $("html, body").animate({ scrollTop: focusedElement }, 200);
+
+            siblings[focused].focus();
+
+            if ($("article#search").is(":focus")) {
+                $("input").focus();
+            }
+        }
+
+        if (param == "-1" && focused > 0) {
+            focused--;
+
+            siblings[focused].focus();
+
+            if ($("article#search").is(":focus")) {
+                $("input").focus();
+            }
+        }
     }
 
-    let getClass = $focused.attr("class");
-    //let getId = $focused.parent().attr("id");
-    article_id = $focused.attr("id");
+    //store current article
+    let article_id;
 
-    if (getClass != "About") {
-      $("article").css("display", "none");
-      $("div#navigation").css("display", "none");
-      $("div#app div#app-panels").css("margin", "5px 0 0 0");
-      $("div#app div#app-panels").css("max-height", "100%");
-      $focused.css("display", "block");
-      $("div.summary").css("display", "block");
-      $("div.meta-data").css("display", "block");
-      $("div.icon").css("display", "block");
-      $("div.channel").css("display", "none");
-      $("ul.images").css("display", "block");
-      if (!offline) {
-        bottom_bar("options", "", "install");
-      } else {
+    function show_article(app) {
+        apps_data.forEach(function(item, index) {
+            console.log(item[1]);
+        });
+        let $focused;
+        if (app) {
+            $focused = $('[data-slug="' + app + '"]');
+            $('[data-slug="' + app + '"]').focus();
+        } else {
+            $focused = $(":focus");
+        }
+
+        let getClass = $focused.attr("class");
+        //let getId = $focused.parent().attr("id");
+        article_id = $focused.attr("id");
+
+        if (getClass != "About") {
+            $("article").css("display", "none");
+            $("div#navigation").css("display", "none");
+            $("div#app div#app-panels").css("margin", "5px 0 0 0");
+            $("div#app div#app-panels").css("max-height", "100%");
+            $focused.css("display", "block");
+            $("div.summary").css("display", "block");
+            $("div.meta-data").css("display", "block");
+            $("div.icon").css("display", "block");
+            $("div.channel").css("display", "none");
+            $("ul.images").css("display", "block");
+            if (!offline) {
+                bottom_bar("options", "", "install");
+            } else {
+                bottom_bar("", "", "");
+            }
+            get_ratings($("#" + article_id).data("slug"), ratings_callback);
+
+            window_status = "single-article";
+        }
+    }
+
+    function ratings_callback(data) {
+        //console.log(data)
+        if (data.ratings.length > 0) {
+            apps_data.push([data.appid, data.ratings]);
+        }
+
+        /*
+                                        data.ratings.forEach(function(item) {
+                                            let stars = "";
+                                            switch (item.points) {
+                                                case 0:
+                                                    stars = "";
+                                                    break;
+                                                case 1:
+                                                    stars = "★";
+                                                    break;
+                                                case 2:
+                                                    stars = "★ ★";
+                                                    break;
+                                                case 3:
+                                                    stars = "★ ★ ★";
+                                                    break;
+                                                case 4:
+                                                    stars = "★ ★ ★ ★";
+                                                    break;
+                                                case 5:
+                                                    stars = "★ ★ ★  ★  ★";
+                                                    break;
+                                            }
+
+                                            let temp = document.createElement("div");
+                                            temp.innerHTML = item.description;
+                                            let description = temp.textContent || temp.innerText;
+
+                                            $("#" + article_id).append(
+                                                "<div class='rating-item'><div><div class='points'>" +
+                                                stars +
+                                                "</div></div><div>" +
+                                                description +
+                                                "</div></div>"
+                                            );
+                                        });
+                                        */
+    }
+
+    function show_article_list() {
+        $("#" + article_id).focus();
+        document.getElementById(article_id).scrollIntoView();
+
+        if (article_id == "search") {
+            $("input#search").focus();
+        }
+
+        if (article_id !== "search") {
+            $("#" + article_id).focus();
+        }
+
+        panels_list(panels[current_panel]);
+        $("div#app div#app-panels").css("margin", "35px 0 50px 0px");
+
+        $("article#search").css("margin", "-35px 0 0 0!Important");
+        $("div#options").css("display", "none");
+        if (current_panel != 0) {
+            $("div#navigation").css("display", "block");
+        }
+        $("div#app-panels").css("display", "block");
+        $("div.summary").css("display", "none");
+        $("div.meta-data").css("display", "none");
+        $("div.channel").css("display", "block");
+        $("ul.images").css("display", "none");
+        $("div.icon").css("display", "none");
+        $("div.rating-item").remove();
+        bottom_bar("", "select", "about");
+        window_status = "article-list";
+    }
+
+    function install_app() {
+        if (!offline) {
+            let link_target = "";
+            let targetElement = $(":focus");
+            link_target = $(targetElement).data("download");
+            app_slug = $(targetElement).data("slug");
+            download_file(link_target);
+        }
+    }
+
+    function open_url() {
+        let targetElement = $(":focus");
+        let link_target = $(targetElement).data("url");
+        window.open(link_target, "_self ");
+    }
+
+    function open_rating() {
+        $("div#rating-wrapper").css("display", "block");
+        $("div#rating-wrapper input.star ").focus();
+        bottom_bar("send", "", "close");
+        rating_stars = 0;
+        $("div#stars span").css("color", "white");
+        window_status = "rating";
+    }
+
+    function close_rating() {
+        $("div#rating-wrapper").css("display", "none");
         bottom_bar("", "", "");
-      }
-      get_ratings($("#" + article_id).data("slug"), ratings_callback);
-
-      window_status = "single-article";
-    }
-  }
-
-  function ratings_callback(data) {
-    //console.log(data)
-    if (data.ratings.length > 0) {
-      apps_data.push([data.appid, data.ratings]);
+        $("div#rating-wrapper input").val("");
+        $("div#rating-wrapper textarea").val("");
+        rating_stars = 0;
+        open_options();
     }
 
-    /*
-                        data.ratings.forEach(function(item) {
-                            let stars = "";
-                            switch (item.points) {
-                                case 0:
-                                    stars = "";
-                                    break;
-                                case 1:
-                                    stars = "★";
-                                    break;
-                                case 2:
-                                    stars = "★ ★";
-                                    break;
-                                case 3:
-                                    stars = "★ ★ ★";
-                                    break;
-                                case 4:
-                                    stars = "★ ★ ★ ★";
-                                    break;
-                                case 5:
-                                    stars = "★ ★ ★  ★  ★";
-                                    break;
-                            }
-
-                            let temp = document.createElement("div");
-                            temp.innerHTML = item.description;
-                            let description = temp.textContent || temp.innerText;
-
-                            $("#" + article_id).append(
-                                "<div class='rating-item'><div><div class='points'>" +
-                                stars +
-                                "</div></div><div>" +
-                                description +
-                                "</div></div>"
-                            );
-                        });
-                        */
-  }
-
-  function show_article_list() {
-    $("#" + article_id).focus();
-    document.getElementById(article_id).scrollIntoView();
-
-    if (article_id == "search") {
-      $("input#search").focus();
+    function close_options() {
+        $("div.options").css("display", "none");
+        $("article#" + article_id).focus();
+        $("div#navigation").css("display", "none");
+        $("div.summary").css("display", "block");
+        $("div.meta-data").css("display", "block");
+        $("div.icon").css("display", "block");
+        $("div.channel").css("display", "none");
+        $("ul.images").css("display", "block");
+        bottom_bar("options", "", "install");
+        window_status = "single-article";
     }
 
-    if (article_id !== "search") {
-      $("#" + article_id).focus();
+    function open_options() {
+        let $focused = $(":focus");
+        $("div.options").css("display", "none");
+        $("article#" + article_id)
+            .next()
+            .css("display", "block");
+        $("article#" + article_id)
+            .next()
+            .children()
+            .first()
+            .focus();
+
+        bottom_bar("", "", "");
+        window_status = "options";
     }
 
-    panels_list(panels[current_panel]);
-    $("div#app div#app-panels").css("margin", "35px 0 50px 0px");
-
-    $("article#search").css("margin", "-35px 0 0 0!Important");
-    $("div#options").css("display", "none");
-    if (current_panel != 0) {
-      $("div#navigation").css("display", "block");
+    function open_about() {
+        article_id = $(":focus").attr("id");
+        alert(article_id);
+        $("div#about").css("display", "block");
+        $("div#about div#inner").focus();
+        document.getElementById("top").scrollIntoView();
+        bottom_bar("", "", "");
+        window_status = "about";
     }
-    $("div#app-panels").css("display", "block");
-    $("div.summary").css("display", "none");
-    $("div.meta-data").css("display", "none");
-    $("div.channel").css("display", "block");
-    $("ul.images").css("display", "none");
-    $("div.icon").css("display", "none");
-    $("div.rating-item").remove();
-    bottom_bar("", "select", "about");
-    window_status = "article-list";
-  }
 
-  function install_app() {
-    if (!offline) {
-      let link_target = "";
-      let targetElement = $(":focus");
-      link_target = $(targetElement).data("download");
-      app_slug = $(targetElement).data("slug");
-      download_file(link_target);
+    const search_listener = document.querySelector('input[type="search"]');
+
+    search_listener.addEventListener("focus", (event) => {
+        bottom_bar("scan", "select", "about");
+        window.scrollTo(0, 0);
+        window_status = "search";
+    });
+
+    search_listener.addEventListener("blur", (event) => {
+        bottom_bar("", "select", "about");
+        window_status = "article-list";
+    });
+
+    ///launch app after installation
+
+    function launch_app() {
+        var request = window.navigator.mozApps.mgmt.getAll();
+        request.onerror = function(e) {
+            console.log("Error calling getInstalled: " + request.error.name);
+        };
+        request.onsuccess = function(e) {
+            var appsRecord = request.result;
+            appsRecord[appsRecord.length - 1].launch();
+        };
     }
-  }
 
-  function open_url() {
-    let targetElement = $(":focus");
-    let link_target = $(targetElement).data("url");
-    window.open(link_target, "_self ");
-  }
+    let rating_stars = 0;
+    $("div#rating-wrapper input.star").bind("keyup", function() {
+        switch ($(this).val()) {
+            case "0":
+                $("div#stars span:nth-child(1)").css("color", "white");
+                $("div#stars span:nth-child(2)").css("color", "white");
+                $("div#stars span:nth-child(3)").css("color", "white");
+                $("div#stars span:nth-child(4)").css("color", "white");
+                $("div#stars span:nth-child(5)").css("color", "white");
+                rating_stars = $(this).val();
 
-  function open_rating() {
-    $("div#rating-wrapper").css("display", "block");
-    $("div#rating-wrapper input.star ").focus();
-    bottom_bar("send", "", "close");
-    rating_stars = 0;
-    $("div#stars span").css("color", "white");
-    window_status = "rating";
-  }
+                break;
+            case "1":
+                $("div#stars span:nth-child(1)").css("color", "yellow");
+                $("div#stars span:nth-child(2)").css("color", "white");
+                $("div#stars span:nth-child(3)").css("color", "white");
+                $("div#stars span:nth-child(4)").css("color", "white");
+                $("div#stars span:nth-child(5)").css("color", "white");
+                rating_stars = $(this).val();
 
-  function close_rating() {
-    $("div#rating-wrapper").css("display", "none");
-    bottom_bar("", "", "");
-    $("div#rating-wrapper input").val("");
-    $("div#rating-wrapper textarea").val("");
-    rating_stars = 0;
-    open_options();
-  }
+                break;
+            case "2":
+                $("div#stars span:nth-child(1)").css("color", "yellow");
+                $("div#stars span:nth-child(2)").css("color", "yellow");
+                $("div#stars span:nth-child(3)").css("color", "white");
+                $("div#stars span:nth-child(4)").css("color", "white");
+                $("div#stars span:nth-child(5)").css("color", "white");
+                rating_stars = $(this).val();
 
-  function close_options() {
-    $("div.options").css("display", "none");
-    $("article#" + article_id).focus();
-    $("div#navigation").css("display", "none");
-    $("div.summary").css("display", "block");
-    $("div.meta-data").css("display", "block");
-    $("div.icon").css("display", "block");
-    $("div.channel").css("display", "none");
-    $("ul.images").css("display", "block");
-    bottom_bar("options", "", "install");
-    window_status = "single-article";
-  }
+                break;
+            case "3":
+                $("div#stars span:nth-child(1)").css("color", "yellow");
+                $("div#stars span:nth-child(2)").css("color", "yellow");
+                $("div#stars span:nth-child(3)").css("color", "yellow");
+                $("div#stars span:nth-child(4)").css("color", "white");
+                $("div#stars span:nth-child(5)").css("color", "white");
+                rating_stars = $(this).val();
 
-  function open_options() {
-    let $focused = $(":focus");
-    $("div.options").css("display", "none");
-    $("article#" + article_id)
-      .next()
-      .css("display", "block");
-    $("article#" + article_id)
-      .next()
-      .children()
-      .first()
-      .focus();
+                break;
+            case "4":
+                $("div#stars span:nth-child(1)").css("color", "yellow");
+                $("div#stars span:nth-child(2)").css("color", "yellow");
+                $("div#stars span:nth-child(3)").css("color", "yellow");
+                $("div#stars span:nth-child(4)").css("color", "yellow");
+                $("div#stars span:nth-child(5)").css("color", "white");
+                rating_stars = $(this).val();
 
-    bottom_bar("", "", "");
-    window_status = "options";
-  }
+                break;
+            case "5":
+                $("div#stars span:nth-child(1)").css("color", "yellow");
+                $("div#stars span:nth-child(2)").css("color", "yellow");
+                $("div#stars span:nth-child(3)").css("color", "yellow");
+                $("div#stars span:nth-child(4)").css("color", "yellow");
+                $("div#stars span:nth-child(5)").css("color", "yellow");
+                rating_stars = $(this).val();
 
-  function open_about() {
-    article_id = $(":focus").attr("id");
-    alert(article_id);
-    $("div#about").css("display", "block");
-    $("div#about div#inner").focus();
-    document.getElementById("top").scrollIntoView();
-    bottom_bar("", "", "");
-    window_status = "about";
-  }
+                break;
+        }
+    });
 
-  const search_listener = document.querySelector('input[type="search"]');
+    $("div#rating-wrapper input.star").focus(function() {
+        $("div#stars").css("font-size", "1rem");
+    });
+    $("div#rating-wrapper textarea").focus(function() {
+        $("div#stars").css("font-size", "0.8rem");
+    });
 
-  search_listener.addEventListener("focus", (event) => {
-    bottom_bar("scan", "select", "about");
-    window.scrollTo(0, 0);
-    window_status = "search";
-  });
+    $("div#rating-wrapper input.star").bind("keydown", function() {
+        $(this).val("");
+    });
 
-  search_listener.addEventListener("blur", (event) => {
-    bottom_bar("", "select", "about");
-    window_status = "article-list";
-  });
-
-  ///launch app after installation
-
-  function launch_app() {
-    var request = window.navigator.mozApps.mgmt.getAll();
-    request.onerror = function (e) {
-      console.log("Error calling getInstalled: " + request.error.name);
-    };
-    request.onsuccess = function (e) {
-      var appsRecord = request.result;
-      appsRecord[appsRecord.length - 1].launch();
-    };
-  }
-
-  let rating_stars = 0;
-  $("div#rating-wrapper input.star").bind("keyup", function () {
-    switch ($(this).val()) {
-      case "0":
-        $("div#stars span:nth-child(1)").css("color", "white");
-        $("div#stars span:nth-child(2)").css("color", "white");
-        $("div#stars span:nth-child(3)").css("color", "white");
-        $("div#stars span:nth-child(4)").css("color", "white");
-        $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = $(this).val();
-
-        break;
-      case "1":
-        $("div#stars span:nth-child(1)").css("color", "yellow");
-        $("div#stars span:nth-child(2)").css("color", "white");
-        $("div#stars span:nth-child(3)").css("color", "white");
-        $("div#stars span:nth-child(4)").css("color", "white");
-        $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = $(this).val();
-
-        break;
-      case "2":
-        $("div#stars span:nth-child(1)").css("color", "yellow");
-        $("div#stars span:nth-child(2)").css("color", "yellow");
-        $("div#stars span:nth-child(3)").css("color", "white");
-        $("div#stars span:nth-child(4)").css("color", "white");
-        $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = $(this).val();
-
-        break;
-      case "3":
-        $("div#stars span:nth-child(1)").css("color", "yellow");
-        $("div#stars span:nth-child(2)").css("color", "yellow");
-        $("div#stars span:nth-child(3)").css("color", "yellow");
-        $("div#stars span:nth-child(4)").css("color", "white");
-        $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = $(this).val();
-
-        break;
-      case "4":
-        $("div#stars span:nth-child(1)").css("color", "yellow");
-        $("div#stars span:nth-child(2)").css("color", "yellow");
-        $("div#stars span:nth-child(3)").css("color", "yellow");
-        $("div#stars span:nth-child(4)").css("color", "yellow");
-        $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = $(this).val();
-
-        break;
-      case "5":
-        $("div#stars span:nth-child(1)").css("color", "yellow");
-        $("div#stars span:nth-child(2)").css("color", "yellow");
-        $("div#stars span:nth-child(3)").css("color", "yellow");
-        $("div#stars span:nth-child(4)").css("color", "yellow");
-        $("div#stars span:nth-child(5)").css("color", "yellow");
-        rating_stars = $(this).val();
-
-        break;
+    function xhr_callback(data) {
+        if (data == 201) {
+            toaster("Thank you for your rating!", 3000);
+            close_rating();
+        }
+        if (data == 400) {
+            toaster("I can't send anything without a rating", 3000);
+        }
+        if (data == 409) {
+            toaster("You already posted a review for this app", 3000);
+        }
+        if (data == "Network Error") {
+            toaster("Network Error", 3000);
+        }
     }
-  });
 
-  $("div#rating-wrapper input.star").focus(function () {
-    $("div#stars").css("font-size", "1rem");
-  });
-  $("div#rating-wrapper textarea").focus(function () {
-    $("div#stars").css("font-size", "0.8rem");
-  });
+    //////////////////////////
+    ////KEYPAD TRIGGER////////////
+    /////////////////////////
 
-  $("div#rating-wrapper input.star").bind("keydown", function () {
-    $(this).val("");
-  });
+    function handleKeyDown(evt) {
+        const isInSearchField = evt.target.id == "search" && evt.target.value != "";
 
-  function xhr_callback(data) {
-    if (data == 201) {
-      toaster("Thank you for your rating!", 3000);
-      close_rating();
+        switch (evt.key) {
+            case "Enter":
+                if (window_status == "article-list") {
+                    show_article();
+                }
+
+                if (window_status == "options") {
+                    console.log($(":focus").attr("tabindex"));
+
+                    if ($(":focus").attr("tabindex") === "0") {
+                        open_rating();
+                    }
+                    if (
+                        $(":focus").attr("tabindex") == "1" ||
+                        $(":focus").attr("tabindex") == "2"
+                    ) {
+                        open_url();
+                    }
+                }
+                break;
+
+            case "ArrowDown":
+                if (window_status == "about") {
+                    break;
+                }
+
+                nav("+1");
+                break;
+
+            case "ArrowUp":
+                if (window_status == "about") {
+                    break;
+                }
+
+                nav("-1");
+                break;
+
+            case "ArrowLeft":
+                if (isInSearchField) {
+                    evt.preventDefault;
+                    break;
+                }
+                if (evt.target.id == "search" && evt.target.value == "") {
+                    nav_panels("left");
+                    break;
+                }
+
+                if (window_status == "article-list") {
+                    nav_panels("left");
+                }
+                break;
+
+            case "ArrowRight":
+                if (isInSearchField) break;
+
+                if (evt.target.id == "search" && evt.target.value == "") {
+                    nav_panels("right");
+                    break;
+                }
+                if (window_status == "article-list") {
+                    nav_panels("right");
+                }
+
+                break;
+
+            case "8":
+            case "SoftLeft":
+                if (window_status == "search") {
+                    start_scan(function(callback) {
+                        let slug = callback.replace("bhackers:", "");
+                        show_article(slug);
+                    });
+
+                    bottom_bar("", "", "");
+                    window_status = "scan";
+                }
+
+                if (window_status == "rating") {
+                    //sanitizer
+                    let body = $("div#rating-wrapper textarea").val(),
+                        temp = document.createElement("div");
+                    temp.innerHTML = body;
+                    let comment = temp.textContent || temp.innerText;
+
+                    send_rating(
+                        get_userId(),
+                        get_userId(),
+                        $("#" + article_id).data("slug"),
+                        $("#" + article_id).data("name"),
+                        Number(rating_stars),
+                        comment,
+                        xhr_callback
+                    );
+
+                    break;
+                }
+
+                if (window_status == "single-article") {
+                    open_options();
+                    break;
+                }
+
+            case "9":
+            case "SoftRight":
+                if (window_status == "article-list" || window_status == "search") {
+                    open_about();
+                    break;
+                }
+
+                if (window_status == "single-article") {
+                    install_app();
+                    break;
+                }
+
+                if (window_status == "post_installation") {
+                    launch_app();
+                    break;
+                }
+                if ((window_status = "rating")) {
+                    close_rating();
+                    break;
+                }
+
+                break;
+
+            case "Backspace":
+                if (isInSearchField) break;
+                if (evt.target.id == "search" && evt.target.value == "") {
+                    evt.preventDefault();
+
+                    $("article:not(article#search)").css("display", "block");
+                }
+
+                if (
+                    window_status == "single-article" ||
+                    window_status == "post_installation"
+                ) {
+                    evt.preventDefault();
+
+                    show_article_list();
+                    break;
+                }
+
+                if (window_status == "about") {
+                    evt.preventDefault();
+
+                    $("div#about").css("display", "none");
+                    show_article_list();
+                    //$("div#bottom-bar div#button-center").css("width", "30%");
+
+                    break;
+                }
+
+                if (window_status == "scan") {
+                    evt.preventDefault();
+
+                    document.getElementById("qr-screen").hidden = true;
+
+                    break;
+                }
+
+                if (window_status == "options") {
+                    evt.preventDefault();
+
+                    close_options();
+                    break;
+                }
+                if (
+                    window_status == "article-list" &&
+                    !$("input#search").is(":focus")
+                ) {
+                    window.close();
+                }
+                break;
+        }
     }
-    if (data == 400) {
-      toaster("I can't send anything without a rating", 3000);
-    }
-    if (data == 409) {
-      toaster("You already posted a review for this app", 3000);
-    }
-    if (data == "Network Error") {
-      toaster("Network Error", 3000);
-    }
-  }
 
-  //////////////////////////
-  ////KEYPAD TRIGGER////////////
-  /////////////////////////
-
-  function handleKeyDown(evt) {
-    const isInSearchField = evt.target.id == "search" && evt.target.value != "";
-
-    switch (evt.key) {
-      case "Enter":
-        if (window_status == "article-list") {
-          show_article();
-        }
-
-        if (window_status == "options") {
-          console.log($(":focus").attr("tabindex"));
-
-          if ($(":focus").attr("tabindex") === "0") {
-            open_rating();
-          }
-          if (
-            $(":focus").attr("tabindex") == "1" ||
-            $(":focus").attr("tabindex") == "2"
-          ) {
-            open_url();
-          }
-        }
-        break;
-
-      case "ArrowDown":
-        if (window_status == "about") {
-          break;
-        }
-
-        nav("+1");
-        break;
-
-      case "ArrowUp":
-        if (window_status == "about") {
-          break;
-        }
-
-        nav("-1");
-        break;
-
-      case "ArrowLeft":
-        if (isInSearchField) {
-          evt.preventDefault;
-          break;
-        }
-        if (evt.target.id == "search" && evt.target.value == "") {
-          nav_panels("left");
-          break;
-        }
-
-        if (window_status == "article-list") {
-          nav_panels("left");
-        }
-        break;
-
-      case "ArrowRight":
-        if (isInSearchField) break;
-
-        if (evt.target.id == "search" && evt.target.value == "") {
-          nav_panels("right");
-          break;
-        }
-        if (window_status == "article-list") {
-          nav_panels("right");
-        }
-
-        break;
-
-      case "8":
-      case "SoftLeft":
-        if (window_status == "search") {
-          start_scan(function (callback) {
-            let slug = callback.replace("bhackers:", "");
-            show_article(slug);
-          });
-
-          bottom_bar("", "", "");
-          window_status = "scan";
-        }
-
-        if (window_status == "rating") {
-          //sanitizer
-          let body = $("div#rating-wrapper textarea").val(),
-            temp = document.createElement("div");
-          temp.innerHTML = body;
-          let comment = temp.textContent || temp.innerText;
-
-          send_rating(
-            get_userId(),
-            get_userId(),
-            $("#" + article_id).data("slug"),
-            $("#" + article_id).data("name"),
-            Number(rating_stars),
-            comment,
-            xhr_callback
-          );
-
-          break;
-        }
-
-        if (window_status == "single-article") {
-          open_options();
-          break;
-        }
-
-      case "9":
-      case "SoftRight":
-        if (window_status == "article-list" || window_status == "search") {
-          open_about();
-          break;
-        }
-
-        if (window_status == "single-article") {
-          install_app();
-          break;
-        }
-
-        if (window_status == "post_installation") {
-          launch_app();
-          break;
-        }
-        if ((window_status = "rating")) {
-          close_rating();
-          break;
-        }
-
-        break;
-
-      case "Backspace":
-        if (isInSearchField) break;
-        if (evt.target.id == "search" && evt.target.value == "") {
-          evt.preventDefault();
-
-          $("article:not(article#search)").css("display", "block");
-        }
-
-        if (
-          window_status == "single-article" ||
-          window_status == "post_installation"
-        ) {
-          evt.preventDefault();
-
-          show_article_list();
-          break;
-        }
-
-        if (window_status == "about") {
-          evt.preventDefault();
-
-          $("div#about").css("display", "none");
-          show_article_list();
-          //$("div#bottom-bar div#button-center").css("width", "30%");
-
-          break;
-        }
-
-        if (window_status == "scan") {
-          evt.preventDefault();
-
-          document.getElementById("qr-screen").hidden = true;
-
-          break;
-        }
-
-        if (window_status == "options") {
-          evt.preventDefault();
-
-          close_options();
-          break;
-        }
-        if (
-          window_status == "article-list" &&
-          !$("input#search").is(":focus")
-        ) {
-          window.close();
-        }
-        break;
-    }
-  }
-
-  document.addEventListener("keydown", handleKeyDown);
-  init();
+    document.addEventListener("keydown", handleKeyDown);
+    init();
 });
