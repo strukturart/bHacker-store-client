@@ -194,33 +194,28 @@ function addAppList_callback(data) {
 
 
 
-    /*
-              let vueapp = new Vue({
-                  el: "#app-panels",
-                  data: {
-                      items: apps_data,
-                  },
-              });
-              */
-
-    //add to about page
-    //searchGetData();
 
 
 }
 
 function set_tabindex() {
     let articles_panel = document.querySelectorAll("article");
-    alert(articles_panel.length)
-    let tindex = 0;
-    articles_panel.forEach((article) => {
-        tindex++;
 
-        article.removeAttribute("tabindex");
-        if (article.style.display == "block") {
-            article.tabIndex = tindex;
+
+    var tabindex = 0;
+    for (let i = 0; i < articles_panel.length; i++)
+        if (articles_panel[i].type != "hidden") {
+            tabindex++;
+
+            articles_panel[i].setAttribute("tabindex", tabindex)
+
         }
-    });
+
+    document.querySelectorAll("article")
+
+    let focusme = document.querySelectorAll('article[tabindex="1"]')
+    focusme[0].focus()
+
 }
 
 
@@ -228,102 +223,145 @@ function set_tabindex() {
 function renderHello() {
     var template = document.getElementById("template").innerHTML;
     var rendered = Mustache.render(template, { "data": apps_data });
-    document.getElementById("app-panels").innerHTML = rendered;
+    document.getElementById("apps").innerHTML = rendered;
 }
+
+function panels_list(panel) {
+    let articles = document.querySelectorAll("article");
+
+    let elements = document.getElementsByClassName(panel);
+
+
+    articles.forEach(function(value, key) {
+        articles[key].style.display = "none";
+
+    });
+
+
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].style.display = "block";
+    }
+    set_tabindex()
+
+}
+
+
+////////////////////////
+//NAVIGATION
+/////////////////////////
+///thank you farooqkz
+//for the clever solution
+
+function nav_panels(left_right) {
+    window.scrollTo(0, 0);
+    focused = 0
+
+    if (left_right == "left") {
+        current_panel--;
+    }
+
+    if (left_right == "right") {
+        current_panel++;
+    }
+
+    current_panel = current_panel % panels.length;
+    if (current_panel < 0) {
+        current_panel += panels.length;
+    }
+
+    document.querySelector("div#navigation div").textContent =
+        panels[current_panel];
+    panels_list(panels[current_panel]);
+
+    if (current_panel == 0) {
+        document.querySelector("input").focus();
+        document.querySelector("div#navigation").style.display = "none";
+    } else {
+        document.querySelector("div#navigation").style.display = "block";
+    }
+}
+
+
+
+//up - down
+let focused = 0
+
+function nav(param) {
+
+
+    let articles = document.querySelectorAll("article");
+
+
+
+    if (param == "+1" && focused < articles.length) {
+        focused++;
+
+        articles[focused].focus()
+
+
+    }
+
+    if (param == "-1" && focused > 0) {
+        focused--;
+
+        articles[focused].focus()
+
+
+    }
+
+
+}
+
+
+
+
 
 jQuery(function() {
 
+    searchGetData();
 
 
 
-    function panels_list(panel) {
-        let articles = document.querySelectorAll("article");
-
-        articles.forEach((article) => {
-            article.style.display = "none";
-        });
-
-        let articles_panel = document.querySelectorAll("article." + panel);
-
-        articles_panel.forEach((article) => {
-            article.style.display = "block";
-        });
-    }
 
 
-    ////////////////////////
-    //NAVIGATION
-    /////////////////////////
-    ///thank you farooqkz
-    //for the clever solution
 
-    function nav_panels(left_right) {
-        window.scrollTo(0, 0);
+    /*
+        //up - down
 
-        if (left_right == "left") {
-            current_panel--;
-        }
+        function nav(param) {
+            let focused = $(":focus").attr("tabindex");
+            let siblings = $(":focus").parent().children(":visible");
+            let siblingsLength = $(":focus").parent().children(":visible").length;
 
-        if (left_right == "right") {
-            current_panel++;
-        }
+            if ($("input").is(":focus")) {
+                $("article#search").next().focus();
+            }
 
-        current_panel = current_panel % panels.length;
-        if (current_panel < 0) {
-            current_panel += panels.length;
-        }
+            if (param == "+1" && focused < siblingsLength - 1) {
+                focused++;
 
-        document.querySelector("div#navigation div").textContent =
-            panels[current_panel];
-        panels_list(panels[current_panel]);
-        set_tabindex();
-        pos_focus = 0;
+                var focusedElement = $(":focus")[0].offsetTop;
 
-        if (current_panel == 0) {
-            $("input").val("");
-            document.querySelector("input").focus();
-            document.querySelector("div#navigation").style.display = "none";
-        } else {
-            document.querySelector("div#navigation").style.display = "block";
-        }
-    }
+                $("html, body").animate({ scrollTop: focusedElement }, 200);
 
-    //up - down
+                siblings[focused].focus();
 
-    function nav(param) {
-        let focused = $(":focus").attr("tabindex");
-        let siblings = $(":focus").parent().children(":visible");
-        let siblingsLength = $(":focus").parent().children(":visible").length;
+                if ($("article#search").is(":focus")) {
+                    document.querySelector("input").focus();
+                }
+            }
 
-        if ($("input").is(":focus")) {
-            $("article#search").next().focus();
-        }
+            if (param == "-1" && focused > 0) {
+                focused--;
 
-        if (param == "+1" && focused < siblingsLength - 1) {
-            focused++;
+                siblings[focused].focus();
 
-            var focusedElement = $(":focus")[0].offsetTop;
-
-            $("html, body").animate({ scrollTop: focusedElement }, 200);
-
-            siblings[focused].focus();
-
-            if ($("article#search").is(":focus")) {
-                document.querySelector("input").focus();
+                if ($("article#search").is(":focus")) {
+                    document.querySelector("input").focus();
+                }
             }
         }
-
-        if (param == "-1" && focused > 0) {
-            focused--;
-
-            siblings[focused].focus();
-
-            if ($("article#search").is(":focus")) {
-                document.querySelector("input").focus();
-            }
-        }
-    }
-
+    */
     //store current article
     let article_id;
 
@@ -371,43 +409,43 @@ jQuery(function() {
             apps_data.push([data.appid, data.ratings]);
         }
 
-        /*
-                                                                                                        data.ratings.forEach(function(item) {
-                                                                                                            let stars = "";
-                                                                                                            switch (item.points) {
-                                                                                                                case 0:
-                                                                                                                    stars = "";
-                                                                                                                    break;
-                                                                                                                case 1:
-                                                                                                                    stars = "★";
-                                                                                                                    break;
-                                                                                                                case 2:
-                                                                                                                    stars = "★ ★";
-                                                                                                                    break;
-                                                                                                                case 3:
-                                                                                                                    stars = "★ ★ ★";
-                                                                                                                    break;
-                                                                                                                case 4:
-                                                                                                                    stars = "★ ★ ★ ★";
-                                                                                                                    break;
-                                                                                                                case 5:
-                                                                                                                    stars = "★ ★ ★  ★  ★";
-                                                                                                                    break;
-                                                                                                            }
 
-                                                                                                            let temp = document.createElement("div");
-                                                                                                            temp.innerHTML = item.description;
-                                                                                                            let description = temp.textContent || temp.innerText;
+        data.ratings.forEach(function(item) {
+            let stars = "";
+            switch (item.points) {
+                case 0:
+                    stars = "";
+                    break;
+                case 1:
+                    stars = "★";
+                    break;
+                case 2:
+                    stars = "★ ★";
+                    break;
+                case 3:
+                    stars = "★ ★ ★";
+                    break;
+                case 4:
+                    stars = "★ ★ ★ ★";
+                    break;
+                case 5:
+                    stars = "★ ★ ★  ★  ★";
+                    break;
+            }
 
-                                                                                                            $("#" + article_id).append(
-                                                                                                                "<div class='rating-item'><div><div class='points'>" +
-                                                                                                                stars +
-                                                                                                                "</div></div><div>" +
-                                                                                                                description +
-                                                                                                                "</div></div>"
-                                                                                                            );
-                                                                                                        });
-                                                                                                        */
+            let temp = document.createElement("div");
+            temp.innerHTML = item.description;
+            let description = temp.textContent || temp.innerText;
+
+            $("#" + article_id).append(
+                "<div class='rating-item'><div><div class='points'>" +
+                stars +
+                "</div></div><div>" +
+                description +
+                "</div></div>"
+            );
+        });
+
     }
 
     function show_article_list() {
@@ -514,21 +552,21 @@ jQuery(function() {
         window_status = "about";
     }
 
-    /*
-                        const search_listener = document.querySelector("article#search input");
 
-                        search_listener.addEventListener("focus", (event) => {
-                          bottom_bar("scan", "select", "about");
-                          window.scrollTo(0, 0);
-                          window_status = "search";
-                        });
+    const search_listener = document.querySelector("article#search input");
 
-                        search_listener.addEventListener("blur", (event) => {
-                          bottom_bar("", "select", "about");
-                          window_status = "article-list";
-                        });
+    search_listener.addEventListener("focus", (event) => {
+        bottom_bar("scan", "select", "about");
+        window.scrollTo(0, 0);
+        window_status = "search";
+    });
 
-                        */
+    search_listener.addEventListener("blur", (event) => {
+        bottom_bar("", "select", "about");
+        window_status = "article-list";
+    });
+
+
 
     ///launch app after installation
 
