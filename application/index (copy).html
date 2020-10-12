@@ -33,15 +33,66 @@
           >
             <input type="search" />
           </article>
-          <article>hello</article>
-          <div id="target">Loading...</div>
-          <script type="template/text" id="fam">
-            <ul>
-                {{#app}}
-                <li>{{.}}</li>
-                {{/app}}
-            </ul>
-          </script>
+          <template v-for="(item) in items">
+            <article
+              class="All"
+              v-bind:class="item.categorie"
+              v-bind:id="item.slug"
+              v-bind:data-name="item.titel"
+              v-bind:data-slug="item.slug"
+              v-bind:data-tags="item.tags"
+              v-bind:data-url="item.url"
+              v-bind:data-download="item.link"
+            >
+              <div class="icon"><img v-bind:src="item.icon" /></div>
+              <h1>{{item.titel}}</h1>
+              <div class="meta-data">
+                <div><span>Author </span> {{item.author}}</div>
+                <div>
+                  <span>License </span>
+                  {{item.license}}
+                </div>
+                <div>
+                  <span>Type </span>
+                  {{item.type}}
+                </div>
+                <div>
+                  <span>Donation </span>
+                  {{item.donation}}
+                </div>
+                <div>
+                  <span>Tracking </span>
+                  {{item.tracking}}
+                </div>
+                <div>
+                  <span>Ads </span>
+                  {{item.ads}}
+                </div>
+                <div class="dl-cnt"></div>
+              </div>
+
+              <div class="summary">{{item.summary}}</div>
+
+              <div class="channel">{{item.categorie}}</div>
+
+              <div class="images">
+                <ul class="images">
+                  <li v-for="(images) in item.images">
+                    <img v-bind:src="images[0]" />
+                  </li>
+                </ul>
+              </div>
+
+              <div class="rating-item"></div>
+            </article>
+            <div class="options" class="felx justify-content-spacearound">
+              <div tabindex="0" v-bind:data-slug="item.slug">rating</div>
+              <div tabindex="1" v-bind:data-url="item.url">source</div>
+              <div tabindex="2" v-bind:data-donation="item.donation_url">
+                donate
+              </div>
+            </div>
+          </template>
         </div>
       </div>
     </div>
@@ -188,9 +239,9 @@
     </div>
     <!-- for local development -->
     <script src="assets/js/jQuery-3.1.0.js"></script>
+    <script src="assets/js/vue.js"></script>
     <script src="assets/js/jquery.autocomplete.min.js"></script>
     <script src="assets/js/moments.min.js"></script>
-    <script src="assets/js/mustache.js"></script>
     <script src="assets/js/helper.js"></script>
     <script src="assets/js/install.js"></script>
     <script src="assets/js/qr_reader.js"></script>

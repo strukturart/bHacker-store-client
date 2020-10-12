@@ -61,7 +61,7 @@ function init() {
         .then(loadData)
         .catch((error) => {
           console.log(error);
-          toaster(error instanceof Error ? error.message : error);
+          toaster(error instanceof Error ? error.message : error, 3000);
         });
     }
   } else {
@@ -70,7 +70,7 @@ function init() {
         .then(loadData)
         .catch((error) => {
           console.log(error);
-          toaster(error instanceof Error ? error.message : error);
+          toaster(error instanceof Error ? error.message : error, 3000);
           loadData();
         });
     } else {
@@ -151,24 +151,28 @@ function addAppList(callback) {
     //push data in array
     //to create elements in dom if needed
     apps_data.push({
-      titel: item_title,
-      author: item_author,
-      summary: item_summary,
-      categorie: item_categorie,
-      link: item_link,
-      license: item_license,
-      ads: item_ads,
-      donation_url: item_donation,
-      donation: donation_icon,
-      tracking: item_tracking,
-      type: item_type,
-      images: [data.screenshots],
-      summarie: item_summary,
-      icon: item_icon,
-      slug: item_slug,
-      tags: item_tags,
-      url: item_url,
-      link: item_link,
+      app: [
+        {
+          titel: item_title,
+          author: item_author,
+          summary: item_summary,
+          categorie: item_categorie,
+          link: item_link,
+          license: item_license,
+          ads: item_ads,
+          donation_url: item_donation,
+          donation: donation_icon,
+          tracking: item_tracking,
+          type: item_type,
+          images: [data.screenshots],
+          summarie: item_summary,
+          icon: item_icon,
+          slug: item_slug,
+          tags: item_tags,
+          url: item_url,
+          link: item_link,
+        },
+      ],
     });
   });
 
@@ -186,46 +190,56 @@ function addAppList_callback(data) {
   document.querySelector("article#search input").focus();
 
   bottom_bar("", "select", "about");
-  set_tabindex();
 
-  let vueapp = new Vue({
-    el: "#app-panels",
-    data: {
-      items: apps_data,
-    },
-  });
+  renderHello();
 
   //add to about page
   //searchGetData();
 }
 
-function set_tabindex() {
-  let articles_panel = document.querySelectorAll("article");
-  let tindex = 0;
-  articles_panel.forEach((article) => {
-    article.removeAttribute("tabindex");
-    if (article.style.display == "block") {
-      tindex++;
-      article.tabIndex = tindex;
-    }
-  });
-}
-
-function panels_list(panel) {
-  let articles = document.querySelectorAll("article");
-
-  articles.forEach((article) => {
-    article.style.display = "none";
+function renderHello() {
+  apps_data.forEach(function (value, key) {
+    console.log(apps_data);
   });
 
-  let articles_panel = document.querySelectorAll("article." + panel);
+  //var template = document.getElementById('template').innerHTML;
+  //var rendered = Mustache.render(template, { name: 'Luke' });
 
-  articles_panel.forEach((article) => {
-    article.style.display = "block";
-  });
+  var template = $("#fam").html();
+  var rendered = Mustache.render(template, apps_data);
+  document.getElementById("target").innerHTML = rendered;
+  alert(rendered);
 }
 
 jQuery(function () {
+  function set_tabindex() {
+    let articles_panel = document.querySelectorAll("article");
+    let tindex = 0;
+    articles_panel.forEach((article) => {
+      article.removeAttribute("tabindex");
+      if (article.style.display == "block") {
+        tindex++;
+        article.tabIndex = tindex;
+      }
+    });
+  }
+
+  function panels_list(panel) {
+    let articles = document.querySelectorAll("article");
+
+    articles.forEach((article) => {
+      article.style.display = "none";
+    });
+
+    let articles_panel = document.querySelectorAll("article." + panel);
+
+    articles_panel.forEach((article) => {
+      article.style.display = "block";
+    });
+  }
+
+  set_tabindex();
+
   ////////////////////////
   //NAVIGATION
   /////////////////////////
@@ -347,42 +361,42 @@ jQuery(function () {
     }
 
     /*
-                                                                        data.ratings.forEach(function(item) {
-                                                                            let stars = "";
-                                                                            switch (item.points) {
-                                                                                case 0:
-                                                                                    stars = "";
-                                                                                    break;
-                                                                                case 1:
-                                                                                    stars = "★";
-                                                                                    break;
-                                                                                case 2:
-                                                                                    stars = "★ ★";
-                                                                                    break;
-                                                                                case 3:
-                                                                                    stars = "★ ★ ★";
-                                                                                    break;
-                                                                                case 4:
-                                                                                    stars = "★ ★ ★ ★";
-                                                                                    break;
-                                                                                case 5:
-                                                                                    stars = "★ ★ ★  ★  ★";
-                                                                                    break;
-                                                                            }
+                                                                                data.ratings.forEach(function(item) {
+                                                                                    let stars = "";
+                                                                                    switch (item.points) {
+                                                                                        case 0:
+                                                                                            stars = "";
+                                                                                            break;
+                                                                                        case 1:
+                                                                                            stars = "★";
+                                                                                            break;
+                                                                                        case 2:
+                                                                                            stars = "★ ★";
+                                                                                            break;
+                                                                                        case 3:
+                                                                                            stars = "★ ★ ★";
+                                                                                            break;
+                                                                                        case 4:
+                                                                                            stars = "★ ★ ★ ★";
+                                                                                            break;
+                                                                                        case 5:
+                                                                                            stars = "★ ★ ★  ★  ★";
+                                                                                            break;
+                                                                                    }
 
-                                                                            let temp = document.createElement("div");
-                                                                            temp.innerHTML = item.description;
-                                                                            let description = temp.textContent || temp.innerText;
+                                                                                    let temp = document.createElement("div");
+                                                                                    temp.innerHTML = item.description;
+                                                                                    let description = temp.textContent || temp.innerText;
 
-                                                                            $("#" + article_id).append(
-                                                                                "<div class='rating-item'><div><div class='points'>" +
-                                                                                stars +
-                                                                                "</div></div><div>" +
-                                                                                description +
-                                                                                "</div></div>"
-                                                                            );
-                                                                        });
-                                                                        */
+                                                                                    $("#" + article_id).append(
+                                                                                        "<div class='rating-item'><div><div class='points'>" +
+                                                                                        stars +
+                                                                                        "</div></div><div>" +
+                                                                                        description +
+                                                                                        "</div></div>"
+                                                                                    );
+                                                                                });
+                                                                                */
   }
 
   function show_article_list() {
@@ -490,20 +504,20 @@ jQuery(function () {
   }
 
   /*
-        const search_listener = document.querySelector("article#search input");
+            const search_listener = document.querySelector("article#search input");
 
-        search_listener.addEventListener("focus", (event) => {
-          bottom_bar("scan", "select", "about");
-          window.scrollTo(0, 0);
-          window_status = "search";
-        });
+            search_listener.addEventListener("focus", (event) => {
+              bottom_bar("scan", "select", "about");
+              window.scrollTo(0, 0);
+              window_status = "search";
+            });
 
-        search_listener.addEventListener("blur", (event) => {
-          bottom_bar("", "select", "about");
-          window_status = "article-list";
-        });
+            search_listener.addEventListener("blur", (event) => {
+              bottom_bar("", "select", "about");
+              window_status = "article-list";
+            });
 
-        */
+            */
 
   ///launch app after installation
 
