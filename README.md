@@ -14,28 +14,28 @@ The database of apps is hosted [here](https://gitlab.com/banana-hackers/store-db
 ![image-3](/images/image-3.png)
 ![image-4](/images/image-4.png)
 
-### How to sideload the app on your device
+## How to sideload the app on your device
 
-## Omni SD
+### Omni SD
 
 Download [bHackerStore App](https://github.com/strukturart/bHacker-store/releases/latest).
 Copy this zip file to the apps directory of the memory card.
 Open "OmniSD" and install this zip.
 
-## Web IDE
+### Web IDE
 
 Download [bHackerStore App](https://github.com/strukturart/bHacker-store/releases/latest).
 Extract this zip to a folder.
 Click "Open Packaged App" and select the folder from the previous step.
 Click "Install and Run" button.
 
-### Thank you
+## Thank you
 
 - SimonLaux and the discord [community](https://discord.gg/t2CBPb)
 
-### to do
+## TODO
 
-offline version
+ - offline version
 
 ## Donation
 
