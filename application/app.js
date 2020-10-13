@@ -85,6 +85,7 @@ function init() {
 }
 
 contributors = ["40min"];
+let pep
 
 function addAppList(callback) {
     dataSet.apps.forEach(function(value, index) {
@@ -97,7 +98,7 @@ function addAppList(callback) {
         let item_ads = data.has_ads;
         let item_tracking = data.has_tracking;
         let tag = data.meta.categories;
-        let item_categorie = data.meta.categories.toString().replace(",", " ");
+        let item_category = data.meta.categories.toString().replace(",", " ");
         let item_tags = tag.toString().replace(",", " ");
         let item_author = data.author.toString();
         let item_icon = data.icon;
@@ -107,7 +108,13 @@ function addAppList(callback) {
         let images_collection = "";
         let donation_icon = "none";
         let item_slug = data.slug;
-        panels.push(data.meta.categories);
+        //panels.push(data.meta.categories);
+
+        //console.log(panels)
+
+        pep += data.meta.categories + ","
+
+
 
         //unique author list
         let just_author_name = item_author.split("<")[0].trim();
@@ -151,11 +158,10 @@ function addAppList(callback) {
         //to create elements in dom if needed
 
         apps_data.push({
-
-            titel: item_title,
+            title: item_title,
             author: item_author,
             summary: item_summary,
-            categorie: item_categorie,
+            category: item_category,
             link: item_link,
             license: item_license,
             ads: item_ads,
@@ -170,7 +176,6 @@ function addAppList(callback) {
             tags: item_tags,
             url: item_url,
             link: item_link,
-
         });
     });
 
@@ -181,6 +186,23 @@ function addAppList(callback) {
 }
 
 function addAppList_callback(data) {
+
+    pep = pep.split(",")
+
+
+
+
+    pep.forEach((c) => {
+        if (!panels.includes(c)) {
+            panels.push(c);
+        }
+    });
+
+    panels.filter(n => n)
+
+
+    console.log(panels)
+
     document.querySelector("#update").textContent = update_time;
     document.querySelector(
         "div#about div#inner div#contributors"
@@ -191,38 +213,30 @@ function addAppList_callback(data) {
     renderHello();
 
     set_tabindex();
-
-
-
-
-
 }
 
 function set_tabindex() {
     let articles_panel = document.querySelectorAll("article");
 
-
-    var tabindex = 0;
+    var tab = 0;
     for (let i = 0; i < articles_panel.length; i++)
-        if (articles_panel[i].type != "hidden") {
-            tabindex++;
 
-            articles_panel[i].setAttribute("tabindex", tabindex)
+        articles_panel[i].setAttribute("tabindex", -1);
+    if (articles_panel[i].style.display === "block") {
+        tab++;
+        console.log(tab)
+        articles_panel[i].setAttribute("tabindex", tab);
+    }
 
-        }
+    document.querySelectorAll("article");
 
-    document.querySelectorAll("article")
-
-    let focusme = document.querySelectorAll('article[tabindex="1"]')
-    focusme[0].focus()
-
+    let focusme = document.querySelectorAll('article[tabindex="1"]');
+    //focusme[0].focus();
 }
-
-
 
 function renderHello() {
     var template = document.getElementById("template").innerHTML;
-    var rendered = Mustache.render(template, { "data": apps_data });
+    var rendered = Mustache.render(template, { data: apps_data });
     document.getElementById("apps").innerHTML = rendered;
 }
 
@@ -231,20 +245,15 @@ function panels_list(panel) {
 
     let elements = document.getElementsByClassName(panel);
 
-
     articles.forEach(function(value, key) {
         articles[key].style.display = "none";
-
     });
-
 
     for (let i = 0; i < elements.length; i++) {
         elements[i].style.display = "block";
     }
-    set_tabindex()
-
+    set_tabindex();
 }
-
 
 ////////////////////////
 //NAVIGATION
@@ -254,7 +263,7 @@ function panels_list(panel) {
 
 function nav_panels(left_right) {
     window.scrollTo(0, 0);
-    focused = 0
+    focused = 0;
 
     if (left_right == "left") {
         current_panel--;
@@ -281,87 +290,65 @@ function nav_panels(left_right) {
     }
 }
 
-
-
 //up - down
-let focused = 0
+let focused = 0;
 
 function nav(param) {
-
-
     let articles = document.querySelectorAll("article");
-
-
 
     if (param == "+1" && focused < articles.length) {
         focused++;
 
-        articles[focused].focus()
-
-
+        articles[focused].focus();
     }
 
     if (param == "-1" && focused > 0) {
         focused--;
 
-        articles[focused].focus()
-
-
+        articles[focused].focus();
     }
-
-
 }
 
-
-
-
-
 jQuery(function() {
-
     searchGetData();
 
-
-
-
-
-
     /*
-        //up - down
+          //up - down
 
-        function nav(param) {
-            let focused = $(":focus").attr("tabindex");
-            let siblings = $(":focus").parent().children(":visible");
-            let siblingsLength = $(":focus").parent().children(":visible").length;
+          function nav(param) {
+              let focused = $(":focus").attr("tabindex");
+              let siblings = $(":focus").parent().children(":visible");
+              let siblingsLength = $(":focus").parent().children(":visible").length;
 
-            if ($("input").is(":focus")) {
-                $("article#search").next().focus();
-            }
+              if ($("input").is(":focus")) {
+                  $("article#search").next().focus();
+              }
 
-            if (param == "+1" && focused < siblingsLength - 1) {
-                focused++;
+              if (param == "+1" && focused < siblingsLength - 1) {
+                  focused++;
 
-                var focusedElement = $(":focus")[0].offsetTop;
+                  var focusedElement = $(":focus")[0].offsetTop;
 
-                $("html, body").animate({ scrollTop: focusedElement }, 200);
+                  $("html, body").animate({ scrollTop: focusedElement }, 200);
 
-                siblings[focused].focus();
+                  siblings[focused].focus();
 
-                if ($("article#search").is(":focus")) {
-                    document.querySelector("input").focus();
-                }
-            }
+                  if ($("article#search").is(":focus")) {
+                      document.querySelector("input").focus();
+                  }
+              }
 
-            if (param == "-1" && focused > 0) {
-                focused--;
+              if (param == "-1" && focused > 0) {
+                  focused--;
 
-                siblings[focused].focus();
+                  siblings[focused].focus();
 
-                if ($("article#search").is(":focus")) {
-                    document.querySelector("input").focus();
-                }
-            }
-        }
-    */
+                  if ($("article#search").is(":focus")) {
+                      document.querySelector("input").focus();
+                  }
+              }
+          }
+      */
     //store current article
     let article_id;
 
@@ -409,7 +396,6 @@ jQuery(function() {
             apps_data.push([data.appid, data.ratings]);
         }
 
-
         data.ratings.forEach(function(item) {
             let stars = "";
             switch (item.points) {
@@ -445,7 +431,6 @@ jQuery(function() {
                 "</div></div>"
             );
         });
-
     }
 
     function show_article_list() {
@@ -552,7 +537,6 @@ jQuery(function() {
         window_status = "about";
     }
 
-
     const search_listener = document.querySelector("article#search input");
 
     search_listener.addEventListener("focus", (event) => {
@@ -565,8 +549,6 @@ jQuery(function() {
         bottom_bar("", "select", "about");
         window_status = "article-list";
     });
-
-
 
     ///launch app after installation
 
