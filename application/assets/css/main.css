@@ -254,7 +254,6 @@ div#app div#app-panels article h1 {
 
 div#app div#app-panels article div.meta-data {
   font-size: 0.8rem;
-  display: none;
 }
 
 div#app div#app-panels article div.meta-data span {
@@ -264,7 +263,6 @@ div#app div#app-panels article div.meta-data span {
 
 div#app div#app-panels article div.icon {
   margin: 0 0 10px 0;
-  display: none;
 }
 
 div#app div#app-panels article div.icon img {
@@ -278,12 +276,14 @@ div#app div#app-panels article div.channel {
 }
 
 div#app div#app-panels article div.summary {
-  display: none;
   padding: 0 10px 20px 0px;
 }
 
-div#app div#app-panels article ul.images {
+div.single-article {
   display: none;
+}
+
+div#app div#app-panels article ul.images {
   padding: 15px 0 50px 0;
 }
 
