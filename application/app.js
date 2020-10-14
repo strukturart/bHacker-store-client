@@ -554,61 +554,15 @@ $(document).ready(function () {
 
   let rating_stars = 0;
   $("div#rating-wrapper input.star").bind("keyup", function () {
-    switch ($(this).val()) {
-      case "0":
-        $("div#stars span:nth-child(1)").css("color", "white");
-        $("div#stars span:nth-child(2)").css("color", "white");
-        $("div#stars span:nth-child(3)").css("color", "white");
-        $("div#stars span:nth-child(4)").css("color", "white");
-        $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = $(this).val();
-
-        break;
-      case "1":
-        $("div#stars span:nth-child(1)").css("color", "yellow");
-        $("div#stars span:nth-child(2)").css("color", "white");
-        $("div#stars span:nth-child(3)").css("color", "white");
-        $("div#stars span:nth-child(4)").css("color", "white");
-        $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = $(this).val();
-
-        break;
-      case "2":
-        $("div#stars span:nth-child(1)").css("color", "yellow");
-        $("div#stars span:nth-child(2)").css("color", "yellow");
-        $("div#stars span:nth-child(3)").css("color", "white");
-        $("div#stars span:nth-child(4)").css("color", "white");
-        $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = $(this).val();
-
-        break;
-      case "3":
-        $("div#stars span:nth-child(1)").css("color", "yellow");
-        $("div#stars span:nth-child(2)").css("color", "yellow");
-        $("div#stars span:nth-child(3)").css("color", "yellow");
-        $("div#stars span:nth-child(4)").css("color", "white");
-        $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = $(this).val();
-
-        break;
-      case "4":
-        $("div#stars span:nth-child(1)").css("color", "yellow");
-        $("div#stars span:nth-child(2)").css("color", "yellow");
-        $("div#stars span:nth-child(3)").css("color", "yellow");
-        $("div#stars span:nth-child(4)").css("color", "yellow");
-        $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = $(this).val();
-
-        break;
-      case "5":
-        $("div#stars span:nth-child(1)").css("color", "yellow");
-        $("div#stars span:nth-child(2)").css("color", "yellow");
-        $("div#stars span:nth-child(3)").css("color", "yellow");
-        $("div#stars span:nth-child(4)").css("color", "yellow");
-        $("div#stars span:nth-child(5)").css("color", "yellow");
-        rating_stars = $(this).val();
-
-        break;
+    var val = Number($(this).val());
+    var i = 0;
+    for (; i <= val; i++) {
+        if (i > 0) {
+            $(`div#stars span:nth-child(${i})`).css("color", "yellow");
+        }
+    }
+    for (; i <= 5; i++) {
+        $(`div#stars span:nth-child(${i})`).css("color", "white");
     }
   });
 
