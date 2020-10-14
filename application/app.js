@@ -557,12 +557,12 @@ $(document).ready(function () {
     var val = Number($(this).val());
     var i = 0;
     for (; i <= val; i++) {
-        if (i > 0) {
-            $(`div#stars span:nth-child(${i})`).css("color", "yellow");
-        }
+      if (i > 0) {
+        $(`div#stars span:nth-child(${i})`).css("color", "yellow");
+      }
     }
     for (; i <= 5; i++) {
-        $(`div#stars span:nth-child(${i})`).css("color", "white");
+      $(`div#stars span:nth-child(${i})`).css("color", "white");
     }
   });
 
