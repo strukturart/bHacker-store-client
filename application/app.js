@@ -19,7 +19,6 @@ let contributors = new Array();
 //////////////////////////////
 //fetch-database////
 //////////////////////////////
-init();
 
 function init() {
     BackendApi.setStatusCallback(toaster);
@@ -36,23 +35,24 @@ function init() {
             "div#message-box img.icon-1"
         ).style.animationPlayState = "running";
         document.querySelector("div#message-box div").style.display = "none";
+    }
 
-        DownloadCounter.load().then((_) => {
-            const apps = document.querySelector("div#app-panels article");
-            for (let i = 0; i < apps.length; i++) {
-                const appId = apps[i].getAttribute("data-slug");
+    DownloadCounter.load().then((_) => {
+        const apps_article = document.querySelectorAll("div#apps article");
+        for (let i = 0; i < apps_article.length; i++) {
+            const appId = apps_article[i].getAttribute("data-slug");
 
-                if (appId) {
-                    const dl_section = apps[i].querySelector("div.dl-cnt");
-                    const count = DownloadCounter.getForApp(appId);
+            if (appId) {
+                const dl_section = apps_article[i].querySelector("div.dl-cnt");
+                const count = DownloadCounter.getForApp(appId);
+                dl_section.innerHTML = "<span>Downloads </span>" + count;
 
-                    if (dl_section && count !== -1) {
-                        dl_section.innerHTML = "<span>Downloads </span>" + count;
-                    }
+                if (dl_section && count !== -1) {
+                    dl_section.innerHTML = "<span>Downloads </span>" + count;
                 }
             }
-        });
-    }
+        }
+    });
 
     if (!BackendApi.getData()) {
         if (!navigator.onLine) {} else {
@@ -198,7 +198,6 @@ function set_tabindex() {
     for (let i = 0; i < articles_panel.length; i++)
         if (articles_panel[i].style.display === "block") {
             tab++;
-            console.log(tab);
             articles_panel[i].setAttribute("tabindex", tab);
         } else {
             articles_panel[i].removeAttribute("tabindex");
@@ -283,10 +282,15 @@ function nav(param) {
 
     if (window_status == "options") {
         let k = document.activeElement.parentElement.id;
-        articles = document.getElementById(k).childNodes;
+        articles = document.getElementById(k).children;
     }
 
-    if (param == "+1" && focused < articles.length) {
+    if (window_status == "rating") {
+        let k = document.activeElement.parentElement.children;
+        articles = k;
+    }
+
+    if (param == "+1" && focused < articles.length - 1) {
         focused++;
         articles[focused].focus();
         st += 10;
@@ -297,59 +301,30 @@ function nav(param) {
 
     if (param == "-1" && focused > 0) {
         focused--;
-
         articles[focused].focus();
 
         var scrollDiv = articles[focused].offsetTop + 30;
         window.scrollTo({ top: scrollDiv, behavior: "smooth" });
     }
+
+
 }
 
 jQuery(function() {
+    init();
+
+
+    document.querySelector('article#search').onfocus = function() {
+        document.querySelector('article#search input').focus()
+        document.querySelector("article#search").style.margin = "135px 0 0 0!Important";
+
+
+    };
+
+
+
     searchGetData();
 
-    function ratings_callback(data) {
-        //console.log(data)
-        if (data.ratings.length > 0) {
-            apps_data.push([data.appid, data.ratings]);
-        }
-
-        data.ratings.forEach(function(item) {
-            let stars = "";
-            switch (item.points) {
-                case 0:
-                    stars = "";
-                    break;
-                case 1:
-                    stars = "★";
-                    break;
-                case 2:
-                    stars = "★ ★";
-                    break;
-                case 3:
-                    stars = "★ ★ ★";
-                    break;
-                case 4:
-                    stars = "★ ★ ★ ★";
-                    break;
-                case 5:
-                    stars = "★ ★ ★  ★  ★";
-                    break;
-            }
-
-            let temp = document.createElement("div");
-            temp.innerHTML = item.description;
-            let description = temp.textContent || temp.innerText;
-
-            $("#" + article_id).append(
-                "<div class='rating-item'><div><div class='points'>" +
-                stars +
-                "</div></div><div>" +
-                description +
-                "</div></div>"
-            );
-        });
-    }
 
     ////////////////////
     ////SHOW ARTICLE///
@@ -378,8 +353,8 @@ jQuery(function() {
             $focused.css("display", "block");
 
             $("div#navigation").css("display", "none");
-            $("div#app div#app-panels").css("margin", "5px 0 0 0");
-            $("div#app div#app-panels").css("max-height", "100%");
+            //$("div#app div#app-panels").css("margin", "5px 0 0 0");
+            //$("div#app div#app-panels").css("max-height", "100%");
             $("div.single-article").css("display", "block");
             $("div.article-list").css("display", "none");
             if (!offline) {
@@ -415,8 +390,10 @@ jQuery(function() {
         }
 
         panels_list(panels[current_panel]);
-        $("div#app div#app-panels div#apps").css("margin", "35px 0 50px 0px");
-        $("article#search").css("margin", "-35px 0 0 0!Important");
+        //$("div#app div#app-panels div#apps").css("margin", "5px 0 50px 0px");
+        document.querySelector("article#search").style.margin = "135px 0 0 0!Important";
+
+
         $("div#options").css("display", "none");
 
         $("div#app-panels").css("display", "block");
@@ -445,7 +422,7 @@ jQuery(function() {
 
     function open_rating() {
         $("div#rating-wrapper").css("display", "block");
-        document.querySelector("div#rating-wrapper input.star").focus();
+        document.querySelector("div#rating-wrapper input").focus();
         $("div#stars span").css("color", "white");
         rating_stars = 0;
         bottom_bar("send", "", "close");
@@ -500,12 +477,6 @@ jQuery(function() {
         window_status = "about";
     }
 
-    const all_listener = document.querySelector("*");
-
-    all_listener.addEventListener("focus", (event) => {
-        alert(event);
-    });
-
     const search_listener = document.querySelector("article#search input");
 
     search_listener.addEventListener("focus", (event) => {
@@ -532,80 +503,88 @@ jQuery(function() {
         };
     }
 
+    ///////////////////////////
+    ////RATING////////////////
+    //////////////////////////
+
     let rating_stars = 0;
-    document
-        .querySelector("div#rating-wrapper input.star")
-        .blur("keyup", function() {
-            switch ($(this).value) {
-                case "0":
-                    $("div#stars span:nth-child(1)").css("color", "white");
-                    $("div#stars span:nth-child(2)").css("color", "white");
-                    $("div#stars span:nth-child(3)").css("color", "white");
-                    $("div#stars span:nth-child(4)").css("color", "white");
-                    $("div#stars span:nth-child(5)").css("color", "white");
-                    rating_stars = $(this).value;
 
-                    break;
-                case "1":
-                    $("div#stars span:nth-child(1)").css("color", "yellow");
-                    $("div#stars span:nth-child(2)").css("color", "white");
-                    $("div#stars span:nth-child(3)").css("color", "white");
-                    $("div#stars span:nth-child(4)").css("color", "white");
-                    $("div#stars span:nth-child(5)").css("color", "white");
-                    rating_stars = $(this).value;
+    let stars_listener = document.querySelector("div#rating-wrapper input.star");
 
-                    break;
-                case "2":
-                    $("div#stars span:nth-child(1)").css("color", "yellow");
-                    $("div#stars span:nth-child(2)").css("color", "yellow");
-                    $("div#stars span:nth-child(3)").css("color", "white");
-                    $("div#stars span:nth-child(4)").css("color", "white");
-                    $("div#stars span:nth-child(5)").css("color", "white");
-                    rating_stars = $(this).value;
-
-                    break;
-                case "3":
-                    $("div#stars span:nth-child(1)").css("color", "yellow");
-                    $("div#stars span:nth-child(2)").css("color", "yellow");
-                    $("div#stars span:nth-child(3)").css("color", "yellow");
-                    $("div#stars span:nth-child(4)").css("color", "white");
-                    $("div#stars span:nth-child(5)").css("color", "white");
-                    rating_stars = $(this).value;
-
-                    break;
-                case "4":
-                    $("div#stars span:nth-child(1)").css("color", "yellow");
-                    $("div#stars span:nth-child(2)").css("color", "yellow");
-                    $("div#stars span:nth-child(3)").css("color", "yellow");
-                    $("div#stars span:nth-child(4)").css("color", "yellow");
-                    $("div#stars span:nth-child(5)").css("color", "white");
-                    rating_stars = $(this).value;
-
-                    break;
-                case "5":
-                    $("div#stars span:nth-child(1)").css("color", "yellow");
-                    $("div#stars span:nth-child(2)").css("color", "yellow");
-                    $("div#stars span:nth-child(3)").css("color", "yellow");
-                    $("div#stars span:nth-child(4)").css("color", "yellow");
-                    $("div#stars span:nth-child(5)").css("color", "yellow");
-                    rating_stars = $(this).value;
-
-                    break;
-            }
-        });
-
-    document.querySelector("div#rating-wrapper input.star").focus(function() {
-        $("div#stars").css("font-size", "1rem");
-    });
-    document.querySelector("div#rating-wrapper textarea").focus(function() {
+    stars_listener.addEventListener("blur", (event) => {
         document.querySelector("div#stars").style.fontSize = "0.8rem";
+
+        stars_listener.value = "";
     });
 
-    document
-        .querySelector("div#rating-wrapper input.star")
-        .blur("keydown", function() {
-            this.value = "";
-        });
+    stars_listener.addEventListener("focus", (event) => {
+        document.querySelector("div#stars").style.fontSize = "1rem";
+    });
+
+    window.addEventListener("keyup", (event) => {
+        switch (stars_listener.value) {
+            case "0":
+                $("div#stars span:nth-child(1)").css("color", "white");
+                $("div#stars span:nth-child(2)").css("color", "white");
+                $("div#stars span:nth-child(3)").css("color", "white");
+                $("div#stars span:nth-child(4)").css("color", "white");
+                $("div#stars span:nth-child(5)").css("color", "white");
+                rating_stars = 0;
+                stars_listener.value = "";
+
+                break;
+            case "1":
+                $("div#stars span:nth-child(1)").css("color", "yellow");
+                $("div#stars span:nth-child(2)").css("color", "white");
+                $("div#stars span:nth-child(3)").css("color", "white");
+                $("div#stars span:nth-child(4)").css("color", "white");
+                $("div#stars span:nth-child(5)").css("color", "white");
+                rating_stars = 1;
+                stars_listener.value = "";
+
+                break;
+            case "2":
+                $("div#stars span:nth-child(1)").css("color", "yellow");
+                $("div#stars span:nth-child(2)").css("color", "yellow");
+                $("div#stars span:nth-child(3)").css("color", "white");
+                $("div#stars span:nth-child(4)").css("color", "white");
+                $("div#stars span:nth-child(5)").css("color", "white");
+                rating_stars = 2;
+                stars_listener.value = "";
+
+                break;
+            case "3":
+                $("div#stars span:nth-child(1)").css("color", "yellow");
+                $("div#stars span:nth-child(2)").css("color", "yellow");
+                $("div#stars span:nth-child(3)").css("color", "yellow");
+                $("div#stars span:nth-child(4)").css("color", "white");
+                $("div#stars span:nth-child(5)").css("color", "white");
+                rating_stars = 3;
+                stars_listener.value = "";
+
+                break;
+            case "4":
+                $("div#stars span:nth-child(1)").css("color", "yellow");
+                $("div#stars span:nth-child(2)").css("color", "yellow");
+                $("div#stars span:nth-child(3)").css("color", "yellow");
+                $("div#stars span:nth-child(4)").css("color", "yellow");
+                $("div#stars span:nth-child(5)").css("color", "white");
+                rating_stars = 4;
+                stars_listener.value = "";
+
+                break;
+            case "5":
+                $("div#stars span:nth-child(1)").css("color", "yellow");
+                $("div#stars span:nth-child(2)").css("color", "yellow");
+                $("div#stars span:nth-child(3)").css("color", "yellow");
+                $("div#stars span:nth-child(4)").css("color", "yellow");
+                $("div#stars span:nth-child(5)").css("color", "yellow");
+                rating_stars = 5;
+                stars_listener.value = "";
+
+                break;
+        }
+    });
 
     function xhr_callback(data) {
         if (data == 201) {
@@ -623,6 +602,52 @@ jQuery(function() {
         }
     }
 
+    ////////////////////
+    ///Read Rating/////
+    ///////////////////
+
+    function ratings_callback(data) {
+        if (data.ratings.length > 0) {
+            apps_data.push([data.appid, data.ratings]);
+        }
+
+        data.ratings.forEach(function(item) {
+            let stars = "";
+            switch (item.points) {
+                case 0:
+                    stars = "";
+                    break;
+                case 1:
+                    stars = "★";
+                    break;
+                case 2:
+                    stars = "★ ★";
+                    break;
+                case 3:
+                    stars = "★ ★ ★";
+                    break;
+                case 4:
+                    stars = "★ ★ ★ ★";
+                    break;
+                case 5:
+                    stars = "★ ★ ★  ★  ★";
+                    break;
+            }
+
+            let temp = document.createElement("div");
+            temp.innerHTML = item.description;
+            let description = temp.textContent || temp.innerText;
+
+            $("#" + article_id).append(
+                "<div class='rating-item'><div><div class='points'>" +
+                stars +
+                "</div></div><div>" +
+                description +
+                "</div></div>"
+            );
+        });
+    }
+
     //////////////////////////
     ////KEYPAD TRIGGER////////////
     /////////////////////////
@@ -637,8 +662,6 @@ jQuery(function() {
                 }
 
                 if (window_status == "options") {
-                    console.log($(":focus").attr("tabindex"));
-
                     if ($(":focus").attr("tabindex") === "1") {
                         open_rating();
                     }
@@ -660,10 +683,7 @@ jQuery(function() {
                     break;
                 }
 
-
-
                 nav("+1");
-
 
                 break;
 
@@ -675,11 +695,7 @@ jQuery(function() {
                     break;
                 }
 
-                if (window_status == "article-list") {
-                    nav("-1");
-
-                    break;
-                }
+                nav("-1");
 
                 break;
 
@@ -794,7 +810,6 @@ jQuery(function() {
 
                     $("div#about").css("display", "none");
                     show_article_list();
-                    //$("div#bottom-bar div#button-center").css("width", "30%");
 
                     break;
                 }
@@ -803,6 +818,8 @@ jQuery(function() {
                     evt.preventDefault();
 
                     document.getElementById("qr-screen").hidden = true;
+                    show_article_list();
+
 
                     break;
                 }
