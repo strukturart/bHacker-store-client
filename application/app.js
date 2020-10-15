@@ -215,6 +215,7 @@ function renderHello() {
     var template = document.getElementById("template").innerHTML;
     var rendered = Mustache.render(template, { data: apps_data });
     document.getElementById("apps").innerHTML = rendered;
+    searchGetData();
 }
 
 //////////////////////////
@@ -264,8 +265,10 @@ function nav_panels(left_right) {
     if (current_panel == 0) {
         document.querySelector("input").focus();
         document.querySelector("div#navigation").style.display = "none";
+        document.querySelector("div#app").style.margin = "5px 0 0 0";
     } else {
         document.querySelector("div#navigation").style.display = "block";
+        document.querySelector("div#app").style.margin = "25px 0 0 0";
     }
 }
 
@@ -306,25 +309,14 @@ function nav(param) {
         var scrollDiv = articles[focused].offsetTop + 30;
         window.scrollTo({ top: scrollDiv, behavior: "smooth" });
     }
-
-
 }
+
+document.querySelector("article#search").onfocus = function() {
+    document.querySelector("article#search input").focus();
+};
 
 jQuery(function() {
     init();
-
-
-    document.querySelector('article#search').onfocus = function() {
-        document.querySelector('article#search input').focus()
-        document.querySelector("article#search").style.margin = "135px 0 0 0!Important";
-
-
-    };
-
-
-
-    searchGetData();
-
 
     ////////////////////
     ////SHOW ARTICLE///
@@ -334,9 +326,13 @@ jQuery(function() {
     let article_id;
 
     function show_article(app) {
-        $("article").css("display", "none");
-
         window.scrollTo({ top: 0, behavior: "smooth" });
+
+
+
+
+
+
         let $focused;
         if (app) {
             $focused = $('[data-slug="' + app + '"]');
@@ -352,9 +348,11 @@ jQuery(function() {
 
             $focused.css("display", "block");
 
+            document.querySelector("div#app div#app-panels article div.icon").focus()
+            document.querySelector("div#app div#app-panels article div.icon").style.border = "2px solid red"
+            document.querySelector("div#app div#app-panels div#apps").style.overflow = "scroll"
+
             $("div#navigation").css("display", "none");
-            //$("div#app div#app-panels").css("margin", "5px 0 0 0");
-            //$("div#app div#app-panels").css("max-height", "100%");
             $("div.single-article").css("display", "block");
             $("div.article-list").css("display", "none");
             if (!offline) {
@@ -364,7 +362,6 @@ jQuery(function() {
             }
             //get ratinngs
             get_ratings($("#" + article_id).data("slug"), ratings_callback);
-
             window_status = "single-article";
         }
     }
@@ -390,9 +387,8 @@ jQuery(function() {
         }
 
         panels_list(panels[current_panel]);
-        //$("div#app div#app-panels div#apps").css("margin", "5px 0 50px 0px");
-        document.querySelector("article#search").style.margin = "135px 0 0 0!Important";
-
+        document.querySelector("article#search").style.margin =
+            "15px 0 0 0!Important";
 
         $("div#options").css("display", "none");
 
@@ -421,10 +417,11 @@ jQuery(function() {
     }
 
     function open_rating() {
-        $("div#rating-wrapper").css("display", "block");
+        document.querySelector("div#rating-wrapper").style.display = "block";
         document.querySelector("div#rating-wrapper input").focus();
-        $("div#stars span").css("color", "white");
         rating_stars = 0;
+        get_userId();
+
         bottom_bar("send", "", "close");
         window_status = "rating";
     }
@@ -819,7 +816,6 @@ jQuery(function() {
 
                     document.getElementById("qr-screen").hidden = true;
                     show_article_list();
-
 
                     break;
                 }

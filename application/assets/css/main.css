@@ -50,7 +50,6 @@ body {
     font-weight: 100;
     width: 100vw;
     max-width: 100vw;
-    overflow-x: hidden;
     position: relative;
     margin: 0px;
     padding: 0px;
@@ -157,17 +156,6 @@ div#navigation div {
     text-align: center;
 }
 
-div#app {
-    position: relative;
-    background: white;
-    padding: 5px;
-    color: black;
-    height: 100vh;
-    width: 100vw;
-    font-weight: normal;
-    margin: 0px 0 0 0;
-}
-
 div#about {
     position: fixed;
     top: 0;
@@ -212,17 +200,35 @@ div#about h2 {
     font-size: 1rem;
 }
 
+div#app {
+    position: relative;
+    background: white;
+    padding: 5px;
+    color: black;
+    height: 90vh;
+    width: 100vw;
+    overflow: hidden;
+    font-weight: normal;
+    margin: 5px 0 0 0;
+}
+
+div#apps {}
+
+div#app-panels div#app-panels-inner {
+    height: 82vh;
+    overflow: scroll;
+}
+
 div#app div#app-panels article {
     margin: 0px 0 10px 0;
     font-weight: normal;
     min-width: 95vw;
-    max-height: 100%;
-    padding: 4px;
-    overflow-y: scroll;
+    max-height: 90%;
+    padding: 4px 4px 50px 4px;
+    overflow: scroll;
 }
 
 article#search {
-    margin: -35px 0 10px 0 !important;
     font-weight: normal;
     min-width: 95vw;
     height: 40px;
@@ -238,7 +244,7 @@ article#search input {
 }
 
 div#app div#app-panels {
-    margin: 35px 0 50px 0px;
+    margin: 5px 0 50px 0px;
 }
 
 div#app div#app-panels article {
@@ -287,7 +293,8 @@ div.single-article {
 }
 
 div#app div#app-panels article ul.images {
-    padding: 15px 0 50px 0;
+    padding: 20px 0 20px 0;
+    display: block;
 }
 
 div#app div#app-panels article ul.images li {
@@ -297,6 +304,7 @@ div#app div#app-panels article ul.images li {
 
 div#app div#app-panels article ul.images li img {
     min-width: 100%;
+    display: block;
 }
 
 div.options {
@@ -372,6 +380,7 @@ div#rating-wrapper div#stars {
 
 div.rating-item {
     margin: 0 0 30px 0;
+    outline: 2px solid red;
 }
 
 div.rating-item div div {
