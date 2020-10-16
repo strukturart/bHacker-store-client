@@ -65,16 +65,16 @@
                       <ul class="images">
                           {{#images}}
                           <li> <img src="{{.}}"> </li>
-                          {{/images}}
+                          {{/images}} {{^images}} {{/images}}
                       </ul>
                   </div>
 
 
               </article>
               <div id="options-{{slug}}" class="options">
-                  <div tabindex="1" data-slug="{{slug}}">rating</div>
-                  <div tabindex="2" data-url="{{{url}}}">source</div>
-                  <div tabindex="3" data-url="{{{donation_url}}}">donate</div>
+                  <div tabindex="0" data-slug="{{slug}}">rating</div>
+                  <div tabindex="0" data-url="{{{url}}}">source</div>
+                  <div tabindex="0" data-url="{{{donation_url}}}">donate</div>
               </div>
 
 
@@ -99,9 +99,7 @@
       <div id="stars">
         <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
       </div>
-      <div>
-        Press 1-5 to rate the app, if you want you can also write a comment.
-      </div>
+      <div>Press 1-5 to rate the app and write a comment.</div>
     </div>
 
     <div id="bottom-bar">
