@@ -10,7 +10,6 @@ function buildAutocomplete(element, source, container) {
     appendTo: $("body"),
 
     onSearchStart: function () {
-      //alert(source)
       $("article:not(article#search)").css("display", "none");
     },
 
@@ -47,8 +46,8 @@ function buildAutocomplete(element, source, container) {
 var search_list = [];
 var filter_search_list = [];
 
-function getData() {
-  $.when(
+function searchGetData() {
+  setTimeout(() => {
     $("article").each(function (index) {
       if ($(this).attr("data-tags")) {
         if ($.inArray($(this).attr("data-tags"), filter_search_list) == -1) {
@@ -62,8 +61,8 @@ function getData() {
           });
         }
       }
-    })
-  ).then(function () {
-    buildAutocomplete("input#search", search_list, "div#app-panels");
-  });
+    });
+
+    buildAutocomplete("article#search input", search_list, "div#app-panels");
+  }, 2000);
 }

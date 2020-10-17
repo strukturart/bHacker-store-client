@@ -38,23 +38,52 @@ function notify(param_title, param_text, param_silent, requireInteraction) {
 
 //silent notification
 function toaster(text, time) {
-  $("div#toast").html(text);
+  document.querySelector("div#toast").textContent = text;
+  /*
+          $("div#toast").animate({ top: "0px" }, 1000, "linear", function () {
+            $("div#toast").delay(time).animate({ top: "-110vh" }, 1000);
+          });
+          */
 
-  $("div#toast").animate({ top: "0px" }, 1000, "linear", function () {
-    $("div#toast").delay(time).animate({ top: "-110vh" }, 1000);
-  });
+  var elem = document.querySelector("div#toast");
+  var pos = -100;
+  var id = setInterval(down, 5);
+  var id2;
+
+  function down() {
+    if (pos == 0) {
+      clearInterval(id);
+      setTimeout(() => {
+        id2 = setInterval(up, 5);
+      }, time);
+    } else {
+      pos++;
+      elem.style.top = pos + "px";
+    }
+  }
+
+  function up() {
+    if (pos == -1000) {
+      clearInterval(id2);
+    } else {
+      pos--;
+      elem.style.top = pos + "px";
+    }
+  }
 }
 
 //bottom bar
 function bottom_bar(left, center, right) {
-  $("div#bottom-bar div#button-left").text(left);
-  $("div#bottom-bar div#button-center").text(center);
-  $("div#bottom-bar div#button-right").text(right);
+  document.querySelector("div#bottom-bar div#button-left").textContent = left;
+  document.querySelector(
+    "div#bottom-bar div#button-center"
+  ).textContent = center;
+  document.querySelector("div#bottom-bar div#button-right").textContent = right;
 
   if (left == "" && center == "" && right == "") {
-    $("div#bottom-bar").css("display", "none");
+    document.querySelector("div#bottom-bar").style.display = "none";
   } else {
-    $("div#bottom-bar").css("display", "block");
+    document.querySelector("div#bottom-bar").style.display = "block";
   }
 }
 
@@ -63,26 +92,5 @@ function check_iconnection() {
   if (navigator.onLine) {
   } else {
     toaster("No Internet connection");
-  }
-}
-
-//wake up screen
-function screenWakeLock(param1) {
-  if (param1 == "lock") {
-    lock = window.navigator.requestWakeLock("screen");
-
-    lock.onsuccess = function () {
-      toaster("screen-lock", 10000);
-    };
-
-    lock.onerror = function () {
-      alert("An error occurred: " + this.error.name);
-    };
-  }
-
-  if (param1 == "unlock") {
-    if (lock.topic == "screen") {
-      lock.unlock();
-    }
   }
 }

@@ -1,7 +1,6 @@
+"use strict";
+
 let page = 0;
-let pos_focus = 0;
-let article_array;
-let tabindex_i = -0;
 let window_status = "article-list";
 let dataSet;
 let panels = ["All"];
@@ -10,453 +9,384 @@ let app_slug;
 let offline = false;
 let apps_data = new Array();
 let update_time;
+let apps_rating = new Array();
+let co;
+let contributors = new Array();
 
-$(document).ready(function () {
-  //////////////////////////////
-  //fetch-database////
-  //////////////////////////////
+//////////////////////////////
+//fetch-database////
+//////////////////////////////
 
-  function init() {
-    BackendApi.setStatusCallback(toaster);
+function init() {
+  BackendApi.setStatusCallback(toaster);
 
-    function loadData() {
-      dataSet = BackendApi.getData();
-      addAppList();
-      addCategories();
+  function loadData() {
+    dataSet = BackendApi.getData();
+    addAppList(addAppList_callback);
+    document.querySelector("div#message-box").style.animationPlayState =
+      "running";
+    document.querySelector(
+      "div#message-box img.icon-2"
+    ).style.animationPlayState = "running";
+    document.querySelector(
+      "div#message-box img.icon-1"
+    ).style.animationPlayState = "running";
+    document.querySelector("div#message-box div").style.display = "none";
+  }
 
-      $("div#message-box").css("animation-play-state", "running");
-      $("div#message-box img.icon-2").css("animation-play-state", "running");
-      $("div#message-box img.icon-1").css("animation-play-state", "running");
-      $("div#message-box div").css("display", "none");
+  DownloadCounter.load().then((_) => {
+    const apps_article = document.querySelectorAll("div#apps article");
+    for (let i = 0; i < apps_article.length; i++) {
+      const appId = apps_article[i].getAttribute("data-slug");
 
-      DownloadCounter.load().then((_) => {
-        const apps = $("div#app-panels article");
-        for (let i = 0; i < apps.length; i++) {
-          const appId = apps[i].getAttribute("data-slug");
-          console.log(appId);
+      if (appId) {
+        const dl_section = apps_article[i].querySelector("div.dl-cnt");
+        const count = DownloadCounter.getForApp(appId);
+        dl_section.innerHTML = "<span>Downloads </span>" + count;
 
-          if (appId) {
-            const dl_section = apps[i].querySelector("div.dl-cnt");
-            const count = DownloadCounter.getForApp(appId);
-
-            if (dl_section && count !== -1) {
-              dl_section.innerHTML = "<span>Downloads </span>" + count;
-            }
-          }
+        if (dl_section && count !== -1) {
+          dl_section.innerHTML = "<span>Downloads </span>" + count;
         }
-      });
-    }
-
-    if (!BackendApi.getData()) {
-      if (!navigator.onLine) {
-      } else {
-        BackendApi.update()
-          .then(loadData)
-          .catch((error) => {
-            console.log(error);
-            toaster(error instanceof Error ? error.message : error);
-          });
       }
+    }
+  });
+
+  if (!BackendApi.getData()) {
+    if (!navigator.onLine) {
     } else {
-      if (navigator.onLine) {
-        BackendApi.update()
-          .then(loadData)
-          .catch((error) => {
-            console.log(error);
-            toaster(error instanceof Error ? error.message : error);
-            loadData();
-          });
-      } else {
-        offline = true;
-        toaster(
-          "<br> your device is offline, you can view the app but you cannot install it.",
-          3000
-        );
+      BackendApi.update()
+        .then(loadData)
+        .catch((error) => {
+          console.log(error);
+          toaster(error instanceof Error ? error.message : error, 3000);
+        });
+    }
+  } else {
+    if (navigator.onLine) {
+      BackendApi.update()
+        .then(loadData)
+        .catch((error) => {
+          console.log(error);
+          toaster(error instanceof Error ? error.message : error, 3000);
+          loadData();
+        });
+    } else {
+      offline = true;
+      toaster(
+        "<br> your device is offline, you can view the app but you cannot install it.",
+        3000
+      );
 
-        loadData();
-      }
+      loadData();
     }
   }
+}
 
-  let contributors = ["40min"];
+contributors = ["40min"];
+let pep = new Array();
+let counter = 0;
 
-  function addAppList(callback) {
-    let i = 0;
+function addAppList(callback) {
+  dataSet.apps.forEach(function (value, index) {
+    let data = dataSet.apps[index];
+    let item_title = data.name;
+    let item_summary = data.description;
+    let item_link = data.download.url;
+    let item_url;
+    let item_donation = data.donation;
+    let item_ads = data.has_ads;
+    let item_tracking = data.has_tracking;
+    let tag = data.meta.categories;
+    let item_category = data.meta.categories.toString().replace(",", " ");
+    let item_tags = tag.toString().replace(",", " ");
+    let item_author = data.author.toString();
+    let item_icon = data.icon;
+    let item_license = data.license;
+    let item_type = data.type;
+    let donation_icon = "none";
+    let item_slug = data.slug;
+    let images = "";
 
-    $.when(
-      dataSet.apps.forEach(function (value, index) {
-        let data = dataSet.apps[index];
-        let item_title = data.name;
-        let item_summary = data.description;
-        let item_link = data.download.url;
-        let item_url = data.git_repo;
-        let donation = data.donation;
-        let ads = data.has_ads;
-        let tracking = data.has_tracking;
-        let str = data.meta.categories;
-        let tag = data.meta.categories;
-        let item_categorie = str.toString().replace(",", " ");
-        let item_tags = tag.toString().replace(",", " ");
-        let item_author = data.author.toString();
-        let item_icon = data.icon;
-        let item_license = data.license;
-        let item_type = data.type;
-        let images = "";
-        let images_collection = "";
-        let donation_icon = "none";
-        let ads_icon = "none";
-        let tracking_icon = "none";
-        let item_slug = data.slug;
-        //i++;
-        let elem_id = "elem-" + index;
+    if (data.meta.categories != "undefinedutility") {
+      pep += data.meta.categories + ",";
+    }
 
-        //unique author list
-        const just_author_name = item_author.split("<")[0].trim();
-        if (contributors.indexOf(just_author_name) === -1) {
-          contributors.push(just_author_name);
-        }
-        //apps thumbnails
-        if (data.screenshots != "") {
-          images = data.screenshots.toString();
-          images = images.split(",");
+    if (data.screenshots != "") {
+      images = data.screenshots.toString().split(",");
+    }
 
-          images.forEach(function (value, index) {
-            images_collection += "<li><img src=" + images[index] + "></li>";
-          });
-        } else {
-          images_collection = "";
-        }
+    if (data.git_repo != "") {
+      item_url = data.git_repo;
+    }
 
-        //to do
-        //push data in array
-        //to create elements in dom if needed
-        apps_data.push([item_title, item_summary, item_categorie, item_link]);
+    //unique author list
+    let just_author_name = item_author.split("<")[0].trim();
+    if (contributors.indexOf(just_author_name) === -1) {
+      contributors.push(just_author_name);
+    }
 
-        //options page
-        $("div#options").append("<div id='" + elem_id + "'></div>");
+    if (item_donation == "") {
+      donation_icon = "no";
+    } else {
+      donation_icon = "yes";
+    }
 
-        $("div#options div#" + elem_id).append(
-          "<div tabindex='0' data-appslug='" + item_slug + "'>rating</div>"
-        );
+    if (item_ads) {
+      item_ads = "yes";
+    } else {
+      item_ads = "no";
+    }
 
-        if (item_url) {
-          $("div#options div#" + elem_id).append(
-            "<div tabindex='1' data-url='" +
-              item_url +
-              "'>source code of the app</div>"
-          );
-        }
+    if (item_tracking) {
+      item_tracking = "yes";
+    } else {
+      item_tracking = "no";
+    }
 
-        if (donation) {
-          donation_icon = "yes";
-          $("div#options div#" + elem_id).append(
-            "<div tabindex='2' data-url='" +
-              donation +
-              "'>make a donation</div>"
-          );
-        }
-
-        if (tracking) {
-          tracking_icon = "yes";
-        }
-
-        if (ads) {
-          donation_icon = "yes";
-        }
-
-        //article
-        let meta_data =
-          "<div class='meta-data'>" +
-          "<div><span>Author </span>" +
-          item_author +
-          "</div>" +
-          "<div><span>License </span>" +
-          item_license +
-          "</div>" +
-          "<div><span>Type </span>" +
-          item_type +
-          "</div>" +
-          "<div><span>Donation </span>" +
-          donation_icon +
-          "</div>" +
-          "<div><span>Tracking </span>" +
-          tracking_icon +
-          "</div>" +
-          "<div><span>Ads </span>" +
-          ads_icon +
-          "</div>" +
-          "<div class='dl-cnt'></div>" +
-          "</div>";
-        //urls
-        let urls =
-          "data-download ='" +
-          item_link +
-          "' data-url ='" +
-          item_url +
-          "'  data-tags ='" +
-          item_tags +
-          "'  data-name ='" +
-          item_title +
-          "' data-slug ='" +
-          item_slug +
-          "'";
-        let article =
-          "<article id= '" +
-          elem_id +
-          "' class= 'APP All " +
-          item_categorie +
-          " ' " +
-          urls +
-          ">" +
-          "<div class='icon'><img src='" +
-          item_icon +
-          "'></div>" +
-          "<div class='channel'>" +
-          item_categorie +
-          "</div>" +
-          "<h1>" +
-          item_title +
-          "</h1><div class='summary'>" +
-          item_summary +
-          "</div>" +
-          meta_data +
-          "<div class='images'></div><ul class='images'>" +
-          images_collection +
-          "</article>";
-
-        $("div#app-panels").append(article);
-      })
-    ).then(function () {
-      update_time = moment(dataSet.generated_at).format("DD.MM.YYYY, HH:mm");
-      $("#update").text(update_time);
-      set_tabindex();
-      let co = contributors.sort().join(", ");
-      //add to about page
-      $("div#about div#inner div#contributors").text(co);
-
-      getData();
-
-      $("article#search input").focus();
+    counter++;
+    apps_data.push({
+      images: images,
+      title: item_title,
+      author: item_author,
+      summary: item_summary,
+      category: item_category,
+      link: item_link,
+      license: item_license,
+      ads: item_ads,
+      donation_url: item_donation,
+      donation: donation_icon,
+      tracking: item_tracking,
+      type: item_type,
+      summarie: item_summary,
+      icon: item_icon,
+      slug: item_slug,
+      tags: item_tags,
+      url: item_url,
+      index: counter,
     });
-  }
+  });
+
+  update_time = moment(dataSet.generated_at).format("DD.MM.YYYY, HH:mm");
+  co = contributors.sort().join(", ");
+
+  callback("done");
+}
+
+function addAppList_callback(data) {
+  //categories - panels
+  pep = pep.split(",");
+  pep.forEach((c) => {
+    if (!panels.includes(c)) {
+      panels.push(c);
+    }
+  });
+  panels.pop(panels.length);
+
+  document.querySelector("#update").textContent = update_time;
+  document.querySelector(
+    "div#about div#inner div#contributors"
+  ).textContent = co;
+  document.querySelector("article#search input").focus();
 
   bottom_bar("", "select", "about");
+  renderHello();
+}
 
-  function addCategories() {
-    $.each(dataSet.categories, function (key, val) {
-      panels.push(key);
-    });
-    $("div#navigation div").text(panels[0]);
-  }
+////////////////////////
+////SET TABINDEX////////
+///////////////////////
 
-  function set_tabindex() {
-    $("div#app-panels article").removeAttr("tabindex");
-    $("div#app-panels article")
-      .filter(":visible")
-      .each(function (index) {
-        $(this).prop("tabindex", index);
-      });
-    article_array = $("div#app-panels article").filter(":visible");
-    sort_data();
-    $("body").find("article[tabindex = 0]").focus();
-  }
+function set_tabindex() {
+  let articles_panel = document.querySelectorAll("article");
 
-  function sort_data() {
-    let $wrapper = $("div#app-panels");
+  focused = 0;
 
-    $wrapper
-      .find("article tabindex")
-      .sort(function (a, b) {
-        return b - a;
-      })
-      .appendTo($wrapper);
-  }
-
-  function panels_list(panel) {
-    $("article").css("display", "none");
-    $("article." + panel).css("display", "block");
-    $("div#app-panels article")
-      .find([(tabindex = "0")])
-      .focus();
-  }
-
-  ////////////////////////
-  //NAVIGATION
-  /////////////////////////
-  ///thank you farooqkz
-  //for the clever solution
-
-  function nav_panels(left_right) {
-    window.scrollTo(0, 0);
-
-    if (left_right == "left") {
-      current_panel--;
-    }
-
-    if (left_right == "right") {
-      current_panel++;
-    }
-
-    current_panel = current_panel % panels.length;
-    if (current_panel < 0) {
-      current_panel += panels.length;
-    }
-
-    $("div#navigation div").text(panels[current_panel]);
-    panels_list(panels[current_panel]);
-    set_tabindex();
-    pos_focus = 0;
-
-    if (current_panel == 0) {
-      $("input").val("");
-      $("input").focus();
-      $("div#navigation").css("display", "none");
+  var tab = 0;
+  for (let i = 0; i < articles_panel.length; i++)
+    if (articles_panel[i].style.display === "block") {
+      tab++;
+      articles_panel[i].setAttribute("tabindex", tab);
     } else {
-      $("div#navigation").css("display", "block");
+      articles_panel[i].removeAttribute("tabindex");
     }
+
+  let focusme = document.querySelectorAll("article[tabindex]");
+  focusme[0].focus();
+}
+
+//////////////////////////
+////WRITE HTML LIST///////
+//////////////////////////
+
+function renderHello() {
+  var template = document.getElementById("template").innerHTML;
+  var rendered = Mustache.render(template, { data: apps_data });
+  document.getElementById("apps").innerHTML = rendered;
+  searchGetData();
+}
+
+//////////////////////////
+//////PANELS//////////////
+//////////////////////////
+
+function panels_list(panel) {
+  let articles = document.querySelectorAll("article");
+
+  let elements = document.getElementsByClassName(panel);
+
+  for (let k = 0; k < articles.length; k++) {
+    articles[k].style.display = "none";
   }
 
-  //up - down
-
-  function nav(param) {
-    let focused = $(":focus").attr("tabindex");
-    let siblings = $(":focus").parent().children(":visible");
-    let siblingsLength = $(":focus").parent().children(":visible").length;
-
-    if ($("input").is(":focus")) {
-      $("article#search").next().focus();
-    }
-
-    if (param == "+1" && focused < siblingsLength - 1) {
-      focused++;
-
-      var focusedElement = $(":focus")[0].offsetTop;
-
-      $("html, body").animate({ scrollTop: focusedElement }, 200);
-
-      siblings[focused].focus();
-
-      if ($("article#search").is(":focus")) {
-        $("input").focus();
-      }
-    }
-
-    if (param == "-1" && focused > 0) {
-      focused--;
-
-      siblings[focused].focus();
-
-      if ($("article#search").is(":focus")) {
-        $("input").focus();
-      }
-    }
+  for (let i = 0; i < elements.length; i++) {
+    elements[i].style.display = "block";
   }
+  set_tabindex();
+}
+
+////////////////////////
+//NAVIGATION///////////
+/////////////////////////
+
+function nav_panels(left_right) {
+  window.scrollTo(0, 0);
+  focused = 0;
+
+  if (left_right == "left") {
+    current_panel--;
+  }
+
+  if (left_right == "right") {
+    current_panel++;
+  }
+
+  current_panel = current_panel % panels.length;
+  if (current_panel < 0) {
+    current_panel += panels.length;
+  }
+
+  document.querySelector("div#navigation div").textContent =
+    panels[current_panel];
+  panels_list(panels[current_panel]);
+
+  if (current_panel == 0) {
+    document.querySelector("input").focus();
+    document.querySelector("div#navigation").style.display = "none";
+    document.querySelector("div#app").style.margin = "5px 0 0 0";
+  } else {
+    document.querySelector("div#navigation").style.display = "block";
+    document.querySelector("div#app").style.margin = "30px 0 0 0";
+  }
+}
+
+//up - down
+let focused = 0;
+let st = 0;
+
+function nav(param) {
+  let articles;
+
+  if (window_status == "article-list" || window_status == "search") {
+    articles = document.querySelectorAll("article[tabindex]");
+  }
+
+  if (window_status == "options") {
+    let k = document.activeElement.parentElement.id;
+    articles = document.getElementById(k).children;
+  }
+
+  if (window_status == "rating") {
+    let k = document.activeElement.parentElement.children;
+    articles = k;
+  }
+
+  if (param == "+1" && focused < articles.length - 1) {
+    focused++;
+    articles[focused].focus();
+
+    var scrollDiv = articles[focused].offsetTop + 20;
+    window.scrollTo({ top: scrollDiv, behavior: "smooth" });
+  }
+
+  if (param == "-1" && focused > 0) {
+    focused--;
+    articles[focused].focus();
+
+    var scrollDiv = articles[focused].offsetTop + 30;
+    window.scrollTo({ top: scrollDiv, behavior: "smooth" });
+  }
+}
+
+document.querySelector("article#search").onfocus = function () {
+  document.querySelector("article#search input").focus();
+};
+
+jQuery(function () {
+  init();
+
+  ////////////////////
+  ////SHOW ARTICLE///
+  ///////////////////
 
   //store current article
   let article_id;
 
   function show_article(app) {
-    let $focused;
-    if (app) {
-      $focused = $('[data-slug="' + app + '"]');
-      $('[data-slug="' + app + '"]').focus();
-    } else {
-      $focused = $(":focus");
-    }
+    document.getElementById("app-panels-inner").style.height = "94vh";
+    document.querySelector("div#app-panels-inner").scrollTo(0, 0);
+    document.querySelector("div#app").style.margin = "0 0 0 0";
 
-    let getClass = $focused.attr("class");
-    //let getId = $focused.parent().attr("id");
-    article_id = $focused.attr("id");
+    article_id = document.activeElement.getAttribute("id");
 
-    if (getClass != "About") {
+    if (document.activeElement.getAttribute("class") != "About") {
       $("article").css("display", "none");
+
+      document.activeElement.style.display = "block";
+
       $("div#navigation").css("display", "none");
-      $("div#app div#app-panels").css("margin", "5px 0 0 0");
-      $("div#app div#app-panels").css("max-height", "100%");
-      $focused.css("display", "block");
-      $("div.summary").css("display", "block");
-      $("div.meta-data").css("display", "block");
-      $("div.icon").css("display", "block");
-      $("div.channel").css("display", "none");
-      $("ul.images").css("display", "block");
+      $("div.single-article").css("display", "block");
+      $("div.article-list").css("display", "none");
       if (!offline) {
         bottom_bar("options", "", "install");
       } else {
         bottom_bar("", "", "");
       }
+      //get ratinngs
       get_ratings($("#" + article_id).data("slug"), ratings_callback);
-
       window_status = "single-article";
     }
   }
 
-  function ratings_callback(data) {
-    data.ratings.forEach(function (item) {
-      let stars = "";
-      switch (item.points) {
-        case 0:
-          stars = "";
-          break;
-        case 1:
-          stars = "★";
-          break;
-        case 2:
-          stars = "★ ★";
-          break;
-        case 3:
-          stars = "★ ★ ★";
-          break;
-        case 4:
-          stars = "★ ★ ★ ★";
-          break;
-        case 5:
-          stars = "★ ★ ★  ★  ★";
-          break;
-      }
-
-      temp = document.createElement("div");
-      temp.innerHTML = item.description;
-      let description = temp.textContent || temp.innerText;
-
-      $("#" + article_id).append(
-        "<div class='rating-item'><div><div class='points'>" +
-          stars +
-          "</div></div><div>" +
-          description +
-          "</div></div>"
-      );
-    });
-  }
+  /////////////////////
+  ///SHOW ARTICLE-LIST
+  ////////////////////
 
   function show_article_list() {
-    if (article_id == "search") {
-      $("input#search").focus();
+    document.getElementById("app-panels-inner").style.height = "84vh";
+
+    if (current_panel == 0) {
+      document.querySelector("div#app").style.margin = "5px 0 0 0";
     }
-
-    if (article_id !== "search") {
-      $("#" + article_id).focus();
-    }
-
-    panels_list(panels[current_panel]);
-    $("div#app div#app-panels").css("margin", "35px 0 50px 0px");
-
-    $("article#search").css("margin", "-35px 0 0 0!Important");
-    $("div#options").css("display", "none");
     if (current_panel != 0) {
+      document.querySelector("div#app").style.margin = "30px 0 0 0";
       $("div#navigation").css("display", "block");
     }
-    $("div#app-panels").css("display", "block");
-    $("div.summary").css("display", "none");
-    $("div.meta-data").css("display", "none");
-    $("div.channel").css("display", "block");
-    $("ul.images").css("display", "none");
-    $("div.icon").css("display", "none");
+    document.getElementById("app-panels-inner").scrollTo(0, 0);
+
+    document.getElementById(article_id).focus();
+    $("article").css("display", "block");
+    $("div.article-list").css("display", "block");
+    $("div.single-article").css("display", "none");
     $("div.rating-item").remove();
+    panels_list(panels[current_panel]);
 
     bottom_bar("", "select", "about");
-    document.getElementById(article_id).scrollIntoView();
     window_status = "article-list";
   }
+
+  //////////////////
+  //download app///
+  /////////////////
 
   function install_app() {
     if (!offline) {
@@ -475,58 +405,70 @@ $(document).ready(function () {
   }
 
   function open_rating() {
-    $("div#rating-wrapper").css("display", "block");
-    $("div#rating-wrapper input.star ").focus();
-    bottom_bar("send", "", "close");
+    document.querySelector("div#rating-wrapper").style.display = "block";
+    document.querySelector("div#rating-wrapper input").focus();
     rating_stars = 0;
-    $("div#stars span").css("color", "white");
+    get_userId();
+
+    bottom_bar("send", "", "close");
     window_status = "rating";
   }
 
   function close_rating() {
     $("div#rating-wrapper").css("display", "none");
-    bottom_bar("", "", "");
     $("div#rating-wrapper input").val("");
     $("div#rating-wrapper textarea").val("");
     rating_stars = 0;
+
+    bottom_bar("", "", "");
     open_options();
   }
 
   function close_options() {
-    $("div#options").css("display", "none");
+    $("div.options").css("display", "none");
     $("article#" + article_id).focus();
     $("div#navigation").css("display", "none");
-    $("div.summary").css("display", "block");
-    $("div.meta-data").css("display", "block");
-    $("div.icon").css("display", "block");
-    $("div.channel").css("display", "none");
-    $("ul.images").css("display", "block");
+    $("div.single-article").css("display", "block");
+    $("div.article-list").css("display", "none");
+
     bottom_bar("options", "", "install");
     window_status = "single-article";
   }
 
   function open_options() {
-    let $focused = $(":focus");
-    $("div#options div").css("display", "none");
-    $("div#options").css("display", "block");
-    $("div#options div#" + article_id).css("display", "block");
-    $("div#options div#" + article_id + " div").css("display", "block");
+    $("div.options").css("display", "none");
+    focused = 0;
+    $("article#" + article_id)
+      .next()
+      .css("display", "block");
+    $("article#" + article_id)
+      .next()
+      .children()
+      .first()
+      .focus();
+
     bottom_bar("", "", "");
-    $("div#options div#" + article_id + " div:first").focus();
     window_status = "options";
   }
 
   function open_about() {
-    article_id = $(":focus").attr("id");
-    alert(article_id);
-    $("div#about").css("display", "block");
-    $("div#about div#inner").focus();
+    document.querySelector("div#about").style.display = "block";
+    document.querySelector("div#about div#inner").focus();
     document.getElementById("top").scrollIntoView();
+
     bottom_bar("", "", "");
     window_status = "about";
   }
 
-  const search_listener = document.querySelector('input[type="search"]');
+  function close_about() {
+    document.querySelector("div#about").style.display = "none";
+    document.querySelector("article#search").focus();
+
+    bottom_bar("", "", "");
+    window_status = "about";
+  }
+
+  const search_listener = document.querySelector("article#search input");
 
   search_listener.addEventListener("focus", (event) => {
     bottom_bar("scan", "select", "about");
@@ -552,16 +494,34 @@ $(document).ready(function () {
     };
   }
 
+  ///////////////////////////
+  ////RATING////////////////
+  //////////////////////////
+
   let rating_stars = 0;
-  $("div#rating-wrapper input.star").bind("keyup", function () {
-    switch ($(this).val()) {
+
+  let stars_listener = document.querySelector("div#rating-wrapper input.star");
+
+  stars_listener.addEventListener("blur", (event) => {
+    document.querySelector("div#stars").style.fontSize = "0.8rem";
+
+    stars_listener.value = "";
+  });
+
+  stars_listener.addEventListener("focus", (event) => {
+    document.querySelector("div#stars").style.fontSize = "1rem";
+  });
+
+  window.addEventListener("keyup", (event) => {
+    switch (stars_listener.value) {
       case "0":
         $("div#stars span:nth-child(1)").css("color", "white");
         $("div#stars span:nth-child(2)").css("color", "white");
         $("div#stars span:nth-child(3)").css("color", "white");
         $("div#stars span:nth-child(4)").css("color", "white");
         $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = $(this).val();
+        rating_stars = 0;
+        stars_listener.value = "";
 
         break;
       case "1":
@@ -570,7 +530,8 @@ $(document).ready(function () {
         $("div#stars span:nth-child(3)").css("color", "white");
         $("div#stars span:nth-child(4)").css("color", "white");
         $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = $(this).val();
+        rating_stars = 1;
+        stars_listener.value = "";
 
         break;
       case "2":
@@ -579,7 +540,8 @@ $(document).ready(function () {
         $("div#stars span:nth-child(3)").css("color", "white");
         $("div#stars span:nth-child(4)").css("color", "white");
         $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = $(this).val();
+        rating_stars = 2;
+        stars_listener.value = "";
 
         break;
       case "3":
@@ -588,7 +550,8 @@ $(document).ready(function () {
         $("div#stars span:nth-child(3)").css("color", "yellow");
         $("div#stars span:nth-child(4)").css("color", "white");
         $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = $(this).val();
+        rating_stars = 3;
+        stars_listener.value = "";
 
         break;
       case "4":
@@ -597,7 +560,8 @@ $(document).ready(function () {
         $("div#stars span:nth-child(3)").css("color", "yellow");
         $("div#stars span:nth-child(4)").css("color", "yellow");
         $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = $(this).val();
+        rating_stars = 4;
+        stars_listener.value = "";
 
         break;
       case "5":
@@ -606,21 +570,11 @@ $(document).ready(function () {
         $("div#stars span:nth-child(3)").css("color", "yellow");
         $("div#stars span:nth-child(4)").css("color", "yellow");
         $("div#stars span:nth-child(5)").css("color", "yellow");
-        rating_stars = $(this).val();
+        rating_stars = 5;
+        stars_listener.value = "";
 
         break;
     }
-  });
-
-  $("div#rating-wrapper input.star").focus(function () {
-    $("div#stars").css("font-size", "1rem");
-  });
-  $("div#rating-wrapper textarea").focus(function () {
-    $("div#stars").css("font-size", "0.8rem");
-  });
-
-  $("div#rating-wrapper input.star").bind("keydown", function () {
-    $(this).val("");
   });
 
   function xhr_callback(data) {
@@ -639,6 +593,52 @@ $(document).ready(function () {
     }
   }
 
+  ////////////////////
+  ///Read Rating/////
+  ///////////////////
+
+  function ratings_callback(data) {
+    if (data.ratings.length > 0) {
+      apps_data.push([data.appid, data.ratings]);
+    }
+
+    data.ratings.forEach(function (item) {
+      let stars = "";
+      switch (item.points) {
+        case 0:
+          stars = "";
+          break;
+        case 1:
+          stars = "★";
+          break;
+        case 2:
+          stars = "★ ★";
+          break;
+        case 3:
+          stars = "★ ★ ★";
+          break;
+        case 4:
+          stars = "★ ★ ★ ★";
+          break;
+        case 5:
+          stars = "★ ★ ★  ★  ★";
+          break;
+      }
+
+      let app = document.querySelector("#" + article_id);
+      let elem_stars = document.createElement("div");
+      elem_stars.classList.add("rating-points");
+      elem_stars.textContent = stars;
+
+      let elem_description = document.createElement("div");
+      elem_description.classList.add("rating-description");
+      elem_description.textContent = item.description;
+
+      app.append(elem_stars);
+      app.append(elem_description);
+    });
+  }
+
   //////////////////////////
   ////KEYPAD TRIGGER////////////
   /////////////////////////
@@ -649,19 +649,14 @@ $(document).ready(function () {
     switch (evt.key) {
       case "Enter":
         if (window_status == "article-list") {
-          show_article();
+          show_article(document.activeElement.getAttribute("data-slug"));
         }
 
         if (window_status == "options") {
-          console.log($(":focus").attr("tabindex"));
-
-          if ($(":focus").attr("tabindex") === "0") {
+          if (document.activeElement.hasAttribute("data-slug")) {
             open_rating();
           }
-          if (
-            $(":focus").attr("tabindex") == "1" ||
-            $(":focus").attr("tabindex") == "2"
-          ) {
+          if (document.activeElement.hasAttribute("data-url")) {
             open_url();
           }
         }
@@ -672,15 +667,30 @@ $(document).ready(function () {
           break;
         }
 
+        if (window_status == "single-article") {
+          document.querySelector("div#app-panels-inner").scrollBy(0, 15);
+          break;
+        }
+
         nav("+1");
+
         break;
 
       case "ArrowUp":
+        if (window_status == "single-article") {
+          document.querySelector("div#app-panels-inner").scrollBy(0, -15);
+          break;
+        }
+
         if (window_status == "about") {
+          break;
+        }
+        if (window_status == "single-article") {
           break;
         }
 
         nav("-1");
+
         break;
 
       case "ArrowLeft":
@@ -791,10 +801,8 @@ $(document).ready(function () {
 
         if (window_status == "about") {
           evt.preventDefault();
-
-          $("div#about").css("display", "none");
+          close_about();
           show_article_list();
-          //$("div#bottom-bar div#button-center").css("width", "30%");
 
           break;
         }
@@ -803,6 +811,7 @@ $(document).ready(function () {
           evt.preventDefault();
 
           document.getElementById("qr-screen").hidden = true;
+          show_article_list();
 
           break;
         }
@@ -824,5 +833,4 @@ $(document).ready(function () {
   }
 
   document.addEventListener("keydown", handleKeyDown);
-  init();
 });
