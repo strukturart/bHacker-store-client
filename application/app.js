@@ -509,6 +509,9 @@ jQuery(function () {
     for (; i <= 5; i++) {
       $(`div#stars span:nth-child(${i})`).css("color", "white");
     }
+    rating_stars = document.querySelector("div#rating-wrapper input.star")
+      .value;
+    document.querySelector("div#rating-wrapper input.star").value = "";
   });
 
   function xhr_callback(data) {
@@ -676,7 +679,6 @@ jQuery(function () {
             temp = document.createElement("div");
           temp.innerHTML = body;
           let comment = temp.textContent || temp.innerText;
-
           send_rating(
             get_userId(),
             get_userId(),
