@@ -31,7 +31,6 @@ function init() {
     document.querySelector(
       "div#message-box img.icon-1"
     ).style.animationPlayState = "running";
-    document.querySelector("div#message-box div").style.display = "none";
   }
 
   DownloadCounter.load().then((_) => {
@@ -377,8 +376,8 @@ jQuery(function () {
     $("article").css("display", "block");
     $("div.article-list").css("display", "block");
     $("div.single-article").css("display", "none");
-    $("div.rating-item").remove();
     panels_list(panels[current_panel]);
+    $("div[class*=rating]").remove();
 
     bottom_bar("", "select", "about");
     window_status = "article-list";
@@ -455,7 +454,7 @@ jQuery(function () {
     document.querySelector("div#about").style.display = "block";
     document.querySelector("div#about div#inner").focus();
     document.getElementById("top").scrollIntoView();
-
+    article_id = document.activeElement.getAttribute("id");
     bottom_bar("", "", "");
     window_status = "about";
   }
@@ -634,8 +633,8 @@ jQuery(function () {
       elem_description.classList.add("rating-description");
       elem_description.textContent = item.description;
 
-      app.append(elem_stars);
-      app.append(elem_description);
+      app.appendChild(elem_stars);
+      app.appendChild(elem_description);
     });
   }
 
@@ -648,6 +647,9 @@ jQuery(function () {
 
     switch (evt.key) {
       case "Enter":
+        if (window_status == "about" || window_status == "search") {
+          break;
+        }
         if (window_status == "article-list") {
           show_article(document.activeElement.getAttribute("data-slug"));
         }
@@ -785,7 +787,6 @@ jQuery(function () {
         if (isInSearchField) break;
         if (evt.target.id == "search" && evt.target.value == "") {
           evt.preventDefault();
-
           $("article:not(article#search)").css("display", "block");
         }
 
@@ -803,14 +804,12 @@ jQuery(function () {
           evt.preventDefault();
           close_about();
           show_article_list();
-
           break;
         }
 
         if (window_status == "scan") {
           evt.preventDefault();
-
-          document.getElementById("qr-screen").hidden = true;
+          document.getElementById("qr-screen").hidden = false;
           show_article_list();
 
           break;

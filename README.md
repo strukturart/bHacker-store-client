@@ -35,7 +35,7 @@ Click "Install and Run" button.
 
 ## TODO
 
- - offline version
+- offline version
 
 ## Donation
 
