@@ -40,7 +40,7 @@ function createUserId() {
   random = random.toString();
   let timestamp = Date.now();
   timestamp = timestamp.toString();
-  let userId = "anonymous-" + random + timestamp;
+  let userId = random + timestamp;
   return userId;
 }
 
@@ -49,7 +49,6 @@ function get_userId() {
 
   //if id not set - do it
   if (userId == null) {
-    toaster("first time", 3000);
     localStorage.setItem("userId", createUserId());
     create_user(localStorage.getItem("userId"), localStorage.getItem("userId"));
     return userId;

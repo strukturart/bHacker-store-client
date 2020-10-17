@@ -498,81 +498,16 @@ jQuery(function () {
   //////////////////////////
 
   let rating_stars = 0;
-
-  let stars_listener = document.querySelector("div#rating-wrapper input.star");
-
-  stars_listener.addEventListener("blur", (event) => {
-    document.querySelector("div#stars").style.fontSize = "0.8rem";
-
-    stars_listener.value = "";
-  });
-
-  stars_listener.addEventListener("focus", (event) => {
-    document.querySelector("div#stars").style.fontSize = "1rem";
-  });
-
-  window.addEventListener("keyup", (event) => {
-    switch (stars_listener.value) {
-      case "0":
-        $("div#stars span:nth-child(1)").css("color", "white");
-        $("div#stars span:nth-child(2)").css("color", "white");
-        $("div#stars span:nth-child(3)").css("color", "white");
-        $("div#stars span:nth-child(4)").css("color", "white");
-        $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = 0;
-        stars_listener.value = "";
-
-        break;
-      case "1":
-        $("div#stars span:nth-child(1)").css("color", "yellow");
-        $("div#stars span:nth-child(2)").css("color", "white");
-        $("div#stars span:nth-child(3)").css("color", "white");
-        $("div#stars span:nth-child(4)").css("color", "white");
-        $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = 1;
-        stars_listener.value = "";
-
-        break;
-      case "2":
-        $("div#stars span:nth-child(1)").css("color", "yellow");
-        $("div#stars span:nth-child(2)").css("color", "yellow");
-        $("div#stars span:nth-child(3)").css("color", "white");
-        $("div#stars span:nth-child(4)").css("color", "white");
-        $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = 2;
-        stars_listener.value = "";
-
-        break;
-      case "3":
-        $("div#stars span:nth-child(1)").css("color", "yellow");
-        $("div#stars span:nth-child(2)").css("color", "yellow");
-        $("div#stars span:nth-child(3)").css("color", "yellow");
-        $("div#stars span:nth-child(4)").css("color", "white");
-        $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = 3;
-        stars_listener.value = "";
-
-        break;
-      case "4":
-        $("div#stars span:nth-child(1)").css("color", "yellow");
-        $("div#stars span:nth-child(2)").css("color", "yellow");
-        $("div#stars span:nth-child(3)").css("color", "yellow");
-        $("div#stars span:nth-child(4)").css("color", "yellow");
-        $("div#stars span:nth-child(5)").css("color", "white");
-        rating_stars = 4;
-        stars_listener.value = "";
-
-        break;
-      case "5":
-        $("div#stars span:nth-child(1)").css("color", "yellow");
-        $("div#stars span:nth-child(2)").css("color", "yellow");
-        $("div#stars span:nth-child(3)").css("color", "yellow");
-        $("div#stars span:nth-child(4)").css("color", "yellow");
-        $("div#stars span:nth-child(5)").css("color", "yellow");
-        rating_stars = 5;
-        stars_listener.value = "";
-
-        break;
+  $("div#rating-wrapper input.star").bind("keyup", function () {
+    var val = Number($(this).val());
+    var i = 0;
+    for (; i <= val; i++) {
+      if (i > 0) {
+        $(`div#stars span:nth-child(${i})`).css("color", "yellow");
+      }
+    }
+    for (; i <= 5; i++) {
+      $(`div#stars span:nth-child(${i})`).css("color", "white");
     }
   });
 
