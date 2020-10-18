@@ -8,6 +8,7 @@
   --color-five: rgb(38, 38, 38);
   --color-six: rgb(78, 206, 144);
   --color-seven: gainsboro;
+  scrollbar-color: #0a4c95 #c2d2e4;
 }
 
 @font-face {
@@ -23,14 +24,6 @@
   margin: 0px;
   box-sizing: border-box;
   -webkit-appearance: none;
-}
-
-::-webkit-scrollbar {
-  width: 0 !important;
-  height: 0 !important;
-  background-color: transparent !important;
-  display: none !important;
-  overflow: -moz-scrollbars-none;
 }
 
 :focus {
@@ -62,7 +55,7 @@ body {
   line-height: 1.4rem;
   height: 100%;
   margin: 0;
-  overflow-y: scroll;
+  overflow: hidden;
 }
 
 h1 {
@@ -165,7 +158,7 @@ div#about {
   left: 0;
   background: white;
   z-index: 1;
-  overflow: scroll;
+  overflow-y: scroll;
   height: 100%;
   margin: 0 0 50px 0;
   display: none;
@@ -175,7 +168,7 @@ div#about div#inner {
   position: relative;
   padding: 5px 5px 55px 5px;
   margin: 0 0 80px 0;
-  overflow: scroll;
+  overflow-y: scroll;
   height: 98%;
   background: silver;
 }
@@ -217,7 +210,8 @@ div#app {
 
 div#app-panels div#app-panels-inner {
   height: 84vh;
-  overflow-y: scroll;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 div#app div#app-panels article {
@@ -226,7 +220,7 @@ div#app div#app-panels article {
   min-width: 95vw;
   max-height: 90%;
   padding: 4px 4px 4px 4px;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
   position: relative;
 }
@@ -234,17 +228,17 @@ div#app div#app-panels article {
 article#search {
   font-weight: normal;
   min-width: 95vw;
-  height: 42px;
-  padding: 5px;
+  height: 39px;
   background: silver;
-  text-align: center;
   overflow: hidden;
+  text-align: center;
 }
 
 article#search input {
   height: 30px;
   padding: 3px;
   width: 80%;
+  overflow: hidden;
 }
 
 div#app div#app-panels {

@@ -691,13 +691,15 @@ jQuery(function () {
       case "8":
       case "SoftLeft":
         if (window_status == "search") {
+          window_status = "scan";
+
           start_scan(function (callback) {
             let slug = callback.replace("bhackers:", "");
             show_article(slug);
           });
 
           bottom_bar("", "", "");
-          window_status = "scan";
+          break;
         }
 
         if (window_status == "rating") {
@@ -748,6 +750,13 @@ jQuery(function () {
         break;
 
       case "Backspace":
+        if (window_status == "scan") {
+          evt.preventDefault();
+          document.getElementById("qr-screen").hidden = true;
+          show_article_list();
+          break;
+        }
+
         if (isInSearchField) break;
         if (evt.target.id == "search" && evt.target.value == "") {
           evt.preventDefault();
@@ -768,14 +777,6 @@ jQuery(function () {
           evt.preventDefault();
           close_about();
           show_article_list();
-          break;
-        }
-
-        if (window_status == "scan") {
-          evt.preventDefault();
-          document.getElementById("qr-screen").hidden = false;
-          show_article_list();
-
           break;
         }
 
