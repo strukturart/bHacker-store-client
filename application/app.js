@@ -12,7 +12,8 @@ let update_time;
 let apps_rating = new Array();
 let co;
 let contributors = new Array();
-
+//store current article
+let article_id;
 //////////////////////////////
 //fetch-database////
 //////////////////////////////
@@ -320,15 +321,99 @@ document.querySelector("article#search").onfocus = function () {
   document.querySelector("article#search input").focus();
 };
 
+///////////////////////////
+////RATING////////////////
+//////////////////////////
+
+let rating_stars = 0;
+document
+  .querySelector("div#rating-wrapper input.star")
+  .addEventListener("keyup", function () {
+    var val = Number(this.value);
+    var i = 0;
+    for (; i <= val; i++) {
+      if (i > 0) {
+        document.querySelector(`div#stars span:nth-child(${i})`).style.color =
+          "yellow";
+      }
+    }
+    for (; i <= 5; i++) {
+      document.querySelector(`div#stars span:nth-child(${i})`).style.color =
+        "white";
+    }
+    rating_stars = document.querySelector("div#rating-wrapper input.star")
+      .value;
+    document.querySelector("div#rating-wrapper input.star").value = "";
+  });
+
+function xhr_callback(data) {
+  if (data == 201) {
+    toaster("Thank you for your rating!", 3000);
+    close_rating();
+  }
+  if (data == 400) {
+    toaster("I can't send anything without a rating", 3000);
+  }
+  if (data == 409) {
+    toaster("You already posted a review for this app", 3000);
+  }
+  if (data == "Network Error") {
+    toaster("Network Error", 3000);
+  }
+}
+
+////////////////////
+///Read Rating/////
+///////////////////
+
+function ratings_callback(data) {
+  if (data.ratings.length > 0) {
+    apps_data.push([data.appid, data.ratings]);
+  }
+
+  data.ratings.forEach(function (item) {
+    let stars = "";
+    switch (item.points) {
+      case 0:
+        stars = "";
+        break;
+      case 1:
+        stars = "★";
+        break;
+      case 2:
+        stars = "★ ★";
+        break;
+      case 3:
+        stars = "★ ★ ★";
+        break;
+      case 4:
+        stars = "★ ★ ★ ★";
+        break;
+      case 5:
+        stars = "★ ★ ★  ★  ★";
+        break;
+    }
+
+    let app = document.activeElement;
+    let elem_stars = document.createElement("div");
+    elem_stars.classList.add("rating-points");
+    elem_stars.textContent = stars;
+
+    let elem_description = document.createElement("div");
+    elem_description.classList.add("rating-description");
+    elem_description.textContent = item.description;
+
+    app.appendChild(elem_stars);
+    app.appendChild(elem_description);
+  });
+}
+
 jQuery(function () {
   init();
 
   ////////////////////
   ////SHOW ARTICLE///
   ///////////////////
-
-  //store current article
-  let article_id;
 
   function show_article(app) {
     document.getElementById("app-panels-inner").style.height = "94vh";
@@ -338,13 +423,25 @@ jQuery(function () {
     article_id = document.activeElement.getAttribute("id");
 
     if (document.activeElement.getAttribute("class") != "About") {
-      $("article").css("display", "none");
+      document.querySelector("div#navigation").style.display = "none";
+
+      let elm1 = document.querySelectorAll("article");
+      for (var i = 0; i < elm1.length; i++) {
+        elm1[i].style.display = "none";
+      }
 
       document.activeElement.style.display = "block";
 
-      $("div#navigation").css("display", "none");
-      $("div.single-article").css("display", "block");
-      $("div.article-list").css("display", "none");
+      let elm2 = document.querySelectorAll("div.single-article");
+      for (var i = 0; i < elm2.length; i++) {
+        elm2[i].style.display = "block";
+      }
+
+      let elm3 = document.querySelectorAll("div.article-list");
+      for (var i = 0; i < elm3.length; i++) {
+        elm3[i].style.display = "none";
+      }
+
       if (!offline) {
         bottom_bar("options", "", "install");
       } else {
@@ -373,9 +470,22 @@ jQuery(function () {
     document.getElementById("app-panels-inner").scrollTo(0, 0);
 
     document.getElementById(article_id).focus();
-    $("article").css("display", "block");
-    $("div.article-list").css("display", "block");
-    $("div.single-article").css("display", "none");
+
+    let elm1 = document.querySelectorAll("article");
+    for (var i = 0; i < elm1.length; i++) {
+      elm1[i].style.display = "block";
+    }
+
+    let elm2 = document.querySelectorAll("div.single-article");
+    for (var i = 0; i < elm2.length; i++) {
+      elm2[i].style.display = "none";
+    }
+
+    let elm3 = document.querySelectorAll("div.article-list");
+    for (var i = 0; i < elm3.length; i++) {
+      elm3[i].style.display = "block";
+    }
+
     panels_list(panels[current_panel]);
     $("div[class*=rating]").remove();
 
@@ -491,89 +601,6 @@ jQuery(function () {
       var appsRecord = request.result;
       appsRecord[appsRecord.length - 1].launch();
     };
-  }
-
-  ///////////////////////////
-  ////RATING////////////////
-  //////////////////////////
-
-  let rating_stars = 0;
-  $("div#rating-wrapper input.star").bind("keyup", function () {
-    var val = Number($(this).val());
-    var i = 0;
-    for (; i <= val; i++) {
-      if (i > 0) {
-        $(`div#stars span:nth-child(${i})`).css("color", "yellow");
-      }
-    }
-    for (; i <= 5; i++) {
-      $(`div#stars span:nth-child(${i})`).css("color", "white");
-    }
-    rating_stars = document.querySelector("div#rating-wrapper input.star")
-      .value;
-    document.querySelector("div#rating-wrapper input.star").value = "";
-  });
-
-  function xhr_callback(data) {
-    if (data == 201) {
-      toaster("Thank you for your rating!", 3000);
-      close_rating();
-    }
-    if (data == 400) {
-      toaster("I can't send anything without a rating", 3000);
-    }
-    if (data == 409) {
-      toaster("You already posted a review for this app", 3000);
-    }
-    if (data == "Network Error") {
-      toaster("Network Error", 3000);
-    }
-  }
-
-  ////////////////////
-  ///Read Rating/////
-  ///////////////////
-
-  function ratings_callback(data) {
-    if (data.ratings.length > 0) {
-      apps_data.push([data.appid, data.ratings]);
-    }
-
-    data.ratings.forEach(function (item) {
-      let stars = "";
-      switch (item.points) {
-        case 0:
-          stars = "";
-          break;
-        case 1:
-          stars = "★";
-          break;
-        case 2:
-          stars = "★ ★";
-          break;
-        case 3:
-          stars = "★ ★ ★";
-          break;
-        case 4:
-          stars = "★ ★ ★ ★";
-          break;
-        case 5:
-          stars = "★ ★ ★  ★  ★";
-          break;
-      }
-
-      let app = document.querySelector("#" + article_id);
-      let elem_stars = document.createElement("div");
-      elem_stars.classList.add("rating-points");
-      elem_stars.textContent = stars;
-
-      let elem_description = document.createElement("div");
-      elem_description.classList.add("rating-description");
-      elem_description.textContent = item.description;
-
-      app.appendChild(elem_stars);
-      app.appendChild(elem_description);
-    });
   }
 
   //////////////////////////
