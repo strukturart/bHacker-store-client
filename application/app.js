@@ -3,7 +3,7 @@
 let page = 0;
 let window_status = "article-list";
 let dataSet;
-let panels = ["All"];
+let panels = ["All", "Ratings"];
 let current_panel = 0;
 let app_slug;
 let offline = false;
@@ -143,6 +143,8 @@ function addAppList(callback) {
       item_tracking = "no";
     }
 
+    get_ratings(item_slug, ratings_callback);
+
     counter++;
     apps_data.push({
       images: images,
@@ -173,6 +175,9 @@ function addAppList(callback) {
 }
 
 function addAppList_callback(data) {
+  setTimeout(() => {
+    console.log(JSON.stringify(apps_rating));
+  }, 1000);
   //categories - panels
   pep = pep.split(",");
   pep.forEach((c) => {
@@ -368,7 +373,7 @@ function xhr_callback(data) {
 
 function ratings_callback(data) {
   if (data.ratings.length > 0) {
-    apps_data.push([data.appid, data.ratings]);
+    apps_rating.push([data.appid, data.ratings]);
   }
 
   data.ratings.forEach(function (item) {
@@ -416,6 +421,8 @@ jQuery(function () {
   ///////////////////
 
   function show_article(app) {
+    if (document.activeElement.getAttribute("data-slug") == null) return false;
+
     document.getElementById("app-panels-inner").style.height = "94vh";
     document.querySelector("div#app-panels-inner").scrollTo(0, 0);
     document.querySelector("div#app").style.margin = "0 0 0 0";
@@ -690,6 +697,7 @@ jQuery(function () {
 
       case "8":
       case "SoftLeft":
+        if (window_status == "about") break;
         if (window_status == "search") {
           window_status = "scan";
 
@@ -728,6 +736,8 @@ jQuery(function () {
 
       case "9":
       case "SoftRight":
+        if (window_status == "about") break;
+
         if (window_status == "article-list" || window_status == "search") {
           open_about();
           break;
