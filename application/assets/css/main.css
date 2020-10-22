@@ -301,8 +301,36 @@ div#app div#app-panels article ul.images li img {
   display: block;
 }
 
-div.rating-description {
+ul.ratings {
+  display: none;
+}
+
+li.rating-description {
   margin: 0 0 10px 0;
+}
+
+li.rating-points-0:after {
+  content: "";
+}
+
+li.rating-points-1:after {
+  content: "★";
+}
+
+li.rating-points-2:after {
+  content: "★ ★";
+}
+
+li.rating-points-3:after {
+  content: "★ ★ ★";
+}
+
+li.rating-points-4:after {
+  content: "★ ★ ★ ★";
+}
+
+li.rating-points-5:after {
+  content: "★ ★ ★ ★ ★";
 }
 
 /*////////////
