@@ -12,6 +12,16 @@ let update_time;
 let apps_rating = new Array();
 let co;
 let contributors = new Array();
+
+let col = [
+  "rgba(240, 221, 50,0.5)",
+  "rgba(120, 120, 151,0.2)",
+  "rgba(221,91,169,0.5)",
+  "rgba(129,204,177,0.2)",
+  "rgb(100,175,130)",
+  "rgb(206,94,66)",
+];
+
 //store current article
 let article_id;
 //////////////////////////////
@@ -177,26 +187,38 @@ function addAppList_callback(data) {
   bottom_bar("scan", "select", "about");
 
   setTimeout(() => {
-    console.log(JSON.stringify(apps_data));
     renderHello();
-  }, 1000);
+    article_animation();
 
-  DownloadCounter.load().then((_) => {
-    const apps_article = document.querySelectorAll("div#apps article");
-    for (let i = 0; i < apps_article.length; i++) {
-      const appId = apps_article[i].getAttribute("data-slug");
+    DownloadCounter.load().then((_) => {
+      const apps_article = document.querySelectorAll("div#apps article");
+      for (let i = 0; i < apps_article.length; i++) {
+        const appId = apps_article[i].getAttribute("data-slug");
 
-      if (appId) {
-        const dl_section = apps_article[i].querySelector("div.dl-cnt");
-        const count = DownloadCounter.getForApp(appId);
-        dl_section.innerHTML = "<span>Downloads </span>" + count;
-
-        if (dl_section && count !== -1) {
+        if (appId) {
+          const dl_section = apps_article[i].querySelector("div.dl-cnt");
+          const count = DownloadCounter.getForApp(appId);
           dl_section.innerHTML = "<span>Downloads </span>" + count;
+
+          if (dl_section && count !== -1) {
+            dl_section.innerHTML = "<span>Downloads </span>" + count;
+          }
         }
       }
-    }
-  });
+    });
+  }, 1000);
+}
+
+////////////////////////
+//Animation start//////
+///////////////////////
+function article_animation() {
+  let pe = document.querySelectorAll("article");
+  for (let i = 0; i < pe.length; i++) {
+    setTimeout(() => {
+      pe[i].style.opacity = "1";
+    }, i * 100);
+  }
 }
 
 ////////////////////////
@@ -329,6 +351,8 @@ function nav_panels(left_right) {
     document.querySelector("div#navigation").style.display = "block";
     document.querySelector("div#app").style.margin = "30px 0 0 0";
   }
+
+  random_background();
 }
 
 //up - down
@@ -367,7 +391,28 @@ function nav(param) {
     var scrollDiv = articles[focused].offsetTop + 30;
     window.scrollTo({ top: scrollDiv, behavior: "smooth" });
   }
+
+  random_background();
 }
+
+function random_background() {
+  function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+
+  if (document.activeElement.tagName == "ARTICLE") {
+    let elem = document.querySelectorAll("article");
+    for (let i = 1; i < elem.length; i++) {
+      elem[i].style.background = "white";
+    }
+    document.activeElement.style.background = col[randomNumber(0, 5)];
+  }
+}
+
+document.querySelector("article").onfocus = function () {
+  alert("hey");
+  document.querySelector("article").style.background = "red";
+};
 
 document.querySelector("article#search").onfocus = function () {
   document.querySelector("article#search input").focus();
@@ -425,223 +470,213 @@ function ratings_callback(data) {
   }
 }
 
-jQuery(function () {
-  ////////////////////
-  ////SHOW ARTICLE///
-  ///////////////////
+////////////////////
+////SHOW ARTICLE///
+///////////////////
 
-  function show_article(app) {
-    if (document.activeElement.getAttribute("data-slug") == null) return false;
+function show_article(app) {
+  if (document.activeElement.getAttribute("data-slug") == null) return false;
 
-    document.getElementById("app-panels-inner").style.height = "94vh";
-    document.querySelector("div#app-panels-inner").scrollTo(0, 0);
-    document.querySelector("div#app").style.margin = "0 0 0 0";
+  document.getElementById("app-panels-inner").style.height = "94vh";
+  document.querySelector("div#app-panels-inner").scrollTo(0, 0);
+  document.querySelector("div#app").style.margin = "0 0 0 0";
 
-    article_id = document.activeElement.getAttribute("id");
+  article_id = document.activeElement.getAttribute("id");
 
-    if (document.activeElement.getAttribute("class") != "About") {
-      document.querySelector("div#navigation").style.display = "none";
-
-      let elm1 = document.querySelectorAll("article");
-      for (var i = 0; i < elm1.length; i++) {
-        elm1[i].style.display = "none";
-      }
-
-      document.activeElement.style.display = "block";
-
-      let elm2 = document.querySelectorAll("div.single-article");
-      for (var i = 0; i < elm2.length; i++) {
-        elm2[i].style.display = "block";
-      }
-
-      let elm3 = document.querySelectorAll("div.article-list");
-      for (var i = 0; i < elm3.length; i++) {
-        elm3[i].style.display = "none";
-      }
-
-      let elm4 = document.querySelectorAll("ul.ratings");
-      for (var i = 0; i < elm4.length; i++) {
-        elm4[i].style.display = "block";
-      }
-
-      if (!offline) {
-        bottom_bar("options", "", "install");
-      } else {
-        bottom_bar("", "", "");
-      }
-      //get ratinngs
-      //get_ratings($("#" + article_id).data("slug"), ratings_callback);
-      window_status = "single-article";
-    }
-  }
-
-  /////////////////////
-  ///SHOW ARTICLE-LIST
-  ////////////////////
-
-  function show_article_list() {
-    document.getElementById("app-panels-inner").style.height = "84vh";
-
-    if (current_panel == 0) {
-      document.querySelector("div#app").style.margin = "5px 0 0 0";
-    }
-    if (current_panel != 0) {
-      document.querySelector("div#app").style.margin = "30px 0 0 0";
-      $("div#navigation").css("display", "block");
-    }
-    document.getElementById("app-panels-inner").scrollTo(0, 0);
-
-    document.getElementById(article_id).focus();
+  if (document.activeElement.getAttribute("class") != "About") {
+    document.querySelector("div#navigation").style.display = "none";
 
     let elm1 = document.querySelectorAll("article");
     for (var i = 0; i < elm1.length; i++) {
-      elm1[i].style.display = "block";
+      elm1[i].style.display = "none";
     }
+
+    document.activeElement.style.display = "block";
 
     let elm2 = document.querySelectorAll("div.single-article");
     for (var i = 0; i < elm2.length; i++) {
-      elm2[i].style.display = "none";
+      elm2[i].style.display = "block";
     }
 
     let elm3 = document.querySelectorAll("div.article-list");
     for (var i = 0; i < elm3.length; i++) {
-      elm3[i].style.display = "block";
+      elm3[i].style.display = "none";
     }
 
     let elm4 = document.querySelectorAll("ul.ratings");
     for (var i = 0; i < elm4.length; i++) {
-      elm4[i].style.display = "none";
+      elm4[i].style.display = "block";
     }
 
-    panels_list(panels[current_panel]);
-    $("div[class*=rating]").remove();
-
-    bottom_bar("", "select", "about");
-    window_status = "article-list";
-  }
-
-  //////////////////
-  //download app///
-  /////////////////
-
-  function install_app() {
     if (!offline) {
-      let link_target = "";
-      let targetElement = $(":focus");
-      link_target = $(targetElement).data("download");
-      app_slug = $(targetElement).data("slug");
-      download_file(link_target);
+      bottom_bar("options", "", "install");
+    } else {
+      bottom_bar("", "", "");
     }
-  }
-
-  function open_url() {
-    let targetElement = $(":focus");
-    let link_target = $(targetElement).data("url");
-    window.open(link_target, "_self ");
-  }
-
-  function open_rating() {
-    document.querySelector("div#rating-wrapper").style.display = "block";
-    document.querySelector("div#rating-wrapper input").focus();
-    rating_stars = 0;
-    get_userId();
-
-    bottom_bar("send", "", "close");
-    window_status = "rating";
-  }
-
-  function close_rating() {
-    $("div#rating-wrapper").css("display", "none");
-    $("div#rating-wrapper input").val("");
-    $("div#rating-wrapper textarea").val("");
-    rating_stars = 0;
-
-    bottom_bar("", "", "");
-    open_options();
-  }
-
-  function close_options() {
-    let elm = document.querySelectorAll("div.options");
-    for (var i = 0; i < elm.length; i++) {
-      elm[i].style.display = "none";
-    }
-    document.querySelector("article#" + article_id).focus();
-    let elm1 = document.querySelectorAll("div.single-article");
-    for (var i = 0; i < elm1.length; i++) {
-      elm1[i].style.display = "block";
-    }
-
-    let elm2 = document.querySelectorAll("div.article-list");
-    for (var i = 0; i < elm2.length; i++) {
-      elm2[i].style.display = "noe";
-    }
-
-    bottom_bar("options", "", "install");
     window_status = "single-article";
   }
+}
 
-  function open_options() {
-    let elm = document.querySelectorAll("div.options");
-    for (var i = 0; i < elm.length; i++) {
-      elm[i].style.display = "none";
-    }
-    focused = 0;
-    document.getElementById(
+/////////////////////
+///SHOW ARTICLE-LIST
+////////////////////
+
+function show_article_list() {
+  document.getElementById("app-panels-inner").style.height = "84vh";
+
+  if (current_panel == 0) {
+    document.querySelector("div#app").style.margin = "5px 0 0 0";
+  }
+  if (current_panel != 0) {
+    document.querySelector("div#app").style.margin = "30px 0 0 0";
+    document.querySelector("div#navigation").style.display = "block";
+  }
+  document.getElementById("app-panels-inner").scrollTo(0, 0);
+
+  document.getElementById(article_id).focus();
+
+  let elm1 = document.querySelectorAll("article");
+  for (var i = 0; i < elm1.length; i++) {
+    elm1[i].style.display = "block";
+  }
+
+  let elm2 = document.querySelectorAll("div.single-article");
+  for (var i = 0; i < elm2.length; i++) {
+    elm2[i].style.display = "none";
+  }
+
+  let elm3 = document.querySelectorAll("div.article-list");
+  for (var i = 0; i < elm3.length; i++) {
+    elm3[i].style.display = "block";
+  }
+
+  let elm4 = document.querySelectorAll("ul.ratings");
+  for (var i = 0; i < elm4.length; i++) {
+    elm4[i].style.display = "none";
+  }
+
+  panels_list(panels[current_panel]);
+  bottom_bar("", "select", "about");
+  window_status = "article-list";
+}
+
+//////////////////
+//download app///
+/////////////////
+
+function install_app() {
+  if (!offline) {
+    download_file(document.activeElement.getAttribute("data-download"));
+  }
+}
+
+function open_url() {
+  window.open(document.activeElement.getAttribute("data-url"), "_self ");
+}
+
+function open_rating() {
+  document.querySelector("div#rating-wrapper").style.display = "block";
+  document.querySelector("div#rating-wrapper input").focus();
+  rating_stars = 0;
+  get_userId();
+
+  bottom_bar("send", "", "close");
+  window_status = "rating";
+}
+
+function close_rating() {
+  document.querySelector("div#rating-wrapper").style.display = "none";
+  document.querySelector("div#rating-wrapper input").value = "";
+  document.querySelector("div#rating-wrapper textarea").value = "";
+  rating_stars = 0;
+
+  bottom_bar("", "", "");
+  close_options();
+}
+
+function close_options() {
+  let elm = document.querySelectorAll("div.options");
+  for (var i = 0; i < elm.length; i++) {
+    elm[i].style.display = "none";
+  }
+  document.querySelector("article#" + article_id).focus();
+  let elm1 = document.querySelectorAll("div.single-article");
+  for (var i = 0; i < elm1.length; i++) {
+    elm1[i].style.display = "block";
+  }
+
+  let elm2 = document.querySelectorAll("div.article-list");
+  for (var i = 0; i < elm2.length; i++) {
+    elm2[i].style.display = "noe";
+  }
+
+  bottom_bar("options", "", "install");
+  window_status = "single-article";
+}
+
+function open_options() {
+  let elm = document.querySelectorAll("div.options");
+  for (var i = 0; i < elm.length; i++) {
+    elm[i].style.display = "none";
+  }
+  focused = 0;
+  document.getElementById(
+    "options-" + document.activeElement.getAttribute("data-slug")
+  ).style.display = "block";
+  document
+    .getElementById(
       "options-" + document.activeElement.getAttribute("data-slug")
-    ).style.display = "block";
-    document
-      .getElementById(
-        "options-" + document.activeElement.getAttribute("data-slug")
-      )
-      .children[0].focus();
+    )
+    .children[0].focus();
 
-    bottom_bar("", "", "");
-    window_status = "options";
-  }
+  bottom_bar("", "", "");
+  window_status = "options";
+}
 
-  function open_about() {
-    document.querySelector("div#about").style.display = "block";
-    document.querySelector("div#about div#inner").focus();
-    document.getElementById("top").scrollIntoView();
-    article_id = document.activeElement.getAttribute("id");
-    bottom_bar("", "", "");
-    window_status = "about";
-  }
+function open_about() {
+  document.querySelector("div#about").style.display = "block";
+  document.querySelector("div#about div#inner").focus();
+  document.getElementById("top").scrollIntoView();
+  article_id = document.activeElement.getAttribute("id");
+  bottom_bar("", "", "");
+  window_status = "about";
+}
 
-  function close_about() {
-    document.querySelector("div#about").style.display = "none";
-    document.querySelector("article#search").focus();
+function close_about() {
+  document.querySelector("div#about").style.display = "none";
+  document.querySelector("article#search").focus();
 
-    bottom_bar("", "", "");
-    window_status = "about";
-  }
+  bottom_bar("", "", "");
+  window_status = "about";
+}
 
-  const search_listener = document.querySelector("article#search input");
+const search_listener = document.querySelector("article#search input");
 
-  search_listener.addEventListener("focus", (event) => {
-    bottom_bar("scan", "select", "about");
-    window.scrollTo(0, 0);
-    window_status = "search";
-  });
+search_listener.addEventListener("focus", (event) => {
+  bottom_bar("scan", "select", "about");
+  window.scrollTo(0, 0);
+  window_status = "search";
+});
 
-  search_listener.addEventListener("blur", (event) => {
-    bottom_bar("", "select", "about");
-    window_status = "article-list";
-  });
+search_listener.addEventListener("blur", (event) => {
+  bottom_bar("", "select", "about");
+  window_status = "article-list";
+});
 
-  ///launch app after installation
+///launch app after installation
 
-  function launch_app() {
-    var request = window.navigator.mozApps.mgmt.getAll();
-    request.onerror = function (e) {
-      console.log("Error calling getInstalled: " + request.error.name);
-    };
-    request.onsuccess = function (e) {
-      var appsRecord = request.result;
-      appsRecord[appsRecord.length - 1].launch();
-    };
-  }
+function launch_app() {
+  var request = window.navigator.mozApps.mgmt.getAll();
+  request.onerror = function (e) {
+    console.log("Error calling getInstalled: " + request.error.name);
+  };
+  request.onsuccess = function (e) {
+    var appsRecord = request.result;
+    appsRecord[appsRecord.length - 1].launch();
+  };
+}
 
+jQuery(function () {
   //////////////////////////
   ////KEYPAD TRIGGER////////////
   /////////////////////////

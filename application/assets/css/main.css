@@ -215,7 +215,7 @@ div#app-panels div#app-panels-inner {
 }
 
 div#app div#app-panels article {
-  margin: 0px 0 10px 0;
+  margin: 0px 0 10px 0px;
   font-weight: normal;
   min-width: 95vw;
   max-height: 90%;
@@ -223,6 +223,7 @@ div#app div#app-panels article {
   overflow-y: hidden;
   overflow-x: hidden;
   position: relative;
+  opacity: 0;
 }
 
 article#search {
@@ -247,7 +248,7 @@ div#app div#app-panels {
 }
 
 div#app div#app-panels article:focus {
-  background: silver;
+  //background: rgba(0, 200, 0, 0.2);
 }
 
 div#app div#app-panels article h1 {
@@ -276,6 +277,7 @@ div#app div#app-panels article div.icon img {
 div#app div#app-panels article div.channel {
   font-size: 0.8rem;
   font-weight: bold;
+  color: rgb(2, 2, 43);
 }
 
 div#app div#app-panels article div.summary {
