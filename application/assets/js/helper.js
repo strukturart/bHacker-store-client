@@ -38,13 +38,7 @@ function notify(param_title, param_text, param_silent, requireInteraction) {
 
 //silent notification
 function toaster(text, time) {
-  document.querySelector("div#toast").textContent = text;
-  /*
-          $("div#toast").animate({ top: "0px" }, 1000, "linear", function () {
-            $("div#toast").delay(time).animate({ top: "-110vh" }, 1000);
-          });
-          */
-
+  document.querySelector("div#toast").innerHTML = text;
   var elem = document.querySelector("div#toast");
   var pos = -100;
   var id = setInterval(down, 5);
@@ -91,6 +85,6 @@ function bottom_bar(left, center, right) {
 function check_iconnection() {
   if (navigator.onLine) {
   } else {
-    toaster("No Internet connection");
+    toaster("No Internet connection", 3000);
   }
 }
