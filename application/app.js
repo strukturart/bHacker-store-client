@@ -117,24 +117,34 @@ function addAppList(callback) {
       contributors.push(just_author_name);
     }
 
+    //extract email@author
+    // false for mustache.js logic
+    let item_author_email = item_author.match(
+      /([a-zA-Z0-9._+-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi
+    );
+    if (item_author_email == null) {
+      item_author_email = false;
+    }
+
+    //donation
     if (item_donation == "") {
       donation_icon = "no";
     } else {
       donation_icon = "yes";
     }
-
+    //ads
     if (item_ads) {
       item_ads = "yes";
     } else {
       item_ads = "no";
     }
-
+    //tracking
     if (item_tracking) {
       item_tracking = "yes";
     } else {
       item_tracking = "no";
     }
-
+    //call ratings
     get_ratings(item_slug, ratings_callback);
 
     counter++;
@@ -142,6 +152,7 @@ function addAppList(callback) {
       images: images,
       title: item_title,
       author: item_author,
+      author_email: item_author_email,
       summary: item_summary,
       category: item_category,
       link: item_link,
@@ -166,7 +177,9 @@ function addAppList(callback) {
   callback("done");
 }
 
-init();
+document.addEventListener("DOMContentLoaded", (event) => {
+  init();
+});
 
 function addAppList_callback(data) {
   //categories - panels
@@ -466,7 +479,7 @@ function rating_write_callback(data) {
 function ratings_callback(data) {
   if (data.ratings.length > 0) {
     let ofind = apps_data.find((o) => o.slug === data.appid);
-    ofind["rating"] = data.ratings;
+    if (ofind) ofind["rating"] = data.ratings;
   }
 }
 
@@ -827,10 +840,6 @@ jQuery(function () {
         break;
 
       case "1":
-        let ofind = apps_data.find((o) => o.slug === "adbroot");
-        ofind["test"] = [{ test: "2" }];
-        console.log(ofind);
-
         break;
 
       case "Backspace":
