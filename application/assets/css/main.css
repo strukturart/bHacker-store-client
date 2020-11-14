@@ -247,10 +247,6 @@ div#app div#app-panels {
   position: relative;
 }
 
-div#app div#app-panels article:focus {
-  //background: rgba(0, 200, 0, 0.2);
-}
-
 div#app div#app-panels article h1 {
   font-size: 1rem;
   font-weight: bold;
@@ -578,14 +574,37 @@ div#message-box img.icon-2 {
   }
 }
 
-/* KaiOS portrait devices (240x320) */
+/*////////////////////////
+////Loading bar////////
+//////////////////////*/
 
-@media only screen and (orientation: portrait) {
-  /* styles */
+div#loading {
+  height: 10px;
+  width: 100vw;
+  background: pink;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  display: none;
 }
 
-/* KaiOS landscape devices (320x240) */
+div#loading-bar {
+  height: 10px;
+  width: 50px;
+  background: pink;
+  animation-name: loading;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
 
-@media screen and (orientation: landscape) {
-  /* styles */
+@keyframes loading {
+  from {
+    background-color: blue;
+    width: 10px;
+  }
+  to {
+    background-color: yellow;
+    width: 100vw;
+  }
 }
