@@ -1,6 +1,6 @@
 ![logo](/images/logo.png)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## bHacker-store
@@ -86,6 +86,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://notabug.org/farooqkz"><img src="https://avatars0.githubusercontent.com/u/15038218?v=4" width="100px;" alt=""/><br /><sub><b>Farooq Karimi Zadeh</b></sub></a><br /><a href="#ideas-farooqkz" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/Simon-Laux"><img src="https://avatars2.githubusercontent.com/u/18725968?v=4" width="100px;" alt=""/><br /><sub><b>Simon Laux</b></sub></a><br /><a href="https://github.com/strukturart/bHacker-store-client/commits?author=Simon-Laux" title="Code">💻</a></td>
+    <td align="center"><a href="http://strukturart.com"><img src="https://avatars0.githubusercontent.com/u/5286893?v=4" width="100px;" alt=""/><br /><sub><b>John-David Deubl</b></sub></a><br /><a href="https://github.com/strukturart/bHacker-store-client/commits?author=strukturart" title="Code">💻</a></td>
   </tr>
 </table>
 
