@@ -47,7 +47,7 @@ const BackendApi = (() => {
 
   function _saveData(dataString) {
     const json = JSON.parse(dataString);
-    if (json.version !== 1) {
+    if (json.version !== 2) {
       throw "Incompatible Data, try updating the app";
     }
     if (json.generated_at < localStorage.getItem("DATA_Timestamp")) {
