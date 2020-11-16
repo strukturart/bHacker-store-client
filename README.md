@@ -36,27 +36,6 @@ Click "Install and Run" button.
 
 - SimonLaux and the discord [community](https://discord.gg/t2CBPb)
 
-## Donation
-
-If you use the app often, please donate an amount.
-<br>
-<table class="border-0"> 
-  <tr class="border-0" >
-    <td valign="top" class="border-0">
-        <div>
-            <a href="https://paypal.me/strukturart?locale.x=de_DE" target="_blank">
-                <img src="/images/paypal.png" width="120px">
-            </a>
-        </div>
-    </td>
-    <td valign="top" class="border-0">
-        <div>
-            <div>Bitcoin</div>
-            <img src="/images/bitcoin_rcv.png" width="120px">
-        </div>
-    </td>
-  </tr>
- </table>
 
 ## Contributing
 
@@ -109,3 +88,26 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+
+## Donation
+
+If you use the app often, please donate an amount.
+<br>
+<table class="border-0"> 
+  <tr class="border-0" >
+    <td valign="top" class="border-0">
+        <div>
+            <a href="https://paypal.me/strukturart?locale.x=de_DE" target="_blank">
+                <img src="/images/paypal.png" width="120px">
+            </a>
+        </div>
+    </td>
+    <td valign="top" class="border-0">
+        <div>
+            <div>Bitcoin</div>
+            <img src="/images/bitcoin_rcv.png" width="120px">
+        </div>
+    </td>
+  </tr>
+ </table>
