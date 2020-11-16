@@ -588,15 +588,7 @@ div#loading {
   display: none;
 }
 
-div#loading-bar {
-  height: 10px;
-  width: 50px;
-  background: pink;
-  animation-name: loading;
-  animation-duration: 4s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate-reverse;
-}
+/* KaiOS landscape devices (320x240) */
 
 @keyframes loading {
   from {

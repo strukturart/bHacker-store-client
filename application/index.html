@@ -46,7 +46,14 @@
                   <div class="channel article-list">{{category}}</div>
                   <div class="single-article">
                       <div class="meta-data">
-                          <div><span>Author </span> {{author}}</div>
+                          <div>
+                              <span>Author </span> {{author}}
+                          </div>
+                          {{#maintainer}}
+                          <div>
+                              <span>Maintainer </span> {{maintainer}}
+                          </div>
+                          {{/maintainer}}
                           <div>
                               <span>License </span> {{license}}
                           </div>

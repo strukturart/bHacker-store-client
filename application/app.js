@@ -13,6 +13,7 @@ let apps_rating = new Array();
 let co;
 let contributors = new Array();
 
+//background colors
 let col = [
   "rgba(240, 221, 50,0.5)",
   "rgba(120, 120, 151,0.2)",
@@ -92,6 +93,7 @@ function addAppList(callback) {
     let item_category = data.meta.categories.toString().replace(",", " ");
     let item_tags = tag.toString().replace(",", " ");
     let item_author = data.author.toString();
+    let item_maintainer;
     let item_icon = data.icon;
     let item_license = data.license;
     let item_type = data.type;
@@ -99,6 +101,7 @@ function addAppList(callback) {
     let item_slug = data.slug;
     let images = "";
 
+    //bad hack
     if (data.meta.categories != "undefinedutility") {
       pep += data.meta.categories + ",";
     }
@@ -124,6 +127,32 @@ function addAppList(callback) {
     );
     if (item_author_email == null) {
       item_author_email = false;
+    }
+
+    //author
+    if (data.author) {
+      item_author = data.author.toString();
+      var regex = /(<)(.*?)(>)/g;
+      var matches = item_author.match(regex);
+      if (matches != null) {
+        for (var i = 0; i < 20; i++) {
+          item_author = item_author.replace(matches[i], "");
+        }
+      }
+    }
+
+    //maintainer
+    if (data.maintainer) {
+      item_maintainer = data.maintainer.toString();
+
+      var regex = /(<)(.*?)(>)/g;
+      var matches = item_maintainer.match(regex);
+
+      if (matches != null) {
+        for (var i = 0; i < 20; i++) {
+          item_maintainer = item_maintainer.replace(matches[i], "");
+        }
+      }
     }
 
     //donation
@@ -152,6 +181,7 @@ function addAppList(callback) {
       images: images,
       title: item_title,
       author: item_author,
+      maintainer: item_maintainer,
       author_email: item_author_email,
       summary: item_summary,
       category: item_category,
@@ -170,6 +200,8 @@ function addAppList(callback) {
       index: counter,
     });
   });
+
+  console.log(JSON.stringify(apps_data));
 
   update_time = moment(dataSet.generated_at).format("DD.MM.YYYY, HH:mm");
   co = contributors.sort().join(", ");
