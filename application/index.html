@@ -1,145 +1,166 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>bHacker-store</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; img-src * data: 'unsafe-inline'; connect-src * 'unsafe-inline'; frame-src *;" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; img-src * data: 'unsafe-inline'; connect-src * 'unsafe-inline'; frame-src *;"
+    />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/grid.css" />
     <link rel="stylesheet" href="assets/css/qr_reader.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="wrapper">
-        <div id="toast" class="width-100"></div>
-        <div id="loading">
-            <div id="loading-bar"></div>
+      <div id="toast" class="width-100"></div>
+      <div id="loading">
+        <div id="loading-bar"></div>
+      </div>
+
+      <!---------------->
+      <!--app-list-->
+      <!---------------->
+      <div id="app" class="flex width-100 page">
+        <div id="navigation" class="width-100">
+          <div></div>
         </div>
+        <div id="app-panels">
+          <div id="app-panels-inner">
+            <article
+              class="All"
+              id="search"
+              class="width-100 flex justify-content-spacearound"
+              tabindex="0"
+            >
+              <input type="search" />
+            </article>
+            <div id="apps"></div>
+            <script id="template" type="x-tmpl-mustache">
+              {{#data}}
+              <article tabindex="{{index}}" data-slug="{{slug}}" data-slug="{{slug}}" id="{{slug}}" class="All {{#rating}}ratings{{/rating}} {{category}}" data-name="{{title}}" data-tags="{{tags}}" data-url="{url}" data-download="{{link}}">
+                  <div class="icon single-article"><img src="{{icon}}" /></div>
+                  <h1 class="article-list">{{title}}</h1>
+                  <div class="channel article-list">{{category}}</div>
+                  <div class="single-article">
+                      <div class="meta-data">
+                          <div>
+                              <span>Author </span> {{author}}
+                          </div>
+                          <div>
+                              <span>Maintainer </span> {{maintainer}}
+                          </div>
+                          <div>
+                              <span>License </span> {{license}}
+                          </div>
+                          <div>
+                              <span>Type </span> {{type}}
+                          </div>
+                          <div>
+                              <span>Donation </span> {{donation}}
+                          </div>
+                          <div>
+                              <span>Tracking </span> {{tracking}}
+                          </div>
+                          <div>
+                              <span>Ads </span> {{ads}}
+                          </div>
+                          <div class="dl-cnt"></div>
+                      </div>
+                      <div class="summary">{{summary}}</div>
+                      <ul class="images">
+                          {{#images}}
+                          <li> <img src="{{.}}"> </li>
+                          {{/images}} {{^images}} {{/images}}
+                      </ul>
 
-        <!---------------->
-        <!--app-list-->
-        <!---------------->
-        <div id="app" class="flex width-100 page">
-            <div id="navigation" class="width-100">
-                <div></div>
-            </div>
-            <div id="app-panels">
-                <div id="app-panels-inner">
-                    <article class="All" id="search" class="width-100 flex justify-content-spacearound" tabindex="0">
-                        <input type="search" />
-                    </article>
-                    <div id="apps"></div>
-                    <script id="template" type="x-tmpl-mustache">
-                        {{#data}}
-                        <article tabindex="{{index}}" data-slug="{{slug}}" data-slug="{{slug}}" id="{{slug}}" class="All {{#rating}}ratings{{/rating}} {{category}}" data-name="{{title}}" data-tags="{{tags}}" data-url="{url}" data-download="{{link}}">
-                            <div class="icon single-article"><img src="{{icon}}" /></div>
-                            <h1 class="article-list">{{title}}</h1>
-                            <div class="channel article-list">{{category}}</div>
-                            <div class="single-article">
-                                <div class="meta-data">
-                                    <div>
-                                        <span>Author </span> {{author}}
-                                    </div>
-                                    <div>
-                                        <span>Maintainer </span> {{maintainer}}
-                                    </div>
-                                    <div>
-                                        <span>License </span> {{license}}
-                                    </div>
-                                    <div>
-                                        <span>Type </span> {{type}}
-                                    </div>
-                                    <div>
-                                        <span>Donation </span> {{donation}}
-                                    </div>
-                                    <div>
-                                        <span>Tracking </span> {{tracking}}
-                                    </div>
-                                    <div>
-                                        <span>Ads </span> {{ads}}
-                                    </div>
-                                    <div class="dl-cnt"></div>
-                                </div>
-                                <div class="summary">{{summary}}</div>
-                                <ul class="images">
-                                    {{#images}}
-                                    <li> <img src="{{.}}"> </li>
-                                    {{/images}} {{^images}} {{/images}}
-                                </ul>
+                  </div>
 
-                            </div>
-
-                            <ul class="ratings">
-                                {{#rating}}
-                                <li class="rating-points-{{points}}"></li>
-                                <li class="rating-description">{{description}}</li>
-                                {{/rating}}
-                            </ul>
+                  <ul class="ratings">
+                      {{#rating}}
+                      <li class="rating-points-{{points}}"></li>
+                      <li class="rating-description">{{description}}</li>
+                      {{/rating}}
+                  </ul>
 
 
-                        </article>
-                        <div id="options-{{slug}}" class="options">
-                            <div tabindex="0" data-slug="{{slug}}">rating</div>
-                            <div tabindex="0" data-url="{{{url}}}">source</div>
-                            <div tabindex="0" data-url="{{{donation_url}}}">donate</div>
-                            {{#author_email}}
-                            <div tabindex="0" data-url="mailto:{{{author_email}}}">email to author</div>
-                            {{/author_email}}
+              </article>
+              <div id="options-{{slug}}" class="options">
+                  <div tabindex="0" data-slug="{{slug}}">rating</div>
+                  <div tabindex="0" data-url="{{{url}}}">source</div>
+                  <div tabindex="0" data-url="{{{donation_url}}}">donate</div>
+                  {{#author_email}}
+                  <div tabindex="0" data-url="mailto:{{{author_email}}}">email to author</div>
+                  {{/author_email}}
 
-                        </div>
+              </div>
 
 
-                        {{/data}}
-                    </script>
-                </div>
-            </div>
+              {{/data}}
+            </script>
+          </div>
         </div>
+      </div>
     </div>
 
     <div id="rating-wrapper" class="flex width-100 height-100">
-        <input class="star width-100" tabindex="1" min="0" maxlength="1" size="1" type="tel" autocomplete="off" />
-        <textarea class="text" tabindex="2" rows="5" type="text"></textarea>
-        <div id="stars">
-            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-        </div>
-        <div>Press 1-5 to rate the app and write a comment.</div>
+      <input
+        class="star width-100"
+        tabindex="1"
+        min="0"
+        maxlength="1"
+        size="1"
+        type="tel"
+        autocomplete="off"
+      />
+      <textarea class="text" tabindex="2" rows="5" type="text"></textarea>
+      <div id="stars">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <div>Press 1-5 to rate the app and write a comment.</div>
     </div>
 
     <div id="bottom-bar">
-        <div class="inner flex justify-content-spacebetween width-100">
-            <div id="button-left"></div>
-            <div id="button-center"></div>
-            <div id="button-right"></div>
-        </div>
+      <div class="inner flex justify-content-spacebetween width-100">
+        <div id="button-left"></div>
+        <div id="button-center"></div>
+        <div id="button-right"></div>
+      </div>
     </div>
 
     <div id="about" class="width-100 height-100">
-        <div id="inner" tabindex="0">
-            <br />
-            <h1 id="top">bHackers</h1>
-            <p>
-                An alternative app store by free developers for free devices. The database of apps is hosted https://banana-hackers.gitlab.io/store-db , further can be added by a pull request.
-            </p>
-            <div>
-                <h1>Contributors</h1>
-                <div id="contributors"></div>
-            </div>
-            <div>
-                <h1>Respect</h1>
-                <div>
-                    Respect the licenses of the apps, it would be nice if you use app more often to support the developer with a donation.<br />Thanks!
-                </div>
+      <div id="inner" tabindex="0">
+        <br />
+        <h1 id="top">bHackers</h1>
+        <p>
+          An alternative app store by free developers for free devices. The
+          database of apps is hosted https://banana-hackers.gitlab.io/store-db ,
+          further can be added by a pull request.
+        </p>
+        <div>
+          <h1>Contributors</h1>
+          <div id="contributors"></div>
+        </div>
+        <div>
+          <h1>Respect</h1>
+          <div>
+            Respect the licenses of the apps, it would be nice if you use app
+            more often to support the developer with a donation.<br />Thanks!
+          </div>
 
-                <h1>Privacy Policy and Terms of use</h1>
-                <p>
-                    Your privacy is important to us, that&#39;s why we try to collect only the data that we need to provide the service to you.
-                </p>
-                <h2>Data that might get collected while using the app</h2>
-                <p>
-                    We rely on gitlab pages for hosting the data, this service might store cookies and save your ip address
-                    <a href="https://about.gitlab.com/privacy/">https://about.gitlab.com/privacy/</a
+          <h1>Privacy Policy and Terms of use</h1>
+          <p>
+            Your privacy is important to us, that&#39;s why we try to collect
+            only the data that we need to provide the service to you.
+          </p>
+          <h2>Data that might get collected while using the app</h2>
+          <p>
+            We rely on gitlab pages for hosting the data, this service might
+            store cookies and save your ip address
+            <a href="https://about.gitlab.com/privacy/"
+              >https://about.gitlab.com/privacy/</a
             >
           </p>
           <p>

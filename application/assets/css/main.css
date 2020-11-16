@@ -593,7 +593,7 @@ div#loading-bar {
   width: 50px;
   background: pink;
   animation-name: loading;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-iteration-count: infinite;
   animation-direction: alternate-reverse;
 }

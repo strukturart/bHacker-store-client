@@ -128,23 +128,32 @@ function addAppList(callback) {
             item_author_email = false;
         }
 
-        //contributor
-        if (data.maintainer) {
-            item_maintainer = data.maintainer.toString();
+        //author
+        if (data.author) {
 
-
+            item_author = data.author.toString();
             var regex = /(<)(.*?)(>)/g;
-            var matches = item_maintainer.match(regex);
-            if (matches != null) {
-                let tu = item_maintainer.replace(matches, "")
-
-                item_maintainer = matches
-
-                //item_maintainer = tu
-
+            var matches = item_author.match(regex);
+            if (matches == null) return false;
+            for (var i = 0; i < 20; i++) {
+                item_author = item_author.replace(matches[i], "")
             }
         }
 
+
+
+        //maintainer
+        if (data.maintainer) {
+
+            item_maintainer = data.maintainer.toString();
+
+            var regex = /(<)(.*?)(>)/g;
+            var matches = item_maintainer.match(regex);
+            if (matches == null) return false;
+            for (var i = 0; i < 20; i++) {
+                item_maintainer = item_maintainer.replace(matches[i], "")
+            }
+        }
 
         //donation
         if (item_donation == "") {
