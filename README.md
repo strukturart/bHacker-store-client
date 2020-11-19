@@ -1,6 +1,9 @@
 ![logo](/images/logo.png)
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## bHacker-store
@@ -35,7 +38,6 @@ Click "Install and Run" button.
 ## Thank you
 
 - SimonLaux and the discord [community](https://discord.gg/t2CBPb)
-
 
 ## Contributing
 
@@ -85,15 +87,16 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
-
 
 ## Donation
 
 If you use the app often, please donate an amount.
 <br>
+
 <table class="border-0"> 
   <tr class="border-0" >
     <td valign="top" class="border-0">

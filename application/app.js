@@ -520,7 +520,9 @@ function ratings_callback(data) {
 ///////////////////
 
 function show_article(app) {
-  if (document.activeElement.getAttribute("data-slug") == null) return false;
+  //if (document.activeElement.getAttribute("data-slug") == null) return false;
+  //qr scan
+  document.getElementById(app).focus();
 
   document.getElementById("app-panels-inner").style.height = "94vh";
   document.querySelector("div#app-panels-inner").scrollTo(0, 0);
