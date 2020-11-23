@@ -1,602 +1,608 @@
 /*GENERAL*/
 
 :root {
-  --color-one: black;
-  --color-two: yellow;
-  --color-three: silver;
-  --color-four: rgb(99, 99, 99);
-  --color-five: rgb(38, 38, 38);
-  --color-six: rgb(78, 206, 144);
-  --color-seven: gainsboro;
-  scrollbar-color: #0a4c95 #c2d2e4;
+    --color-one: black;
+    --color-two: yellow;
+    --color-three: silver;
+    --color-four: rgb(99, 99, 99);
+    --color-five: rgb(38, 38, 38);
+    --color-six: rgb(78, 206, 144);
+    --color-seven: gainsboro;
+    scrollbar-color: #0a4c95 #c2d2e4;
 }
 
 @font-face {
-  font-family: "Lato-Regular";
-  src: url("../fonts/Lato-Regular.ttf");
+    font-family: "Lato-Regular";
+    src: url("../fonts/Lato-Regular.ttf");
 }
 
 *,
 *:before,
 *:after {
-  border: 0px;
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
-  -webkit-appearance: none;
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    -webkit-appearance: none;
 }
 
 :focus {
-  outline: none;
+    outline: none;
 }
 
 ::-moz-focus-inner {
-  border: 0;
+    border: 0;
 }
 
 img[src=""] {
-  display: none;
+    display: none;
 }
 
 input[type="range"]::-moz-focus-outer {
-  border: 0;
+    border: 0;
 }
 
 html,
 body {
-  font-family: "Lato-Regular";
-  font-weight: 100;
-  width: 100vw;
-  max-width: 100vw;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  font-size: 1rem;
-  line-height: 1.4rem;
-  height: 100%;
-  margin: 0;
-  overflow: hidden;
+    font-family: "Lato-Regular";
+    font-weight: 100;
+    width: 100vw;
+    max-width: 100vw;
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    font-size: 1rem;
+    line-height: 1.4rem;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
 }
 
 h1 {
-  font-size: 1rem;
+    font-size: 1rem;
 }
 
 img {
-  max-width: 90vw;
-  height: auto;
-  display: block;
+    max-width: 90vw;
+    height: auto;
+    display: block;
 }
 
 .debug {
-  outline: 1px solid red;
+    outline: 1px solid red;
 }
 
 div.autocomplete-suggestions {
-  background: gray;
-  overflow: auto;
-  color: black;
-  padding: 5px 0px 0px 0;
-  white-space: nowrap;
-  overflow: hidden;
-  font-size: 1.1rem;
+    background: gray;
+    overflow: auto;
+    color: black;
+    padding: 5px 0px 0px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 1.1rem;
 }
 
 div.no-result {
-  position: fixed;
-  top: 90px;
-  border: 3px solid white;
-  background: silver;
-  padding: 3px;
-  width: 90%;
-  left: 5%;
+    position: fixed;
+    top: 90px;
+    border: 3px solid white;
+    background: silver;
+    padding: 3px;
+    width: 90%;
+    left: 5%;
 }
 
 div.autocomplete-suggestions div {
-  border: 3px solid white;
-  background: silver;
+    border: 3px solid white;
+    background: silver;
 }
 
 .autocomplete-selected {
-  background: silver;
-  color: black;
-  font-weight: bold;
+    background: silver;
+    color: black;
+    font-weight: bold;
 }
 
 .autocomplete-suggestions strong {
-  font-weight: normal;
+    font-weight: normal;
 }
 
 .autocomplete-group {
-  padding: 2px 5px;
-  color: black;
-  margin: 0 0 10px 0;
+    padding: 2px 5px;
+    color: black;
+    margin: 0 0 10px 0;
 }
 
 .autocomplete-group strong {
-  display: block;
-  border-bottom: 1px solid #000;
+    display: block;
+    border-bottom: 1px solid #000;
 }
+
 
 /*///////////////////////////
 ///HELPER////////////////*/
 
 div#toast {
-  position: fixed;
-  height: auto;
-  overflow: none;
-  top: -100px;
-  background: black;
-  color: white;
-  z-index: 5000;
-  min-width: 100%;
-  padding: 5px;
+    position: fixed;
+    height: auto;
+    overflow: none;
+    top: -100px;
+    background: black;
+    color: white;
+    z-index: 5000;
+    min-width: 100%;
+    padding: 5px;
 }
+
 
 /*///////////////////////////
 ///APPS////////////////*/
 
 div#navigation {
-  position: fixed;
-  height: 30px;
-  background: black;
-  width: 100%;
-  top: 0px;
-  left: 0px;
-  display: none;
+    position: fixed;
+    height: 30px;
+    background: black;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    display: none;
 }
 
 div#navigation div {
-  height: 20px;
-  color: yellow;
-  text-align: center;
+    height: 20px;
+    color: yellow;
+    text-align: center;
 }
 
 div#about {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: white;
-  z-index: 1;
-  overflow-y: scroll;
-  height: 100%;
-  margin: 0 0 50px 0;
-  display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: white;
+    z-index: 1;
+    overflow-y: scroll;
+    height: 100%;
+    margin: 0 0 50px 0;
+    display: none;
 }
 
 div#about div#inner {
-  position: relative;
-  padding: 5px 5px 55px 5px;
-  margin: 0 0 80px 0;
-  overflow-y: scroll;
-  height: 98%;
-  background: silver;
+    position: relative;
+    padding: 5px 5px 55px 5px;
+    margin: 0 0 80px 0;
+    overflow-y: scroll;
+    height: 98%;
+    background: silver;
 }
 
 div#about div#update {
-  width: 100%;
-  height: 20px;
-  background: black;
-  text-align: center;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  color: white;
+    width: 100%;
+    height: 20px;
+    background: black;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: white;
 }
 
 div#about h1 {
-  margin: 15px 0 0 0;
-  text-align: center;
-  font-size: 1rem;
+    margin: 15px 0 0 0;
+    text-align: center;
+    font-size: 1rem;
 }
 
 div#about h2 {
-  margin: 15px 0 0 0;
-  text-align: center;
-  font-size: 1rem;
+    margin: 15px 0 0 0;
+    text-align: center;
+    font-size: 1rem;
 }
 
 div#app {
-  position: relative;
-  background: white;
-  padding: 5px;
-  color: black;
-  height: 90vh;
-  width: 100vw;
-  overflow: hidden;
-  font-weight: normal;
-  margin: 5px 0 0 0;
+    position: relative;
+    background: white;
+    padding: 5px;
+    color: black;
+    height: 90vh;
+    width: 100vw;
+    overflow: hidden;
+    font-weight: normal;
+    margin: 5px 0 0 0;
 }
 
 div#app-panels div#app-panels-inner {
-  height: 84vh;
-  overflow-y: hidden;
-  overflow-x: hidden;
+    height: 84vh;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 div#app div#app-panels article {
-  margin: 0px 0 10px 0px;
-  font-weight: normal;
-  min-width: 95vw;
-  max-height: 90%;
-  padding: 4px 4px 4px 4px;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  position: relative;
-  opacity: 0;
+    margin: 0px 0 10px 0px;
+    font-weight: normal;
+    min-width: 95vw;
+    max-height: 90%;
+    padding: 4px 4px 4px 4px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    position: relative;
+    opacity: 0;
 }
 
 article#search {
-  font-weight: normal;
-  min-width: 95vw;
-  height: 39px;
-  background: silver;
-  overflow: hidden;
-  text-align: center;
+    font-weight: normal;
+    min-width: 95vw;
+    height: 39px;
+    background: silver;
+    overflow: hidden;
+    text-align: center;
 }
 
 article#search input {
-  height: 30px;
-  padding: 3px;
-  width: 80%;
-  overflow: hidden;
+    height: 30px;
+    padding: 3px;
+    width: 80%;
+    overflow: hidden;
 }
 
 div#app div#app-panels {
-  margin: 0px 0 50px 0px;
-  position: relative;
+    margin: 0px 0 50px 0px;
+    position: relative;
 }
 
 div#app div#app-panels article h1 {
-  font-size: 1rem;
-  font-weight: bold;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 div#app div#app-panels article div.meta-data {
-  font-size: 0.8rem;
+    font-size: 0.8rem;
 }
 
 div#app div#app-panels article div.meta-data span {
-  font-size: 0.8rem;
-  font-weight: bold;
+    font-size: 0.8rem;
+    font-weight: bold;
 }
 
 div#app div#app-panels article div.icon {
-  margin: 0 0 10px 0;
+    margin: 0 0 10px 0;
 }
 
 div#app div#app-panels article div.icon img {
-  width: 30px;
-  margin: 7px 0 7px 0 !important;
+    width: 30px;
+    margin: 7px 0 7px 0 !important;
 }
 
 div#app div#app-panels article div.channel {
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: rgb(2, 2, 43);
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: rgb(2, 2, 43);
 }
 
 div#app div#app-panels article div.summary {
-  padding: 0 10px 20px 0px;
+    padding: 0 10px 20px 0px;
 }
 
 div.single-article {
-  display: none;
+    display: none;
 }
 
 div#app div#app-panels article ul.images {
-  padding: 20px 0 20px 0;
-  display: block;
+    padding: 20px 0 20px 0;
+    display: block;
 }
 
 div#app div#app-panels article ul.images li {
-  margin: 0 0 10px 0;
-  min-width: 100%;
+    margin: 0 0 10px 0;
+    min-width: 100%;
 }
 
 div#app div#app-panels article ul.images li img {
-  min-width: 100%;
-  display: block;
+    min-width: 100%;
+    display: block;
 }
 
 ul.ratings {
-  display: none;
+    display: none;
 }
 
 li.rating-description {
-  margin: 0 0 10px 0;
+    margin: 0 0 10px 0;
 }
 
 li.rating-points-0:after {
-  content: "";
+    content: "";
 }
 
 li.rating-points-1:after {
-  content: "★";
+    content: "★";
 }
 
 li.rating-points-2:after {
-  content: "★ ★";
+    content: "★ ★";
 }
 
 li.rating-points-3:after {
-  content: "★ ★ ★";
+    content: "★ ★ ★";
 }
 
 li.rating-points-4:after {
-  content: "★ ★ ★ ★";
+    content: "★ ★ ★ ★";
 }
 
 li.rating-points-5:after {
-  content: "★ ★ ★ ★ ★";
+    content: "★ ★ ★ ★ ★";
 }
+
 
 /*////////////
 ///options
 ///////////*/
 
 div.options {
-  width: 100vw;
-  height: 100vh;
-  background: black;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  display: none;
-  padding: 10px;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: none;
+    padding: 10px;
 }
 
 div.options div {
-  width: 90vw;
-  height: 30px;
-  background: white;
-  color: black;
-  position: relative;
-  padding: 3px;
-  border: 3px solid black;
-  margin: 0px auto;
-  display: none;
+    width: 90vw;
+    height: 30px;
+    background: white;
+    color: black;
+    position: relative;
+    padding: 3px;
+    border: 3px solid black;
+    margin: 0px auto;
+    display: none;
 }
 
 div.options div[data-url] {
-  display: block;
+    display: block;
 }
 
 div.options div[data-donation] {
-  display: block;
+    display: block;
 }
 
 div.options div[data-slug] {
-  display: block;
+    display: block;
 }
 
 div.options div[data-url=""] {
-  display: none;
+    display: none;
 }
 
 div.options div[data-donation=""] {
-  display: none;
+    display: none;
 }
 
 div.options div:focus {
-  background: silver;
+    background: silver;
 }
+
 
 /*/////////////////
 ///RATING////
 ////////////////*/
 
 div#rating-wrapper {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  background: black;
-  color: white;
-  padding: 10px;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: black;
+    color: white;
+    padding: 10px;
 }
 
 div#rating-wrapper textarea.text {
-  margin: 50px 0 0 0;
-  padding: 5px;
-  width: 100%;
+    margin: 50px 0 0 0;
+    padding: 5px;
+    width: 100%;
 }
 
 div#rating-wrapper input {
-  position: fixed;
-  top: -600px;
+    position: fixed;
+    top: -600px;
 }
 
 div#rating-wrapper div#stars {
-  position: absolute;
-  top: 10px;
+    position: absolute;
+    top: 10px;
 }
 
 div.rating-item {
-  margin: 0 0 30px 0;
+    margin: 0 0 30px 0;
 }
 
 div.rating-item div div {
-  height: 15px;
-  color: black;
-  font-size: 1.1rem;
-  margin: 0 0 5px 0;
+    height: 15px;
+    color: black;
+    font-size: 1.1rem;
+    margin: 0 0 5px 0;
 }
 
 div.rating-item {
-  font-size: 0.8rem;
+    font-size: 0.8rem;
 }
 
 div.points-1 {
-  content: "hello";
-  padding: 2px;
+    content: "hello";
+    padding: 2px;
 }
 
 div.points-2 {
-  content: "hello";
+    content: "hello";
 }
 
 div.points-3 {
-  content: "•";
+    content: "•";
 }
 
 div.points-4 {
-  content: "hello";
+    content: "hello";
 }
+
 
 /*/////////////////
 ///BOTTOM BAR////
 ////////////////*/
 
 div#bottom-bar {
-  position: fixed;
-  z-index: 2000;
-  bottom: 10px;
-  left: 0px;
-  height: 15px;
-  z-index: 2;
-  background: black;
+    position: fixed;
+    z-index: 2000;
+    bottom: 10px;
+    left: 0px;
+    height: 15px;
+    z-index: 2;
+    background: black;
 }
 
 div#bottom-bar div#inner {
-  position: relative;
+    position: relative;
 }
 
 div#bottom-bar div {
-  background: black;
-  color: white;
-  padding: 2px;
+    background: black;
+    color: white;
+    padding: 2px;
 }
 
 div#bottom-bar div#button-center {
-  background: black;
-  color: white;
-  padding: 2px;
-  width: 30%;
-  text-align: center;
+    background: black;
+    color: white;
+    padding: 2px;
+    width: 30%;
+    text-align: center;
 }
 
 div#bottom-bar div#button-left {
-  background: black;
-  color: white;
-  padding: 2px;
-  width: 20px;
-  text-align: left;
-  width: 30%;
+    background: black;
+    color: white;
+    padding: 2px;
+    width: 20px;
+    text-align: left;
+    width: 30%;
 }
 
 div#bottom-bar div#button-right {
-  background: black;
-  color: white;
-  padding: 2px;
-  width: 30%;
-  text-align: right;
+    background: black;
+    color: white;
+    padding: 2px;
+    width: 30%;
+    text-align: right;
 }
+
 
 /*/////////////////
 ///INTRO////
 ////////////////*/
 
 div#message-box {
-  animation-name: example3;
-  display: block;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  padding: 40px 10px 10px 10px;
-  min-width: 100vw;
-  height: 100vh;
-  background: black;
-  color: white;
-  z-index: 3;
-  animation-duration: 2s;
-  animation-timing-function: ease-in;
-  animation-fill-mode: forwards;
-  animation-iteration-count: 1;
-  animation-play-state: paused;
+    animation-name: example3;
+    display: block;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    padding: 40px 10px 10px 10px;
+    min-width: 100vw;
+    height: 100vh;
+    background: black;
+    color: white;
+    z-index: 3;
+    animation-duration: 2s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
 }
 
 div#message-box img.icon-1 {
-  animation-name: example;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-  animation-fill-mode: forwards;
-  animation-play-state: paused;
-  position: absolute;
-  width: 90px;
-  left: 30%;
-  top: 40%;
+    animation-name: example;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+    position: absolute;
+    width: 90px;
+    left: 30%;
+    top: 40%;
 }
 
 div#message-box img.icon-2 {
-  animation-name: example2;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-  animation-fill-mode: forwards;
-  position: absolute;
-  animation-play-state: paused;
-  transform: rotate(120deg);
-  width: 90px;
-  z-index: 5;
-  left: 30%;
-  top: 40%;
+    animation-name: example2;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    position: absolute;
+    animation-play-state: paused;
+    transform: rotate(120deg);
+    width: 90px;
+    z-index: 5;
+    left: 30%;
+    top: 40%;
 }
 
 @keyframes example {
-  from {
-    left: 30%;
-    top: 40%;
-  }
-  to {
-    left: 200px;
-    top: 300px;
-  }
+    from {
+        left: 30%;
+        top: 40%;
+    }
+    to {
+        left: 200px;
+        top: 300px;
+    }
 }
 
 @keyframes example2 {
-  from {
-    left: 30%;
-    top: 40%;
-  }
-  to {
-    left: -100px;
-    top: 300px;
-  }
+    from {
+        left: 30%;
+        top: 40%;
+    }
+    to {
+        left: -100px;
+        top: 300px;
+    }
 }
 
 @keyframes example3 {
-  from {
-    opacity: 100;
-  }
-  to {
-    opacity: 0;
-  }
+    from {
+        opacity: 100;
+    }
+    to {
+        opacity: 0;
+    }
 }
+
 
 /*////////////////////////
 ////Loading bar////////
 //////////////////////*/
 
 div#loading {
-  height: 10px;
-  width: 100vw;
-  background: pink;
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-  display: none;
+    height: 10px;
+    width: 100vw;
+    //background: pink;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    //display: none;
+    animation-name: loading;
 }
 
-/* KaiOS landscape devices (320x240) */
-
 @keyframes loading {
-  from {
-    background-color: blue;
-    width: 10px;
-  }
-  to {
-    background-color: yellow;
-    width: 100vw;
-  }
+    from {
+        background-color: blue;
+        width: 10px;
+    }
+    to {
+        background-color: yellow;
+        width: 100vw;
+    }
 }
