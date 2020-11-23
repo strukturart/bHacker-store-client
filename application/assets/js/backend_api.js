@@ -137,6 +137,8 @@ const BackendApi = (() => {
    * @param {string} appId id/slug of the app that was downloaded
    */
   function count_download(appId) {
+    alert(appId);
+
     const url = `${SimpleRatingServerInstance}/download_counter/count/${appId}`;
     let xhttp = new XMLHttpRequest({ mozSystem: true });
     xhttp.open("GET", url, true);
