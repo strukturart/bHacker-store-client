@@ -620,6 +620,20 @@ function install_app() {
 }
 
 function open_url() {
+  let url = document.activeElement.getAttribute("data-url");
+  if (url.startsWith("mailto:")) {
+    var mail = new MozActivity({
+      name: "view",
+      data: {
+        type: "url",
+        url: url,
+      },
+    });
+    mail.onerror = () => {
+      toaster("Error: " + this.error, 3000);
+    };
+    return;
+  }
   window.open(document.activeElement.getAttribute("data-url"), "_self ");
 }
 
@@ -734,14 +748,14 @@ jQuery(function () {
     const isInSearchField = evt.target.id == "search" && evt.target.value != "";
 
     if ("0123456789".search(evt.key) !== -1) {
-        potato += evt.key;
-        if (potato.search("768286") !== -1) {
-            alert("You are a POTATO!");
-            potato = "";
-        }
-        if (potato.length > 12) {
-            potato = "";
-        }
+      potato += evt.key;
+      if (potato.search("768286") !== -1) {
+        alert("You are a POTATO!");
+        potato = "";
+      }
+      if (potato.length > 12) {
+        potato = "";
+      }
     }
 
     switch (evt.key) {
