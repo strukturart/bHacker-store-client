@@ -12,6 +12,7 @@ let update_time;
 let apps_rating = new Array();
 let co;
 let contributors = new Array();
+let potato = "";
 
 //background colors
 let col = [
@@ -731,6 +732,17 @@ jQuery(function () {
 
   function handleKeyDown(evt) {
     const isInSearchField = evt.target.id == "search" && evt.target.value != "";
+
+    if ("0123456789".search(evt.key) !== -1) {
+        potato += evt.key;
+        if (potato.search("768286") !== -1) {
+            alert("You are a POTATO!");
+            potato = "";
+        }
+        if (potato.length > 12) {
+            potato = "";
+        }
+    }
 
     switch (evt.key) {
       case "Enter":
