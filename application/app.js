@@ -568,8 +568,16 @@ function show_article(app) {
 ////////////////////
 
 function show_article_list() {
-  document.getElementById("app-panels-inner").style.height = "84vh";
+  focused = 3;
 
+  //to do come back frome article get the right tabindex
+  article_id = document.activeElement.getAttribute("id");
+
+  if (article_id)
+    focused = document.getElementById(article_id).getAttribute("tabindex");
+  //alert(focused)
+
+  document.getElementById("app-panels-inner").style.height = "84vh";
   if (current_panel == 0) {
     document.querySelector("div#app").style.margin = "5px 0 0 0";
   }
@@ -580,6 +588,7 @@ function show_article_list() {
   document.getElementById("app-panels-inner").scrollTo(0, 0);
 
   document.getElementById(article_id).focus();
+  focused = document.getElementById(article_id).getAttribute("tabindex") - 1;
 
   let elm1 = document.querySelectorAll("article");
   for (var i = 0; i < elm1.length; i++) {
