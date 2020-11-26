@@ -752,6 +752,7 @@ jQuery(function () {
   //////////////////////////
   ////KEYPAD TRIGGER////////////
   /////////////////////////
+  //lazy loding
 
   function handleKeyDown(evt) {
     const isInSearchField = evt.target.id == "search" && evt.target.value != "";

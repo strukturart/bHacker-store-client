@@ -74,7 +74,7 @@
                       <div class="summary">{{summary}}</div>
                       <ul class="images">
                           {{#images}}
-                          <li> <img src="{{.}}"> </li>
+                          <li> <img class="lazyload" data-src="{{.}}"> </li>
                           {{/images}} {{^images}} {{/images}}
                       </ul>
 
@@ -242,6 +242,8 @@
     </div>
 
     <!-- for local development -->
+
+    <script src="assets/js/IntersectionObserver-polyfill.js"></script>
     <script src="assets/js/jQuery-3.1.0.js"></script>
     <script src="assets/js/jquery.autocomplete.min.js"></script>
     <script src="assets/js/moments.min.js"></script>
@@ -252,6 +254,8 @@
     <script src="assets/js/search.js"></script>
     <script src="assets/js/backend_api.js"></script>
     <script src="assets/js/ratings.js"></script>
+    <script src="assets/js/lazyload.js"></script>
+
     <script src="app.js"></script>
     <!-- for packaged app -->
     <script src="bundle.min.js"></script>
