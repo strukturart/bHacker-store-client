@@ -568,14 +568,14 @@ function show_article(app) {
 ////////////////////
 
 function show_article_list() {
-  focused = 3;
+  //focused = 3;
 
   //to do come back frome article get the right tabindex
   article_id = document.activeElement.getAttribute("id");
 
-  if (article_id)
+  if (article_id) {
     focused = document.getElementById(article_id).getAttribute("tabindex");
-  //alert(focused)
+  }
 
   document.getElementById("app-panels-inner").style.height = "84vh";
   if (current_panel == 0) {
@@ -639,7 +639,7 @@ function open_url() {
       },
     });
     mail.onerror = () => {
-      toaster("Error: " + this.error, 3000);
+      console.log("Error: " + this.error, 3000);
     };
     return;
   }
@@ -797,7 +797,14 @@ jQuery(function () {
           break;
         }
 
-        nav("+1");
+        if (
+          window_status == "single-article" ||
+          window_status == "search" ||
+          window_status == "article-list"
+        ) {
+          nav("+1");
+          break;
+        }
 
         break;
 
@@ -814,7 +821,14 @@ jQuery(function () {
           break;
         }
 
-        nav("-1");
+        if (
+          window_status == "single-article" ||
+          window_status == "search" ||
+          window_status == "article-list"
+        ) {
+          nav("-1");
+          break;
+        }
 
         break;
 

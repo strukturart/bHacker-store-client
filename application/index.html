@@ -7,7 +7,16 @@
       content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; img-src * data: 'unsafe-inline'; connect-src * 'unsafe-inline'; frame-src *;"
     />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-control" Private />
+    <link
+      rel="manifest"
+      href="manifest.webapp"
+      type="application/x-web-app-manifest+json"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width,user-scalable=no,initial-scale=1"
+    />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/grid.css" />
     <link rel="stylesheet" href="assets/css/qr_reader.css" />
@@ -41,7 +50,7 @@
             <script id="template" type="x-tmpl-mustache">
               {{#data}}
               <article tabindex="{{index}}" data-slug="{{slug}}" id="{{slug}}" class="All {{#rating}}ratings{{/rating}} {{category}}" data-name="{{title}}" data-tags="{{tags}}" data-url="{url}" data-download="{{link}}">
-                  <div class="icon single-article"><img src="{{icon}}" /></div>
+                  <div class="icon single-article"><img class="lazyload" data-src="{{icon}}" /></div>
                   <h1 class="article-list">{{title}}</h1>
                   <div class="channel article-list">{{category}}</div>
                   <div class="single-article">
