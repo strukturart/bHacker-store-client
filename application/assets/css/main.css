@@ -574,19 +574,18 @@ div#message-box img.icon-2 {
   }
 }
 
-/*////////////////////////
-////Loading bar////////
+/*///Loading bar////////
 //////////////////////*/
 
 div#loading {
-  height: 10px;
+  height: 15px;
   width: 100vw;
-  //background: pink;
+  background: pink;
   position: fixed;
   top: 0;
-  z-index: 1000;
-  //display: none;
-  animation-name: loading;
+  z-index: 10000;
+  display: none;
+  animation: loading 1s infinite alternate;
 }
 
 @keyframes loading {
