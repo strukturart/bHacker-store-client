@@ -1,443 +1,518 @@
 (function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define([], factory);
-	else if(typeof exports === 'object')
-		exports["jsQR"] = factory();
-	else
-		root["jsQR"] = factory();
-})(typeof self !== 'undefined' ? self : this, function() {
-return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+  if (typeof exports === "object" && typeof module === "object")
+    module.exports = factory();
+  else if (typeof define === "function" && define.amd) define([], factory);
+  else if (typeof exports === "object") exports["jsQR"] = factory();
+  else root["jsQR"] = factory();
+})(typeof self !== "undefined" ? self : this, function () {
+  return /******/ (function (modules) {
+    // webpackBootstrap
+    /******/ // The module cache
+    /******/ var installedModules = {}; // The require function
+    /******/
+    /******/ /******/ function __webpack_require__(moduleId) {
+      /******/
+      /******/ // Check if module is in cache
+      /******/ if (installedModules[moduleId]) {
+        /******/ return installedModules[moduleId].exports;
+        /******/
+      } // Create a new module (and put it into the cache)
+      /******/ /******/ var module = (installedModules[moduleId] = {
+        /******/ i: moduleId,
+        /******/ l: false,
+        /******/ exports: {},
+        /******/
+      }); // Execute the module function
+      /******/
+      /******/ /******/ modules[moduleId].call(
+        module.exports,
+        module,
+        module.exports,
+        __webpack_require__
+      ); // Flag the module as loaded
+      /******/
+      /******/ /******/ module.l = true; // Return the exports of the module
+      /******/
+      /******/ /******/ return module.exports;
+      /******/
+    } // expose the modules object (__webpack_modules__)
+    /******/
+    /******/
+    /******/ /******/ __webpack_require__.m = modules; // expose the module cache
+    /******/
+    /******/ /******/ __webpack_require__.c = installedModules; // define getter function for harmony exports
+    /******/
+    /******/ /******/ __webpack_require__.d = function (exports, name, getter) {
+      /******/ if (!__webpack_require__.o(exports, name)) {
+        /******/ Object.defineProperty(exports, name, {
+          /******/ configurable: false,
+          /******/ enumerable: true,
+          /******/ get: getter,
+          /******/
+        });
+        /******/
+      }
+      /******/
+    }; // getDefaultExport function for compatibility with non-harmony modules
+    /******/
+    /******/ /******/ __webpack_require__.n = function (module) {
+      /******/ var getter =
+        module && module.__esModule
+          ? /******/ function getDefault() {
+              return module["default"];
+            }
+          : /******/ function getModuleExports() {
+              return module;
+            };
+      /******/ __webpack_require__.d(getter, "a", getter);
+      /******/ return getter;
+      /******/
+    }; // Object.prototype.hasOwnProperty.call
+    /******/
+    /******/ /******/ __webpack_require__.o = function (object, property) {
+      return Object.prototype.hasOwnProperty.call(object, property);
+    }; // __webpack_public_path__
+    /******/
+    /******/ /******/ __webpack_require__.p = ""; // Load entry module and return exports
+    /******/
+    /******/ /******/ return __webpack_require__((__webpack_require__.s = 3));
+    /******/
+  })(
+    /************************************************************************/
+    /******/ [
+      /* 0 */
+      /***/ function (module, exports, __webpack_require__) {
+        "use strict";
 
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var BitMatrix = /** @class */ (function () {
-    function BitMatrix(data, width) {
-        this.width = width;
-        this.height = data.length / width;
-        this.data = data;
-    }
-    BitMatrix.createEmpty = function (width, height) {
-        return new BitMatrix(new Uint8ClampedArray(width * height), width);
-    };
-    BitMatrix.prototype.get = function (x, y) {
-        if (x < 0 || x >= this.width || y < 0 || y >= this.height) {
-            return false;
-        }
-        return !!this.data[y * this.width + x];
-    };
-    BitMatrix.prototype.set = function (x, y, v) {
-        this.data[y * this.width + x] = v ? 1 : 0;
-    };
-    BitMatrix.prototype.setRegion = function (left, top, width, height, v) {
-        for (var y = top; y < top + height; y++) {
-            for (var x = left; x < left + width; x++) {
+        Object.defineProperty(exports, "__esModule", { value: true });
+        var BitMatrix = /** @class */ (function () {
+          function BitMatrix(data, width) {
+            this.width = width;
+            this.height = data.length / width;
+            this.data = data;
+          }
+          BitMatrix.createEmpty = function (width, height) {
+            return new BitMatrix(new Uint8ClampedArray(width * height), width);
+          };
+          BitMatrix.prototype.get = function (x, y) {
+            if (x < 0 || x >= this.width || y < 0 || y >= this.height) {
+              return false;
+            }
+            return !!this.data[y * this.width + x];
+          };
+          BitMatrix.prototype.set = function (x, y, v) {
+            this.data[y * this.width + x] = v ? 1 : 0;
+          };
+          BitMatrix.prototype.setRegion = function (
+            left,
+            top,
+            width,
+            height,
+            v
+          ) {
+            for (var y = top; y < top + height; y++) {
+              for (var x = left; x < left + width; x++) {
                 this.set(x, y, !!v);
+              }
             }
+          };
+          return BitMatrix;
+        })();
+        exports.BitMatrix = BitMatrix;
+
+        /***/
+      },
+      /* 1 */
+      /***/ function (module, exports, __webpack_require__) {
+        "use strict";
+
+        Object.defineProperty(exports, "__esModule", { value: true });
+        var GenericGFPoly_1 = __webpack_require__(2);
+        function addOrSubtractGF(a, b) {
+          return a ^ b; // tslint:disable-line:no-bitwise
         }
-    };
-    return BitMatrix;
-}());
-exports.BitMatrix = BitMatrix;
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var GenericGFPoly_1 = __webpack_require__(2);
-function addOrSubtractGF(a, b) {
-    return a ^ b; // tslint:disable-line:no-bitwise
-}
-exports.addOrSubtractGF = addOrSubtractGF;
-var GenericGF = /** @class */ (function () {
-    function GenericGF(primitive, size, genBase) {
-        this.primitive = primitive;
-        this.size = size;
-        this.generatorBase = genBase;
-        this.expTable = new Array(this.size);
-        this.logTable = new Array(this.size);
-        var x = 1;
-        for (var i = 0; i < this.size; i++) {
-            this.expTable[i] = x;
-            x = x * 2;
-            if (x >= this.size) {
+        exports.addOrSubtractGF = addOrSubtractGF;
+        var GenericGF = /** @class */ (function () {
+          function GenericGF(primitive, size, genBase) {
+            this.primitive = primitive;
+            this.size = size;
+            this.generatorBase = genBase;
+            this.expTable = new Array(this.size);
+            this.logTable = new Array(this.size);
+            var x = 1;
+            for (var i = 0; i < this.size; i++) {
+              this.expTable[i] = x;
+              x = x * 2;
+              if (x >= this.size) {
                 x = (x ^ this.primitive) & (this.size - 1); // tslint:disable-line:no-bitwise
+              }
             }
-        }
-        for (var i = 0; i < this.size - 1; i++) {
-            this.logTable[this.expTable[i]] = i;
-        }
-        this.zero = new GenericGFPoly_1.default(this, Uint8ClampedArray.from([0]));
-        this.one = new GenericGFPoly_1.default(this, Uint8ClampedArray.from([1]));
-    }
-    GenericGF.prototype.multiply = function (a, b) {
-        if (a === 0 || b === 0) {
-            return 0;
-        }
-        return this.expTable[(this.logTable[a] + this.logTable[b]) % (this.size - 1)];
-    };
-    GenericGF.prototype.inverse = function (a) {
-        if (a === 0) {
-            throw new Error("Can't invert 0");
-        }
-        return this.expTable[this.size - this.logTable[a] - 1];
-    };
-    GenericGF.prototype.buildMonomial = function (degree, coefficient) {
-        if (degree < 0) {
-            throw new Error("Invalid monomial degree less than 0");
-        }
-        if (coefficient === 0) {
-            return this.zero;
-        }
-        var coefficients = new Uint8ClampedArray(degree + 1);
-        coefficients[0] = coefficient;
-        return new GenericGFPoly_1.default(this, coefficients);
-    };
-    GenericGF.prototype.log = function (a) {
-        if (a === 0) {
-            throw new Error("Can't take log(0)");
-        }
-        return this.logTable[a];
-    };
-    GenericGF.prototype.exp = function (a) {
-        return this.expTable[a];
-    };
-    return GenericGF;
-}());
-exports.default = GenericGF;
+            for (var i = 0; i < this.size - 1; i++) {
+              this.logTable[this.expTable[i]] = i;
+            }
+            this.zero = new GenericGFPoly_1.default(
+              this,
+              Uint8ClampedArray.from([0])
+            );
+            this.one = new GenericGFPoly_1.default(
+              this,
+              Uint8ClampedArray.from([1])
+            );
+          }
+          GenericGF.prototype.multiply = function (a, b) {
+            if (a === 0 || b === 0) {
+              return 0;
+            }
+            return this.expTable[
+              (this.logTable[a] + this.logTable[b]) % (this.size - 1)
+            ];
+          };
+          GenericGF.prototype.inverse = function (a) {
+            if (a === 0) {
+              throw new Error("Can't invert 0");
+            }
+            return this.expTable[this.size - this.logTable[a] - 1];
+          };
+          GenericGF.prototype.buildMonomial = function (degree, coefficient) {
+            if (degree < 0) {
+              throw new Error("Invalid monomial degree less than 0");
+            }
+            if (coefficient === 0) {
+              return this.zero;
+            }
+            var coefficients = new Uint8ClampedArray(degree + 1);
+            coefficients[0] = coefficient;
+            return new GenericGFPoly_1.default(this, coefficients);
+          };
+          GenericGF.prototype.log = function (a) {
+            if (a === 0) {
+              throw new Error("Can't take log(0)");
+            }
+            return this.logTable[a];
+          };
+          GenericGF.prototype.exp = function (a) {
+            return this.expTable[a];
+          };
+          return GenericGF;
+        })();
+        exports.default = GenericGF;
 
+        /***/
+      },
+      /* 2 */
+      /***/ function (module, exports, __webpack_require__) {
+        "use strict";
 
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var GenericGF_1 = __webpack_require__(1);
-var GenericGFPoly = /** @class */ (function () {
-    function GenericGFPoly(field, coefficients) {
-        if (coefficients.length === 0) {
-            throw new Error("No coefficients.");
-        }
-        this.field = field;
-        var coefficientsLength = coefficients.length;
-        if (coefficientsLength > 1 && coefficients[0] === 0) {
-            // Leading term must be non-zero for anything except the constant polynomial "0"
-            var firstNonZero = 1;
-            while (firstNonZero < coefficientsLength && coefficients[firstNonZero] === 0) {
+        Object.defineProperty(exports, "__esModule", { value: true });
+        var GenericGF_1 = __webpack_require__(1);
+        var GenericGFPoly = /** @class */ (function () {
+          function GenericGFPoly(field, coefficients) {
+            if (coefficients.length === 0) {
+              throw new Error("No coefficients.");
+            }
+            this.field = field;
+            var coefficientsLength = coefficients.length;
+            if (coefficientsLength > 1 && coefficients[0] === 0) {
+              // Leading term must be non-zero for anything except the constant polynomial "0"
+              var firstNonZero = 1;
+              while (
+                firstNonZero < coefficientsLength &&
+                coefficients[firstNonZero] === 0
+              ) {
                 firstNonZero++;
-            }
-            if (firstNonZero === coefficientsLength) {
+              }
+              if (firstNonZero === coefficientsLength) {
                 this.coefficients = field.zero.coefficients;
-            }
-            else {
-                this.coefficients = new Uint8ClampedArray(coefficientsLength - firstNonZero);
+              } else {
+                this.coefficients = new Uint8ClampedArray(
+                  coefficientsLength - firstNonZero
+                );
                 for (var i = 0; i < this.coefficients.length; i++) {
-                    this.coefficients[i] = coefficients[firstNonZero + i];
+                  this.coefficients[i] = coefficients[firstNonZero + i];
                 }
+              }
+            } else {
+              this.coefficients = coefficients;
             }
-        }
-        else {
-            this.coefficients = coefficients;
-        }
-    }
-    GenericGFPoly.prototype.degree = function () {
-        return this.coefficients.length - 1;
-    };
-    GenericGFPoly.prototype.isZero = function () {
-        return this.coefficients[0] === 0;
-    };
-    GenericGFPoly.prototype.getCoefficient = function (degree) {
-        return this.coefficients[this.coefficients.length - 1 - degree];
-    };
-    GenericGFPoly.prototype.addOrSubtract = function (other) {
-        var _a;
-        if (this.isZero()) {
-            return other;
-        }
-        if (other.isZero()) {
-            return this;
-        }
-        var smallerCoefficients = this.coefficients;
-        var largerCoefficients = other.coefficients;
-        if (smallerCoefficients.length > largerCoefficients.length) {
-            _a = [largerCoefficients, smallerCoefficients], smallerCoefficients = _a[0], largerCoefficients = _a[1];
-        }
-        var sumDiff = new Uint8ClampedArray(largerCoefficients.length);
-        var lengthDiff = largerCoefficients.length - smallerCoefficients.length;
-        for (var i = 0; i < lengthDiff; i++) {
-            sumDiff[i] = largerCoefficients[i];
-        }
-        for (var i = lengthDiff; i < largerCoefficients.length; i++) {
-            sumDiff[i] = GenericGF_1.addOrSubtractGF(smallerCoefficients[i - lengthDiff], largerCoefficients[i]);
-        }
-        return new GenericGFPoly(this.field, sumDiff);
-    };
-    GenericGFPoly.prototype.multiply = function (scalar) {
-        if (scalar === 0) {
-            return this.field.zero;
-        }
-        if (scalar === 1) {
-            return this;
-        }
-        var size = this.coefficients.length;
-        var product = new Uint8ClampedArray(size);
-        for (var i = 0; i < size; i++) {
-            product[i] = this.field.multiply(this.coefficients[i], scalar);
-        }
-        return new GenericGFPoly(this.field, product);
-    };
-    GenericGFPoly.prototype.multiplyPoly = function (other) {
-        if (this.isZero() || other.isZero()) {
-            return this.field.zero;
-        }
-        var aCoefficients = this.coefficients;
-        var aLength = aCoefficients.length;
-        var bCoefficients = other.coefficients;
-        var bLength = bCoefficients.length;
-        var product = new Uint8ClampedArray(aLength + bLength - 1);
-        for (var i = 0; i < aLength; i++) {
-            var aCoeff = aCoefficients[i];
-            for (var j = 0; j < bLength; j++) {
-                product[i + j] = GenericGF_1.addOrSubtractGF(product[i + j], this.field.multiply(aCoeff, bCoefficients[j]));
+          }
+          GenericGFPoly.prototype.degree = function () {
+            return this.coefficients.length - 1;
+          };
+          GenericGFPoly.prototype.isZero = function () {
+            return this.coefficients[0] === 0;
+          };
+          GenericGFPoly.prototype.getCoefficient = function (degree) {
+            return this.coefficients[this.coefficients.length - 1 - degree];
+          };
+          GenericGFPoly.prototype.addOrSubtract = function (other) {
+            var _a;
+            if (this.isZero()) {
+              return other;
             }
-        }
-        return new GenericGFPoly(this.field, product);
-    };
-    GenericGFPoly.prototype.multiplyByMonomial = function (degree, coefficient) {
-        if (degree < 0) {
-            throw new Error("Invalid degree less than 0");
-        }
-        if (coefficient === 0) {
-            return this.field.zero;
-        }
-        var size = this.coefficients.length;
-        var product = new Uint8ClampedArray(size + degree);
-        for (var i = 0; i < size; i++) {
-            product[i] = this.field.multiply(this.coefficients[i], coefficient);
-        }
-        return new GenericGFPoly(this.field, product);
-    };
-    GenericGFPoly.prototype.evaluateAt = function (a) {
-        var result = 0;
-        if (a === 0) {
-            // Just return the x^0 coefficient
-            return this.getCoefficient(0);
-        }
-        var size = this.coefficients.length;
-        if (a === 1) {
-            // Just the sum of the coefficients
-            this.coefficients.forEach(function (coefficient) {
+            if (other.isZero()) {
+              return this;
+            }
+            var smallerCoefficients = this.coefficients;
+            var largerCoefficients = other.coefficients;
+            if (smallerCoefficients.length > largerCoefficients.length) {
+              (_a = [largerCoefficients, smallerCoefficients]),
+                (smallerCoefficients = _a[0]),
+                (largerCoefficients = _a[1]);
+            }
+            var sumDiff = new Uint8ClampedArray(largerCoefficients.length);
+            var lengthDiff =
+              largerCoefficients.length - smallerCoefficients.length;
+            for (var i = 0; i < lengthDiff; i++) {
+              sumDiff[i] = largerCoefficients[i];
+            }
+            for (var i = lengthDiff; i < largerCoefficients.length; i++) {
+              sumDiff[i] = GenericGF_1.addOrSubtractGF(
+                smallerCoefficients[i - lengthDiff],
+                largerCoefficients[i]
+              );
+            }
+            return new GenericGFPoly(this.field, sumDiff);
+          };
+          GenericGFPoly.prototype.multiply = function (scalar) {
+            if (scalar === 0) {
+              return this.field.zero;
+            }
+            if (scalar === 1) {
+              return this;
+            }
+            var size = this.coefficients.length;
+            var product = new Uint8ClampedArray(size);
+            for (var i = 0; i < size; i++) {
+              product[i] = this.field.multiply(this.coefficients[i], scalar);
+            }
+            return new GenericGFPoly(this.field, product);
+          };
+          GenericGFPoly.prototype.multiplyPoly = function (other) {
+            if (this.isZero() || other.isZero()) {
+              return this.field.zero;
+            }
+            var aCoefficients = this.coefficients;
+            var aLength = aCoefficients.length;
+            var bCoefficients = other.coefficients;
+            var bLength = bCoefficients.length;
+            var product = new Uint8ClampedArray(aLength + bLength - 1);
+            for (var i = 0; i < aLength; i++) {
+              var aCoeff = aCoefficients[i];
+              for (var j = 0; j < bLength; j++) {
+                product[i + j] = GenericGF_1.addOrSubtractGF(
+                  product[i + j],
+                  this.field.multiply(aCoeff, bCoefficients[j])
+                );
+              }
+            }
+            return new GenericGFPoly(this.field, product);
+          };
+          GenericGFPoly.prototype.multiplyByMonomial = function (
+            degree,
+            coefficient
+          ) {
+            if (degree < 0) {
+              throw new Error("Invalid degree less than 0");
+            }
+            if (coefficient === 0) {
+              return this.field.zero;
+            }
+            var size = this.coefficients.length;
+            var product = new Uint8ClampedArray(size + degree);
+            for (var i = 0; i < size; i++) {
+              product[i] = this.field.multiply(
+                this.coefficients[i],
+                coefficient
+              );
+            }
+            return new GenericGFPoly(this.field, product);
+          };
+          GenericGFPoly.prototype.evaluateAt = function (a) {
+            var result = 0;
+            if (a === 0) {
+              // Just return the x^0 coefficient
+              return this.getCoefficient(0);
+            }
+            var size = this.coefficients.length;
+            if (a === 1) {
+              // Just the sum of the coefficients
+              this.coefficients.forEach(function (coefficient) {
                 result = GenericGF_1.addOrSubtractGF(result, coefficient);
-            });
+              });
+              return result;
+            }
+            result = this.coefficients[0];
+            for (var i = 1; i < size; i++) {
+              result = GenericGF_1.addOrSubtractGF(
+                this.field.multiply(a, result),
+                this.coefficients[i]
+              );
+            }
             return result;
-        }
-        result = this.coefficients[0];
-        for (var i = 1; i < size; i++) {
-            result = GenericGF_1.addOrSubtractGF(this.field.multiply(a, result), this.coefficients[i]);
-        }
-        return result;
-    };
-    return GenericGFPoly;
-}());
-exports.default = GenericGFPoly;
+          };
+          return GenericGFPoly;
+        })();
+        exports.default = GenericGFPoly;
 
+        /***/
+      },
+      /* 3 */
+      /***/ function (module, exports, __webpack_require__) {
+        "use strict";
 
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var binarizer_1 = __webpack_require__(4);
-var decoder_1 = __webpack_require__(5);
-var extractor_1 = __webpack_require__(11);
-var locator_1 = __webpack_require__(12);
-function scan(matrix) {
-    var locations = locator_1.locate(matrix);
-    if (!locations) {
-        return null;
-    }
-    for (var _i = 0, locations_1 = locations; _i < locations_1.length; _i++) {
-        var location_1 = locations_1[_i];
-        var extracted = extractor_1.extract(matrix, location_1);
-        var decoded = decoder_1.decode(extracted.matrix);
-        if (decoded) {
-            return {
+        Object.defineProperty(exports, "__esModule", { value: true });
+        var binarizer_1 = __webpack_require__(4);
+        var decoder_1 = __webpack_require__(5);
+        var extractor_1 = __webpack_require__(11);
+        var locator_1 = __webpack_require__(12);
+        function scan(matrix) {
+          var locations = locator_1.locate(matrix);
+          if (!locations) {
+            return null;
+          }
+          for (
+            var _i = 0, locations_1 = locations;
+            _i < locations_1.length;
+            _i++
+          ) {
+            var location_1 = locations_1[_i];
+            var extracted = extractor_1.extract(matrix, location_1);
+            var decoded = decoder_1.decode(extracted.matrix);
+            if (decoded) {
+              return {
                 binaryData: decoded.bytes,
                 data: decoded.text,
                 chunks: decoded.chunks,
                 location: {
-                    topRightCorner: extracted.mappingFunction(location_1.dimension, 0),
-                    topLeftCorner: extracted.mappingFunction(0, 0),
-                    bottomRightCorner: extracted.mappingFunction(location_1.dimension, location_1.dimension),
-                    bottomLeftCorner: extracted.mappingFunction(0, location_1.dimension),
-                    topRightFinderPattern: location_1.topRight,
-                    topLeftFinderPattern: location_1.topLeft,
-                    bottomLeftFinderPattern: location_1.bottomLeft,
-                    bottomRightAlignmentPattern: location_1.alignmentPattern,
+                  topRightCorner: extracted.mappingFunction(
+                    location_1.dimension,
+                    0
+                  ),
+                  topLeftCorner: extracted.mappingFunction(0, 0),
+                  bottomRightCorner: extracted.mappingFunction(
+                    location_1.dimension,
+                    location_1.dimension
+                  ),
+                  bottomLeftCorner: extracted.mappingFunction(
+                    0,
+                    location_1.dimension
+                  ),
+                  topRightFinderPattern: location_1.topRight,
+                  topLeftFinderPattern: location_1.topLeft,
+                  bottomLeftFinderPattern: location_1.bottomLeft,
+                  bottomRightAlignmentPattern: location_1.alignmentPattern,
                 },
-            };
-        }
-    }
-    return null;
-}
-var defaultOptions = {
-    inversionAttempts: "attemptBoth",
-};
-function jsQR(data, width, height, providedOptions) {
-    if (providedOptions === void 0) { providedOptions = {}; }
-    var options = defaultOptions;
-    Object.keys(options || {}).forEach(function (opt) {
-        options[opt] = providedOptions[opt] || options[opt];
-    });
-    var shouldInvert = options.inversionAttempts === "attemptBoth" || options.inversionAttempts === "invertFirst";
-    var tryInvertedFirst = options.inversionAttempts === "onlyInvert" || options.inversionAttempts === "invertFirst";
-    var _a = binarizer_1.binarize(data, width, height, shouldInvert), binarized = _a.binarized, inverted = _a.inverted;
-    var result = scan(tryInvertedFirst ? inverted : binarized);
-    if (!result && (options.inversionAttempts === "attemptBoth" || options.inversionAttempts === "invertFirst")) {
-        result = scan(tryInvertedFirst ? binarized : inverted);
-    }
-    return result;
-}
-jsQR.default = jsQR;
-exports.default = jsQR;
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var BitMatrix_1 = __webpack_require__(0);
-var REGION_SIZE = 8;
-var MIN_DYNAMIC_RANGE = 24;
-function numBetween(value, min, max) {
-    return value < min ? min : value > max ? max : value;
-}
-// Like BitMatrix but accepts arbitry Uint8 values
-var Matrix = /** @class */ (function () {
-    function Matrix(width, height) {
-        this.width = width;
-        this.data = new Uint8ClampedArray(width * height);
-    }
-    Matrix.prototype.get = function (x, y) {
-        return this.data[y * this.width + x];
-    };
-    Matrix.prototype.set = function (x, y, value) {
-        this.data[y * this.width + x] = value;
-    };
-    return Matrix;
-}());
-function binarize(data, width, height, returnInverted) {
-    if (data.length !== width * height * 4) {
-        throw new Error("Malformed data passed to binarizer.");
-    }
-    // Convert image to greyscale
-    var greyscalePixels = new Matrix(width, height);
-    for (var x = 0; x < width; x++) {
-        for (var y = 0; y < height; y++) {
-            var r = data[((y * width + x) * 4) + 0];
-            var g = data[((y * width + x) * 4) + 1];
-            var b = data[((y * width + x) * 4) + 2];
-            greyscalePixels.set(x, y, 0.2126 * r + 0.7152 * g + 0.0722 * b);
-        }
-    }
-    var horizontalRegionCount = Math.ceil(width / REGION_SIZE);
-    var verticalRegionCount = Math.ceil(height / REGION_SIZE);
-    var blackPoints = new Matrix(horizontalRegionCount, verticalRegionCount);
-    for (var verticalRegion = 0; verticalRegion < verticalRegionCount; verticalRegion++) {
-        for (var hortizontalRegion = 0; hortizontalRegion < horizontalRegionCount; hortizontalRegion++) {
-            var sum = 0;
-            var min = Infinity;
-            var max = 0;
-            for (var y = 0; y < REGION_SIZE; y++) {
-                for (var x = 0; x < REGION_SIZE; x++) {
-                    var pixelLumosity = greyscalePixels.get(hortizontalRegion * REGION_SIZE + x, verticalRegion * REGION_SIZE + y);
-                    sum += pixelLumosity;
-                    min = Math.min(min, pixelLumosity);
-                    max = Math.max(max, pixelLumosity);
-                }
+              };
             }
-            var average = sum / (Math.pow(REGION_SIZE, 2));
-            if (max - min <= MIN_DYNAMIC_RANGE) {
+          }
+          return null;
+        }
+        var defaultOptions = {
+          inversionAttempts: "attemptBoth",
+        };
+        function jsQR(data, width, height, providedOptions) {
+          if (providedOptions === void 0) {
+            providedOptions = {};
+          }
+          var options = defaultOptions;
+          Object.keys(options || {}).forEach(function (opt) {
+            options[opt] = providedOptions[opt] || options[opt];
+          });
+          var shouldInvert =
+            options.inversionAttempts === "attemptBoth" ||
+            options.inversionAttempts === "invertFirst";
+          var tryInvertedFirst =
+            options.inversionAttempts === "onlyInvert" ||
+            options.inversionAttempts === "invertFirst";
+          var _a = binarizer_1.binarize(data, width, height, shouldInvert),
+            binarized = _a.binarized,
+            inverted = _a.inverted;
+          var result = scan(tryInvertedFirst ? inverted : binarized);
+          if (
+            !result &&
+            (options.inversionAttempts === "attemptBoth" ||
+              options.inversionAttempts === "invertFirst")
+          ) {
+            result = scan(tryInvertedFirst ? binarized : inverted);
+          }
+          return result;
+        }
+        jsQR.default = jsQR;
+        exports.default = jsQR;
+
+        /***/
+      },
+      /* 4 */
+      /***/ function (module, exports, __webpack_require__) {
+        "use strict";
+
+        Object.defineProperty(exports, "__esModule", { value: true });
+        var BitMatrix_1 = __webpack_require__(0);
+        var REGION_SIZE = 8;
+        var MIN_DYNAMIC_RANGE = 24;
+        function numBetween(value, min, max) {
+          return value < min ? min : value > max ? max : value;
+        }
+        // Like BitMatrix but accepts arbitry Uint8 values
+        var Matrix = /** @class */ (function () {
+          function Matrix(width, height) {
+            this.width = width;
+            this.data = new Uint8ClampedArray(width * height);
+          }
+          Matrix.prototype.get = function (x, y) {
+            return this.data[y * this.width + x];
+          };
+          Matrix.prototype.set = function (x, y, value) {
+            this.data[y * this.width + x] = value;
+          };
+          return Matrix;
+        })();
+        function binarize(data, width, height, returnInverted) {
+          if (data.length !== width * height * 4) {
+            throw new Error("Malformed data passed to binarizer.");
+          }
+          // Convert image to greyscale
+          var greyscalePixels = new Matrix(width, height);
+          for (var x = 0; x < width; x++) {
+            for (var y = 0; y < height; y++) {
+              var r = data[(y * width + x) * 4 + 0];
+              var g = data[(y * width + x) * 4 + 1];
+              var b = data[(y * width + x) * 4 + 2];
+              greyscalePixels.set(x, y, 0.2126 * r + 0.7152 * g + 0.0722 * b);
+            }
+          }
+          var horizontalRegionCount = Math.ceil(width / REGION_SIZE);
+          var verticalRegionCount = Math.ceil(height / REGION_SIZE);
+          var blackPoints = new Matrix(
+            horizontalRegionCount,
+            verticalRegionCount
+          );
+          for (
+            var verticalRegion = 0;
+            verticalRegion < verticalRegionCount;
+            verticalRegion++
+          ) {
+            for (
+              var hortizontalRegion = 0;
+              hortizontalRegion < horizontalRegionCount;
+              hortizontalRegion++
+            ) {
+              var sum = 0;
+              var min = Infinity;
+              var max = 0;
+              for (var y = 0; y < REGION_SIZE; y++) {
+                for (var x = 0; x < REGION_SIZE; x++) {
+                  var pixelLumosity = greyscalePixels.get(
+                    hortizontalRegion * REGION_SIZE + x,
+                    verticalRegion * REGION_SIZE + y
+                  );
+                  sum += pixelLumosity;
+                  min = Math.min(min, pixelLumosity);
+                  max = Math.max(max, pixelLumosity);
+                }
+              }
+              var average = sum / Math.pow(REGION_SIZE, 2);
+              if (max - min <= MIN_DYNAMIC_RANGE) {
                 // If variation within the block is low, assume this is a block with only light or only
                 // dark pixels. In that case we do not want to use the average, as it would divide this
                 // low contrast area into black and white pixels, essentially creating data out of noise.
@@ -445,9656 +520,10201 @@ function binarize(data, width, height, returnInverted) {
                 // Default the blackpoint for these blocks to be half the min - effectively white them out
                 average = min / 2;
                 if (verticalRegion > 0 && hortizontalRegion > 0) {
-                    // Correct the "white background" assumption for blocks that have neighbors by comparing
-                    // the pixels in this block to the previously calculated black points. This is based on
-                    // the fact that dark barcode symbology is always surrounded by some amount of light
-                    // background for which reasonable black point estimates were made. The bp estimated at
-                    // the boundaries is used for the interior.
-                    // The (min < bp) is arbitrary but works better than other heuristics that were tried.
-                    var averageNeighborBlackPoint = (blackPoints.get(hortizontalRegion, verticalRegion - 1) +
-                        (2 * blackPoints.get(hortizontalRegion - 1, verticalRegion)) +
-                        blackPoints.get(hortizontalRegion - 1, verticalRegion - 1)) / 4;
-                    if (min < averageNeighborBlackPoint) {
-                        average = averageNeighborBlackPoint;
-                    }
+                  // Correct the "white background" assumption for blocks that have neighbors by comparing
+                  // the pixels in this block to the previously calculated black points. This is based on
+                  // the fact that dark barcode symbology is always surrounded by some amount of light
+                  // background for which reasonable black point estimates were made. The bp estimated at
+                  // the boundaries is used for the interior.
+                  // The (min < bp) is arbitrary but works better than other heuristics that were tried.
+                  var averageNeighborBlackPoint =
+                    (blackPoints.get(hortizontalRegion, verticalRegion - 1) +
+                      2 *
+                        blackPoints.get(hortizontalRegion - 1, verticalRegion) +
+                      blackPoints.get(
+                        hortizontalRegion - 1,
+                        verticalRegion - 1
+                      )) /
+                    4;
+                  if (min < averageNeighborBlackPoint) {
+                    average = averageNeighborBlackPoint;
+                  }
                 }
+              }
+              blackPoints.set(hortizontalRegion, verticalRegion, average);
             }
-            blackPoints.set(hortizontalRegion, verticalRegion, average);
-        }
-    }
-    var binarized = BitMatrix_1.BitMatrix.createEmpty(width, height);
-    var inverted = null;
-    if (returnInverted) {
-        inverted = BitMatrix_1.BitMatrix.createEmpty(width, height);
-    }
-    for (var verticalRegion = 0; verticalRegion < verticalRegionCount; verticalRegion++) {
-        for (var hortizontalRegion = 0; hortizontalRegion < horizontalRegionCount; hortizontalRegion++) {
-            var left = numBetween(hortizontalRegion, 2, horizontalRegionCount - 3);
-            var top_1 = numBetween(verticalRegion, 2, verticalRegionCount - 3);
-            var sum = 0;
-            for (var xRegion = -2; xRegion <= 2; xRegion++) {
+          }
+          var binarized = BitMatrix_1.BitMatrix.createEmpty(width, height);
+          var inverted = null;
+          if (returnInverted) {
+            inverted = BitMatrix_1.BitMatrix.createEmpty(width, height);
+          }
+          for (
+            var verticalRegion = 0;
+            verticalRegion < verticalRegionCount;
+            verticalRegion++
+          ) {
+            for (
+              var hortizontalRegion = 0;
+              hortizontalRegion < horizontalRegionCount;
+              hortizontalRegion++
+            ) {
+              var left = numBetween(
+                hortizontalRegion,
+                2,
+                horizontalRegionCount - 3
+              );
+              var top_1 = numBetween(
+                verticalRegion,
+                2,
+                verticalRegionCount - 3
+              );
+              var sum = 0;
+              for (var xRegion = -2; xRegion <= 2; xRegion++) {
                 for (var yRegion = -2; yRegion <= 2; yRegion++) {
-                    sum += blackPoints.get(left + xRegion, top_1 + yRegion);
+                  sum += blackPoints.get(left + xRegion, top_1 + yRegion);
                 }
-            }
-            var threshold = sum / 25;
-            for (var xRegion = 0; xRegion < REGION_SIZE; xRegion++) {
+              }
+              var threshold = sum / 25;
+              for (var xRegion = 0; xRegion < REGION_SIZE; xRegion++) {
                 for (var yRegion = 0; yRegion < REGION_SIZE; yRegion++) {
-                    var x = hortizontalRegion * REGION_SIZE + xRegion;
-                    var y = verticalRegion * REGION_SIZE + yRegion;
-                    var lum = greyscalePixels.get(x, y);
-                    binarized.set(x, y, lum <= threshold);
-                    if (returnInverted) {
-                        inverted.set(x, y, !(lum <= threshold));
-                    }
+                  var x = hortizontalRegion * REGION_SIZE + xRegion;
+                  var y = verticalRegion * REGION_SIZE + yRegion;
+                  var lum = greyscalePixels.get(x, y);
+                  binarized.set(x, y, lum <= threshold);
+                  if (returnInverted) {
+                    inverted.set(x, y, !(lum <= threshold));
+                  }
                 }
+              }
             }
+          }
+          if (returnInverted) {
+            return { binarized: binarized, inverted: inverted };
+          }
+          return { binarized: binarized };
         }
-    }
-    if (returnInverted) {
-        return { binarized: binarized, inverted: inverted };
-    }
-    return { binarized: binarized };
-}
-exports.binarize = binarize;
+        exports.binarize = binarize;
 
+        /***/
+      },
+      /* 5 */
+      /***/ function (module, exports, __webpack_require__) {
+        "use strict";
 
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var BitMatrix_1 = __webpack_require__(0);
-var decodeData_1 = __webpack_require__(6);
-var reedsolomon_1 = __webpack_require__(9);
-var version_1 = __webpack_require__(10);
-// tslint:disable:no-bitwise
-function numBitsDiffering(x, y) {
-    var z = x ^ y;
-    var bitCount = 0;
-    while (z) {
-        bitCount++;
-        z &= z - 1;
-    }
-    return bitCount;
-}
-function pushBit(bit, byte) {
-    return (byte << 1) | bit;
-}
-// tslint:enable:no-bitwise
-var FORMAT_INFO_TABLE = [
-    { bits: 0x5412, formatInfo: { errorCorrectionLevel: 1, dataMask: 0 } },
-    { bits: 0x5125, formatInfo: { errorCorrectionLevel: 1, dataMask: 1 } },
-    { bits: 0x5E7C, formatInfo: { errorCorrectionLevel: 1, dataMask: 2 } },
-    { bits: 0x5B4B, formatInfo: { errorCorrectionLevel: 1, dataMask: 3 } },
-    { bits: 0x45F9, formatInfo: { errorCorrectionLevel: 1, dataMask: 4 } },
-    { bits: 0x40CE, formatInfo: { errorCorrectionLevel: 1, dataMask: 5 } },
-    { bits: 0x4F97, formatInfo: { errorCorrectionLevel: 1, dataMask: 6 } },
-    { bits: 0x4AA0, formatInfo: { errorCorrectionLevel: 1, dataMask: 7 } },
-    { bits: 0x77C4, formatInfo: { errorCorrectionLevel: 0, dataMask: 0 } },
-    { bits: 0x72F3, formatInfo: { errorCorrectionLevel: 0, dataMask: 1 } },
-    { bits: 0x7DAA, formatInfo: { errorCorrectionLevel: 0, dataMask: 2 } },
-    { bits: 0x789D, formatInfo: { errorCorrectionLevel: 0, dataMask: 3 } },
-    { bits: 0x662F, formatInfo: { errorCorrectionLevel: 0, dataMask: 4 } },
-    { bits: 0x6318, formatInfo: { errorCorrectionLevel: 0, dataMask: 5 } },
-    { bits: 0x6C41, formatInfo: { errorCorrectionLevel: 0, dataMask: 6 } },
-    { bits: 0x6976, formatInfo: { errorCorrectionLevel: 0, dataMask: 7 } },
-    { bits: 0x1689, formatInfo: { errorCorrectionLevel: 3, dataMask: 0 } },
-    { bits: 0x13BE, formatInfo: { errorCorrectionLevel: 3, dataMask: 1 } },
-    { bits: 0x1CE7, formatInfo: { errorCorrectionLevel: 3, dataMask: 2 } },
-    { bits: 0x19D0, formatInfo: { errorCorrectionLevel: 3, dataMask: 3 } },
-    { bits: 0x0762, formatInfo: { errorCorrectionLevel: 3, dataMask: 4 } },
-    { bits: 0x0255, formatInfo: { errorCorrectionLevel: 3, dataMask: 5 } },
-    { bits: 0x0D0C, formatInfo: { errorCorrectionLevel: 3, dataMask: 6 } },
-    { bits: 0x083B, formatInfo: { errorCorrectionLevel: 3, dataMask: 7 } },
-    { bits: 0x355F, formatInfo: { errorCorrectionLevel: 2, dataMask: 0 } },
-    { bits: 0x3068, formatInfo: { errorCorrectionLevel: 2, dataMask: 1 } },
-    { bits: 0x3F31, formatInfo: { errorCorrectionLevel: 2, dataMask: 2 } },
-    { bits: 0x3A06, formatInfo: { errorCorrectionLevel: 2, dataMask: 3 } },
-    { bits: 0x24B4, formatInfo: { errorCorrectionLevel: 2, dataMask: 4 } },
-    { bits: 0x2183, formatInfo: { errorCorrectionLevel: 2, dataMask: 5 } },
-    { bits: 0x2EDA, formatInfo: { errorCorrectionLevel: 2, dataMask: 6 } },
-    { bits: 0x2BED, formatInfo: { errorCorrectionLevel: 2, dataMask: 7 } },
-];
-var DATA_MASKS = [
-    function (p) { return ((p.y + p.x) % 2) === 0; },
-    function (p) { return (p.y % 2) === 0; },
-    function (p) { return p.x % 3 === 0; },
-    function (p) { return (p.y + p.x) % 3 === 0; },
-    function (p) { return (Math.floor(p.y / 2) + Math.floor(p.x / 3)) % 2 === 0; },
-    function (p) { return ((p.x * p.y) % 2) + ((p.x * p.y) % 3) === 0; },
-    function (p) { return ((((p.y * p.x) % 2) + (p.y * p.x) % 3) % 2) === 0; },
-    function (p) { return ((((p.y + p.x) % 2) + (p.y * p.x) % 3) % 2) === 0; },
-];
-function buildFunctionPatternMask(version) {
-    var dimension = 17 + 4 * version.versionNumber;
-    var matrix = BitMatrix_1.BitMatrix.createEmpty(dimension, dimension);
-    matrix.setRegion(0, 0, 9, 9, true); // Top left finder pattern + separator + format
-    matrix.setRegion(dimension - 8, 0, 8, 9, true); // Top right finder pattern + separator + format
-    matrix.setRegion(0, dimension - 8, 9, 8, true); // Bottom left finder pattern + separator + format
-    // Alignment patterns
-    for (var _i = 0, _a = version.alignmentPatternCenters; _i < _a.length; _i++) {
-        var x = _a[_i];
-        for (var _b = 0, _c = version.alignmentPatternCenters; _b < _c.length; _b++) {
-            var y = _c[_b];
-            if (!(x === 6 && y === 6 || x === 6 && y === dimension - 7 || x === dimension - 7 && y === 6)) {
+        Object.defineProperty(exports, "__esModule", { value: true });
+        var BitMatrix_1 = __webpack_require__(0);
+        var decodeData_1 = __webpack_require__(6);
+        var reedsolomon_1 = __webpack_require__(9);
+        var version_1 = __webpack_require__(10);
+        // tslint:disable:no-bitwise
+        function numBitsDiffering(x, y) {
+          var z = x ^ y;
+          var bitCount = 0;
+          while (z) {
+            bitCount++;
+            z &= z - 1;
+          }
+          return bitCount;
+        }
+        function pushBit(bit, byte) {
+          return (byte << 1) | bit;
+        }
+        // tslint:enable:no-bitwise
+        var FORMAT_INFO_TABLE = [
+          {
+            bits: 0x5412,
+            formatInfo: { errorCorrectionLevel: 1, dataMask: 0 },
+          },
+          {
+            bits: 0x5125,
+            formatInfo: { errorCorrectionLevel: 1, dataMask: 1 },
+          },
+          {
+            bits: 0x5e7c,
+            formatInfo: { errorCorrectionLevel: 1, dataMask: 2 },
+          },
+          {
+            bits: 0x5b4b,
+            formatInfo: { errorCorrectionLevel: 1, dataMask: 3 },
+          },
+          {
+            bits: 0x45f9,
+            formatInfo: { errorCorrectionLevel: 1, dataMask: 4 },
+          },
+          {
+            bits: 0x40ce,
+            formatInfo: { errorCorrectionLevel: 1, dataMask: 5 },
+          },
+          {
+            bits: 0x4f97,
+            formatInfo: { errorCorrectionLevel: 1, dataMask: 6 },
+          },
+          {
+            bits: 0x4aa0,
+            formatInfo: { errorCorrectionLevel: 1, dataMask: 7 },
+          },
+          {
+            bits: 0x77c4,
+            formatInfo: { errorCorrectionLevel: 0, dataMask: 0 },
+          },
+          {
+            bits: 0x72f3,
+            formatInfo: { errorCorrectionLevel: 0, dataMask: 1 },
+          },
+          {
+            bits: 0x7daa,
+            formatInfo: { errorCorrectionLevel: 0, dataMask: 2 },
+          },
+          {
+            bits: 0x789d,
+            formatInfo: { errorCorrectionLevel: 0, dataMask: 3 },
+          },
+          {
+            bits: 0x662f,
+            formatInfo: { errorCorrectionLevel: 0, dataMask: 4 },
+          },
+          {
+            bits: 0x6318,
+            formatInfo: { errorCorrectionLevel: 0, dataMask: 5 },
+          },
+          {
+            bits: 0x6c41,
+            formatInfo: { errorCorrectionLevel: 0, dataMask: 6 },
+          },
+          {
+            bits: 0x6976,
+            formatInfo: { errorCorrectionLevel: 0, dataMask: 7 },
+          },
+          {
+            bits: 0x1689,
+            formatInfo: { errorCorrectionLevel: 3, dataMask: 0 },
+          },
+          {
+            bits: 0x13be,
+            formatInfo: { errorCorrectionLevel: 3, dataMask: 1 },
+          },
+          {
+            bits: 0x1ce7,
+            formatInfo: { errorCorrectionLevel: 3, dataMask: 2 },
+          },
+          {
+            bits: 0x19d0,
+            formatInfo: { errorCorrectionLevel: 3, dataMask: 3 },
+          },
+          {
+            bits: 0x0762,
+            formatInfo: { errorCorrectionLevel: 3, dataMask: 4 },
+          },
+          {
+            bits: 0x0255,
+            formatInfo: { errorCorrectionLevel: 3, dataMask: 5 },
+          },
+          {
+            bits: 0x0d0c,
+            formatInfo: { errorCorrectionLevel: 3, dataMask: 6 },
+          },
+          {
+            bits: 0x083b,
+            formatInfo: { errorCorrectionLevel: 3, dataMask: 7 },
+          },
+          {
+            bits: 0x355f,
+            formatInfo: { errorCorrectionLevel: 2, dataMask: 0 },
+          },
+          {
+            bits: 0x3068,
+            formatInfo: { errorCorrectionLevel: 2, dataMask: 1 },
+          },
+          {
+            bits: 0x3f31,
+            formatInfo: { errorCorrectionLevel: 2, dataMask: 2 },
+          },
+          {
+            bits: 0x3a06,
+            formatInfo: { errorCorrectionLevel: 2, dataMask: 3 },
+          },
+          {
+            bits: 0x24b4,
+            formatInfo: { errorCorrectionLevel: 2, dataMask: 4 },
+          },
+          {
+            bits: 0x2183,
+            formatInfo: { errorCorrectionLevel: 2, dataMask: 5 },
+          },
+          {
+            bits: 0x2eda,
+            formatInfo: { errorCorrectionLevel: 2, dataMask: 6 },
+          },
+          {
+            bits: 0x2bed,
+            formatInfo: { errorCorrectionLevel: 2, dataMask: 7 },
+          },
+        ];
+        var DATA_MASKS = [
+          function (p) {
+            return (p.y + p.x) % 2 === 0;
+          },
+          function (p) {
+            return p.y % 2 === 0;
+          },
+          function (p) {
+            return p.x % 3 === 0;
+          },
+          function (p) {
+            return (p.y + p.x) % 3 === 0;
+          },
+          function (p) {
+            return (Math.floor(p.y / 2) + Math.floor(p.x / 3)) % 2 === 0;
+          },
+          function (p) {
+            return ((p.x * p.y) % 2) + ((p.x * p.y) % 3) === 0;
+          },
+          function (p) {
+            return (((p.y * p.x) % 2) + ((p.y * p.x) % 3)) % 2 === 0;
+          },
+          function (p) {
+            return (((p.y + p.x) % 2) + ((p.y * p.x) % 3)) % 2 === 0;
+          },
+        ];
+        function buildFunctionPatternMask(version) {
+          var dimension = 17 + 4 * version.versionNumber;
+          var matrix = BitMatrix_1.BitMatrix.createEmpty(dimension, dimension);
+          matrix.setRegion(0, 0, 9, 9, true); // Top left finder pattern + separator + format
+          matrix.setRegion(dimension - 8, 0, 8, 9, true); // Top right finder pattern + separator + format
+          matrix.setRegion(0, dimension - 8, 9, 8, true); // Bottom left finder pattern + separator + format
+          // Alignment patterns
+          for (
+            var _i = 0, _a = version.alignmentPatternCenters;
+            _i < _a.length;
+            _i++
+          ) {
+            var x = _a[_i];
+            for (
+              var _b = 0, _c = version.alignmentPatternCenters;
+              _b < _c.length;
+              _b++
+            ) {
+              var y = _c[_b];
+              if (
+                !(
+                  (x === 6 && y === 6) ||
+                  (x === 6 && y === dimension - 7) ||
+                  (x === dimension - 7 && y === 6)
+                )
+              ) {
                 matrix.setRegion(x - 2, y - 2, 5, 5, true);
+              }
             }
+          }
+          matrix.setRegion(6, 9, 1, dimension - 17, true); // Vertical timing pattern
+          matrix.setRegion(9, 6, dimension - 17, 1, true); // Horizontal timing pattern
+          if (version.versionNumber > 6) {
+            matrix.setRegion(dimension - 11, 0, 3, 6, true); // Version info, top right
+            matrix.setRegion(0, dimension - 11, 6, 3, true); // Version info, bottom left
+          }
+          return matrix;
         }
-    }
-    matrix.setRegion(6, 9, 1, dimension - 17, true); // Vertical timing pattern
-    matrix.setRegion(9, 6, dimension - 17, 1, true); // Horizontal timing pattern
-    if (version.versionNumber > 6) {
-        matrix.setRegion(dimension - 11, 0, 3, 6, true); // Version info, top right
-        matrix.setRegion(0, dimension - 11, 6, 3, true); // Version info, bottom left
-    }
-    return matrix;
-}
-function readCodewords(matrix, version, formatInfo) {
-    var dataMask = DATA_MASKS[formatInfo.dataMask];
-    var dimension = matrix.height;
-    var functionPatternMask = buildFunctionPatternMask(version);
-    var codewords = [];
-    var currentByte = 0;
-    var bitsRead = 0;
-    // Read columns in pairs, from right to left
-    var readingUp = true;
-    for (var columnIndex = dimension - 1; columnIndex > 0; columnIndex -= 2) {
-        if (columnIndex === 6) { // Skip whole column with vertical alignment pattern;
-            columnIndex--;
-        }
-        for (var i = 0; i < dimension; i++) {
-            var y = readingUp ? dimension - 1 - i : i;
-            for (var columnOffset = 0; columnOffset < 2; columnOffset++) {
+        function readCodewords(matrix, version, formatInfo) {
+          var dataMask = DATA_MASKS[formatInfo.dataMask];
+          var dimension = matrix.height;
+          var functionPatternMask = buildFunctionPatternMask(version);
+          var codewords = [];
+          var currentByte = 0;
+          var bitsRead = 0;
+          // Read columns in pairs, from right to left
+          var readingUp = true;
+          for (
+            var columnIndex = dimension - 1;
+            columnIndex > 0;
+            columnIndex -= 2
+          ) {
+            if (columnIndex === 6) {
+              // Skip whole column with vertical alignment pattern;
+              columnIndex--;
+            }
+            for (var i = 0; i < dimension; i++) {
+              var y = readingUp ? dimension - 1 - i : i;
+              for (var columnOffset = 0; columnOffset < 2; columnOffset++) {
                 var x = columnIndex - columnOffset;
                 if (!functionPatternMask.get(x, y)) {
-                    bitsRead++;
-                    var bit = matrix.get(x, y);
-                    if (dataMask({ y: y, x: x })) {
-                        bit = !bit;
-                    }
-                    currentByte = pushBit(bit, currentByte);
-                    if (bitsRead === 8) { // Whole bytes
-                        codewords.push(currentByte);
-                        bitsRead = 0;
-                        currentByte = 0;
-                    }
+                  bitsRead++;
+                  var bit = matrix.get(x, y);
+                  if (dataMask({ y: y, x: x })) {
+                    bit = !bit;
+                  }
+                  currentByte = pushBit(bit, currentByte);
+                  if (bitsRead === 8) {
+                    // Whole bytes
+                    codewords.push(currentByte);
+                    bitsRead = 0;
+                    currentByte = 0;
+                  }
                 }
+              }
             }
+            readingUp = !readingUp;
+          }
+          return codewords;
         }
-        readingUp = !readingUp;
-    }
-    return codewords;
-}
-function readVersion(matrix) {
-    var dimension = matrix.height;
-    var provisionalVersion = Math.floor((dimension - 17) / 4);
-    if (provisionalVersion <= 6) { // 6 and under dont have version info in the QR code
-        return version_1.VERSIONS[provisionalVersion - 1];
-    }
-    var topRightVersionBits = 0;
-    for (var y = 5; y >= 0; y--) {
-        for (var x = dimension - 9; x >= dimension - 11; x--) {
-            topRightVersionBits = pushBit(matrix.get(x, y), topRightVersionBits);
-        }
-    }
-    var bottomLeftVersionBits = 0;
-    for (var x = 5; x >= 0; x--) {
-        for (var y = dimension - 9; y >= dimension - 11; y--) {
-            bottomLeftVersionBits = pushBit(matrix.get(x, y), bottomLeftVersionBits);
-        }
-    }
-    var bestDifference = Infinity;
-    var bestVersion;
-    for (var _i = 0, VERSIONS_1 = version_1.VERSIONS; _i < VERSIONS_1.length; _i++) {
-        var version = VERSIONS_1[_i];
-        if (version.infoBits === topRightVersionBits || version.infoBits === bottomLeftVersionBits) {
-            return version;
-        }
-        var difference = numBitsDiffering(topRightVersionBits, version.infoBits);
-        if (difference < bestDifference) {
-            bestVersion = version;
-            bestDifference = difference;
-        }
-        difference = numBitsDiffering(bottomLeftVersionBits, version.infoBits);
-        if (difference < bestDifference) {
-            bestVersion = version;
-            bestDifference = difference;
-        }
-    }
-    // We can tolerate up to 3 bits of error since no two version info codewords will
-    // differ in less than 8 bits.
-    if (bestDifference <= 3) {
-        return bestVersion;
-    }
-}
-function readFormatInformation(matrix) {
-    var topLeftFormatInfoBits = 0;
-    for (var x = 0; x <= 8; x++) {
-        if (x !== 6) { // Skip timing pattern bit
-            topLeftFormatInfoBits = pushBit(matrix.get(x, 8), topLeftFormatInfoBits);
-        }
-    }
-    for (var y = 7; y >= 0; y--) {
-        if (y !== 6) { // Skip timing pattern bit
-            topLeftFormatInfoBits = pushBit(matrix.get(8, y), topLeftFormatInfoBits);
-        }
-    }
-    var dimension = matrix.height;
-    var topRightBottomRightFormatInfoBits = 0;
-    for (var y = dimension - 1; y >= dimension - 7; y--) { // bottom left
-        topRightBottomRightFormatInfoBits = pushBit(matrix.get(8, y), topRightBottomRightFormatInfoBits);
-    }
-    for (var x = dimension - 8; x < dimension; x++) { // top right
-        topRightBottomRightFormatInfoBits = pushBit(matrix.get(x, 8), topRightBottomRightFormatInfoBits);
-    }
-    var bestDifference = Infinity;
-    var bestFormatInfo = null;
-    for (var _i = 0, FORMAT_INFO_TABLE_1 = FORMAT_INFO_TABLE; _i < FORMAT_INFO_TABLE_1.length; _i++) {
-        var _a = FORMAT_INFO_TABLE_1[_i], bits = _a.bits, formatInfo = _a.formatInfo;
-        if (bits === topLeftFormatInfoBits || bits === topRightBottomRightFormatInfoBits) {
-            return formatInfo;
-        }
-        var difference = numBitsDiffering(topLeftFormatInfoBits, bits);
-        if (difference < bestDifference) {
-            bestFormatInfo = formatInfo;
-            bestDifference = difference;
-        }
-        if (topLeftFormatInfoBits !== topRightBottomRightFormatInfoBits) { // also try the other option
-            difference = numBitsDiffering(topRightBottomRightFormatInfoBits, bits);
+        function readVersion(matrix) {
+          var dimension = matrix.height;
+          var provisionalVersion = Math.floor((dimension - 17) / 4);
+          if (provisionalVersion <= 6) {
+            // 6 and under dont have version info in the QR code
+            return version_1.VERSIONS[provisionalVersion - 1];
+          }
+          var topRightVersionBits = 0;
+          for (var y = 5; y >= 0; y--) {
+            for (var x = dimension - 9; x >= dimension - 11; x--) {
+              topRightVersionBits = pushBit(
+                matrix.get(x, y),
+                topRightVersionBits
+              );
+            }
+          }
+          var bottomLeftVersionBits = 0;
+          for (var x = 5; x >= 0; x--) {
+            for (var y = dimension - 9; y >= dimension - 11; y--) {
+              bottomLeftVersionBits = pushBit(
+                matrix.get(x, y),
+                bottomLeftVersionBits
+              );
+            }
+          }
+          var bestDifference = Infinity;
+          var bestVersion;
+          for (
+            var _i = 0, VERSIONS_1 = version_1.VERSIONS;
+            _i < VERSIONS_1.length;
+            _i++
+          ) {
+            var version = VERSIONS_1[_i];
+            if (
+              version.infoBits === topRightVersionBits ||
+              version.infoBits === bottomLeftVersionBits
+            ) {
+              return version;
+            }
+            var difference = numBitsDiffering(
+              topRightVersionBits,
+              version.infoBits
+            );
             if (difference < bestDifference) {
+              bestVersion = version;
+              bestDifference = difference;
+            }
+            difference = numBitsDiffering(
+              bottomLeftVersionBits,
+              version.infoBits
+            );
+            if (difference < bestDifference) {
+              bestVersion = version;
+              bestDifference = difference;
+            }
+          }
+          // We can tolerate up to 3 bits of error since no two version info codewords will
+          // differ in less than 8 bits.
+          if (bestDifference <= 3) {
+            return bestVersion;
+          }
+        }
+        function readFormatInformation(matrix) {
+          var topLeftFormatInfoBits = 0;
+          for (var x = 0; x <= 8; x++) {
+            if (x !== 6) {
+              // Skip timing pattern bit
+              topLeftFormatInfoBits = pushBit(
+                matrix.get(x, 8),
+                topLeftFormatInfoBits
+              );
+            }
+          }
+          for (var y = 7; y >= 0; y--) {
+            if (y !== 6) {
+              // Skip timing pattern bit
+              topLeftFormatInfoBits = pushBit(
+                matrix.get(8, y),
+                topLeftFormatInfoBits
+              );
+            }
+          }
+          var dimension = matrix.height;
+          var topRightBottomRightFormatInfoBits = 0;
+          for (var y = dimension - 1; y >= dimension - 7; y--) {
+            // bottom left
+            topRightBottomRightFormatInfoBits = pushBit(
+              matrix.get(8, y),
+              topRightBottomRightFormatInfoBits
+            );
+          }
+          for (var x = dimension - 8; x < dimension; x++) {
+            // top right
+            topRightBottomRightFormatInfoBits = pushBit(
+              matrix.get(x, 8),
+              topRightBottomRightFormatInfoBits
+            );
+          }
+          var bestDifference = Infinity;
+          var bestFormatInfo = null;
+          for (
+            var _i = 0, FORMAT_INFO_TABLE_1 = FORMAT_INFO_TABLE;
+            _i < FORMAT_INFO_TABLE_1.length;
+            _i++
+          ) {
+            var _a = FORMAT_INFO_TABLE_1[_i],
+              bits = _a.bits,
+              formatInfo = _a.formatInfo;
+            if (
+              bits === topLeftFormatInfoBits ||
+              bits === topRightBottomRightFormatInfoBits
+            ) {
+              return formatInfo;
+            }
+            var difference = numBitsDiffering(topLeftFormatInfoBits, bits);
+            if (difference < bestDifference) {
+              bestFormatInfo = formatInfo;
+              bestDifference = difference;
+            }
+            if (topLeftFormatInfoBits !== topRightBottomRightFormatInfoBits) {
+              // also try the other option
+              difference = numBitsDiffering(
+                topRightBottomRightFormatInfoBits,
+                bits
+              );
+              if (difference < bestDifference) {
                 bestFormatInfo = formatInfo;
                 bestDifference = difference;
+              }
             }
+          }
+          // Hamming distance of the 32 masked codes is 7, by construction, so <= 3 bits differing means we found a match
+          if (bestDifference <= 3) {
+            return bestFormatInfo;
+          }
+          return null;
         }
-    }
-    // Hamming distance of the 32 masked codes is 7, by construction, so <= 3 bits differing means we found a match
-    if (bestDifference <= 3) {
-        return bestFormatInfo;
-    }
-    return null;
-}
-function getDataBlocks(codewords, version, ecLevel) {
-    var ecInfo = version.errorCorrectionLevels[ecLevel];
-    var dataBlocks = [];
-    var totalCodewords = 0;
-    ecInfo.ecBlocks.forEach(function (block) {
-        for (var i = 0; i < block.numBlocks; i++) {
-            dataBlocks.push({ numDataCodewords: block.dataCodewordsPerBlock, codewords: [] });
-            totalCodewords += block.dataCodewordsPerBlock + ecInfo.ecCodewordsPerBlock;
-        }
-    });
-    // In some cases the QR code will be malformed enough that we pull off more or less than we should.
-    // If we pull off less there's nothing we can do.
-    // If we pull off more we can safely truncate
-    if (codewords.length < totalCodewords) {
-        return null;
-    }
-    codewords = codewords.slice(0, totalCodewords);
-    var shortBlockSize = ecInfo.ecBlocks[0].dataCodewordsPerBlock;
-    // Pull codewords to fill the blocks up to the minimum size
-    for (var i = 0; i < shortBlockSize; i++) {
-        for (var _i = 0, dataBlocks_1 = dataBlocks; _i < dataBlocks_1.length; _i++) {
-            var dataBlock = dataBlocks_1[_i];
-            dataBlock.codewords.push(codewords.shift());
-        }
-    }
-    // If there are any large blocks, pull codewords to fill the last element of those
-    if (ecInfo.ecBlocks.length > 1) {
-        var smallBlockCount = ecInfo.ecBlocks[0].numBlocks;
-        var largeBlockCount = ecInfo.ecBlocks[1].numBlocks;
-        for (var i = 0; i < largeBlockCount; i++) {
-            dataBlocks[smallBlockCount + i].codewords.push(codewords.shift());
-        }
-    }
-    // Add the rest of the codewords to the blocks. These are the error correction codewords.
-    while (codewords.length > 0) {
-        for (var _a = 0, dataBlocks_2 = dataBlocks; _a < dataBlocks_2.length; _a++) {
-            var dataBlock = dataBlocks_2[_a];
-            dataBlock.codewords.push(codewords.shift());
-        }
-    }
-    return dataBlocks;
-}
-function decodeMatrix(matrix) {
-    var version = readVersion(matrix);
-    if (!version) {
-        return null;
-    }
-    var formatInfo = readFormatInformation(matrix);
-    if (!formatInfo) {
-        return null;
-    }
-    var codewords = readCodewords(matrix, version, formatInfo);
-    var dataBlocks = getDataBlocks(codewords, version, formatInfo.errorCorrectionLevel);
-    if (!dataBlocks) {
-        return null;
-    }
-    // Count total number of data bytes
-    var totalBytes = dataBlocks.reduce(function (a, b) { return a + b.numDataCodewords; }, 0);
-    var resultBytes = new Uint8ClampedArray(totalBytes);
-    var resultIndex = 0;
-    for (var _i = 0, dataBlocks_3 = dataBlocks; _i < dataBlocks_3.length; _i++) {
-        var dataBlock = dataBlocks_3[_i];
-        var correctedBytes = reedsolomon_1.decode(dataBlock.codewords, dataBlock.codewords.length - dataBlock.numDataCodewords);
-        if (!correctedBytes) {
+        function getDataBlocks(codewords, version, ecLevel) {
+          var ecInfo = version.errorCorrectionLevels[ecLevel];
+          var dataBlocks = [];
+          var totalCodewords = 0;
+          ecInfo.ecBlocks.forEach(function (block) {
+            for (var i = 0; i < block.numBlocks; i++) {
+              dataBlocks.push({
+                numDataCodewords: block.dataCodewordsPerBlock,
+                codewords: [],
+              });
+              totalCodewords +=
+                block.dataCodewordsPerBlock + ecInfo.ecCodewordsPerBlock;
+            }
+          });
+          // In some cases the QR code will be malformed enough that we pull off more or less than we should.
+          // If we pull off less there's nothing we can do.
+          // If we pull off more we can safely truncate
+          if (codewords.length < totalCodewords) {
             return null;
+          }
+          codewords = codewords.slice(0, totalCodewords);
+          var shortBlockSize = ecInfo.ecBlocks[0].dataCodewordsPerBlock;
+          // Pull codewords to fill the blocks up to the minimum size
+          for (var i = 0; i < shortBlockSize; i++) {
+            for (
+              var _i = 0, dataBlocks_1 = dataBlocks;
+              _i < dataBlocks_1.length;
+              _i++
+            ) {
+              var dataBlock = dataBlocks_1[_i];
+              dataBlock.codewords.push(codewords.shift());
+            }
+          }
+          // If there are any large blocks, pull codewords to fill the last element of those
+          if (ecInfo.ecBlocks.length > 1) {
+            var smallBlockCount = ecInfo.ecBlocks[0].numBlocks;
+            var largeBlockCount = ecInfo.ecBlocks[1].numBlocks;
+            for (var i = 0; i < largeBlockCount; i++) {
+              dataBlocks[smallBlockCount + i].codewords.push(codewords.shift());
+            }
+          }
+          // Add the rest of the codewords to the blocks. These are the error correction codewords.
+          while (codewords.length > 0) {
+            for (
+              var _a = 0, dataBlocks_2 = dataBlocks;
+              _a < dataBlocks_2.length;
+              _a++
+            ) {
+              var dataBlock = dataBlocks_2[_a];
+              dataBlock.codewords.push(codewords.shift());
+            }
+          }
+          return dataBlocks;
         }
-        for (var i = 0; i < dataBlock.numDataCodewords; i++) {
-            resultBytes[resultIndex++] = correctedBytes[i];
+        function decodeMatrix(matrix) {
+          var version = readVersion(matrix);
+          if (!version) {
+            return null;
+          }
+          var formatInfo = readFormatInformation(matrix);
+          if (!formatInfo) {
+            return null;
+          }
+          var codewords = readCodewords(matrix, version, formatInfo);
+          var dataBlocks = getDataBlocks(
+            codewords,
+            version,
+            formatInfo.errorCorrectionLevel
+          );
+          if (!dataBlocks) {
+            return null;
+          }
+          // Count total number of data bytes
+          var totalBytes = dataBlocks.reduce(function (a, b) {
+            return a + b.numDataCodewords;
+          }, 0);
+          var resultBytes = new Uint8ClampedArray(totalBytes);
+          var resultIndex = 0;
+          for (
+            var _i = 0, dataBlocks_3 = dataBlocks;
+            _i < dataBlocks_3.length;
+            _i++
+          ) {
+            var dataBlock = dataBlocks_3[_i];
+            var correctedBytes = reedsolomon_1.decode(
+              dataBlock.codewords,
+              dataBlock.codewords.length - dataBlock.numDataCodewords
+            );
+            if (!correctedBytes) {
+              return null;
+            }
+            for (var i = 0; i < dataBlock.numDataCodewords; i++) {
+              resultBytes[resultIndex++] = correctedBytes[i];
+            }
+          }
+          try {
+            return decodeData_1.decode(resultBytes, version.versionNumber);
+          } catch (_a) {
+            return null;
+          }
         }
-    }
-    try {
-        return decodeData_1.decode(resultBytes, version.versionNumber);
-    }
-    catch (_a) {
-        return null;
-    }
-}
-function decode(matrix) {
-    if (matrix == null) {
-        return null;
-    }
-    var result = decodeMatrix(matrix);
-    if (result) {
-        return result;
-    }
-    // Decoding didn't work, try mirroring the QR across the topLeft -> bottomRight line.
-    for (var x = 0; x < matrix.width; x++) {
-        for (var y = x + 1; y < matrix.height; y++) {
-            if (matrix.get(x, y) !== matrix.get(y, x)) {
+        function decode(matrix) {
+          if (matrix == null) {
+            return null;
+          }
+          var result = decodeMatrix(matrix);
+          if (result) {
+            return result;
+          }
+          // Decoding didn't work, try mirroring the QR across the topLeft -> bottomRight line.
+          for (var x = 0; x < matrix.width; x++) {
+            for (var y = x + 1; y < matrix.height; y++) {
+              if (matrix.get(x, y) !== matrix.get(y, x)) {
                 matrix.set(x, y, !matrix.get(x, y));
                 matrix.set(y, x, !matrix.get(y, x));
+              }
             }
+          }
+          return decodeMatrix(matrix);
         }
-    }
-    return decodeMatrix(matrix);
-}
-exports.decode = decode;
+        exports.decode = decode;
 
+        /***/
+      },
+      /* 6 */
+      /***/ function (module, exports, __webpack_require__) {
+        "use strict";
 
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-// tslint:disable:no-bitwise
-var BitStream_1 = __webpack_require__(7);
-var shiftJISTable_1 = __webpack_require__(8);
-var Mode;
-(function (Mode) {
-    Mode["Numeric"] = "numeric";
-    Mode["Alphanumeric"] = "alphanumeric";
-    Mode["Byte"] = "byte";
-    Mode["Kanji"] = "kanji";
-    Mode["ECI"] = "eci";
-})(Mode = exports.Mode || (exports.Mode = {}));
-var ModeByte;
-(function (ModeByte) {
-    ModeByte[ModeByte["Terminator"] = 0] = "Terminator";
-    ModeByte[ModeByte["Numeric"] = 1] = "Numeric";
-    ModeByte[ModeByte["Alphanumeric"] = 2] = "Alphanumeric";
-    ModeByte[ModeByte["Byte"] = 4] = "Byte";
-    ModeByte[ModeByte["Kanji"] = 8] = "Kanji";
-    ModeByte[ModeByte["ECI"] = 7] = "ECI";
-    // StructuredAppend = 0x3,
-    // FNC1FirstPosition = 0x5,
-    // FNC1SecondPosition = 0x9,
-})(ModeByte || (ModeByte = {}));
-function decodeNumeric(stream, size) {
-    var bytes = [];
-    var text = "";
-    var characterCountSize = [10, 12, 14][size];
-    var length = stream.readBits(characterCountSize);
-    // Read digits in groups of 3
-    while (length >= 3) {
-        var num = stream.readBits(10);
-        if (num >= 1000) {
-            throw new Error("Invalid numeric value above 999");
+        Object.defineProperty(exports, "__esModule", { value: true });
+        // tslint:disable:no-bitwise
+        var BitStream_1 = __webpack_require__(7);
+        var shiftJISTable_1 = __webpack_require__(8);
+        var Mode;
+        (function (Mode) {
+          Mode["Numeric"] = "numeric";
+          Mode["Alphanumeric"] = "alphanumeric";
+          Mode["Byte"] = "byte";
+          Mode["Kanji"] = "kanji";
+          Mode["ECI"] = "eci";
+        })((Mode = exports.Mode || (exports.Mode = {})));
+        var ModeByte;
+        (function (ModeByte) {
+          ModeByte[(ModeByte["Terminator"] = 0)] = "Terminator";
+          ModeByte[(ModeByte["Numeric"] = 1)] = "Numeric";
+          ModeByte[(ModeByte["Alphanumeric"] = 2)] = "Alphanumeric";
+          ModeByte[(ModeByte["Byte"] = 4)] = "Byte";
+          ModeByte[(ModeByte["Kanji"] = 8)] = "Kanji";
+          ModeByte[(ModeByte["ECI"] = 7)] = "ECI";
+          // StructuredAppend = 0x3,
+          // FNC1FirstPosition = 0x5,
+          // FNC1SecondPosition = 0x9,
+        })(ModeByte || (ModeByte = {}));
+        function decodeNumeric(stream, size) {
+          var bytes = [];
+          var text = "";
+          var characterCountSize = [10, 12, 14][size];
+          var length = stream.readBits(characterCountSize);
+          // Read digits in groups of 3
+          while (length >= 3) {
+            var num = stream.readBits(10);
+            if (num >= 1000) {
+              throw new Error("Invalid numeric value above 999");
+            }
+            var a = Math.floor(num / 100);
+            var b = Math.floor(num / 10) % 10;
+            var c = num % 10;
+            bytes.push(48 + a, 48 + b, 48 + c);
+            text += a.toString() + b.toString() + c.toString();
+            length -= 3;
+          }
+          // If the number of digits aren't a multiple of 3, the remaining digits are special cased.
+          if (length === 2) {
+            var num = stream.readBits(7);
+            if (num >= 100) {
+              throw new Error("Invalid numeric value above 99");
+            }
+            var a = Math.floor(num / 10);
+            var b = num % 10;
+            bytes.push(48 + a, 48 + b);
+            text += a.toString() + b.toString();
+          } else if (length === 1) {
+            var num = stream.readBits(4);
+            if (num >= 10) {
+              throw new Error("Invalid numeric value above 9");
+            }
+            bytes.push(48 + num);
+            text += num.toString();
+          }
+          return { bytes: bytes, text: text };
         }
-        var a = Math.floor(num / 100);
-        var b = Math.floor(num / 10) % 10;
-        var c = num % 10;
-        bytes.push(48 + a, 48 + b, 48 + c);
-        text += a.toString() + b.toString() + c.toString();
-        length -= 3;
-    }
-    // If the number of digits aren't a multiple of 3, the remaining digits are special cased.
-    if (length === 2) {
-        var num = stream.readBits(7);
-        if (num >= 100) {
-            throw new Error("Invalid numeric value above 99");
+        var AlphanumericCharacterCodes = [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z",
+          " ",
+          "$",
+          "%",
+          "*",
+          "+",
+          "-",
+          ".",
+          "/",
+          ":",
+        ];
+        function decodeAlphanumeric(stream, size) {
+          var bytes = [];
+          var text = "";
+          var characterCountSize = [9, 11, 13][size];
+          var length = stream.readBits(characterCountSize);
+          while (length >= 2) {
+            var v = stream.readBits(11);
+            var a = Math.floor(v / 45);
+            var b = v % 45;
+            bytes.push(
+              AlphanumericCharacterCodes[a].charCodeAt(0),
+              AlphanumericCharacterCodes[b].charCodeAt(0)
+            );
+            text +=
+              AlphanumericCharacterCodes[a] + AlphanumericCharacterCodes[b];
+            length -= 2;
+          }
+          if (length === 1) {
+            var a = stream.readBits(6);
+            bytes.push(AlphanumericCharacterCodes[a].charCodeAt(0));
+            text += AlphanumericCharacterCodes[a];
+          }
+          return { bytes: bytes, text: text };
         }
-        var a = Math.floor(num / 10);
-        var b = num % 10;
-        bytes.push(48 + a, 48 + b);
-        text += a.toString() + b.toString();
-    }
-    else if (length === 1) {
-        var num = stream.readBits(4);
-        if (num >= 10) {
-            throw new Error("Invalid numeric value above 9");
+        function decodeByte(stream, size) {
+          var bytes = [];
+          var text = "";
+          var characterCountSize = [8, 16, 16][size];
+          var length = stream.readBits(characterCountSize);
+          for (var i = 0; i < length; i++) {
+            var b = stream.readBits(8);
+            bytes.push(b);
+          }
+          try {
+            text += decodeURIComponent(
+              bytes
+                .map(function (b) {
+                  return "%" + ("0" + b.toString(16)).substr(-2);
+                })
+                .join("")
+            );
+          } catch (_a) {
+            // failed to decode
+          }
+          return { bytes: bytes, text: text };
         }
-        bytes.push(48 + num);
-        text += num.toString();
-    }
-    return { bytes: bytes, text: text };
-}
-var AlphanumericCharacterCodes = [
-    "0", "1", "2", "3", "4", "5", "6", "7", "8",
-    "9", "A", "B", "C", "D", "E", "F", "G", "H",
-    "I", "J", "K", "L", "M", "N", "O", "P", "Q",
-    "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
-    " ", "$", "%", "*", "+", "-", ".", "/", ":",
-];
-function decodeAlphanumeric(stream, size) {
-    var bytes = [];
-    var text = "";
-    var characterCountSize = [9, 11, 13][size];
-    var length = stream.readBits(characterCountSize);
-    while (length >= 2) {
-        var v = stream.readBits(11);
-        var a = Math.floor(v / 45);
-        var b = v % 45;
-        bytes.push(AlphanumericCharacterCodes[a].charCodeAt(0), AlphanumericCharacterCodes[b].charCodeAt(0));
-        text += AlphanumericCharacterCodes[a] + AlphanumericCharacterCodes[b];
-        length -= 2;
-    }
-    if (length === 1) {
-        var a = stream.readBits(6);
-        bytes.push(AlphanumericCharacterCodes[a].charCodeAt(0));
-        text += AlphanumericCharacterCodes[a];
-    }
-    return { bytes: bytes, text: text };
-}
-function decodeByte(stream, size) {
-    var bytes = [];
-    var text = "";
-    var characterCountSize = [8, 16, 16][size];
-    var length = stream.readBits(characterCountSize);
-    for (var i = 0; i < length; i++) {
-        var b = stream.readBits(8);
-        bytes.push(b);
-    }
-    try {
-        text += decodeURIComponent(bytes.map(function (b) { return "%" + ("0" + b.toString(16)).substr(-2); }).join(""));
-    }
-    catch (_a) {
-        // failed to decode
-    }
-    return { bytes: bytes, text: text };
-}
-function decodeKanji(stream, size) {
-    var bytes = [];
-    var text = "";
-    var characterCountSize = [8, 10, 12][size];
-    var length = stream.readBits(characterCountSize);
-    for (var i = 0; i < length; i++) {
-        var k = stream.readBits(13);
-        var c = (Math.floor(k / 0xC0) << 8) | (k % 0xC0);
-        if (c < 0x1F00) {
-            c += 0x8140;
+        function decodeKanji(stream, size) {
+          var bytes = [];
+          var text = "";
+          var characterCountSize = [8, 10, 12][size];
+          var length = stream.readBits(characterCountSize);
+          for (var i = 0; i < length; i++) {
+            var k = stream.readBits(13);
+            var c = (Math.floor(k / 0xc0) << 8) | k % 0xc0;
+            if (c < 0x1f00) {
+              c += 0x8140;
+            } else {
+              c += 0xc140;
+            }
+            bytes.push(c >> 8, c & 0xff);
+            text += String.fromCharCode(shiftJISTable_1.shiftJISTable[c]);
+          }
+          return { bytes: bytes, text: text };
         }
-        else {
-            c += 0xC140;
-        }
-        bytes.push(c >> 8, c & 0xFF);
-        text += String.fromCharCode(shiftJISTable_1.shiftJISTable[c]);
-    }
-    return { bytes: bytes, text: text };
-}
-function decode(data, version) {
-    var _a, _b, _c, _d;
-    var stream = new BitStream_1.BitStream(data);
-    // There are 3 'sizes' based on the version. 1-9 is small (0), 10-26 is medium (1) and 27-40 is large (2).
-    var size = version <= 9 ? 0 : version <= 26 ? 1 : 2;
-    var result = {
-        text: "",
-        bytes: [],
-        chunks: [],
-    };
-    while (stream.available() >= 4) {
-        var mode = stream.readBits(4);
-        if (mode === ModeByte.Terminator) {
-            return result;
-        }
-        else if (mode === ModeByte.ECI) {
-            if (stream.readBits(1) === 0) {
+        function decode(data, version) {
+          var _a, _b, _c, _d;
+          var stream = new BitStream_1.BitStream(data);
+          // There are 3 'sizes' based on the version. 1-9 is small (0), 10-26 is medium (1) and 27-40 is large (2).
+          var size = version <= 9 ? 0 : version <= 26 ? 1 : 2;
+          var result = {
+            text: "",
+            bytes: [],
+            chunks: [],
+          };
+          while (stream.available() >= 4) {
+            var mode = stream.readBits(4);
+            if (mode === ModeByte.Terminator) {
+              return result;
+            } else if (mode === ModeByte.ECI) {
+              if (stream.readBits(1) === 0) {
                 result.chunks.push({
-                    type: Mode.ECI,
-                    assignmentNumber: stream.readBits(7),
+                  type: Mode.ECI,
+                  assignmentNumber: stream.readBits(7),
                 });
-            }
-            else if (stream.readBits(1) === 0) {
+              } else if (stream.readBits(1) === 0) {
                 result.chunks.push({
-                    type: Mode.ECI,
-                    assignmentNumber: stream.readBits(14),
+                  type: Mode.ECI,
+                  assignmentNumber: stream.readBits(14),
                 });
-            }
-            else if (stream.readBits(1) === 0) {
+              } else if (stream.readBits(1) === 0) {
                 result.chunks.push({
-                    type: Mode.ECI,
-                    assignmentNumber: stream.readBits(21),
+                  type: Mode.ECI,
+                  assignmentNumber: stream.readBits(21),
                 });
-            }
-            else {
+              } else {
                 // ECI data seems corrupted
                 result.chunks.push({
-                    type: Mode.ECI,
-                    assignmentNumber: -1,
+                  type: Mode.ECI,
+                  assignmentNumber: -1,
                 });
-            }
-        }
-        else if (mode === ModeByte.Numeric) {
-            var numericResult = decodeNumeric(stream, size);
-            result.text += numericResult.text;
-            (_a = result.bytes).push.apply(_a, numericResult.bytes);
-            result.chunks.push({
+              }
+            } else if (mode === ModeByte.Numeric) {
+              var numericResult = decodeNumeric(stream, size);
+              result.text += numericResult.text;
+              (_a = result.bytes).push.apply(_a, numericResult.bytes);
+              result.chunks.push({
                 type: Mode.Numeric,
                 text: numericResult.text,
-            });
-        }
-        else if (mode === ModeByte.Alphanumeric) {
-            var alphanumericResult = decodeAlphanumeric(stream, size);
-            result.text += alphanumericResult.text;
-            (_b = result.bytes).push.apply(_b, alphanumericResult.bytes);
-            result.chunks.push({
+              });
+            } else if (mode === ModeByte.Alphanumeric) {
+              var alphanumericResult = decodeAlphanumeric(stream, size);
+              result.text += alphanumericResult.text;
+              (_b = result.bytes).push.apply(_b, alphanumericResult.bytes);
+              result.chunks.push({
                 type: Mode.Alphanumeric,
                 text: alphanumericResult.text,
-            });
-        }
-        else if (mode === ModeByte.Byte) {
-            var byteResult = decodeByte(stream, size);
-            result.text += byteResult.text;
-            (_c = result.bytes).push.apply(_c, byteResult.bytes);
-            result.chunks.push({
+              });
+            } else if (mode === ModeByte.Byte) {
+              var byteResult = decodeByte(stream, size);
+              result.text += byteResult.text;
+              (_c = result.bytes).push.apply(_c, byteResult.bytes);
+              result.chunks.push({
                 type: Mode.Byte,
                 bytes: byteResult.bytes,
                 text: byteResult.text,
-            });
-        }
-        else if (mode === ModeByte.Kanji) {
-            var kanjiResult = decodeKanji(stream, size);
-            result.text += kanjiResult.text;
-            (_d = result.bytes).push.apply(_d, kanjiResult.bytes);
-            result.chunks.push({
+              });
+            } else if (mode === ModeByte.Kanji) {
+              var kanjiResult = decodeKanji(stream, size);
+              result.text += kanjiResult.text;
+              (_d = result.bytes).push.apply(_d, kanjiResult.bytes);
+              result.chunks.push({
                 type: Mode.Kanji,
                 bytes: kanjiResult.bytes,
                 text: kanjiResult.text,
-            });
+              });
+            }
+          }
+          // If there is no data left, or the remaining bits are all 0, then that counts as a termination marker
+          if (
+            stream.available() === 0 ||
+            stream.readBits(stream.available()) === 0
+          ) {
+            return result;
+          }
         }
-    }
-    // If there is no data left, or the remaining bits are all 0, then that counts as a termination marker
-    if (stream.available() === 0 || stream.readBits(stream.available()) === 0) {
-        return result;
-    }
-}
-exports.decode = decode;
+        exports.decode = decode;
 
+        /***/
+      },
+      /* 7 */
+      /***/ function (module, exports, __webpack_require__) {
+        "use strict";
 
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// tslint:disable:no-bitwise
-Object.defineProperty(exports, "__esModule", { value: true });
-var BitStream = /** @class */ (function () {
-    function BitStream(bytes) {
-        this.byteOffset = 0;
-        this.bitOffset = 0;
-        this.bytes = bytes;
-    }
-    BitStream.prototype.readBits = function (numBits) {
-        if (numBits < 1 || numBits > 32 || numBits > this.available()) {
-            throw new Error("Cannot read " + numBits.toString() + " bits");
-        }
-        var result = 0;
-        // First, read remainder from current byte
-        if (this.bitOffset > 0) {
-            var bitsLeft = 8 - this.bitOffset;
-            var toRead = numBits < bitsLeft ? numBits : bitsLeft;
-            var bitsToNotRead = bitsLeft - toRead;
-            var mask = (0xFF >> (8 - toRead)) << bitsToNotRead;
-            result = (this.bytes[this.byteOffset] & mask) >> bitsToNotRead;
-            numBits -= toRead;
-            this.bitOffset += toRead;
-            if (this.bitOffset === 8) {
+        // tslint:disable:no-bitwise
+        Object.defineProperty(exports, "__esModule", { value: true });
+        var BitStream = /** @class */ (function () {
+          function BitStream(bytes) {
+            this.byteOffset = 0;
+            this.bitOffset = 0;
+            this.bytes = bytes;
+          }
+          BitStream.prototype.readBits = function (numBits) {
+            if (numBits < 1 || numBits > 32 || numBits > this.available()) {
+              throw new Error("Cannot read " + numBits.toString() + " bits");
+            }
+            var result = 0;
+            // First, read remainder from current byte
+            if (this.bitOffset > 0) {
+              var bitsLeft = 8 - this.bitOffset;
+              var toRead = numBits < bitsLeft ? numBits : bitsLeft;
+              var bitsToNotRead = bitsLeft - toRead;
+              var mask = (0xff >> (8 - toRead)) << bitsToNotRead;
+              result = (this.bytes[this.byteOffset] & mask) >> bitsToNotRead;
+              numBits -= toRead;
+              this.bitOffset += toRead;
+              if (this.bitOffset === 8) {
                 this.bitOffset = 0;
                 this.byteOffset++;
+              }
             }
-        }
-        // Next read whole bytes
-        if (numBits > 0) {
-            while (numBits >= 8) {
-                result = (result << 8) | (this.bytes[this.byteOffset] & 0xFF);
+            // Next read whole bytes
+            if (numBits > 0) {
+              while (numBits >= 8) {
+                result = (result << 8) | (this.bytes[this.byteOffset] & 0xff);
                 this.byteOffset++;
                 numBits -= 8;
-            }
-            // Finally read a partial byte
-            if (numBits > 0) {
+              }
+              // Finally read a partial byte
+              if (numBits > 0) {
                 var bitsToNotRead = 8 - numBits;
-                var mask = (0xFF >> bitsToNotRead) << bitsToNotRead;
-                result = (result << numBits) | ((this.bytes[this.byteOffset] & mask) >> bitsToNotRead);
+                var mask = (0xff >> bitsToNotRead) << bitsToNotRead;
+                result =
+                  (result << numBits) |
+                  ((this.bytes[this.byteOffset] & mask) >> bitsToNotRead);
                 this.bitOffset += numBits;
+              }
             }
-        }
-        return result;
-    };
-    BitStream.prototype.available = function () {
-        return 8 * (this.bytes.length - this.byteOffset) - this.bitOffset;
-    };
-    return BitStream;
-}());
-exports.BitStream = BitStream;
+            return result;
+          };
+          BitStream.prototype.available = function () {
+            return 8 * (this.bytes.length - this.byteOffset) - this.bitOffset;
+          };
+          return BitStream;
+        })();
+        exports.BitStream = BitStream;
 
+        /***/
+      },
+      /* 8 */
+      /***/ function (module, exports, __webpack_require__) {
+        "use strict";
 
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
+        Object.defineProperty(exports, "__esModule", { value: true });
+        exports.shiftJISTable = {
+          0x20: 0x0020,
+          0x21: 0x0021,
+          0x22: 0x0022,
+          0x23: 0x0023,
+          0x24: 0x0024,
+          0x25: 0x0025,
+          0x26: 0x0026,
+          0x27: 0x0027,
+          0x28: 0x0028,
+          0x29: 0x0029,
+          0x2a: 0x002a,
+          0x2b: 0x002b,
+          0x2c: 0x002c,
+          0x2d: 0x002d,
+          0x2e: 0x002e,
+          0x2f: 0x002f,
+          0x30: 0x0030,
+          0x31: 0x0031,
+          0x32: 0x0032,
+          0x33: 0x0033,
+          0x34: 0x0034,
+          0x35: 0x0035,
+          0x36: 0x0036,
+          0x37: 0x0037,
+          0x38: 0x0038,
+          0x39: 0x0039,
+          0x3a: 0x003a,
+          0x3b: 0x003b,
+          0x3c: 0x003c,
+          0x3d: 0x003d,
+          0x3e: 0x003e,
+          0x3f: 0x003f,
+          0x40: 0x0040,
+          0x41: 0x0041,
+          0x42: 0x0042,
+          0x43: 0x0043,
+          0x44: 0x0044,
+          0x45: 0x0045,
+          0x46: 0x0046,
+          0x47: 0x0047,
+          0x48: 0x0048,
+          0x49: 0x0049,
+          0x4a: 0x004a,
+          0x4b: 0x004b,
+          0x4c: 0x004c,
+          0x4d: 0x004d,
+          0x4e: 0x004e,
+          0x4f: 0x004f,
+          0x50: 0x0050,
+          0x51: 0x0051,
+          0x52: 0x0052,
+          0x53: 0x0053,
+          0x54: 0x0054,
+          0x55: 0x0055,
+          0x56: 0x0056,
+          0x57: 0x0057,
+          0x58: 0x0058,
+          0x59: 0x0059,
+          0x5a: 0x005a,
+          0x5b: 0x005b,
+          0x5c: 0x00a5,
+          0x5d: 0x005d,
+          0x5e: 0x005e,
+          0x5f: 0x005f,
+          0x60: 0x0060,
+          0x61: 0x0061,
+          0x62: 0x0062,
+          0x63: 0x0063,
+          0x64: 0x0064,
+          0x65: 0x0065,
+          0x66: 0x0066,
+          0x67: 0x0067,
+          0x68: 0x0068,
+          0x69: 0x0069,
+          0x6a: 0x006a,
+          0x6b: 0x006b,
+          0x6c: 0x006c,
+          0x6d: 0x006d,
+          0x6e: 0x006e,
+          0x6f: 0x006f,
+          0x70: 0x0070,
+          0x71: 0x0071,
+          0x72: 0x0072,
+          0x73: 0x0073,
+          0x74: 0x0074,
+          0x75: 0x0075,
+          0x76: 0x0076,
+          0x77: 0x0077,
+          0x78: 0x0078,
+          0x79: 0x0079,
+          0x7a: 0x007a,
+          0x7b: 0x007b,
+          0x7c: 0x007c,
+          0x7d: 0x007d,
+          0x7e: 0x203e,
+          0x8140: 0x3000,
+          0x8141: 0x3001,
+          0x8142: 0x3002,
+          0x8143: 0xff0c,
+          0x8144: 0xff0e,
+          0x8145: 0x30fb,
+          0x8146: 0xff1a,
+          0x8147: 0xff1b,
+          0x8148: 0xff1f,
+          0x8149: 0xff01,
+          0x814a: 0x309b,
+          0x814b: 0x309c,
+          0x814c: 0x00b4,
+          0x814d: 0xff40,
+          0x814e: 0x00a8,
+          0x814f: 0xff3e,
+          0x8150: 0xffe3,
+          0x8151: 0xff3f,
+          0x8152: 0x30fd,
+          0x8153: 0x30fe,
+          0x8154: 0x309d,
+          0x8155: 0x309e,
+          0x8156: 0x3003,
+          0x8157: 0x4edd,
+          0x8158: 0x3005,
+          0x8159: 0x3006,
+          0x815a: 0x3007,
+          0x815b: 0x30fc,
+          0x815c: 0x2015,
+          0x815d: 0x2010,
+          0x815e: 0xff0f,
+          0x815f: 0x005c,
+          0x8160: 0x301c,
+          0x8161: 0x2016,
+          0x8162: 0xff5c,
+          0x8163: 0x2026,
+          0x8164: 0x2025,
+          0x8165: 0x2018,
+          0x8166: 0x2019,
+          0x8167: 0x201c,
+          0x8168: 0x201d,
+          0x8169: 0xff08,
+          0x816a: 0xff09,
+          0x816b: 0x3014,
+          0x816c: 0x3015,
+          0x816d: 0xff3b,
+          0x816e: 0xff3d,
+          0x816f: 0xff5b,
+          0x8170: 0xff5d,
+          0x8171: 0x3008,
+          0x8172: 0x3009,
+          0x8173: 0x300a,
+          0x8174: 0x300b,
+          0x8175: 0x300c,
+          0x8176: 0x300d,
+          0x8177: 0x300e,
+          0x8178: 0x300f,
+          0x8179: 0x3010,
+          0x817a: 0x3011,
+          0x817b: 0xff0b,
+          0x817c: 0x2212,
+          0x817d: 0x00b1,
+          0x817e: 0x00d7,
+          0x8180: 0x00f7,
+          0x8181: 0xff1d,
+          0x8182: 0x2260,
+          0x8183: 0xff1c,
+          0x8184: 0xff1e,
+          0x8185: 0x2266,
+          0x8186: 0x2267,
+          0x8187: 0x221e,
+          0x8188: 0x2234,
+          0x8189: 0x2642,
+          0x818a: 0x2640,
+          0x818b: 0x00b0,
+          0x818c: 0x2032,
+          0x818d: 0x2033,
+          0x818e: 0x2103,
+          0x818f: 0xffe5,
+          0x8190: 0xff04,
+          0x8191: 0x00a2,
+          0x8192: 0x00a3,
+          0x8193: 0xff05,
+          0x8194: 0xff03,
+          0x8195: 0xff06,
+          0x8196: 0xff0a,
+          0x8197: 0xff20,
+          0x8198: 0x00a7,
+          0x8199: 0x2606,
+          0x819a: 0x2605,
+          0x819b: 0x25cb,
+          0x819c: 0x25cf,
+          0x819d: 0x25ce,
+          0x819e: 0x25c7,
+          0x819f: 0x25c6,
+          0x81a0: 0x25a1,
+          0x81a1: 0x25a0,
+          0x81a2: 0x25b3,
+          0x81a3: 0x25b2,
+          0x81a4: 0x25bd,
+          0x81a5: 0x25bc,
+          0x81a6: 0x203b,
+          0x81a7: 0x3012,
+          0x81a8: 0x2192,
+          0x81a9: 0x2190,
+          0x81aa: 0x2191,
+          0x81ab: 0x2193,
+          0x81ac: 0x3013,
+          0x81b8: 0x2208,
+          0x81b9: 0x220b,
+          0x81ba: 0x2286,
+          0x81bb: 0x2287,
+          0x81bc: 0x2282,
+          0x81bd: 0x2283,
+          0x81be: 0x222a,
+          0x81bf: 0x2229,
+          0x81c8: 0x2227,
+          0x81c9: 0x2228,
+          0x81ca: 0x00ac,
+          0x81cb: 0x21d2,
+          0x81cc: 0x21d4,
+          0x81cd: 0x2200,
+          0x81ce: 0x2203,
+          0x81da: 0x2220,
+          0x81db: 0x22a5,
+          0x81dc: 0x2312,
+          0x81dd: 0x2202,
+          0x81de: 0x2207,
+          0x81df: 0x2261,
+          0x81e0: 0x2252,
+          0x81e1: 0x226a,
+          0x81e2: 0x226b,
+          0x81e3: 0x221a,
+          0x81e4: 0x223d,
+          0x81e5: 0x221d,
+          0x81e6: 0x2235,
+          0x81e7: 0x222b,
+          0x81e8: 0x222c,
+          0x81f0: 0x212b,
+          0x81f1: 0x2030,
+          0x81f2: 0x266f,
+          0x81f3: 0x266d,
+          0x81f4: 0x266a,
+          0x81f5: 0x2020,
+          0x81f6: 0x2021,
+          0x81f7: 0x00b6,
+          0x81fc: 0x25ef,
+          0x824f: 0xff10,
+          0x8250: 0xff11,
+          0x8251: 0xff12,
+          0x8252: 0xff13,
+          0x8253: 0xff14,
+          0x8254: 0xff15,
+          0x8255: 0xff16,
+          0x8256: 0xff17,
+          0x8257: 0xff18,
+          0x8258: 0xff19,
+          0x8260: 0xff21,
+          0x8261: 0xff22,
+          0x8262: 0xff23,
+          0x8263: 0xff24,
+          0x8264: 0xff25,
+          0x8265: 0xff26,
+          0x8266: 0xff27,
+          0x8267: 0xff28,
+          0x8268: 0xff29,
+          0x8269: 0xff2a,
+          0x826a: 0xff2b,
+          0x826b: 0xff2c,
+          0x826c: 0xff2d,
+          0x826d: 0xff2e,
+          0x826e: 0xff2f,
+          0x826f: 0xff30,
+          0x8270: 0xff31,
+          0x8271: 0xff32,
+          0x8272: 0xff33,
+          0x8273: 0xff34,
+          0x8274: 0xff35,
+          0x8275: 0xff36,
+          0x8276: 0xff37,
+          0x8277: 0xff38,
+          0x8278: 0xff39,
+          0x8279: 0xff3a,
+          0x8281: 0xff41,
+          0x8282: 0xff42,
+          0x8283: 0xff43,
+          0x8284: 0xff44,
+          0x8285: 0xff45,
+          0x8286: 0xff46,
+          0x8287: 0xff47,
+          0x8288: 0xff48,
+          0x8289: 0xff49,
+          0x828a: 0xff4a,
+          0x828b: 0xff4b,
+          0x828c: 0xff4c,
+          0x828d: 0xff4d,
+          0x828e: 0xff4e,
+          0x828f: 0xff4f,
+          0x8290: 0xff50,
+          0x8291: 0xff51,
+          0x8292: 0xff52,
+          0x8293: 0xff53,
+          0x8294: 0xff54,
+          0x8295: 0xff55,
+          0x8296: 0xff56,
+          0x8297: 0xff57,
+          0x8298: 0xff58,
+          0x8299: 0xff59,
+          0x829a: 0xff5a,
+          0x829f: 0x3041,
+          0x82a0: 0x3042,
+          0x82a1: 0x3043,
+          0x82a2: 0x3044,
+          0x82a3: 0x3045,
+          0x82a4: 0x3046,
+          0x82a5: 0x3047,
+          0x82a6: 0x3048,
+          0x82a7: 0x3049,
+          0x82a8: 0x304a,
+          0x82a9: 0x304b,
+          0x82aa: 0x304c,
+          0x82ab: 0x304d,
+          0x82ac: 0x304e,
+          0x82ad: 0x304f,
+          0x82ae: 0x3050,
+          0x82af: 0x3051,
+          0x82b0: 0x3052,
+          0x82b1: 0x3053,
+          0x82b2: 0x3054,
+          0x82b3: 0x3055,
+          0x82b4: 0x3056,
+          0x82b5: 0x3057,
+          0x82b6: 0x3058,
+          0x82b7: 0x3059,
+          0x82b8: 0x305a,
+          0x82b9: 0x305b,
+          0x82ba: 0x305c,
+          0x82bb: 0x305d,
+          0x82bc: 0x305e,
+          0x82bd: 0x305f,
+          0x82be: 0x3060,
+          0x82bf: 0x3061,
+          0x82c0: 0x3062,
+          0x82c1: 0x3063,
+          0x82c2: 0x3064,
+          0x82c3: 0x3065,
+          0x82c4: 0x3066,
+          0x82c5: 0x3067,
+          0x82c6: 0x3068,
+          0x82c7: 0x3069,
+          0x82c8: 0x306a,
+          0x82c9: 0x306b,
+          0x82ca: 0x306c,
+          0x82cb: 0x306d,
+          0x82cc: 0x306e,
+          0x82cd: 0x306f,
+          0x82ce: 0x3070,
+          0x82cf: 0x3071,
+          0x82d0: 0x3072,
+          0x82d1: 0x3073,
+          0x82d2: 0x3074,
+          0x82d3: 0x3075,
+          0x82d4: 0x3076,
+          0x82d5: 0x3077,
+          0x82d6: 0x3078,
+          0x82d7: 0x3079,
+          0x82d8: 0x307a,
+          0x82d9: 0x307b,
+          0x82da: 0x307c,
+          0x82db: 0x307d,
+          0x82dc: 0x307e,
+          0x82dd: 0x307f,
+          0x82de: 0x3080,
+          0x82df: 0x3081,
+          0x82e0: 0x3082,
+          0x82e1: 0x3083,
+          0x82e2: 0x3084,
+          0x82e3: 0x3085,
+          0x82e4: 0x3086,
+          0x82e5: 0x3087,
+          0x82e6: 0x3088,
+          0x82e7: 0x3089,
+          0x82e8: 0x308a,
+          0x82e9: 0x308b,
+          0x82ea: 0x308c,
+          0x82eb: 0x308d,
+          0x82ec: 0x308e,
+          0x82ed: 0x308f,
+          0x82ee: 0x3090,
+          0x82ef: 0x3091,
+          0x82f0: 0x3092,
+          0x82f1: 0x3093,
+          0x8340: 0x30a1,
+          0x8341: 0x30a2,
+          0x8342: 0x30a3,
+          0x8343: 0x30a4,
+          0x8344: 0x30a5,
+          0x8345: 0x30a6,
+          0x8346: 0x30a7,
+          0x8347: 0x30a8,
+          0x8348: 0x30a9,
+          0x8349: 0x30aa,
+          0x834a: 0x30ab,
+          0x834b: 0x30ac,
+          0x834c: 0x30ad,
+          0x834d: 0x30ae,
+          0x834e: 0x30af,
+          0x834f: 0x30b0,
+          0x8350: 0x30b1,
+          0x8351: 0x30b2,
+          0x8352: 0x30b3,
+          0x8353: 0x30b4,
+          0x8354: 0x30b5,
+          0x8355: 0x30b6,
+          0x8356: 0x30b7,
+          0x8357: 0x30b8,
+          0x8358: 0x30b9,
+          0x8359: 0x30ba,
+          0x835a: 0x30bb,
+          0x835b: 0x30bc,
+          0x835c: 0x30bd,
+          0x835d: 0x30be,
+          0x835e: 0x30bf,
+          0x835f: 0x30c0,
+          0x8360: 0x30c1,
+          0x8361: 0x30c2,
+          0x8362: 0x30c3,
+          0x8363: 0x30c4,
+          0x8364: 0x30c5,
+          0x8365: 0x30c6,
+          0x8366: 0x30c7,
+          0x8367: 0x30c8,
+          0x8368: 0x30c9,
+          0x8369: 0x30ca,
+          0x836a: 0x30cb,
+          0x836b: 0x30cc,
+          0x836c: 0x30cd,
+          0x836d: 0x30ce,
+          0x836e: 0x30cf,
+          0x836f: 0x30d0,
+          0x8370: 0x30d1,
+          0x8371: 0x30d2,
+          0x8372: 0x30d3,
+          0x8373: 0x30d4,
+          0x8374: 0x30d5,
+          0x8375: 0x30d6,
+          0x8376: 0x30d7,
+          0x8377: 0x30d8,
+          0x8378: 0x30d9,
+          0x8379: 0x30da,
+          0x837a: 0x30db,
+          0x837b: 0x30dc,
+          0x837c: 0x30dd,
+          0x837d: 0x30de,
+          0x837e: 0x30df,
+          0x8380: 0x30e0,
+          0x8381: 0x30e1,
+          0x8382: 0x30e2,
+          0x8383: 0x30e3,
+          0x8384: 0x30e4,
+          0x8385: 0x30e5,
+          0x8386: 0x30e6,
+          0x8387: 0x30e7,
+          0x8388: 0x30e8,
+          0x8389: 0x30e9,
+          0x838a: 0x30ea,
+          0x838b: 0x30eb,
+          0x838c: 0x30ec,
+          0x838d: 0x30ed,
+          0x838e: 0x30ee,
+          0x838f: 0x30ef,
+          0x8390: 0x30f0,
+          0x8391: 0x30f1,
+          0x8392: 0x30f2,
+          0x8393: 0x30f3,
+          0x8394: 0x30f4,
+          0x8395: 0x30f5,
+          0x8396: 0x30f6,
+          0x839f: 0x0391,
+          0x83a0: 0x0392,
+          0x83a1: 0x0393,
+          0x83a2: 0x0394,
+          0x83a3: 0x0395,
+          0x83a4: 0x0396,
+          0x83a5: 0x0397,
+          0x83a6: 0x0398,
+          0x83a7: 0x0399,
+          0x83a8: 0x039a,
+          0x83a9: 0x039b,
+          0x83aa: 0x039c,
+          0x83ab: 0x039d,
+          0x83ac: 0x039e,
+          0x83ad: 0x039f,
+          0x83ae: 0x03a0,
+          0x83af: 0x03a1,
+          0x83b0: 0x03a3,
+          0x83b1: 0x03a4,
+          0x83b2: 0x03a5,
+          0x83b3: 0x03a6,
+          0x83b4: 0x03a7,
+          0x83b5: 0x03a8,
+          0x83b6: 0x03a9,
+          0x83bf: 0x03b1,
+          0x83c0: 0x03b2,
+          0x83c1: 0x03b3,
+          0x83c2: 0x03b4,
+          0x83c3: 0x03b5,
+          0x83c4: 0x03b6,
+          0x83c5: 0x03b7,
+          0x83c6: 0x03b8,
+          0x83c7: 0x03b9,
+          0x83c8: 0x03ba,
+          0x83c9: 0x03bb,
+          0x83ca: 0x03bc,
+          0x83cb: 0x03bd,
+          0x83cc: 0x03be,
+          0x83cd: 0x03bf,
+          0x83ce: 0x03c0,
+          0x83cf: 0x03c1,
+          0x83d0: 0x03c3,
+          0x83d1: 0x03c4,
+          0x83d2: 0x03c5,
+          0x83d3: 0x03c6,
+          0x83d4: 0x03c7,
+          0x83d5: 0x03c8,
+          0x83d6: 0x03c9,
+          0x8440: 0x0410,
+          0x8441: 0x0411,
+          0x8442: 0x0412,
+          0x8443: 0x0413,
+          0x8444: 0x0414,
+          0x8445: 0x0415,
+          0x8446: 0x0401,
+          0x8447: 0x0416,
+          0x8448: 0x0417,
+          0x8449: 0x0418,
+          0x844a: 0x0419,
+          0x844b: 0x041a,
+          0x844c: 0x041b,
+          0x844d: 0x041c,
+          0x844e: 0x041d,
+          0x844f: 0x041e,
+          0x8450: 0x041f,
+          0x8451: 0x0420,
+          0x8452: 0x0421,
+          0x8453: 0x0422,
+          0x8454: 0x0423,
+          0x8455: 0x0424,
+          0x8456: 0x0425,
+          0x8457: 0x0426,
+          0x8458: 0x0427,
+          0x8459: 0x0428,
+          0x845a: 0x0429,
+          0x845b: 0x042a,
+          0x845c: 0x042b,
+          0x845d: 0x042c,
+          0x845e: 0x042d,
+          0x845f: 0x042e,
+          0x8460: 0x042f,
+          0x8470: 0x0430,
+          0x8471: 0x0431,
+          0x8472: 0x0432,
+          0x8473: 0x0433,
+          0x8474: 0x0434,
+          0x8475: 0x0435,
+          0x8476: 0x0451,
+          0x8477: 0x0436,
+          0x8478: 0x0437,
+          0x8479: 0x0438,
+          0x847a: 0x0439,
+          0x847b: 0x043a,
+          0x847c: 0x043b,
+          0x847d: 0x043c,
+          0x847e: 0x043d,
+          0x8480: 0x043e,
+          0x8481: 0x043f,
+          0x8482: 0x0440,
+          0x8483: 0x0441,
+          0x8484: 0x0442,
+          0x8485: 0x0443,
+          0x8486: 0x0444,
+          0x8487: 0x0445,
+          0x8488: 0x0446,
+          0x8489: 0x0447,
+          0x848a: 0x0448,
+          0x848b: 0x0449,
+          0x848c: 0x044a,
+          0x848d: 0x044b,
+          0x848e: 0x044c,
+          0x848f: 0x044d,
+          0x8490: 0x044e,
+          0x8491: 0x044f,
+          0x849f: 0x2500,
+          0x84a0: 0x2502,
+          0x84a1: 0x250c,
+          0x84a2: 0x2510,
+          0x84a3: 0x2518,
+          0x84a4: 0x2514,
+          0x84a5: 0x251c,
+          0x84a6: 0x252c,
+          0x84a7: 0x2524,
+          0x84a8: 0x2534,
+          0x84a9: 0x253c,
+          0x84aa: 0x2501,
+          0x84ab: 0x2503,
+          0x84ac: 0x250f,
+          0x84ad: 0x2513,
+          0x84ae: 0x251b,
+          0x84af: 0x2517,
+          0x84b0: 0x2523,
+          0x84b1: 0x2533,
+          0x84b2: 0x252b,
+          0x84b3: 0x253b,
+          0x84b4: 0x254b,
+          0x84b5: 0x2520,
+          0x84b6: 0x252f,
+          0x84b7: 0x2528,
+          0x84b8: 0x2537,
+          0x84b9: 0x253f,
+          0x84ba: 0x251d,
+          0x84bb: 0x2530,
+          0x84bc: 0x2525,
+          0x84bd: 0x2538,
+          0x84be: 0x2542,
+          0x889f: 0x4e9c,
+          0x88a0: 0x5516,
+          0x88a1: 0x5a03,
+          0x88a2: 0x963f,
+          0x88a3: 0x54c0,
+          0x88a4: 0x611b,
+          0x88a5: 0x6328,
+          0x88a6: 0x59f6,
+          0x88a7: 0x9022,
+          0x88a8: 0x8475,
+          0x88a9: 0x831c,
+          0x88aa: 0x7a50,
+          0x88ab: 0x60aa,
+          0x88ac: 0x63e1,
+          0x88ad: 0x6e25,
+          0x88ae: 0x65ed,
+          0x88af: 0x8466,
+          0x88b0: 0x82a6,
+          0x88b1: 0x9bf5,
+          0x88b2: 0x6893,
+          0x88b3: 0x5727,
+          0x88b4: 0x65a1,
+          0x88b5: 0x6271,
+          0x88b6: 0x5b9b,
+          0x88b7: 0x59d0,
+          0x88b8: 0x867b,
+          0x88b9: 0x98f4,
+          0x88ba: 0x7d62,
+          0x88bb: 0x7dbe,
+          0x88bc: 0x9b8e,
+          0x88bd: 0x6216,
+          0x88be: 0x7c9f,
+          0x88bf: 0x88b7,
+          0x88c0: 0x5b89,
+          0x88c1: 0x5eb5,
+          0x88c2: 0x6309,
+          0x88c3: 0x6697,
+          0x88c4: 0x6848,
+          0x88c5: 0x95c7,
+          0x88c6: 0x978d,
+          0x88c7: 0x674f,
+          0x88c8: 0x4ee5,
+          0x88c9: 0x4f0a,
+          0x88ca: 0x4f4d,
+          0x88cb: 0x4f9d,
+          0x88cc: 0x5049,
+          0x88cd: 0x56f2,
+          0x88ce: 0x5937,
+          0x88cf: 0x59d4,
+          0x88d0: 0x5a01,
+          0x88d1: 0x5c09,
+          0x88d2: 0x60df,
+          0x88d3: 0x610f,
+          0x88d4: 0x6170,
+          0x88d5: 0x6613,
+          0x88d6: 0x6905,
+          0x88d7: 0x70ba,
+          0x88d8: 0x754f,
+          0x88d9: 0x7570,
+          0x88da: 0x79fb,
+          0x88db: 0x7dad,
+          0x88dc: 0x7def,
+          0x88dd: 0x80c3,
+          0x88de: 0x840e,
+          0x88df: 0x8863,
+          0x88e0: 0x8b02,
+          0x88e1: 0x9055,
+          0x88e2: 0x907a,
+          0x88e3: 0x533b,
+          0x88e4: 0x4e95,
+          0x88e5: 0x4ea5,
+          0x88e6: 0x57df,
+          0x88e7: 0x80b2,
+          0x88e8: 0x90c1,
+          0x88e9: 0x78ef,
+          0x88ea: 0x4e00,
+          0x88eb: 0x58f1,
+          0x88ec: 0x6ea2,
+          0x88ed: 0x9038,
+          0x88ee: 0x7a32,
+          0x88ef: 0x8328,
+          0x88f0: 0x828b,
+          0x88f1: 0x9c2f,
+          0x88f2: 0x5141,
+          0x88f3: 0x5370,
+          0x88f4: 0x54bd,
+          0x88f5: 0x54e1,
+          0x88f6: 0x56e0,
+          0x88f7: 0x59fb,
+          0x88f8: 0x5f15,
+          0x88f9: 0x98f2,
+          0x88fa: 0x6deb,
+          0x88fb: 0x80e4,
+          0x88fc: 0x852d,
+          0x8940: 0x9662,
+          0x8941: 0x9670,
+          0x8942: 0x96a0,
+          0x8943: 0x97fb,
+          0x8944: 0x540b,
+          0x8945: 0x53f3,
+          0x8946: 0x5b87,
+          0x8947: 0x70cf,
+          0x8948: 0x7fbd,
+          0x8949: 0x8fc2,
+          0x894a: 0x96e8,
+          0x894b: 0x536f,
+          0x894c: 0x9d5c,
+          0x894d: 0x7aba,
+          0x894e: 0x4e11,
+          0x894f: 0x7893,
+          0x8950: 0x81fc,
+          0x8951: 0x6e26,
+          0x8952: 0x5618,
+          0x8953: 0x5504,
+          0x8954: 0x6b1d,
+          0x8955: 0x851a,
+          0x8956: 0x9c3b,
+          0x8957: 0x59e5,
+          0x8958: 0x53a9,
+          0x8959: 0x6d66,
+          0x895a: 0x74dc,
+          0x895b: 0x958f,
+          0x895c: 0x5642,
+          0x895d: 0x4e91,
+          0x895e: 0x904b,
+          0x895f: 0x96f2,
+          0x8960: 0x834f,
+          0x8961: 0x990c,
+          0x8962: 0x53e1,
+          0x8963: 0x55b6,
+          0x8964: 0x5b30,
+          0x8965: 0x5f71,
+          0x8966: 0x6620,
+          0x8967: 0x66f3,
+          0x8968: 0x6804,
+          0x8969: 0x6c38,
+          0x896a: 0x6cf3,
+          0x896b: 0x6d29,
+          0x896c: 0x745b,
+          0x896d: 0x76c8,
+          0x896e: 0x7a4e,
+          0x896f: 0x9834,
+          0x8970: 0x82f1,
+          0x8971: 0x885b,
+          0x8972: 0x8a60,
+          0x8973: 0x92ed,
+          0x8974: 0x6db2,
+          0x8975: 0x75ab,
+          0x8976: 0x76ca,
+          0x8977: 0x99c5,
+          0x8978: 0x60a6,
+          0x8979: 0x8b01,
+          0x897a: 0x8d8a,
+          0x897b: 0x95b2,
+          0x897c: 0x698e,
+          0x897d: 0x53ad,
+          0x897e: 0x5186,
+          0x8980: 0x5712,
+          0x8981: 0x5830,
+          0x8982: 0x5944,
+          0x8983: 0x5bb4,
+          0x8984: 0x5ef6,
+          0x8985: 0x6028,
+          0x8986: 0x63a9,
+          0x8987: 0x63f4,
+          0x8988: 0x6cbf,
+          0x8989: 0x6f14,
+          0x898a: 0x708e,
+          0x898b: 0x7114,
+          0x898c: 0x7159,
+          0x898d: 0x71d5,
+          0x898e: 0x733f,
+          0x898f: 0x7e01,
+          0x8990: 0x8276,
+          0x8991: 0x82d1,
+          0x8992: 0x8597,
+          0x8993: 0x9060,
+          0x8994: 0x925b,
+          0x8995: 0x9d1b,
+          0x8996: 0x5869,
+          0x8997: 0x65bc,
+          0x8998: 0x6c5a,
+          0x8999: 0x7525,
+          0x899a: 0x51f9,
+          0x899b: 0x592e,
+          0x899c: 0x5965,
+          0x899d: 0x5f80,
+          0x899e: 0x5fdc,
+          0x899f: 0x62bc,
+          0x89a0: 0x65fa,
+          0x89a1: 0x6a2a,
+          0x89a2: 0x6b27,
+          0x89a3: 0x6bb4,
+          0x89a4: 0x738b,
+          0x89a5: 0x7fc1,
+          0x89a6: 0x8956,
+          0x89a7: 0x9d2c,
+          0x89a8: 0x9d0e,
+          0x89a9: 0x9ec4,
+          0x89aa: 0x5ca1,
+          0x89ab: 0x6c96,
+          0x89ac: 0x837b,
+          0x89ad: 0x5104,
+          0x89ae: 0x5c4b,
+          0x89af: 0x61b6,
+          0x89b0: 0x81c6,
+          0x89b1: 0x6876,
+          0x89b2: 0x7261,
+          0x89b3: 0x4e59,
+          0x89b4: 0x4ffa,
+          0x89b5: 0x5378,
+          0x89b6: 0x6069,
+          0x89b7: 0x6e29,
+          0x89b8: 0x7a4f,
+          0x89b9: 0x97f3,
+          0x89ba: 0x4e0b,
+          0x89bb: 0x5316,
+          0x89bc: 0x4eee,
+          0x89bd: 0x4f55,
+          0x89be: 0x4f3d,
+          0x89bf: 0x4fa1,
+          0x89c0: 0x4f73,
+          0x89c1: 0x52a0,
+          0x89c2: 0x53ef,
+          0x89c3: 0x5609,
+          0x89c4: 0x590f,
+          0x89c5: 0x5ac1,
+          0x89c6: 0x5bb6,
+          0x89c7: 0x5be1,
+          0x89c8: 0x79d1,
+          0x89c9: 0x6687,
+          0x89ca: 0x679c,
+          0x89cb: 0x67b6,
+          0x89cc: 0x6b4c,
+          0x89cd: 0x6cb3,
+          0x89ce: 0x706b,
+          0x89cf: 0x73c2,
+          0x89d0: 0x798d,
+          0x89d1: 0x79be,
+          0x89d2: 0x7a3c,
+          0x89d3: 0x7b87,
+          0x89d4: 0x82b1,
+          0x89d5: 0x82db,
+          0x89d6: 0x8304,
+          0x89d7: 0x8377,
+          0x89d8: 0x83ef,
+          0x89d9: 0x83d3,
+          0x89da: 0x8766,
+          0x89db: 0x8ab2,
+          0x89dc: 0x5629,
+          0x89dd: 0x8ca8,
+          0x89de: 0x8fe6,
+          0x89df: 0x904e,
+          0x89e0: 0x971e,
+          0x89e1: 0x868a,
+          0x89e2: 0x4fc4,
+          0x89e3: 0x5ce8,
+          0x89e4: 0x6211,
+          0x89e5: 0x7259,
+          0x89e6: 0x753b,
+          0x89e7: 0x81e5,
+          0x89e8: 0x82bd,
+          0x89e9: 0x86fe,
+          0x89ea: 0x8cc0,
+          0x89eb: 0x96c5,
+          0x89ec: 0x9913,
+          0x89ed: 0x99d5,
+          0x89ee: 0x4ecb,
+          0x89ef: 0x4f1a,
+          0x89f0: 0x89e3,
+          0x89f1: 0x56de,
+          0x89f2: 0x584a,
+          0x89f3: 0x58ca,
+          0x89f4: 0x5efb,
+          0x89f5: 0x5feb,
+          0x89f6: 0x602a,
+          0x89f7: 0x6094,
+          0x89f8: 0x6062,
+          0x89f9: 0x61d0,
+          0x89fa: 0x6212,
+          0x89fb: 0x62d0,
+          0x89fc: 0x6539,
+          0x8a40: 0x9b41,
+          0x8a41: 0x6666,
+          0x8a42: 0x68b0,
+          0x8a43: 0x6d77,
+          0x8a44: 0x7070,
+          0x8a45: 0x754c,
+          0x8a46: 0x7686,
+          0x8a47: 0x7d75,
+          0x8a48: 0x82a5,
+          0x8a49: 0x87f9,
+          0x8a4a: 0x958b,
+          0x8a4b: 0x968e,
+          0x8a4c: 0x8c9d,
+          0x8a4d: 0x51f1,
+          0x8a4e: 0x52be,
+          0x8a4f: 0x5916,
+          0x8a50: 0x54b3,
+          0x8a51: 0x5bb3,
+          0x8a52: 0x5d16,
+          0x8a53: 0x6168,
+          0x8a54: 0x6982,
+          0x8a55: 0x6daf,
+          0x8a56: 0x788d,
+          0x8a57: 0x84cb,
+          0x8a58: 0x8857,
+          0x8a59: 0x8a72,
+          0x8a5a: 0x93a7,
+          0x8a5b: 0x9ab8,
+          0x8a5c: 0x6d6c,
+          0x8a5d: 0x99a8,
+          0x8a5e: 0x86d9,
+          0x8a5f: 0x57a3,
+          0x8a60: 0x67ff,
+          0x8a61: 0x86ce,
+          0x8a62: 0x920e,
+          0x8a63: 0x5283,
+          0x8a64: 0x5687,
+          0x8a65: 0x5404,
+          0x8a66: 0x5ed3,
+          0x8a67: 0x62e1,
+          0x8a68: 0x64b9,
+          0x8a69: 0x683c,
+          0x8a6a: 0x6838,
+          0x8a6b: 0x6bbb,
+          0x8a6c: 0x7372,
+          0x8a6d: 0x78ba,
+          0x8a6e: 0x7a6b,
+          0x8a6f: 0x899a,
+          0x8a70: 0x89d2,
+          0x8a71: 0x8d6b,
+          0x8a72: 0x8f03,
+          0x8a73: 0x90ed,
+          0x8a74: 0x95a3,
+          0x8a75: 0x9694,
+          0x8a76: 0x9769,
+          0x8a77: 0x5b66,
+          0x8a78: 0x5cb3,
+          0x8a79: 0x697d,
+          0x8a7a: 0x984d,
+          0x8a7b: 0x984e,
+          0x8a7c: 0x639b,
+          0x8a7d: 0x7b20,
+          0x8a7e: 0x6a2b,
+          0x8a80: 0x6a7f,
+          0x8a81: 0x68b6,
+          0x8a82: 0x9c0d,
+          0x8a83: 0x6f5f,
+          0x8a84: 0x5272,
+          0x8a85: 0x559d,
+          0x8a86: 0x6070,
+          0x8a87: 0x62ec,
+          0x8a88: 0x6d3b,
+          0x8a89: 0x6e07,
+          0x8a8a: 0x6ed1,
+          0x8a8b: 0x845b,
+          0x8a8c: 0x8910,
+          0x8a8d: 0x8f44,
+          0x8a8e: 0x4e14,
+          0x8a8f: 0x9c39,
+          0x8a90: 0x53f6,
+          0x8a91: 0x691b,
+          0x8a92: 0x6a3a,
+          0x8a93: 0x9784,
+          0x8a94: 0x682a,
+          0x8a95: 0x515c,
+          0x8a96: 0x7ac3,
+          0x8a97: 0x84b2,
+          0x8a98: 0x91dc,
+          0x8a99: 0x938c,
+          0x8a9a: 0x565b,
+          0x8a9b: 0x9d28,
+          0x8a9c: 0x6822,
+          0x8a9d: 0x8305,
+          0x8a9e: 0x8431,
+          0x8a9f: 0x7ca5,
+          0x8aa0: 0x5208,
+          0x8aa1: 0x82c5,
+          0x8aa2: 0x74e6,
+          0x8aa3: 0x4e7e,
+          0x8aa4: 0x4f83,
+          0x8aa5: 0x51a0,
+          0x8aa6: 0x5bd2,
+          0x8aa7: 0x520a,
+          0x8aa8: 0x52d8,
+          0x8aa9: 0x52e7,
+          0x8aaa: 0x5dfb,
+          0x8aab: 0x559a,
+          0x8aac: 0x582a,
+          0x8aad: 0x59e6,
+          0x8aae: 0x5b8c,
+          0x8aaf: 0x5b98,
+          0x8ab0: 0x5bdb,
+          0x8ab1: 0x5e72,
+          0x8ab2: 0x5e79,
+          0x8ab3: 0x60a3,
+          0x8ab4: 0x611f,
+          0x8ab5: 0x6163,
+          0x8ab6: 0x61be,
+          0x8ab7: 0x63db,
+          0x8ab8: 0x6562,
+          0x8ab9: 0x67d1,
+          0x8aba: 0x6853,
+          0x8abb: 0x68fa,
+          0x8abc: 0x6b3e,
+          0x8abd: 0x6b53,
+          0x8abe: 0x6c57,
+          0x8abf: 0x6f22,
+          0x8ac0: 0x6f97,
+          0x8ac1: 0x6f45,
+          0x8ac2: 0x74b0,
+          0x8ac3: 0x7518,
+          0x8ac4: 0x76e3,
+          0x8ac5: 0x770b,
+          0x8ac6: 0x7aff,
+          0x8ac7: 0x7ba1,
+          0x8ac8: 0x7c21,
+          0x8ac9: 0x7de9,
+          0x8aca: 0x7f36,
+          0x8acb: 0x7ff0,
+          0x8acc: 0x809d,
+          0x8acd: 0x8266,
+          0x8ace: 0x839e,
+          0x8acf: 0x89b3,
+          0x8ad0: 0x8acc,
+          0x8ad1: 0x8cab,
+          0x8ad2: 0x9084,
+          0x8ad3: 0x9451,
+          0x8ad4: 0x9593,
+          0x8ad5: 0x9591,
+          0x8ad6: 0x95a2,
+          0x8ad7: 0x9665,
+          0x8ad8: 0x97d3,
+          0x8ad9: 0x9928,
+          0x8ada: 0x8218,
+          0x8adb: 0x4e38,
+          0x8adc: 0x542b,
+          0x8add: 0x5cb8,
+          0x8ade: 0x5dcc,
+          0x8adf: 0x73a9,
+          0x8ae0: 0x764c,
+          0x8ae1: 0x773c,
+          0x8ae2: 0x5ca9,
+          0x8ae3: 0x7feb,
+          0x8ae4: 0x8d0b,
+          0x8ae5: 0x96c1,
+          0x8ae6: 0x9811,
+          0x8ae7: 0x9854,
+          0x8ae8: 0x9858,
+          0x8ae9: 0x4f01,
+          0x8aea: 0x4f0e,
+          0x8aeb: 0x5371,
+          0x8aec: 0x559c,
+          0x8aed: 0x5668,
+          0x8aee: 0x57fa,
+          0x8aef: 0x5947,
+          0x8af0: 0x5b09,
+          0x8af1: 0x5bc4,
+          0x8af2: 0x5c90,
+          0x8af3: 0x5e0c,
+          0x8af4: 0x5e7e,
+          0x8af5: 0x5fcc,
+          0x8af6: 0x63ee,
+          0x8af7: 0x673a,
+          0x8af8: 0x65d7,
+          0x8af9: 0x65e2,
+          0x8afa: 0x671f,
+          0x8afb: 0x68cb,
+          0x8afc: 0x68c4,
+          0x8b40: 0x6a5f,
+          0x8b41: 0x5e30,
+          0x8b42: 0x6bc5,
+          0x8b43: 0x6c17,
+          0x8b44: 0x6c7d,
+          0x8b45: 0x757f,
+          0x8b46: 0x7948,
+          0x8b47: 0x5b63,
+          0x8b48: 0x7a00,
+          0x8b49: 0x7d00,
+          0x8b4a: 0x5fbd,
+          0x8b4b: 0x898f,
+          0x8b4c: 0x8a18,
+          0x8b4d: 0x8cb4,
+          0x8b4e: 0x8d77,
+          0x8b4f: 0x8ecc,
+          0x8b50: 0x8f1d,
+          0x8b51: 0x98e2,
+          0x8b52: 0x9a0e,
+          0x8b53: 0x9b3c,
+          0x8b54: 0x4e80,
+          0x8b55: 0x507d,
+          0x8b56: 0x5100,
+          0x8b57: 0x5993,
+          0x8b58: 0x5b9c,
+          0x8b59: 0x622f,
+          0x8b5a: 0x6280,
+          0x8b5b: 0x64ec,
+          0x8b5c: 0x6b3a,
+          0x8b5d: 0x72a0,
+          0x8b5e: 0x7591,
+          0x8b5f: 0x7947,
+          0x8b60: 0x7fa9,
+          0x8b61: 0x87fb,
+          0x8b62: 0x8abc,
+          0x8b63: 0x8b70,
+          0x8b64: 0x63ac,
+          0x8b65: 0x83ca,
+          0x8b66: 0x97a0,
+          0x8b67: 0x5409,
+          0x8b68: 0x5403,
+          0x8b69: 0x55ab,
+          0x8b6a: 0x6854,
+          0x8b6b: 0x6a58,
+          0x8b6c: 0x8a70,
+          0x8b6d: 0x7827,
+          0x8b6e: 0x6775,
+          0x8b6f: 0x9ecd,
+          0x8b70: 0x5374,
+          0x8b71: 0x5ba2,
+          0x8b72: 0x811a,
+          0x8b73: 0x8650,
+          0x8b74: 0x9006,
+          0x8b75: 0x4e18,
+          0x8b76: 0x4e45,
+          0x8b77: 0x4ec7,
+          0x8b78: 0x4f11,
+          0x8b79: 0x53ca,
+          0x8b7a: 0x5438,
+          0x8b7b: 0x5bae,
+          0x8b7c: 0x5f13,
+          0x8b7d: 0x6025,
+          0x8b7e: 0x6551,
+          0x8b80: 0x673d,
+          0x8b81: 0x6c42,
+          0x8b82: 0x6c72,
+          0x8b83: 0x6ce3,
+          0x8b84: 0x7078,
+          0x8b85: 0x7403,
+          0x8b86: 0x7a76,
+          0x8b87: 0x7aae,
+          0x8b88: 0x7b08,
+          0x8b89: 0x7d1a,
+          0x8b8a: 0x7cfe,
+          0x8b8b: 0x7d66,
+          0x8b8c: 0x65e7,
+          0x8b8d: 0x725b,
+          0x8b8e: 0x53bb,
+          0x8b8f: 0x5c45,
+          0x8b90: 0x5de8,
+          0x8b91: 0x62d2,
+          0x8b92: 0x62e0,
+          0x8b93: 0x6319,
+          0x8b94: 0x6e20,
+          0x8b95: 0x865a,
+          0x8b96: 0x8a31,
+          0x8b97: 0x8ddd,
+          0x8b98: 0x92f8,
+          0x8b99: 0x6f01,
+          0x8b9a: 0x79a6,
+          0x8b9b: 0x9b5a,
+          0x8b9c: 0x4ea8,
+          0x8b9d: 0x4eab,
+          0x8b9e: 0x4eac,
+          0x8b9f: 0x4f9b,
+          0x8ba0: 0x4fa0,
+          0x8ba1: 0x50d1,
+          0x8ba2: 0x5147,
+          0x8ba3: 0x7af6,
+          0x8ba4: 0x5171,
+          0x8ba5: 0x51f6,
+          0x8ba6: 0x5354,
+          0x8ba7: 0x5321,
+          0x8ba8: 0x537f,
+          0x8ba9: 0x53eb,
+          0x8baa: 0x55ac,
+          0x8bab: 0x5883,
+          0x8bac: 0x5ce1,
+          0x8bad: 0x5f37,
+          0x8bae: 0x5f4a,
+          0x8baf: 0x602f,
+          0x8bb0: 0x6050,
+          0x8bb1: 0x606d,
+          0x8bb2: 0x631f,
+          0x8bb3: 0x6559,
+          0x8bb4: 0x6a4b,
+          0x8bb5: 0x6cc1,
+          0x8bb6: 0x72c2,
+          0x8bb7: 0x72ed,
+          0x8bb8: 0x77ef,
+          0x8bb9: 0x80f8,
+          0x8bba: 0x8105,
+          0x8bbb: 0x8208,
+          0x8bbc: 0x854e,
+          0x8bbd: 0x90f7,
+          0x8bbe: 0x93e1,
+          0x8bbf: 0x97ff,
+          0x8bc0: 0x9957,
+          0x8bc1: 0x9a5a,
+          0x8bc2: 0x4ef0,
+          0x8bc3: 0x51dd,
+          0x8bc4: 0x5c2d,
+          0x8bc5: 0x6681,
+          0x8bc6: 0x696d,
+          0x8bc7: 0x5c40,
+          0x8bc8: 0x66f2,
+          0x8bc9: 0x6975,
+          0x8bca: 0x7389,
+          0x8bcb: 0x6850,
+          0x8bcc: 0x7c81,
+          0x8bcd: 0x50c5,
+          0x8bce: 0x52e4,
+          0x8bcf: 0x5747,
+          0x8bd0: 0x5dfe,
+          0x8bd1: 0x9326,
+          0x8bd2: 0x65a4,
+          0x8bd3: 0x6b23,
+          0x8bd4: 0x6b3d,
+          0x8bd5: 0x7434,
+          0x8bd6: 0x7981,
+          0x8bd7: 0x79bd,
+          0x8bd8: 0x7b4b,
+          0x8bd9: 0x7dca,
+          0x8bda: 0x82b9,
+          0x8bdb: 0x83cc,
+          0x8bdc: 0x887f,
+          0x8bdd: 0x895f,
+          0x8bde: 0x8b39,
+          0x8bdf: 0x8fd1,
+          0x8be0: 0x91d1,
+          0x8be1: 0x541f,
+          0x8be2: 0x9280,
+          0x8be3: 0x4e5d,
+          0x8be4: 0x5036,
+          0x8be5: 0x53e5,
+          0x8be6: 0x533a,
+          0x8be7: 0x72d7,
+          0x8be8: 0x7396,
+          0x8be9: 0x77e9,
+          0x8bea: 0x82e6,
+          0x8beb: 0x8eaf,
+          0x8bec: 0x99c6,
+          0x8bed: 0x99c8,
+          0x8bee: 0x99d2,
+          0x8bef: 0x5177,
+          0x8bf0: 0x611a,
+          0x8bf1: 0x865e,
+          0x8bf2: 0x55b0,
+          0x8bf3: 0x7a7a,
+          0x8bf4: 0x5076,
+          0x8bf5: 0x5bd3,
+          0x8bf6: 0x9047,
+          0x8bf7: 0x9685,
+          0x8bf8: 0x4e32,
+          0x8bf9: 0x6adb,
+          0x8bfa: 0x91e7,
+          0x8bfb: 0x5c51,
+          0x8bfc: 0x5c48,
+          0x8c40: 0x6398,
+          0x8c41: 0x7a9f,
+          0x8c42: 0x6c93,
+          0x8c43: 0x9774,
+          0x8c44: 0x8f61,
+          0x8c45: 0x7aaa,
+          0x8c46: 0x718a,
+          0x8c47: 0x9688,
+          0x8c48: 0x7c82,
+          0x8c49: 0x6817,
+          0x8c4a: 0x7e70,
+          0x8c4b: 0x6851,
+          0x8c4c: 0x936c,
+          0x8c4d: 0x52f2,
+          0x8c4e: 0x541b,
+          0x8c4f: 0x85ab,
+          0x8c50: 0x8a13,
+          0x8c51: 0x7fa4,
+          0x8c52: 0x8ecd,
+          0x8c53: 0x90e1,
+          0x8c54: 0x5366,
+          0x8c55: 0x8888,
+          0x8c56: 0x7941,
+          0x8c57: 0x4fc2,
+          0x8c58: 0x50be,
+          0x8c59: 0x5211,
+          0x8c5a: 0x5144,
+          0x8c5b: 0x5553,
+          0x8c5c: 0x572d,
+          0x8c5d: 0x73ea,
+          0x8c5e: 0x578b,
+          0x8c5f: 0x5951,
+          0x8c60: 0x5f62,
+          0x8c61: 0x5f84,
+          0x8c62: 0x6075,
+          0x8c63: 0x6176,
+          0x8c64: 0x6167,
+          0x8c65: 0x61a9,
+          0x8c66: 0x63b2,
+          0x8c67: 0x643a,
+          0x8c68: 0x656c,
+          0x8c69: 0x666f,
+          0x8c6a: 0x6842,
+          0x8c6b: 0x6e13,
+          0x8c6c: 0x7566,
+          0x8c6d: 0x7a3d,
+          0x8c6e: 0x7cfb,
+          0x8c6f: 0x7d4c,
+          0x8c70: 0x7d99,
+          0x8c71: 0x7e4b,
+          0x8c72: 0x7f6b,
+          0x8c73: 0x830e,
+          0x8c74: 0x834a,
+          0x8c75: 0x86cd,
+          0x8c76: 0x8a08,
+          0x8c77: 0x8a63,
+          0x8c78: 0x8b66,
+          0x8c79: 0x8efd,
+          0x8c7a: 0x981a,
+          0x8c7b: 0x9d8f,
+          0x8c7c: 0x82b8,
+          0x8c7d: 0x8fce,
+          0x8c7e: 0x9be8,
+          0x8c80: 0x5287,
+          0x8c81: 0x621f,
+          0x8c82: 0x6483,
+          0x8c83: 0x6fc0,
+          0x8c84: 0x9699,
+          0x8c85: 0x6841,
+          0x8c86: 0x5091,
+          0x8c87: 0x6b20,
+          0x8c88: 0x6c7a,
+          0x8c89: 0x6f54,
+          0x8c8a: 0x7a74,
+          0x8c8b: 0x7d50,
+          0x8c8c: 0x8840,
+          0x8c8d: 0x8a23,
+          0x8c8e: 0x6708,
+          0x8c8f: 0x4ef6,
+          0x8c90: 0x5039,
+          0x8c91: 0x5026,
+          0x8c92: 0x5065,
+          0x8c93: 0x517c,
+          0x8c94: 0x5238,
+          0x8c95: 0x5263,
+          0x8c96: 0x55a7,
+          0x8c97: 0x570f,
+          0x8c98: 0x5805,
+          0x8c99: 0x5acc,
+          0x8c9a: 0x5efa,
+          0x8c9b: 0x61b2,
+          0x8c9c: 0x61f8,
+          0x8c9d: 0x62f3,
+          0x8c9e: 0x6372,
+          0x8c9f: 0x691c,
+          0x8ca0: 0x6a29,
+          0x8ca1: 0x727d,
+          0x8ca2: 0x72ac,
+          0x8ca3: 0x732e,
+          0x8ca4: 0x7814,
+          0x8ca5: 0x786f,
+          0x8ca6: 0x7d79,
+          0x8ca7: 0x770c,
+          0x8ca8: 0x80a9,
+          0x8ca9: 0x898b,
+          0x8caa: 0x8b19,
+          0x8cab: 0x8ce2,
+          0x8cac: 0x8ed2,
+          0x8cad: 0x9063,
+          0x8cae: 0x9375,
+          0x8caf: 0x967a,
+          0x8cb0: 0x9855,
+          0x8cb1: 0x9a13,
+          0x8cb2: 0x9e78,
+          0x8cb3: 0x5143,
+          0x8cb4: 0x539f,
+          0x8cb5: 0x53b3,
+          0x8cb6: 0x5e7b,
+          0x8cb7: 0x5f26,
+          0x8cb8: 0x6e1b,
+          0x8cb9: 0x6e90,
+          0x8cba: 0x7384,
+          0x8cbb: 0x73fe,
+          0x8cbc: 0x7d43,
+          0x8cbd: 0x8237,
+          0x8cbe: 0x8a00,
+          0x8cbf: 0x8afa,
+          0x8cc0: 0x9650,
+          0x8cc1: 0x4e4e,
+          0x8cc2: 0x500b,
+          0x8cc3: 0x53e4,
+          0x8cc4: 0x547c,
+          0x8cc5: 0x56fa,
+          0x8cc6: 0x59d1,
+          0x8cc7: 0x5b64,
+          0x8cc8: 0x5df1,
+          0x8cc9: 0x5eab,
+          0x8cca: 0x5f27,
+          0x8ccb: 0x6238,
+          0x8ccc: 0x6545,
+          0x8ccd: 0x67af,
+          0x8cce: 0x6e56,
+          0x8ccf: 0x72d0,
+          0x8cd0: 0x7cca,
+          0x8cd1: 0x88b4,
+          0x8cd2: 0x80a1,
+          0x8cd3: 0x80e1,
+          0x8cd4: 0x83f0,
+          0x8cd5: 0x864e,
+          0x8cd6: 0x8a87,
+          0x8cd7: 0x8de8,
+          0x8cd8: 0x9237,
+          0x8cd9: 0x96c7,
+          0x8cda: 0x9867,
+          0x8cdb: 0x9f13,
+          0x8cdc: 0x4e94,
+          0x8cdd: 0x4e92,
+          0x8cde: 0x4f0d,
+          0x8cdf: 0x5348,
+          0x8ce0: 0x5449,
+          0x8ce1: 0x543e,
+          0x8ce2: 0x5a2f,
+          0x8ce3: 0x5f8c,
+          0x8ce4: 0x5fa1,
+          0x8ce5: 0x609f,
+          0x8ce6: 0x68a7,
+          0x8ce7: 0x6a8e,
+          0x8ce8: 0x745a,
+          0x8ce9: 0x7881,
+          0x8cea: 0x8a9e,
+          0x8ceb: 0x8aa4,
+          0x8cec: 0x8b77,
+          0x8ced: 0x9190,
+          0x8cee: 0x4e5e,
+          0x8cef: 0x9bc9,
+          0x8cf0: 0x4ea4,
+          0x8cf1: 0x4f7c,
+          0x8cf2: 0x4faf,
+          0x8cf3: 0x5019,
+          0x8cf4: 0x5016,
+          0x8cf5: 0x5149,
+          0x8cf6: 0x516c,
+          0x8cf7: 0x529f,
+          0x8cf8: 0x52b9,
+          0x8cf9: 0x52fe,
+          0x8cfa: 0x539a,
+          0x8cfb: 0x53e3,
+          0x8cfc: 0x5411,
+          0x8d40: 0x540e,
+          0x8d41: 0x5589,
+          0x8d42: 0x5751,
+          0x8d43: 0x57a2,
+          0x8d44: 0x597d,
+          0x8d45: 0x5b54,
+          0x8d46: 0x5b5d,
+          0x8d47: 0x5b8f,
+          0x8d48: 0x5de5,
+          0x8d49: 0x5de7,
+          0x8d4a: 0x5df7,
+          0x8d4b: 0x5e78,
+          0x8d4c: 0x5e83,
+          0x8d4d: 0x5e9a,
+          0x8d4e: 0x5eb7,
+          0x8d4f: 0x5f18,
+          0x8d50: 0x6052,
+          0x8d51: 0x614c,
+          0x8d52: 0x6297,
+          0x8d53: 0x62d8,
+          0x8d54: 0x63a7,
+          0x8d55: 0x653b,
+          0x8d56: 0x6602,
+          0x8d57: 0x6643,
+          0x8d58: 0x66f4,
+          0x8d59: 0x676d,
+          0x8d5a: 0x6821,
+          0x8d5b: 0x6897,
+          0x8d5c: 0x69cb,
+          0x8d5d: 0x6c5f,
+          0x8d5e: 0x6d2a,
+          0x8d5f: 0x6d69,
+          0x8d60: 0x6e2f,
+          0x8d61: 0x6e9d,
+          0x8d62: 0x7532,
+          0x8d63: 0x7687,
+          0x8d64: 0x786c,
+          0x8d65: 0x7a3f,
+          0x8d66: 0x7ce0,
+          0x8d67: 0x7d05,
+          0x8d68: 0x7d18,
+          0x8d69: 0x7d5e,
+          0x8d6a: 0x7db1,
+          0x8d6b: 0x8015,
+          0x8d6c: 0x8003,
+          0x8d6d: 0x80af,
+          0x8d6e: 0x80b1,
+          0x8d6f: 0x8154,
+          0x8d70: 0x818f,
+          0x8d71: 0x822a,
+          0x8d72: 0x8352,
+          0x8d73: 0x884c,
+          0x8d74: 0x8861,
+          0x8d75: 0x8b1b,
+          0x8d76: 0x8ca2,
+          0x8d77: 0x8cfc,
+          0x8d78: 0x90ca,
+          0x8d79: 0x9175,
+          0x8d7a: 0x9271,
+          0x8d7b: 0x783f,
+          0x8d7c: 0x92fc,
+          0x8d7d: 0x95a4,
+          0x8d7e: 0x964d,
+          0x8d80: 0x9805,
+          0x8d81: 0x9999,
+          0x8d82: 0x9ad8,
+          0x8d83: 0x9d3b,
+          0x8d84: 0x525b,
+          0x8d85: 0x52ab,
+          0x8d86: 0x53f7,
+          0x8d87: 0x5408,
+          0x8d88: 0x58d5,
+          0x8d89: 0x62f7,
+          0x8d8a: 0x6fe0,
+          0x8d8b: 0x8c6a,
+          0x8d8c: 0x8f5f,
+          0x8d8d: 0x9eb9,
+          0x8d8e: 0x514b,
+          0x8d8f: 0x523b,
+          0x8d90: 0x544a,
+          0x8d91: 0x56fd,
+          0x8d92: 0x7a40,
+          0x8d93: 0x9177,
+          0x8d94: 0x9d60,
+          0x8d95: 0x9ed2,
+          0x8d96: 0x7344,
+          0x8d97: 0x6f09,
+          0x8d98: 0x8170,
+          0x8d99: 0x7511,
+          0x8d9a: 0x5ffd,
+          0x8d9b: 0x60da,
+          0x8d9c: 0x9aa8,
+          0x8d9d: 0x72db,
+          0x8d9e: 0x8fbc,
+          0x8d9f: 0x6b64,
+          0x8da0: 0x9803,
+          0x8da1: 0x4eca,
+          0x8da2: 0x56f0,
+          0x8da3: 0x5764,
+          0x8da4: 0x58be,
+          0x8da5: 0x5a5a,
+          0x8da6: 0x6068,
+          0x8da7: 0x61c7,
+          0x8da8: 0x660f,
+          0x8da9: 0x6606,
+          0x8daa: 0x6839,
+          0x8dab: 0x68b1,
+          0x8dac: 0x6df7,
+          0x8dad: 0x75d5,
+          0x8dae: 0x7d3a,
+          0x8daf: 0x826e,
+          0x8db0: 0x9b42,
+          0x8db1: 0x4e9b,
+          0x8db2: 0x4f50,
+          0x8db3: 0x53c9,
+          0x8db4: 0x5506,
+          0x8db5: 0x5d6f,
+          0x8db6: 0x5de6,
+          0x8db7: 0x5dee,
+          0x8db8: 0x67fb,
+          0x8db9: 0x6c99,
+          0x8dba: 0x7473,
+          0x8dbb: 0x7802,
+          0x8dbc: 0x8a50,
+          0x8dbd: 0x9396,
+          0x8dbe: 0x88df,
+          0x8dbf: 0x5750,
+          0x8dc0: 0x5ea7,
+          0x8dc1: 0x632b,
+          0x8dc2: 0x50b5,
+          0x8dc3: 0x50ac,
+          0x8dc4: 0x518d,
+          0x8dc5: 0x6700,
+          0x8dc6: 0x54c9,
+          0x8dc7: 0x585e,
+          0x8dc8: 0x59bb,
+          0x8dc9: 0x5bb0,
+          0x8dca: 0x5f69,
+          0x8dcb: 0x624d,
+          0x8dcc: 0x63a1,
+          0x8dcd: 0x683d,
+          0x8dce: 0x6b73,
+          0x8dcf: 0x6e08,
+          0x8dd0: 0x707d,
+          0x8dd1: 0x91c7,
+          0x8dd2: 0x7280,
+          0x8dd3: 0x7815,
+          0x8dd4: 0x7826,
+          0x8dd5: 0x796d,
+          0x8dd6: 0x658e,
+          0x8dd7: 0x7d30,
+          0x8dd8: 0x83dc,
+          0x8dd9: 0x88c1,
+          0x8dda: 0x8f09,
+          0x8ddb: 0x969b,
+          0x8ddc: 0x5264,
+          0x8ddd: 0x5728,
+          0x8dde: 0x6750,
+          0x8ddf: 0x7f6a,
+          0x8de0: 0x8ca1,
+          0x8de1: 0x51b4,
+          0x8de2: 0x5742,
+          0x8de3: 0x962a,
+          0x8de4: 0x583a,
+          0x8de5: 0x698a,
+          0x8de6: 0x80b4,
+          0x8de7: 0x54b2,
+          0x8de8: 0x5d0e,
+          0x8de9: 0x57fc,
+          0x8dea: 0x7895,
+          0x8deb: 0x9dfa,
+          0x8dec: 0x4f5c,
+          0x8ded: 0x524a,
+          0x8dee: 0x548b,
+          0x8def: 0x643e,
+          0x8df0: 0x6628,
+          0x8df1: 0x6714,
+          0x8df2: 0x67f5,
+          0x8df3: 0x7a84,
+          0x8df4: 0x7b56,
+          0x8df5: 0x7d22,
+          0x8df6: 0x932f,
+          0x8df7: 0x685c,
+          0x8df8: 0x9bad,
+          0x8df9: 0x7b39,
+          0x8dfa: 0x5319,
+          0x8dfb: 0x518a,
+          0x8dfc: 0x5237,
+          0x8e40: 0x5bdf,
+          0x8e41: 0x62f6,
+          0x8e42: 0x64ae,
+          0x8e43: 0x64e6,
+          0x8e44: 0x672d,
+          0x8e45: 0x6bba,
+          0x8e46: 0x85a9,
+          0x8e47: 0x96d1,
+          0x8e48: 0x7690,
+          0x8e49: 0x9bd6,
+          0x8e4a: 0x634c,
+          0x8e4b: 0x9306,
+          0x8e4c: 0x9bab,
+          0x8e4d: 0x76bf,
+          0x8e4e: 0x6652,
+          0x8e4f: 0x4e09,
+          0x8e50: 0x5098,
+          0x8e51: 0x53c2,
+          0x8e52: 0x5c71,
+          0x8e53: 0x60e8,
+          0x8e54: 0x6492,
+          0x8e55: 0x6563,
+          0x8e56: 0x685f,
+          0x8e57: 0x71e6,
+          0x8e58: 0x73ca,
+          0x8e59: 0x7523,
+          0x8e5a: 0x7b97,
+          0x8e5b: 0x7e82,
+          0x8e5c: 0x8695,
+          0x8e5d: 0x8b83,
+          0x8e5e: 0x8cdb,
+          0x8e5f: 0x9178,
+          0x8e60: 0x9910,
+          0x8e61: 0x65ac,
+          0x8e62: 0x66ab,
+          0x8e63: 0x6b8b,
+          0x8e64: 0x4ed5,
+          0x8e65: 0x4ed4,
+          0x8e66: 0x4f3a,
+          0x8e67: 0x4f7f,
+          0x8e68: 0x523a,
+          0x8e69: 0x53f8,
+          0x8e6a: 0x53f2,
+          0x8e6b: 0x55e3,
+          0x8e6c: 0x56db,
+          0x8e6d: 0x58eb,
+          0x8e6e: 0x59cb,
+          0x8e6f: 0x59c9,
+          0x8e70: 0x59ff,
+          0x8e71: 0x5b50,
+          0x8e72: 0x5c4d,
+          0x8e73: 0x5e02,
+          0x8e74: 0x5e2b,
+          0x8e75: 0x5fd7,
+          0x8e76: 0x601d,
+          0x8e77: 0x6307,
+          0x8e78: 0x652f,
+          0x8e79: 0x5b5c,
+          0x8e7a: 0x65af,
+          0x8e7b: 0x65bd,
+          0x8e7c: 0x65e8,
+          0x8e7d: 0x679d,
+          0x8e7e: 0x6b62,
+          0x8e80: 0x6b7b,
+          0x8e81: 0x6c0f,
+          0x8e82: 0x7345,
+          0x8e83: 0x7949,
+          0x8e84: 0x79c1,
+          0x8e85: 0x7cf8,
+          0x8e86: 0x7d19,
+          0x8e87: 0x7d2b,
+          0x8e88: 0x80a2,
+          0x8e89: 0x8102,
+          0x8e8a: 0x81f3,
+          0x8e8b: 0x8996,
+          0x8e8c: 0x8a5e,
+          0x8e8d: 0x8a69,
+          0x8e8e: 0x8a66,
+          0x8e8f: 0x8a8c,
+          0x8e90: 0x8aee,
+          0x8e91: 0x8cc7,
+          0x8e92: 0x8cdc,
+          0x8e93: 0x96cc,
+          0x8e94: 0x98fc,
+          0x8e95: 0x6b6f,
+          0x8e96: 0x4e8b,
+          0x8e97: 0x4f3c,
+          0x8e98: 0x4f8d,
+          0x8e99: 0x5150,
+          0x8e9a: 0x5b57,
+          0x8e9b: 0x5bfa,
+          0x8e9c: 0x6148,
+          0x8e9d: 0x6301,
+          0x8e9e: 0x6642,
+          0x8e9f: 0x6b21,
+          0x8ea0: 0x6ecb,
+          0x8ea1: 0x6cbb,
+          0x8ea2: 0x723e,
+          0x8ea3: 0x74bd,
+          0x8ea4: 0x75d4,
+          0x8ea5: 0x78c1,
+          0x8ea6: 0x793a,
+          0x8ea7: 0x800c,
+          0x8ea8: 0x8033,
+          0x8ea9: 0x81ea,
+          0x8eaa: 0x8494,
+          0x8eab: 0x8f9e,
+          0x8eac: 0x6c50,
+          0x8ead: 0x9e7f,
+          0x8eae: 0x5f0f,
+          0x8eaf: 0x8b58,
+          0x8eb0: 0x9d2b,
+          0x8eb1: 0x7afa,
+          0x8eb2: 0x8ef8,
+          0x8eb3: 0x5b8d,
+          0x8eb4: 0x96eb,
+          0x8eb5: 0x4e03,
+          0x8eb6: 0x53f1,
+          0x8eb7: 0x57f7,
+          0x8eb8: 0x5931,
+          0x8eb9: 0x5ac9,
+          0x8eba: 0x5ba4,
+          0x8ebb: 0x6089,
+          0x8ebc: 0x6e7f,
+          0x8ebd: 0x6f06,
+          0x8ebe: 0x75be,
+          0x8ebf: 0x8cea,
+          0x8ec0: 0x5b9f,
+          0x8ec1: 0x8500,
+          0x8ec2: 0x7be0,
+          0x8ec3: 0x5072,
+          0x8ec4: 0x67f4,
+          0x8ec5: 0x829d,
+          0x8ec6: 0x5c61,
+          0x8ec7: 0x854a,
+          0x8ec8: 0x7e1e,
+          0x8ec9: 0x820e,
+          0x8eca: 0x5199,
+          0x8ecb: 0x5c04,
+          0x8ecc: 0x6368,
+          0x8ecd: 0x8d66,
+          0x8ece: 0x659c,
+          0x8ecf: 0x716e,
+          0x8ed0: 0x793e,
+          0x8ed1: 0x7d17,
+          0x8ed2: 0x8005,
+          0x8ed3: 0x8b1d,
+          0x8ed4: 0x8eca,
+          0x8ed5: 0x906e,
+          0x8ed6: 0x86c7,
+          0x8ed7: 0x90aa,
+          0x8ed8: 0x501f,
+          0x8ed9: 0x52fa,
+          0x8eda: 0x5c3a,
+          0x8edb: 0x6753,
+          0x8edc: 0x707c,
+          0x8edd: 0x7235,
+          0x8ede: 0x914c,
+          0x8edf: 0x91c8,
+          0x8ee0: 0x932b,
+          0x8ee1: 0x82e5,
+          0x8ee2: 0x5bc2,
+          0x8ee3: 0x5f31,
+          0x8ee4: 0x60f9,
+          0x8ee5: 0x4e3b,
+          0x8ee6: 0x53d6,
+          0x8ee7: 0x5b88,
+          0x8ee8: 0x624b,
+          0x8ee9: 0x6731,
+          0x8eea: 0x6b8a,
+          0x8eeb: 0x72e9,
+          0x8eec: 0x73e0,
+          0x8eed: 0x7a2e,
+          0x8eee: 0x816b,
+          0x8eef: 0x8da3,
+          0x8ef0: 0x9152,
+          0x8ef1: 0x9996,
+          0x8ef2: 0x5112,
+          0x8ef3: 0x53d7,
+          0x8ef4: 0x546a,
+          0x8ef5: 0x5bff,
+          0x8ef6: 0x6388,
+          0x8ef7: 0x6a39,
+          0x8ef8: 0x7dac,
+          0x8ef9: 0x9700,
+          0x8efa: 0x56da,
+          0x8efb: 0x53ce,
+          0x8efc: 0x5468,
+          0x8f40: 0x5b97,
+          0x8f41: 0x5c31,
+          0x8f42: 0x5dde,
+          0x8f43: 0x4fee,
+          0x8f44: 0x6101,
+          0x8f45: 0x62fe,
+          0x8f46: 0x6d32,
+          0x8f47: 0x79c0,
+          0x8f48: 0x79cb,
+          0x8f49: 0x7d42,
+          0x8f4a: 0x7e4d,
+          0x8f4b: 0x7fd2,
+          0x8f4c: 0x81ed,
+          0x8f4d: 0x821f,
+          0x8f4e: 0x8490,
+          0x8f4f: 0x8846,
+          0x8f50: 0x8972,
+          0x8f51: 0x8b90,
+          0x8f52: 0x8e74,
+          0x8f53: 0x8f2f,
+          0x8f54: 0x9031,
+          0x8f55: 0x914b,
+          0x8f56: 0x916c,
+          0x8f57: 0x96c6,
+          0x8f58: 0x919c,
+          0x8f59: 0x4ec0,
+          0x8f5a: 0x4f4f,
+          0x8f5b: 0x5145,
+          0x8f5c: 0x5341,
+          0x8f5d: 0x5f93,
+          0x8f5e: 0x620e,
+          0x8f5f: 0x67d4,
+          0x8f60: 0x6c41,
+          0x8f61: 0x6e0b,
+          0x8f62: 0x7363,
+          0x8f63: 0x7e26,
+          0x8f64: 0x91cd,
+          0x8f65: 0x9283,
+          0x8f66: 0x53d4,
+          0x8f67: 0x5919,
+          0x8f68: 0x5bbf,
+          0x8f69: 0x6dd1,
+          0x8f6a: 0x795d,
+          0x8f6b: 0x7e2e,
+          0x8f6c: 0x7c9b,
+          0x8f6d: 0x587e,
+          0x8f6e: 0x719f,
+          0x8f6f: 0x51fa,
+          0x8f70: 0x8853,
+          0x8f71: 0x8ff0,
+          0x8f72: 0x4fca,
+          0x8f73: 0x5cfb,
+          0x8f74: 0x6625,
+          0x8f75: 0x77ac,
+          0x8f76: 0x7ae3,
+          0x8f77: 0x821c,
+          0x8f78: 0x99ff,
+          0x8f79: 0x51c6,
+          0x8f7a: 0x5faa,
+          0x8f7b: 0x65ec,
+          0x8f7c: 0x696f,
+          0x8f7d: 0x6b89,
+          0x8f7e: 0x6df3,
+          0x8f80: 0x6e96,
+          0x8f81: 0x6f64,
+          0x8f82: 0x76fe,
+          0x8f83: 0x7d14,
+          0x8f84: 0x5de1,
+          0x8f85: 0x9075,
+          0x8f86: 0x9187,
+          0x8f87: 0x9806,
+          0x8f88: 0x51e6,
+          0x8f89: 0x521d,
+          0x8f8a: 0x6240,
+          0x8f8b: 0x6691,
+          0x8f8c: 0x66d9,
+          0x8f8d: 0x6e1a,
+          0x8f8e: 0x5eb6,
+          0x8f8f: 0x7dd2,
+          0x8f90: 0x7f72,
+          0x8f91: 0x66f8,
+          0x8f92: 0x85af,
+          0x8f93: 0x85f7,
+          0x8f94: 0x8af8,
+          0x8f95: 0x52a9,
+          0x8f96: 0x53d9,
+          0x8f97: 0x5973,
+          0x8f98: 0x5e8f,
+          0x8f99: 0x5f90,
+          0x8f9a: 0x6055,
+          0x8f9b: 0x92e4,
+          0x8f9c: 0x9664,
+          0x8f9d: 0x50b7,
+          0x8f9e: 0x511f,
+          0x8f9f: 0x52dd,
+          0x8fa0: 0x5320,
+          0x8fa1: 0x5347,
+          0x8fa2: 0x53ec,
+          0x8fa3: 0x54e8,
+          0x8fa4: 0x5546,
+          0x8fa5: 0x5531,
+          0x8fa6: 0x5617,
+          0x8fa7: 0x5968,
+          0x8fa8: 0x59be,
+          0x8fa9: 0x5a3c,
+          0x8faa: 0x5bb5,
+          0x8fab: 0x5c06,
+          0x8fac: 0x5c0f,
+          0x8fad: 0x5c11,
+          0x8fae: 0x5c1a,
+          0x8faf: 0x5e84,
+          0x8fb0: 0x5e8a,
+          0x8fb1: 0x5ee0,
+          0x8fb2: 0x5f70,
+          0x8fb3: 0x627f,
+          0x8fb4: 0x6284,
+          0x8fb5: 0x62db,
+          0x8fb6: 0x638c,
+          0x8fb7: 0x6377,
+          0x8fb8: 0x6607,
+          0x8fb9: 0x660c,
+          0x8fba: 0x662d,
+          0x8fbb: 0x6676,
+          0x8fbc: 0x677e,
+          0x8fbd: 0x68a2,
+          0x8fbe: 0x6a1f,
+          0x8fbf: 0x6a35,
+          0x8fc0: 0x6cbc,
+          0x8fc1: 0x6d88,
+          0x8fc2: 0x6e09,
+          0x8fc3: 0x6e58,
+          0x8fc4: 0x713c,
+          0x8fc5: 0x7126,
+          0x8fc6: 0x7167,
+          0x8fc7: 0x75c7,
+          0x8fc8: 0x7701,
+          0x8fc9: 0x785d,
+          0x8fca: 0x7901,
+          0x8fcb: 0x7965,
+          0x8fcc: 0x79f0,
+          0x8fcd: 0x7ae0,
+          0x8fce: 0x7b11,
+          0x8fcf: 0x7ca7,
+          0x8fd0: 0x7d39,
+          0x8fd1: 0x8096,
+          0x8fd2: 0x83d6,
+          0x8fd3: 0x848b,
+          0x8fd4: 0x8549,
+          0x8fd5: 0x885d,
+          0x8fd6: 0x88f3,
+          0x8fd7: 0x8a1f,
+          0x8fd8: 0x8a3c,
+          0x8fd9: 0x8a54,
+          0x8fda: 0x8a73,
+          0x8fdb: 0x8c61,
+          0x8fdc: 0x8cde,
+          0x8fdd: 0x91a4,
+          0x8fde: 0x9266,
+          0x8fdf: 0x937e,
+          0x8fe0: 0x9418,
+          0x8fe1: 0x969c,
+          0x8fe2: 0x9798,
+          0x8fe3: 0x4e0a,
+          0x8fe4: 0x4e08,
+          0x8fe5: 0x4e1e,
+          0x8fe6: 0x4e57,
+          0x8fe7: 0x5197,
+          0x8fe8: 0x5270,
+          0x8fe9: 0x57ce,
+          0x8fea: 0x5834,
+          0x8feb: 0x58cc,
+          0x8fec: 0x5b22,
+          0x8fed: 0x5e38,
+          0x8fee: 0x60c5,
+          0x8fef: 0x64fe,
+          0x8ff0: 0x6761,
+          0x8ff1: 0x6756,
+          0x8ff2: 0x6d44,
+          0x8ff3: 0x72b6,
+          0x8ff4: 0x7573,
+          0x8ff5: 0x7a63,
+          0x8ff6: 0x84b8,
+          0x8ff7: 0x8b72,
+          0x8ff8: 0x91b8,
+          0x8ff9: 0x9320,
+          0x8ffa: 0x5631,
+          0x8ffb: 0x57f4,
+          0x8ffc: 0x98fe,
+          0x9040: 0x62ed,
+          0x9041: 0x690d,
+          0x9042: 0x6b96,
+          0x9043: 0x71ed,
+          0x9044: 0x7e54,
+          0x9045: 0x8077,
+          0x9046: 0x8272,
+          0x9047: 0x89e6,
+          0x9048: 0x98df,
+          0x9049: 0x8755,
+          0x904a: 0x8fb1,
+          0x904b: 0x5c3b,
+          0x904c: 0x4f38,
+          0x904d: 0x4fe1,
+          0x904e: 0x4fb5,
+          0x904f: 0x5507,
+          0x9050: 0x5a20,
+          0x9051: 0x5bdd,
+          0x9052: 0x5be9,
+          0x9053: 0x5fc3,
+          0x9054: 0x614e,
+          0x9055: 0x632f,
+          0x9056: 0x65b0,
+          0x9057: 0x664b,
+          0x9058: 0x68ee,
+          0x9059: 0x699b,
+          0x905a: 0x6d78,
+          0x905b: 0x6df1,
+          0x905c: 0x7533,
+          0x905d: 0x75b9,
+          0x905e: 0x771f,
+          0x905f: 0x795e,
+          0x9060: 0x79e6,
+          0x9061: 0x7d33,
+          0x9062: 0x81e3,
+          0x9063: 0x82af,
+          0x9064: 0x85aa,
+          0x9065: 0x89aa,
+          0x9066: 0x8a3a,
+          0x9067: 0x8eab,
+          0x9068: 0x8f9b,
+          0x9069: 0x9032,
+          0x906a: 0x91dd,
+          0x906b: 0x9707,
+          0x906c: 0x4eba,
+          0x906d: 0x4ec1,
+          0x906e: 0x5203,
+          0x906f: 0x5875,
+          0x9070: 0x58ec,
+          0x9071: 0x5c0b,
+          0x9072: 0x751a,
+          0x9073: 0x5c3d,
+          0x9074: 0x814e,
+          0x9075: 0x8a0a,
+          0x9076: 0x8fc5,
+          0x9077: 0x9663,
+          0x9078: 0x976d,
+          0x9079: 0x7b25,
+          0x907a: 0x8acf,
+          0x907b: 0x9808,
+          0x907c: 0x9162,
+          0x907d: 0x56f3,
+          0x907e: 0x53a8,
+          0x9080: 0x9017,
+          0x9081: 0x5439,
+          0x9082: 0x5782,
+          0x9083: 0x5e25,
+          0x9084: 0x63a8,
+          0x9085: 0x6c34,
+          0x9086: 0x708a,
+          0x9087: 0x7761,
+          0x9088: 0x7c8b,
+          0x9089: 0x7fe0,
+          0x908a: 0x8870,
+          0x908b: 0x9042,
+          0x908c: 0x9154,
+          0x908d: 0x9310,
+          0x908e: 0x9318,
+          0x908f: 0x968f,
+          0x9090: 0x745e,
+          0x9091: 0x9ac4,
+          0x9092: 0x5d07,
+          0x9093: 0x5d69,
+          0x9094: 0x6570,
+          0x9095: 0x67a2,
+          0x9096: 0x8da8,
+          0x9097: 0x96db,
+          0x9098: 0x636e,
+          0x9099: 0x6749,
+          0x909a: 0x6919,
+          0x909b: 0x83c5,
+          0x909c: 0x9817,
+          0x909d: 0x96c0,
+          0x909e: 0x88fe,
+          0x909f: 0x6f84,
+          0x90a0: 0x647a,
+          0x90a1: 0x5bf8,
+          0x90a2: 0x4e16,
+          0x90a3: 0x702c,
+          0x90a4: 0x755d,
+          0x90a5: 0x662f,
+          0x90a6: 0x51c4,
+          0x90a7: 0x5236,
+          0x90a8: 0x52e2,
+          0x90a9: 0x59d3,
+          0x90aa: 0x5f81,
+          0x90ab: 0x6027,
+          0x90ac: 0x6210,
+          0x90ad: 0x653f,
+          0x90ae: 0x6574,
+          0x90af: 0x661f,
+          0x90b0: 0x6674,
+          0x90b1: 0x68f2,
+          0x90b2: 0x6816,
+          0x90b3: 0x6b63,
+          0x90b4: 0x6e05,
+          0x90b5: 0x7272,
+          0x90b6: 0x751f,
+          0x90b7: 0x76db,
+          0x90b8: 0x7cbe,
+          0x90b9: 0x8056,
+          0x90ba: 0x58f0,
+          0x90bb: 0x88fd,
+          0x90bc: 0x897f,
+          0x90bd: 0x8aa0,
+          0x90be: 0x8a93,
+          0x90bf: 0x8acb,
+          0x90c0: 0x901d,
+          0x90c1: 0x9192,
+          0x90c2: 0x9752,
+          0x90c3: 0x9759,
+          0x90c4: 0x6589,
+          0x90c5: 0x7a0e,
+          0x90c6: 0x8106,
+          0x90c7: 0x96bb,
+          0x90c8: 0x5e2d,
+          0x90c9: 0x60dc,
+          0x90ca: 0x621a,
+          0x90cb: 0x65a5,
+          0x90cc: 0x6614,
+          0x90cd: 0x6790,
+          0x90ce: 0x77f3,
+          0x90cf: 0x7a4d,
+          0x90d0: 0x7c4d,
+          0x90d1: 0x7e3e,
+          0x90d2: 0x810a,
+          0x90d3: 0x8cac,
+          0x90d4: 0x8d64,
+          0x90d5: 0x8de1,
+          0x90d6: 0x8e5f,
+          0x90d7: 0x78a9,
+          0x90d8: 0x5207,
+          0x90d9: 0x62d9,
+          0x90da: 0x63a5,
+          0x90db: 0x6442,
+          0x90dc: 0x6298,
+          0x90dd: 0x8a2d,
+          0x90de: 0x7a83,
+          0x90df: 0x7bc0,
+          0x90e0: 0x8aac,
+          0x90e1: 0x96ea,
+          0x90e2: 0x7d76,
+          0x90e3: 0x820c,
+          0x90e4: 0x8749,
+          0x90e5: 0x4ed9,
+          0x90e6: 0x5148,
+          0x90e7: 0x5343,
+          0x90e8: 0x5360,
+          0x90e9: 0x5ba3,
+          0x90ea: 0x5c02,
+          0x90eb: 0x5c16,
+          0x90ec: 0x5ddd,
+          0x90ed: 0x6226,
+          0x90ee: 0x6247,
+          0x90ef: 0x64b0,
+          0x90f0: 0x6813,
+          0x90f1: 0x6834,
+          0x90f2: 0x6cc9,
+          0x90f3: 0x6d45,
+          0x90f4: 0x6d17,
+          0x90f5: 0x67d3,
+          0x90f6: 0x6f5c,
+          0x90f7: 0x714e,
+          0x90f8: 0x717d,
+          0x90f9: 0x65cb,
+          0x90fa: 0x7a7f,
+          0x90fb: 0x7bad,
+          0x90fc: 0x7dda,
+          0x9140: 0x7e4a,
+          0x9141: 0x7fa8,
+          0x9142: 0x817a,
+          0x9143: 0x821b,
+          0x9144: 0x8239,
+          0x9145: 0x85a6,
+          0x9146: 0x8a6e,
+          0x9147: 0x8cce,
+          0x9148: 0x8df5,
+          0x9149: 0x9078,
+          0x914a: 0x9077,
+          0x914b: 0x92ad,
+          0x914c: 0x9291,
+          0x914d: 0x9583,
+          0x914e: 0x9bae,
+          0x914f: 0x524d,
+          0x9150: 0x5584,
+          0x9151: 0x6f38,
+          0x9152: 0x7136,
+          0x9153: 0x5168,
+          0x9154: 0x7985,
+          0x9155: 0x7e55,
+          0x9156: 0x81b3,
+          0x9157: 0x7cce,
+          0x9158: 0x564c,
+          0x9159: 0x5851,
+          0x915a: 0x5ca8,
+          0x915b: 0x63aa,
+          0x915c: 0x66fe,
+          0x915d: 0x66fd,
+          0x915e: 0x695a,
+          0x915f: 0x72d9,
+          0x9160: 0x758f,
+          0x9161: 0x758e,
+          0x9162: 0x790e,
+          0x9163: 0x7956,
+          0x9164: 0x79df,
+          0x9165: 0x7c97,
+          0x9166: 0x7d20,
+          0x9167: 0x7d44,
+          0x9168: 0x8607,
+          0x9169: 0x8a34,
+          0x916a: 0x963b,
+          0x916b: 0x9061,
+          0x916c: 0x9f20,
+          0x916d: 0x50e7,
+          0x916e: 0x5275,
+          0x916f: 0x53cc,
+          0x9170: 0x53e2,
+          0x9171: 0x5009,
+          0x9172: 0x55aa,
+          0x9173: 0x58ee,
+          0x9174: 0x594f,
+          0x9175: 0x723d,
+          0x9176: 0x5b8b,
+          0x9177: 0x5c64,
+          0x9178: 0x531d,
+          0x9179: 0x60e3,
+          0x917a: 0x60f3,
+          0x917b: 0x635c,
+          0x917c: 0x6383,
+          0x917d: 0x633f,
+          0x917e: 0x63bb,
+          0x9180: 0x64cd,
+          0x9181: 0x65e9,
+          0x9182: 0x66f9,
+          0x9183: 0x5de3,
+          0x9184: 0x69cd,
+          0x9185: 0x69fd,
+          0x9186: 0x6f15,
+          0x9187: 0x71e5,
+          0x9188: 0x4e89,
+          0x9189: 0x75e9,
+          0x918a: 0x76f8,
+          0x918b: 0x7a93,
+          0x918c: 0x7cdf,
+          0x918d: 0x7dcf,
+          0x918e: 0x7d9c,
+          0x918f: 0x8061,
+          0x9190: 0x8349,
+          0x9191: 0x8358,
+          0x9192: 0x846c,
+          0x9193: 0x84bc,
+          0x9194: 0x85fb,
+          0x9195: 0x88c5,
+          0x9196: 0x8d70,
+          0x9197: 0x9001,
+          0x9198: 0x906d,
+          0x9199: 0x9397,
+          0x919a: 0x971c,
+          0x919b: 0x9a12,
+          0x919c: 0x50cf,
+          0x919d: 0x5897,
+          0x919e: 0x618e,
+          0x919f: 0x81d3,
+          0x91a0: 0x8535,
+          0x91a1: 0x8d08,
+          0x91a2: 0x9020,
+          0x91a3: 0x4fc3,
+          0x91a4: 0x5074,
+          0x91a5: 0x5247,
+          0x91a6: 0x5373,
+          0x91a7: 0x606f,
+          0x91a8: 0x6349,
+          0x91a9: 0x675f,
+          0x91aa: 0x6e2c,
+          0x91ab: 0x8db3,
+          0x91ac: 0x901f,
+          0x91ad: 0x4fd7,
+          0x91ae: 0x5c5e,
+          0x91af: 0x8cca,
+          0x91b0: 0x65cf,
+          0x91b1: 0x7d9a,
+          0x91b2: 0x5352,
+          0x91b3: 0x8896,
+          0x91b4: 0x5176,
+          0x91b5: 0x63c3,
+          0x91b6: 0x5b58,
+          0x91b7: 0x5b6b,
+          0x91b8: 0x5c0a,
+          0x91b9: 0x640d,
+          0x91ba: 0x6751,
+          0x91bb: 0x905c,
+          0x91bc: 0x4ed6,
+          0x91bd: 0x591a,
+          0x91be: 0x592a,
+          0x91bf: 0x6c70,
+          0x91c0: 0x8a51,
+          0x91c1: 0x553e,
+          0x91c2: 0x5815,
+          0x91c3: 0x59a5,
+          0x91c4: 0x60f0,
+          0x91c5: 0x6253,
+          0x91c6: 0x67c1,
+          0x91c7: 0x8235,
+          0x91c8: 0x6955,
+          0x91c9: 0x9640,
+          0x91ca: 0x99c4,
+          0x91cb: 0x9a28,
+          0x91cc: 0x4f53,
+          0x91cd: 0x5806,
+          0x91ce: 0x5bfe,
+          0x91cf: 0x8010,
+          0x91d0: 0x5cb1,
+          0x91d1: 0x5e2f,
+          0x91d2: 0x5f85,
+          0x91d3: 0x6020,
+          0x91d4: 0x614b,
+          0x91d5: 0x6234,
+          0x91d6: 0x66ff,
+          0x91d7: 0x6cf0,
+          0x91d8: 0x6ede,
+          0x91d9: 0x80ce,
+          0x91da: 0x817f,
+          0x91db: 0x82d4,
+          0x91dc: 0x888b,
+          0x91dd: 0x8cb8,
+          0x91de: 0x9000,
+          0x91df: 0x902e,
+          0x91e0: 0x968a,
+          0x91e1: 0x9edb,
+          0x91e2: 0x9bdb,
+          0x91e3: 0x4ee3,
+          0x91e4: 0x53f0,
+          0x91e5: 0x5927,
+          0x91e6: 0x7b2c,
+          0x91e7: 0x918d,
+          0x91e8: 0x984c,
+          0x91e9: 0x9df9,
+          0x91ea: 0x6edd,
+          0x91eb: 0x7027,
+          0x91ec: 0x5353,
+          0x91ed: 0x5544,
+          0x91ee: 0x5b85,
+          0x91ef: 0x6258,
+          0x91f0: 0x629e,
+          0x91f1: 0x62d3,
+          0x91f2: 0x6ca2,
+          0x91f3: 0x6fef,
+          0x91f4: 0x7422,
+          0x91f5: 0x8a17,
+          0x91f6: 0x9438,
+          0x91f7: 0x6fc1,
+          0x91f8: 0x8afe,
+          0x91f9: 0x8338,
+          0x91fa: 0x51e7,
+          0x91fb: 0x86f8,
+          0x91fc: 0x53ea,
+          0x9240: 0x53e9,
+          0x9241: 0x4f46,
+          0x9242: 0x9054,
+          0x9243: 0x8fb0,
+          0x9244: 0x596a,
+          0x9245: 0x8131,
+          0x9246: 0x5dfd,
+          0x9247: 0x7aea,
+          0x9248: 0x8fbf,
+          0x9249: 0x68da,
+          0x924a: 0x8c37,
+          0x924b: 0x72f8,
+          0x924c: 0x9c48,
+          0x924d: 0x6a3d,
+          0x924e: 0x8ab0,
+          0x924f: 0x4e39,
+          0x9250: 0x5358,
+          0x9251: 0x5606,
+          0x9252: 0x5766,
+          0x9253: 0x62c5,
+          0x9254: 0x63a2,
+          0x9255: 0x65e6,
+          0x9256: 0x6b4e,
+          0x9257: 0x6de1,
+          0x9258: 0x6e5b,
+          0x9259: 0x70ad,
+          0x925a: 0x77ed,
+          0x925b: 0x7aef,
+          0x925c: 0x7baa,
+          0x925d: 0x7dbb,
+          0x925e: 0x803d,
+          0x925f: 0x80c6,
+          0x9260: 0x86cb,
+          0x9261: 0x8a95,
+          0x9262: 0x935b,
+          0x9263: 0x56e3,
+          0x9264: 0x58c7,
+          0x9265: 0x5f3e,
+          0x9266: 0x65ad,
+          0x9267: 0x6696,
+          0x9268: 0x6a80,
+          0x9269: 0x6bb5,
+          0x926a: 0x7537,
+          0x926b: 0x8ac7,
+          0x926c: 0x5024,
+          0x926d: 0x77e5,
+          0x926e: 0x5730,
+          0x926f: 0x5f1b,
+          0x9270: 0x6065,
+          0x9271: 0x667a,
+          0x9272: 0x6c60,
+          0x9273: 0x75f4,
+          0x9274: 0x7a1a,
+          0x9275: 0x7f6e,
+          0x9276: 0x81f4,
+          0x9277: 0x8718,
+          0x9278: 0x9045,
+          0x9279: 0x99b3,
+          0x927a: 0x7bc9,
+          0x927b: 0x755c,
+          0x927c: 0x7af9,
+          0x927d: 0x7b51,
+          0x927e: 0x84c4,
+          0x9280: 0x9010,
+          0x9281: 0x79e9,
+          0x9282: 0x7a92,
+          0x9283: 0x8336,
+          0x9284: 0x5ae1,
+          0x9285: 0x7740,
+          0x9286: 0x4e2d,
+          0x9287: 0x4ef2,
+          0x9288: 0x5b99,
+          0x9289: 0x5fe0,
+          0x928a: 0x62bd,
+          0x928b: 0x663c,
+          0x928c: 0x67f1,
+          0x928d: 0x6ce8,
+          0x928e: 0x866b,
+          0x928f: 0x8877,
+          0x9290: 0x8a3b,
+          0x9291: 0x914e,
+          0x9292: 0x92f3,
+          0x9293: 0x99d0,
+          0x9294: 0x6a17,
+          0x9295: 0x7026,
+          0x9296: 0x732a,
+          0x9297: 0x82e7,
+          0x9298: 0x8457,
+          0x9299: 0x8caf,
+          0x929a: 0x4e01,
+          0x929b: 0x5146,
+          0x929c: 0x51cb,
+          0x929d: 0x558b,
+          0x929e: 0x5bf5,
+          0x929f: 0x5e16,
+          0x92a0: 0x5e33,
+          0x92a1: 0x5e81,
+          0x92a2: 0x5f14,
+          0x92a3: 0x5f35,
+          0x92a4: 0x5f6b,
+          0x92a5: 0x5fb4,
+          0x92a6: 0x61f2,
+          0x92a7: 0x6311,
+          0x92a8: 0x66a2,
+          0x92a9: 0x671d,
+          0x92aa: 0x6f6e,
+          0x92ab: 0x7252,
+          0x92ac: 0x753a,
+          0x92ad: 0x773a,
+          0x92ae: 0x8074,
+          0x92af: 0x8139,
+          0x92b0: 0x8178,
+          0x92b1: 0x8776,
+          0x92b2: 0x8abf,
+          0x92b3: 0x8adc,
+          0x92b4: 0x8d85,
+          0x92b5: 0x8df3,
+          0x92b6: 0x929a,
+          0x92b7: 0x9577,
+          0x92b8: 0x9802,
+          0x92b9: 0x9ce5,
+          0x92ba: 0x52c5,
+          0x92bb: 0x6357,
+          0x92bc: 0x76f4,
+          0x92bd: 0x6715,
+          0x92be: 0x6c88,
+          0x92bf: 0x73cd,
+          0x92c0: 0x8cc3,
+          0x92c1: 0x93ae,
+          0x92c2: 0x9673,
+          0x92c3: 0x6d25,
+          0x92c4: 0x589c,
+          0x92c5: 0x690e,
+          0x92c6: 0x69cc,
+          0x92c7: 0x8ffd,
+          0x92c8: 0x939a,
+          0x92c9: 0x75db,
+          0x92ca: 0x901a,
+          0x92cb: 0x585a,
+          0x92cc: 0x6802,
+          0x92cd: 0x63b4,
+          0x92ce: 0x69fb,
+          0x92cf: 0x4f43,
+          0x92d0: 0x6f2c,
+          0x92d1: 0x67d8,
+          0x92d2: 0x8fbb,
+          0x92d3: 0x8526,
+          0x92d4: 0x7db4,
+          0x92d5: 0x9354,
+          0x92d6: 0x693f,
+          0x92d7: 0x6f70,
+          0x92d8: 0x576a,
+          0x92d9: 0x58f7,
+          0x92da: 0x5b2c,
+          0x92db: 0x7d2c,
+          0x92dc: 0x722a,
+          0x92dd: 0x540a,
+          0x92de: 0x91e3,
+          0x92df: 0x9db4,
+          0x92e0: 0x4ead,
+          0x92e1: 0x4f4e,
+          0x92e2: 0x505c,
+          0x92e3: 0x5075,
+          0x92e4: 0x5243,
+          0x92e5: 0x8c9e,
+          0x92e6: 0x5448,
+          0x92e7: 0x5824,
+          0x92e8: 0x5b9a,
+          0x92e9: 0x5e1d,
+          0x92ea: 0x5e95,
+          0x92eb: 0x5ead,
+          0x92ec: 0x5ef7,
+          0x92ed: 0x5f1f,
+          0x92ee: 0x608c,
+          0x92ef: 0x62b5,
+          0x92f0: 0x633a,
+          0x92f1: 0x63d0,
+          0x92f2: 0x68af,
+          0x92f3: 0x6c40,
+          0x92f4: 0x7887,
+          0x92f5: 0x798e,
+          0x92f6: 0x7a0b,
+          0x92f7: 0x7de0,
+          0x92f8: 0x8247,
+          0x92f9: 0x8a02,
+          0x92fa: 0x8ae6,
+          0x92fb: 0x8e44,
+          0x92fc: 0x9013,
+          0x9340: 0x90b8,
+          0x9341: 0x912d,
+          0x9342: 0x91d8,
+          0x9343: 0x9f0e,
+          0x9344: 0x6ce5,
+          0x9345: 0x6458,
+          0x9346: 0x64e2,
+          0x9347: 0x6575,
+          0x9348: 0x6ef4,
+          0x9349: 0x7684,
+          0x934a: 0x7b1b,
+          0x934b: 0x9069,
+          0x934c: 0x93d1,
+          0x934d: 0x6eba,
+          0x934e: 0x54f2,
+          0x934f: 0x5fb9,
+          0x9350: 0x64a4,
+          0x9351: 0x8f4d,
+          0x9352: 0x8fed,
+          0x9353: 0x9244,
+          0x9354: 0x5178,
+          0x9355: 0x586b,
+          0x9356: 0x5929,
+          0x9357: 0x5c55,
+          0x9358: 0x5e97,
+          0x9359: 0x6dfb,
+          0x935a: 0x7e8f,
+          0x935b: 0x751c,
+          0x935c: 0x8cbc,
+          0x935d: 0x8ee2,
+          0x935e: 0x985b,
+          0x935f: 0x70b9,
+          0x9360: 0x4f1d,
+          0x9361: 0x6bbf,
+          0x9362: 0x6fb1,
+          0x9363: 0x7530,
+          0x9364: 0x96fb,
+          0x9365: 0x514e,
+          0x9366: 0x5410,
+          0x9367: 0x5835,
+          0x9368: 0x5857,
+          0x9369: 0x59ac,
+          0x936a: 0x5c60,
+          0x936b: 0x5f92,
+          0x936c: 0x6597,
+          0x936d: 0x675c,
+          0x936e: 0x6e21,
+          0x936f: 0x767b,
+          0x9370: 0x83df,
+          0x9371: 0x8ced,
+          0x9372: 0x9014,
+          0x9373: 0x90fd,
+          0x9374: 0x934d,
+          0x9375: 0x7825,
+          0x9376: 0x783a,
+          0x9377: 0x52aa,
+          0x9378: 0x5ea6,
+          0x9379: 0x571f,
+          0x937a: 0x5974,
+          0x937b: 0x6012,
+          0x937c: 0x5012,
+          0x937d: 0x515a,
+          0x937e: 0x51ac,
+          0x9380: 0x51cd,
+          0x9381: 0x5200,
+          0x9382: 0x5510,
+          0x9383: 0x5854,
+          0x9384: 0x5858,
+          0x9385: 0x5957,
+          0x9386: 0x5b95,
+          0x9387: 0x5cf6,
+          0x9388: 0x5d8b,
+          0x9389: 0x60bc,
+          0x938a: 0x6295,
+          0x938b: 0x642d,
+          0x938c: 0x6771,
+          0x938d: 0x6843,
+          0x938e: 0x68bc,
+          0x938f: 0x68df,
+          0x9390: 0x76d7,
+          0x9391: 0x6dd8,
+          0x9392: 0x6e6f,
+          0x9393: 0x6d9b,
+          0x9394: 0x706f,
+          0x9395: 0x71c8,
+          0x9396: 0x5f53,
+          0x9397: 0x75d8,
+          0x9398: 0x7977,
+          0x9399: 0x7b49,
+          0x939a: 0x7b54,
+          0x939b: 0x7b52,
+          0x939c: 0x7cd6,
+          0x939d: 0x7d71,
+          0x939e: 0x5230,
+          0x939f: 0x8463,
+          0x93a0: 0x8569,
+          0x93a1: 0x85e4,
+          0x93a2: 0x8a0e,
+          0x93a3: 0x8b04,
+          0x93a4: 0x8c46,
+          0x93a5: 0x8e0f,
+          0x93a6: 0x9003,
+          0x93a7: 0x900f,
+          0x93a8: 0x9419,
+          0x93a9: 0x9676,
+          0x93aa: 0x982d,
+          0x93ab: 0x9a30,
+          0x93ac: 0x95d8,
+          0x93ad: 0x50cd,
+          0x93ae: 0x52d5,
+          0x93af: 0x540c,
+          0x93b0: 0x5802,
+          0x93b1: 0x5c0e,
+          0x93b2: 0x61a7,
+          0x93b3: 0x649e,
+          0x93b4: 0x6d1e,
+          0x93b5: 0x77b3,
+          0x93b6: 0x7ae5,
+          0x93b7: 0x80f4,
+          0x93b8: 0x8404,
+          0x93b9: 0x9053,
+          0x93ba: 0x9285,
+          0x93bb: 0x5ce0,
+          0x93bc: 0x9d07,
+          0x93bd: 0x533f,
+          0x93be: 0x5f97,
+          0x93bf: 0x5fb3,
+          0x93c0: 0x6d9c,
+          0x93c1: 0x7279,
+          0x93c2: 0x7763,
+          0x93c3: 0x79bf,
+          0x93c4: 0x7be4,
+          0x93c5: 0x6bd2,
+          0x93c6: 0x72ec,
+          0x93c7: 0x8aad,
+          0x93c8: 0x6803,
+          0x93c9: 0x6a61,
+          0x93ca: 0x51f8,
+          0x93cb: 0x7a81,
+          0x93cc: 0x6934,
+          0x93cd: 0x5c4a,
+          0x93ce: 0x9cf6,
+          0x93cf: 0x82eb,
+          0x93d0: 0x5bc5,
+          0x93d1: 0x9149,
+          0x93d2: 0x701e,
+          0x93d3: 0x5678,
+          0x93d4: 0x5c6f,
+          0x93d5: 0x60c7,
+          0x93d6: 0x6566,
+          0x93d7: 0x6c8c,
+          0x93d8: 0x8c5a,
+          0x93d9: 0x9041,
+          0x93da: 0x9813,
+          0x93db: 0x5451,
+          0x93dc: 0x66c7,
+          0x93dd: 0x920d,
+          0x93de: 0x5948,
+          0x93df: 0x90a3,
+          0x93e0: 0x5185,
+          0x93e1: 0x4e4d,
+          0x93e2: 0x51ea,
+          0x93e3: 0x8599,
+          0x93e4: 0x8b0e,
+          0x93e5: 0x7058,
+          0x93e6: 0x637a,
+          0x93e7: 0x934b,
+          0x93e8: 0x6962,
+          0x93e9: 0x99b4,
+          0x93ea: 0x7e04,
+          0x93eb: 0x7577,
+          0x93ec: 0x5357,
+          0x93ed: 0x6960,
+          0x93ee: 0x8edf,
+          0x93ef: 0x96e3,
+          0x93f0: 0x6c5d,
+          0x93f1: 0x4e8c,
+          0x93f2: 0x5c3c,
+          0x93f3: 0x5f10,
+          0x93f4: 0x8fe9,
+          0x93f5: 0x5302,
+          0x93f6: 0x8cd1,
+          0x93f7: 0x8089,
+          0x93f8: 0x8679,
+          0x93f9: 0x5eff,
+          0x93fa: 0x65e5,
+          0x93fb: 0x4e73,
+          0x93fc: 0x5165,
+          0x9440: 0x5982,
+          0x9441: 0x5c3f,
+          0x9442: 0x97ee,
+          0x9443: 0x4efb,
+          0x9444: 0x598a,
+          0x9445: 0x5fcd,
+          0x9446: 0x8a8d,
+          0x9447: 0x6fe1,
+          0x9448: 0x79b0,
+          0x9449: 0x7962,
+          0x944a: 0x5be7,
+          0x944b: 0x8471,
+          0x944c: 0x732b,
+          0x944d: 0x71b1,
+          0x944e: 0x5e74,
+          0x944f: 0x5ff5,
+          0x9450: 0x637b,
+          0x9451: 0x649a,
+          0x9452: 0x71c3,
+          0x9453: 0x7c98,
+          0x9454: 0x4e43,
+          0x9455: 0x5efc,
+          0x9456: 0x4e4b,
+          0x9457: 0x57dc,
+          0x9458: 0x56a2,
+          0x9459: 0x60a9,
+          0x945a: 0x6fc3,
+          0x945b: 0x7d0d,
+          0x945c: 0x80fd,
+          0x945d: 0x8133,
+          0x945e: 0x81bf,
+          0x945f: 0x8fb2,
+          0x9460: 0x8997,
+          0x9461: 0x86a4,
+          0x9462: 0x5df4,
+          0x9463: 0x628a,
+          0x9464: 0x64ad,
+          0x9465: 0x8987,
+          0x9466: 0x6777,
+          0x9467: 0x6ce2,
+          0x9468: 0x6d3e,
+          0x9469: 0x7436,
+          0x946a: 0x7834,
+          0x946b: 0x5a46,
+          0x946c: 0x7f75,
+          0x946d: 0x82ad,
+          0x946e: 0x99ac,
+          0x946f: 0x4ff3,
+          0x9470: 0x5ec3,
+          0x9471: 0x62dd,
+          0x9472: 0x6392,
+          0x9473: 0x6557,
+          0x9474: 0x676f,
+          0x9475: 0x76c3,
+          0x9476: 0x724c,
+          0x9477: 0x80cc,
+          0x9478: 0x80ba,
+          0x9479: 0x8f29,
+          0x947a: 0x914d,
+          0x947b: 0x500d,
+          0x947c: 0x57f9,
+          0x947d: 0x5a92,
+          0x947e: 0x6885,
+          0x9480: 0x6973,
+          0x9481: 0x7164,
+          0x9482: 0x72fd,
+          0x9483: 0x8cb7,
+          0x9484: 0x58f2,
+          0x9485: 0x8ce0,
+          0x9486: 0x966a,
+          0x9487: 0x9019,
+          0x9488: 0x877f,
+          0x9489: 0x79e4,
+          0x948a: 0x77e7,
+          0x948b: 0x8429,
+          0x948c: 0x4f2f,
+          0x948d: 0x5265,
+          0x948e: 0x535a,
+          0x948f: 0x62cd,
+          0x9490: 0x67cf,
+          0x9491: 0x6cca,
+          0x9492: 0x767d,
+          0x9493: 0x7b94,
+          0x9494: 0x7c95,
+          0x9495: 0x8236,
+          0x9496: 0x8584,
+          0x9497: 0x8feb,
+          0x9498: 0x66dd,
+          0x9499: 0x6f20,
+          0x949a: 0x7206,
+          0x949b: 0x7e1b,
+          0x949c: 0x83ab,
+          0x949d: 0x99c1,
+          0x949e: 0x9ea6,
+          0x949f: 0x51fd,
+          0x94a0: 0x7bb1,
+          0x94a1: 0x7872,
+          0x94a2: 0x7bb8,
+          0x94a3: 0x8087,
+          0x94a4: 0x7b48,
+          0x94a5: 0x6ae8,
+          0x94a6: 0x5e61,
+          0x94a7: 0x808c,
+          0x94a8: 0x7551,
+          0x94a9: 0x7560,
+          0x94aa: 0x516b,
+          0x94ab: 0x9262,
+          0x94ac: 0x6e8c,
+          0x94ad: 0x767a,
+          0x94ae: 0x9197,
+          0x94af: 0x9aea,
+          0x94b0: 0x4f10,
+          0x94b1: 0x7f70,
+          0x94b2: 0x629c,
+          0x94b3: 0x7b4f,
+          0x94b4: 0x95a5,
+          0x94b5: 0x9ce9,
+          0x94b6: 0x567a,
+          0x94b7: 0x5859,
+          0x94b8: 0x86e4,
+          0x94b9: 0x96bc,
+          0x94ba: 0x4f34,
+          0x94bb: 0x5224,
+          0x94bc: 0x534a,
+          0x94bd: 0x53cd,
+          0x94be: 0x53db,
+          0x94bf: 0x5e06,
+          0x94c0: 0x642c,
+          0x94c1: 0x6591,
+          0x94c2: 0x677f,
+          0x94c3: 0x6c3e,
+          0x94c4: 0x6c4e,
+          0x94c5: 0x7248,
+          0x94c6: 0x72af,
+          0x94c7: 0x73ed,
+          0x94c8: 0x7554,
+          0x94c9: 0x7e41,
+          0x94ca: 0x822c,
+          0x94cb: 0x85e9,
+          0x94cc: 0x8ca9,
+          0x94cd: 0x7bc4,
+          0x94ce: 0x91c6,
+          0x94cf: 0x7169,
+          0x94d0: 0x9812,
+          0x94d1: 0x98ef,
+          0x94d2: 0x633d,
+          0x94d3: 0x6669,
+          0x94d4: 0x756a,
+          0x94d5: 0x76e4,
+          0x94d6: 0x78d0,
+          0x94d7: 0x8543,
+          0x94d8: 0x86ee,
+          0x94d9: 0x532a,
+          0x94da: 0x5351,
+          0x94db: 0x5426,
+          0x94dc: 0x5983,
+          0x94dd: 0x5e87,
+          0x94de: 0x5f7c,
+          0x94df: 0x60b2,
+          0x94e0: 0x6249,
+          0x94e1: 0x6279,
+          0x94e2: 0x62ab,
+          0x94e3: 0x6590,
+          0x94e4: 0x6bd4,
+          0x94e5: 0x6ccc,
+          0x94e6: 0x75b2,
+          0x94e7: 0x76ae,
+          0x94e8: 0x7891,
+          0x94e9: 0x79d8,
+          0x94ea: 0x7dcb,
+          0x94eb: 0x7f77,
+          0x94ec: 0x80a5,
+          0x94ed: 0x88ab,
+          0x94ee: 0x8ab9,
+          0x94ef: 0x8cbb,
+          0x94f0: 0x907f,
+          0x94f1: 0x975e,
+          0x94f2: 0x98db,
+          0x94f3: 0x6a0b,
+          0x94f4: 0x7c38,
+          0x94f5: 0x5099,
+          0x94f6: 0x5c3e,
+          0x94f7: 0x5fae,
+          0x94f8: 0x6787,
+          0x94f9: 0x6bd8,
+          0x94fa: 0x7435,
+          0x94fb: 0x7709,
+          0x94fc: 0x7f8e,
+          0x9540: 0x9f3b,
+          0x9541: 0x67ca,
+          0x9542: 0x7a17,
+          0x9543: 0x5339,
+          0x9544: 0x758b,
+          0x9545: 0x9aed,
+          0x9546: 0x5f66,
+          0x9547: 0x819d,
+          0x9548: 0x83f1,
+          0x9549: 0x8098,
+          0x954a: 0x5f3c,
+          0x954b: 0x5fc5,
+          0x954c: 0x7562,
+          0x954d: 0x7b46,
+          0x954e: 0x903c,
+          0x954f: 0x6867,
+          0x9550: 0x59eb,
+          0x9551: 0x5a9b,
+          0x9552: 0x7d10,
+          0x9553: 0x767e,
+          0x9554: 0x8b2c,
+          0x9555: 0x4ff5,
+          0x9556: 0x5f6a,
+          0x9557: 0x6a19,
+          0x9558: 0x6c37,
+          0x9559: 0x6f02,
+          0x955a: 0x74e2,
+          0x955b: 0x7968,
+          0x955c: 0x8868,
+          0x955d: 0x8a55,
+          0x955e: 0x8c79,
+          0x955f: 0x5edf,
+          0x9560: 0x63cf,
+          0x9561: 0x75c5,
+          0x9562: 0x79d2,
+          0x9563: 0x82d7,
+          0x9564: 0x9328,
+          0x9565: 0x92f2,
+          0x9566: 0x849c,
+          0x9567: 0x86ed,
+          0x9568: 0x9c2d,
+          0x9569: 0x54c1,
+          0x956a: 0x5f6c,
+          0x956b: 0x658c,
+          0x956c: 0x6d5c,
+          0x956d: 0x7015,
+          0x956e: 0x8ca7,
+          0x956f: 0x8cd3,
+          0x9570: 0x983b,
+          0x9571: 0x654f,
+          0x9572: 0x74f6,
+          0x9573: 0x4e0d,
+          0x9574: 0x4ed8,
+          0x9575: 0x57e0,
+          0x9576: 0x592b,
+          0x9577: 0x5a66,
+          0x9578: 0x5bcc,
+          0x9579: 0x51a8,
+          0x957a: 0x5e03,
+          0x957b: 0x5e9c,
+          0x957c: 0x6016,
+          0x957d: 0x6276,
+          0x957e: 0x6577,
+          0x9580: 0x65a7,
+          0x9581: 0x666e,
+          0x9582: 0x6d6e,
+          0x9583: 0x7236,
+          0x9584: 0x7b26,
+          0x9585: 0x8150,
+          0x9586: 0x819a,
+          0x9587: 0x8299,
+          0x9588: 0x8b5c,
+          0x9589: 0x8ca0,
+          0x958a: 0x8ce6,
+          0x958b: 0x8d74,
+          0x958c: 0x961c,
+          0x958d: 0x9644,
+          0x958e: 0x4fae,
+          0x958f: 0x64ab,
+          0x9590: 0x6b66,
+          0x9591: 0x821e,
+          0x9592: 0x8461,
+          0x9593: 0x856a,
+          0x9594: 0x90e8,
+          0x9595: 0x5c01,
+          0x9596: 0x6953,
+          0x9597: 0x98a8,
+          0x9598: 0x847a,
+          0x9599: 0x8557,
+          0x959a: 0x4f0f,
+          0x959b: 0x526f,
+          0x959c: 0x5fa9,
+          0x959d: 0x5e45,
+          0x959e: 0x670d,
+          0x959f: 0x798f,
+          0x95a0: 0x8179,
+          0x95a1: 0x8907,
+          0x95a2: 0x8986,
+          0x95a3: 0x6df5,
+          0x95a4: 0x5f17,
+          0x95a5: 0x6255,
+          0x95a6: 0x6cb8,
+          0x95a7: 0x4ecf,
+          0x95a8: 0x7269,
+          0x95a9: 0x9b92,
+          0x95aa: 0x5206,
+          0x95ab: 0x543b,
+          0x95ac: 0x5674,
+          0x95ad: 0x58b3,
+          0x95ae: 0x61a4,
+          0x95af: 0x626e,
+          0x95b0: 0x711a,
+          0x95b1: 0x596e,
+          0x95b2: 0x7c89,
+          0x95b3: 0x7cde,
+          0x95b4: 0x7d1b,
+          0x95b5: 0x96f0,
+          0x95b6: 0x6587,
+          0x95b7: 0x805e,
+          0x95b8: 0x4e19,
+          0x95b9: 0x4f75,
+          0x95ba: 0x5175,
+          0x95bb: 0x5840,
+          0x95bc: 0x5e63,
+          0x95bd: 0x5e73,
+          0x95be: 0x5f0a,
+          0x95bf: 0x67c4,
+          0x95c0: 0x4e26,
+          0x95c1: 0x853d,
+          0x95c2: 0x9589,
+          0x95c3: 0x965b,
+          0x95c4: 0x7c73,
+          0x95c5: 0x9801,
+          0x95c6: 0x50fb,
+          0x95c7: 0x58c1,
+          0x95c8: 0x7656,
+          0x95c9: 0x78a7,
+          0x95ca: 0x5225,
+          0x95cb: 0x77a5,
+          0x95cc: 0x8511,
+          0x95cd: 0x7b86,
+          0x95ce: 0x504f,
+          0x95cf: 0x5909,
+          0x95d0: 0x7247,
+          0x95d1: 0x7bc7,
+          0x95d2: 0x7de8,
+          0x95d3: 0x8fba,
+          0x95d4: 0x8fd4,
+          0x95d5: 0x904d,
+          0x95d6: 0x4fbf,
+          0x95d7: 0x52c9,
+          0x95d8: 0x5a29,
+          0x95d9: 0x5f01,
+          0x95da: 0x97ad,
+          0x95db: 0x4fdd,
+          0x95dc: 0x8217,
+          0x95dd: 0x92ea,
+          0x95de: 0x5703,
+          0x95df: 0x6355,
+          0x95e0: 0x6b69,
+          0x95e1: 0x752b,
+          0x95e2: 0x88dc,
+          0x95e3: 0x8f14,
+          0x95e4: 0x7a42,
+          0x95e5: 0x52df,
+          0x95e6: 0x5893,
+          0x95e7: 0x6155,
+          0x95e8: 0x620a,
+          0x95e9: 0x66ae,
+          0x95ea: 0x6bcd,
+          0x95eb: 0x7c3f,
+          0x95ec: 0x83e9,
+          0x95ed: 0x5023,
+          0x95ee: 0x4ff8,
+          0x95ef: 0x5305,
+          0x95f0: 0x5446,
+          0x95f1: 0x5831,
+          0x95f2: 0x5949,
+          0x95f3: 0x5b9d,
+          0x95f4: 0x5cf0,
+          0x95f5: 0x5cef,
+          0x95f6: 0x5d29,
+          0x95f7: 0x5e96,
+          0x95f8: 0x62b1,
+          0x95f9: 0x6367,
+          0x95fa: 0x653e,
+          0x95fb: 0x65b9,
+          0x95fc: 0x670b,
+          0x9640: 0x6cd5,
+          0x9641: 0x6ce1,
+          0x9642: 0x70f9,
+          0x9643: 0x7832,
+          0x9644: 0x7e2b,
+          0x9645: 0x80de,
+          0x9646: 0x82b3,
+          0x9647: 0x840c,
+          0x9648: 0x84ec,
+          0x9649: 0x8702,
+          0x964a: 0x8912,
+          0x964b: 0x8a2a,
+          0x964c: 0x8c4a,
+          0x964d: 0x90a6,
+          0x964e: 0x92d2,
+          0x964f: 0x98fd,
+          0x9650: 0x9cf3,
+          0x9651: 0x9d6c,
+          0x9652: 0x4e4f,
+          0x9653: 0x4ea1,
+          0x9654: 0x508d,
+          0x9655: 0x5256,
+          0x9656: 0x574a,
+          0x9657: 0x59a8,
+          0x9658: 0x5e3d,
+          0x9659: 0x5fd8,
+          0x965a: 0x5fd9,
+          0x965b: 0x623f,
+          0x965c: 0x66b4,
+          0x965d: 0x671b,
+          0x965e: 0x67d0,
+          0x965f: 0x68d2,
+          0x9660: 0x5192,
+          0x9661: 0x7d21,
+          0x9662: 0x80aa,
+          0x9663: 0x81a8,
+          0x9664: 0x8b00,
+          0x9665: 0x8c8c,
+          0x9666: 0x8cbf,
+          0x9667: 0x927e,
+          0x9668: 0x9632,
+          0x9669: 0x5420,
+          0x966a: 0x982c,
+          0x966b: 0x5317,
+          0x966c: 0x50d5,
+          0x966d: 0x535c,
+          0x966e: 0x58a8,
+          0x966f: 0x64b2,
+          0x9670: 0x6734,
+          0x9671: 0x7267,
+          0x9672: 0x7766,
+          0x9673: 0x7a46,
+          0x9674: 0x91e6,
+          0x9675: 0x52c3,
+          0x9676: 0x6ca1,
+          0x9677: 0x6b86,
+          0x9678: 0x5800,
+          0x9679: 0x5e4c,
+          0x967a: 0x5954,
+          0x967b: 0x672c,
+          0x967c: 0x7ffb,
+          0x967d: 0x51e1,
+          0x967e: 0x76c6,
+          0x9680: 0x6469,
+          0x9681: 0x78e8,
+          0x9682: 0x9b54,
+          0x9683: 0x9ebb,
+          0x9684: 0x57cb,
+          0x9685: 0x59b9,
+          0x9686: 0x6627,
+          0x9687: 0x679a,
+          0x9688: 0x6bce,
+          0x9689: 0x54e9,
+          0x968a: 0x69d9,
+          0x968b: 0x5e55,
+          0x968c: 0x819c,
+          0x968d: 0x6795,
+          0x968e: 0x9baa,
+          0x968f: 0x67fe,
+          0x9690: 0x9c52,
+          0x9691: 0x685d,
+          0x9692: 0x4ea6,
+          0x9693: 0x4fe3,
+          0x9694: 0x53c8,
+          0x9695: 0x62b9,
+          0x9696: 0x672b,
+          0x9697: 0x6cab,
+          0x9698: 0x8fc4,
+          0x9699: 0x4fad,
+          0x969a: 0x7e6d,
+          0x969b: 0x9ebf,
+          0x969c: 0x4e07,
+          0x969d: 0x6162,
+          0x969e: 0x6e80,
+          0x969f: 0x6f2b,
+          0x96a0: 0x8513,
+          0x96a1: 0x5473,
+          0x96a2: 0x672a,
+          0x96a3: 0x9b45,
+          0x96a4: 0x5df3,
+          0x96a5: 0x7b95,
+          0x96a6: 0x5cac,
+          0x96a7: 0x5bc6,
+          0x96a8: 0x871c,
+          0x96a9: 0x6e4a,
+          0x96aa: 0x84d1,
+          0x96ab: 0x7a14,
+          0x96ac: 0x8108,
+          0x96ad: 0x5999,
+          0x96ae: 0x7c8d,
+          0x96af: 0x6c11,
+          0x96b0: 0x7720,
+          0x96b1: 0x52d9,
+          0x96b2: 0x5922,
+          0x96b3: 0x7121,
+          0x96b4: 0x725f,
+          0x96b5: 0x77db,
+          0x96b6: 0x9727,
+          0x96b7: 0x9d61,
+          0x96b8: 0x690b,
+          0x96b9: 0x5a7f,
+          0x96ba: 0x5a18,
+          0x96bb: 0x51a5,
+          0x96bc: 0x540d,
+          0x96bd: 0x547d,
+          0x96be: 0x660e,
+          0x96bf: 0x76df,
+          0x96c0: 0x8ff7,
+          0x96c1: 0x9298,
+          0x96c2: 0x9cf4,
+          0x96c3: 0x59ea,
+          0x96c4: 0x725d,
+          0x96c5: 0x6ec5,
+          0x96c6: 0x514d,
+          0x96c7: 0x68c9,
+          0x96c8: 0x7dbf,
+          0x96c9: 0x7dec,
+          0x96ca: 0x9762,
+          0x96cb: 0x9eba,
+          0x96cc: 0x6478,
+          0x96cd: 0x6a21,
+          0x96ce: 0x8302,
+          0x96cf: 0x5984,
+          0x96d0: 0x5b5f,
+          0x96d1: 0x6bdb,
+          0x96d2: 0x731b,
+          0x96d3: 0x76f2,
+          0x96d4: 0x7db2,
+          0x96d5: 0x8017,
+          0x96d6: 0x8499,
+          0x96d7: 0x5132,
+          0x96d8: 0x6728,
+          0x96d9: 0x9ed9,
+          0x96da: 0x76ee,
+          0x96db: 0x6762,
+          0x96dc: 0x52ff,
+          0x96dd: 0x9905,
+          0x96de: 0x5c24,
+          0x96df: 0x623b,
+          0x96e0: 0x7c7e,
+          0x96e1: 0x8cb0,
+          0x96e2: 0x554f,
+          0x96e3: 0x60b6,
+          0x96e4: 0x7d0b,
+          0x96e5: 0x9580,
+          0x96e6: 0x5301,
+          0x96e7: 0x4e5f,
+          0x96e8: 0x51b6,
+          0x96e9: 0x591c,
+          0x96ea: 0x723a,
+          0x96eb: 0x8036,
+          0x96ec: 0x91ce,
+          0x96ed: 0x5f25,
+          0x96ee: 0x77e2,
+          0x96ef: 0x5384,
+          0x96f0: 0x5f79,
+          0x96f1: 0x7d04,
+          0x96f2: 0x85ac,
+          0x96f3: 0x8a33,
+          0x96f4: 0x8e8d,
+          0x96f5: 0x9756,
+          0x96f6: 0x67f3,
+          0x96f7: 0x85ae,
+          0x96f8: 0x9453,
+          0x96f9: 0x6109,
+          0x96fa: 0x6108,
+          0x96fb: 0x6cb9,
+          0x96fc: 0x7652,
+          0x9740: 0x8aed,
+          0x9741: 0x8f38,
+          0x9742: 0x552f,
+          0x9743: 0x4f51,
+          0x9744: 0x512a,
+          0x9745: 0x52c7,
+          0x9746: 0x53cb,
+          0x9747: 0x5ba5,
+          0x9748: 0x5e7d,
+          0x9749: 0x60a0,
+          0x974a: 0x6182,
+          0x974b: 0x63d6,
+          0x974c: 0x6709,
+          0x974d: 0x67da,
+          0x974e: 0x6e67,
+          0x974f: 0x6d8c,
+          0x9750: 0x7336,
+          0x9751: 0x7337,
+          0x9752: 0x7531,
+          0x9753: 0x7950,
+          0x9754: 0x88d5,
+          0x9755: 0x8a98,
+          0x9756: 0x904a,
+          0x9757: 0x9091,
+          0x9758: 0x90f5,
+          0x9759: 0x96c4,
+          0x975a: 0x878d,
+          0x975b: 0x5915,
+          0x975c: 0x4e88,
+          0x975d: 0x4f59,
+          0x975e: 0x4e0e,
+          0x975f: 0x8a89,
+          0x9760: 0x8f3f,
+          0x9761: 0x9810,
+          0x9762: 0x50ad,
+          0x9763: 0x5e7c,
+          0x9764: 0x5996,
+          0x9765: 0x5bb9,
+          0x9766: 0x5eb8,
+          0x9767: 0x63da,
+          0x9768: 0x63fa,
+          0x9769: 0x64c1,
+          0x976a: 0x66dc,
+          0x976b: 0x694a,
+          0x976c: 0x69d8,
+          0x976d: 0x6d0b,
+          0x976e: 0x6eb6,
+          0x976f: 0x7194,
+          0x9770: 0x7528,
+          0x9771: 0x7aaf,
+          0x9772: 0x7f8a,
+          0x9773: 0x8000,
+          0x9774: 0x8449,
+          0x9775: 0x84c9,
+          0x9776: 0x8981,
+          0x9777: 0x8b21,
+          0x9778: 0x8e0a,
+          0x9779: 0x9065,
+          0x977a: 0x967d,
+          0x977b: 0x990a,
+          0x977c: 0x617e,
+          0x977d: 0x6291,
+          0x977e: 0x6b32,
+          0x9780: 0x6c83,
+          0x9781: 0x6d74,
+          0x9782: 0x7fcc,
+          0x9783: 0x7ffc,
+          0x9784: 0x6dc0,
+          0x9785: 0x7f85,
+          0x9786: 0x87ba,
+          0x9787: 0x88f8,
+          0x9788: 0x6765,
+          0x9789: 0x83b1,
+          0x978a: 0x983c,
+          0x978b: 0x96f7,
+          0x978c: 0x6d1b,
+          0x978d: 0x7d61,
+          0x978e: 0x843d,
+          0x978f: 0x916a,
+          0x9790: 0x4e71,
+          0x9791: 0x5375,
+          0x9792: 0x5d50,
+          0x9793: 0x6b04,
+          0x9794: 0x6feb,
+          0x9795: 0x85cd,
+          0x9796: 0x862d,
+          0x9797: 0x89a7,
+          0x9798: 0x5229,
+          0x9799: 0x540f,
+          0x979a: 0x5c65,
+          0x979b: 0x674e,
+          0x979c: 0x68a8,
+          0x979d: 0x7406,
+          0x979e: 0x7483,
+          0x979f: 0x75e2,
+          0x97a0: 0x88cf,
+          0x97a1: 0x88e1,
+          0x97a2: 0x91cc,
+          0x97a3: 0x96e2,
+          0x97a4: 0x9678,
+          0x97a5: 0x5f8b,
+          0x97a6: 0x7387,
+          0x97a7: 0x7acb,
+          0x97a8: 0x844e,
+          0x97a9: 0x63a0,
+          0x97aa: 0x7565,
+          0x97ab: 0x5289,
+          0x97ac: 0x6d41,
+          0x97ad: 0x6e9c,
+          0x97ae: 0x7409,
+          0x97af: 0x7559,
+          0x97b0: 0x786b,
+          0x97b1: 0x7c92,
+          0x97b2: 0x9686,
+          0x97b3: 0x7adc,
+          0x97b4: 0x9f8d,
+          0x97b5: 0x4fb6,
+          0x97b6: 0x616e,
+          0x97b7: 0x65c5,
+          0x97b8: 0x865c,
+          0x97b9: 0x4e86,
+          0x97ba: 0x4eae,
+          0x97bb: 0x50da,
+          0x97bc: 0x4e21,
+          0x97bd: 0x51cc,
+          0x97be: 0x5bee,
+          0x97bf: 0x6599,
+          0x97c0: 0x6881,
+          0x97c1: 0x6dbc,
+          0x97c2: 0x731f,
+          0x97c3: 0x7642,
+          0x97c4: 0x77ad,
+          0x97c5: 0x7a1c,
+          0x97c6: 0x7ce7,
+          0x97c7: 0x826f,
+          0x97c8: 0x8ad2,
+          0x97c9: 0x907c,
+          0x97ca: 0x91cf,
+          0x97cb: 0x9675,
+          0x97cc: 0x9818,
+          0x97cd: 0x529b,
+          0x97ce: 0x7dd1,
+          0x97cf: 0x502b,
+          0x97d0: 0x5398,
+          0x97d1: 0x6797,
+          0x97d2: 0x6dcb,
+          0x97d3: 0x71d0,
+          0x97d4: 0x7433,
+          0x97d5: 0x81e8,
+          0x97d6: 0x8f2a,
+          0x97d7: 0x96a3,
+          0x97d8: 0x9c57,
+          0x97d9: 0x9e9f,
+          0x97da: 0x7460,
+          0x97db: 0x5841,
+          0x97dc: 0x6d99,
+          0x97dd: 0x7d2f,
+          0x97de: 0x985e,
+          0x97df: 0x4ee4,
+          0x97e0: 0x4f36,
+          0x97e1: 0x4f8b,
+          0x97e2: 0x51b7,
+          0x97e3: 0x52b1,
+          0x97e4: 0x5dba,
+          0x97e5: 0x601c,
+          0x97e6: 0x73b2,
+          0x97e7: 0x793c,
+          0x97e8: 0x82d3,
+          0x97e9: 0x9234,
+          0x97ea: 0x96b7,
+          0x97eb: 0x96f6,
+          0x97ec: 0x970a,
+          0x97ed: 0x9e97,
+          0x97ee: 0x9f62,
+          0x97ef: 0x66a6,
+          0x97f0: 0x6b74,
+          0x97f1: 0x5217,
+          0x97f2: 0x52a3,
+          0x97f3: 0x70c8,
+          0x97f4: 0x88c2,
+          0x97f5: 0x5ec9,
+          0x97f6: 0x604b,
+          0x97f7: 0x6190,
+          0x97f8: 0x6f23,
+          0x97f9: 0x7149,
+          0x97fa: 0x7c3e,
+          0x97fb: 0x7df4,
+          0x97fc: 0x806f,
+          0x9840: 0x84ee,
+          0x9841: 0x9023,
+          0x9842: 0x932c,
+          0x9843: 0x5442,
+          0x9844: 0x9b6f,
+          0x9845: 0x6ad3,
+          0x9846: 0x7089,
+          0x9847: 0x8cc2,
+          0x9848: 0x8def,
+          0x9849: 0x9732,
+          0x984a: 0x52b4,
+          0x984b: 0x5a41,
+          0x984c: 0x5eca,
+          0x984d: 0x5f04,
+          0x984e: 0x6717,
+          0x984f: 0x697c,
+          0x9850: 0x6994,
+          0x9851: 0x6d6a,
+          0x9852: 0x6f0f,
+          0x9853: 0x7262,
+          0x9854: 0x72fc,
+          0x9855: 0x7bed,
+          0x9856: 0x8001,
+          0x9857: 0x807e,
+          0x9858: 0x874b,
+          0x9859: 0x90ce,
+          0x985a: 0x516d,
+          0x985b: 0x9e93,
+          0x985c: 0x7984,
+          0x985d: 0x808b,
+          0x985e: 0x9332,
+          0x985f: 0x8ad6,
+          0x9860: 0x502d,
+          0x9861: 0x548c,
+          0x9862: 0x8a71,
+          0x9863: 0x6b6a,
+          0x9864: 0x8cc4,
+          0x9865: 0x8107,
+          0x9866: 0x60d1,
+          0x9867: 0x67a0,
+          0x9868: 0x9df2,
+          0x9869: 0x4e99,
+          0x986a: 0x4e98,
+          0x986b: 0x9c10,
+          0x986c: 0x8a6b,
+          0x986d: 0x85c1,
+          0x986e: 0x8568,
+          0x986f: 0x6900,
+          0x9870: 0x6e7e,
+          0x9871: 0x7897,
+          0x9872: 0x8155,
+          0x989f: 0x5f0c,
+          0x98a0: 0x4e10,
+          0x98a1: 0x4e15,
+          0x98a2: 0x4e2a,
+          0x98a3: 0x4e31,
+          0x98a4: 0x4e36,
+          0x98a5: 0x4e3c,
+          0x98a6: 0x4e3f,
+          0x98a7: 0x4e42,
+          0x98a8: 0x4e56,
+          0x98a9: 0x4e58,
+          0x98aa: 0x4e82,
+          0x98ab: 0x4e85,
+          0x98ac: 0x8c6b,
+          0x98ad: 0x4e8a,
+          0x98ae: 0x8212,
+          0x98af: 0x5f0d,
+          0x98b0: 0x4e8e,
+          0x98b1: 0x4e9e,
+          0x98b2: 0x4e9f,
+          0x98b3: 0x4ea0,
+          0x98b4: 0x4ea2,
+          0x98b5: 0x4eb0,
+          0x98b6: 0x4eb3,
+          0x98b7: 0x4eb6,
+          0x98b8: 0x4ece,
+          0x98b9: 0x4ecd,
+          0x98ba: 0x4ec4,
+          0x98bb: 0x4ec6,
+          0x98bc: 0x4ec2,
+          0x98bd: 0x4ed7,
+          0x98be: 0x4ede,
+          0x98bf: 0x4eed,
+          0x98c0: 0x4edf,
+          0x98c1: 0x4ef7,
+          0x98c2: 0x4f09,
+          0x98c3: 0x4f5a,
+          0x98c4: 0x4f30,
+          0x98c5: 0x4f5b,
+          0x98c6: 0x4f5d,
+          0x98c7: 0x4f57,
+          0x98c8: 0x4f47,
+          0x98c9: 0x4f76,
+          0x98ca: 0x4f88,
+          0x98cb: 0x4f8f,
+          0x98cc: 0x4f98,
+          0x98cd: 0x4f7b,
+          0x98ce: 0x4f69,
+          0x98cf: 0x4f70,
+          0x98d0: 0x4f91,
+          0x98d1: 0x4f6f,
+          0x98d2: 0x4f86,
+          0x98d3: 0x4f96,
+          0x98d4: 0x5118,
+          0x98d5: 0x4fd4,
+          0x98d6: 0x4fdf,
+          0x98d7: 0x4fce,
+          0x98d8: 0x4fd8,
+          0x98d9: 0x4fdb,
+          0x98da: 0x4fd1,
+          0x98db: 0x4fda,
+          0x98dc: 0x4fd0,
+          0x98dd: 0x4fe4,
+          0x98de: 0x4fe5,
+          0x98df: 0x501a,
+          0x98e0: 0x5028,
+          0x98e1: 0x5014,
+          0x98e2: 0x502a,
+          0x98e3: 0x5025,
+          0x98e4: 0x5005,
+          0x98e5: 0x4f1c,
+          0x98e6: 0x4ff6,
+          0x98e7: 0x5021,
+          0x98e8: 0x5029,
+          0x98e9: 0x502c,
+          0x98ea: 0x4ffe,
+          0x98eb: 0x4fef,
+          0x98ec: 0x5011,
+          0x98ed: 0x5006,
+          0x98ee: 0x5043,
+          0x98ef: 0x5047,
+          0x98f0: 0x6703,
+          0x98f1: 0x5055,
+          0x98f2: 0x5050,
+          0x98f3: 0x5048,
+          0x98f4: 0x505a,
+          0x98f5: 0x5056,
+          0x98f6: 0x506c,
+          0x98f7: 0x5078,
+          0x98f8: 0x5080,
+          0x98f9: 0x509a,
+          0x98fa: 0x5085,
+          0x98fb: 0x50b4,
+          0x98fc: 0x50b2,
+          0x9940: 0x50c9,
+          0x9941: 0x50ca,
+          0x9942: 0x50b3,
+          0x9943: 0x50c2,
+          0x9944: 0x50d6,
+          0x9945: 0x50de,
+          0x9946: 0x50e5,
+          0x9947: 0x50ed,
+          0x9948: 0x50e3,
+          0x9949: 0x50ee,
+          0x994a: 0x50f9,
+          0x994b: 0x50f5,
+          0x994c: 0x5109,
+          0x994d: 0x5101,
+          0x994e: 0x5102,
+          0x994f: 0x5116,
+          0x9950: 0x5115,
+          0x9951: 0x5114,
+          0x9952: 0x511a,
+          0x9953: 0x5121,
+          0x9954: 0x513a,
+          0x9955: 0x5137,
+          0x9956: 0x513c,
+          0x9957: 0x513b,
+          0x9958: 0x513f,
+          0x9959: 0x5140,
+          0x995a: 0x5152,
+          0x995b: 0x514c,
+          0x995c: 0x5154,
+          0x995d: 0x5162,
+          0x995e: 0x7af8,
+          0x995f: 0x5169,
+          0x9960: 0x516a,
+          0x9961: 0x516e,
+          0x9962: 0x5180,
+          0x9963: 0x5182,
+          0x9964: 0x56d8,
+          0x9965: 0x518c,
+          0x9966: 0x5189,
+          0x9967: 0x518f,
+          0x9968: 0x5191,
+          0x9969: 0x5193,
+          0x996a: 0x5195,
+          0x996b: 0x5196,
+          0x996c: 0x51a4,
+          0x996d: 0x51a6,
+          0x996e: 0x51a2,
+          0x996f: 0x51a9,
+          0x9970: 0x51aa,
+          0x9971: 0x51ab,
+          0x9972: 0x51b3,
+          0x9973: 0x51b1,
+          0x9974: 0x51b2,
+          0x9975: 0x51b0,
+          0x9976: 0x51b5,
+          0x9977: 0x51bd,
+          0x9978: 0x51c5,
+          0x9979: 0x51c9,
+          0x997a: 0x51db,
+          0x997b: 0x51e0,
+          0x997c: 0x8655,
+          0x997d: 0x51e9,
+          0x997e: 0x51ed,
+          0x9980: 0x51f0,
+          0x9981: 0x51f5,
+          0x9982: 0x51fe,
+          0x9983: 0x5204,
+          0x9984: 0x520b,
+          0x9985: 0x5214,
+          0x9986: 0x520e,
+          0x9987: 0x5227,
+          0x9988: 0x522a,
+          0x9989: 0x522e,
+          0x998a: 0x5233,
+          0x998b: 0x5239,
+          0x998c: 0x524f,
+          0x998d: 0x5244,
+          0x998e: 0x524b,
+          0x998f: 0x524c,
+          0x9990: 0x525e,
+          0x9991: 0x5254,
+          0x9992: 0x526a,
+          0x9993: 0x5274,
+          0x9994: 0x5269,
+          0x9995: 0x5273,
+          0x9996: 0x527f,
+          0x9997: 0x527d,
+          0x9998: 0x528d,
+          0x9999: 0x5294,
+          0x999a: 0x5292,
+          0x999b: 0x5271,
+          0x999c: 0x5288,
+          0x999d: 0x5291,
+          0x999e: 0x8fa8,
+          0x999f: 0x8fa7,
+          0x99a0: 0x52ac,
+          0x99a1: 0x52ad,
+          0x99a2: 0x52bc,
+          0x99a3: 0x52b5,
+          0x99a4: 0x52c1,
+          0x99a5: 0x52cd,
+          0x99a6: 0x52d7,
+          0x99a7: 0x52de,
+          0x99a8: 0x52e3,
+          0x99a9: 0x52e6,
+          0x99aa: 0x98ed,
+          0x99ab: 0x52e0,
+          0x99ac: 0x52f3,
+          0x99ad: 0x52f5,
+          0x99ae: 0x52f8,
+          0x99af: 0x52f9,
+          0x99b0: 0x5306,
+          0x99b1: 0x5308,
+          0x99b2: 0x7538,
+          0x99b3: 0x530d,
+          0x99b4: 0x5310,
+          0x99b5: 0x530f,
+          0x99b6: 0x5315,
+          0x99b7: 0x531a,
+          0x99b8: 0x5323,
+          0x99b9: 0x532f,
+          0x99ba: 0x5331,
+          0x99bb: 0x5333,
+          0x99bc: 0x5338,
+          0x99bd: 0x5340,
+          0x99be: 0x5346,
+          0x99bf: 0x5345,
+          0x99c0: 0x4e17,
+          0x99c1: 0x5349,
+          0x99c2: 0x534d,
+          0x99c3: 0x51d6,
+          0x99c4: 0x535e,
+          0x99c5: 0x5369,
+          0x99c6: 0x536e,
+          0x99c7: 0x5918,
+          0x99c8: 0x537b,
+          0x99c9: 0x5377,
+          0x99ca: 0x5382,
+          0x99cb: 0x5396,
+          0x99cc: 0x53a0,
+          0x99cd: 0x53a6,
+          0x99ce: 0x53a5,
+          0x99cf: 0x53ae,
+          0x99d0: 0x53b0,
+          0x99d1: 0x53b6,
+          0x99d2: 0x53c3,
+          0x99d3: 0x7c12,
+          0x99d4: 0x96d9,
+          0x99d5: 0x53df,
+          0x99d6: 0x66fc,
+          0x99d7: 0x71ee,
+          0x99d8: 0x53ee,
+          0x99d9: 0x53e8,
+          0x99da: 0x53ed,
+          0x99db: 0x53fa,
+          0x99dc: 0x5401,
+          0x99dd: 0x543d,
+          0x99de: 0x5440,
+          0x99df: 0x542c,
+          0x99e0: 0x542d,
+          0x99e1: 0x543c,
+          0x99e2: 0x542e,
+          0x99e3: 0x5436,
+          0x99e4: 0x5429,
+          0x99e5: 0x541d,
+          0x99e6: 0x544e,
+          0x99e7: 0x548f,
+          0x99e8: 0x5475,
+          0x99e9: 0x548e,
+          0x99ea: 0x545f,
+          0x99eb: 0x5471,
+          0x99ec: 0x5477,
+          0x99ed: 0x5470,
+          0x99ee: 0x5492,
+          0x99ef: 0x547b,
+          0x99f0: 0x5480,
+          0x99f1: 0x5476,
+          0x99f2: 0x5484,
+          0x99f3: 0x5490,
+          0x99f4: 0x5486,
+          0x99f5: 0x54c7,
+          0x99f6: 0x54a2,
+          0x99f7: 0x54b8,
+          0x99f8: 0x54a5,
+          0x99f9: 0x54ac,
+          0x99fa: 0x54c4,
+          0x99fb: 0x54c8,
+          0x99fc: 0x54a8,
+          0x9a40: 0x54ab,
+          0x9a41: 0x54c2,
+          0x9a42: 0x54a4,
+          0x9a43: 0x54be,
+          0x9a44: 0x54bc,
+          0x9a45: 0x54d8,
+          0x9a46: 0x54e5,
+          0x9a47: 0x54e6,
+          0x9a48: 0x550f,
+          0x9a49: 0x5514,
+          0x9a4a: 0x54fd,
+          0x9a4b: 0x54ee,
+          0x9a4c: 0x54ed,
+          0x9a4d: 0x54fa,
+          0x9a4e: 0x54e2,
+          0x9a4f: 0x5539,
+          0x9a50: 0x5540,
+          0x9a51: 0x5563,
+          0x9a52: 0x554c,
+          0x9a53: 0x552e,
+          0x9a54: 0x555c,
+          0x9a55: 0x5545,
+          0x9a56: 0x5556,
+          0x9a57: 0x5557,
+          0x9a58: 0x5538,
+          0x9a59: 0x5533,
+          0x9a5a: 0x555d,
+          0x9a5b: 0x5599,
+          0x9a5c: 0x5580,
+          0x9a5d: 0x54af,
+          0x9a5e: 0x558a,
+          0x9a5f: 0x559f,
+          0x9a60: 0x557b,
+          0x9a61: 0x557e,
+          0x9a62: 0x5598,
+          0x9a63: 0x559e,
+          0x9a64: 0x55ae,
+          0x9a65: 0x557c,
+          0x9a66: 0x5583,
+          0x9a67: 0x55a9,
+          0x9a68: 0x5587,
+          0x9a69: 0x55a8,
+          0x9a6a: 0x55da,
+          0x9a6b: 0x55c5,
+          0x9a6c: 0x55df,
+          0x9a6d: 0x55c4,
+          0x9a6e: 0x55dc,
+          0x9a6f: 0x55e4,
+          0x9a70: 0x55d4,
+          0x9a71: 0x5614,
+          0x9a72: 0x55f7,
+          0x9a73: 0x5616,
+          0x9a74: 0x55fe,
+          0x9a75: 0x55fd,
+          0x9a76: 0x561b,
+          0x9a77: 0x55f9,
+          0x9a78: 0x564e,
+          0x9a79: 0x5650,
+          0x9a7a: 0x71df,
+          0x9a7b: 0x5634,
+          0x9a7c: 0x5636,
+          0x9a7d: 0x5632,
+          0x9a7e: 0x5638,
+          0x9a80: 0x566b,
+          0x9a81: 0x5664,
+          0x9a82: 0x562f,
+          0x9a83: 0x566c,
+          0x9a84: 0x566a,
+          0x9a85: 0x5686,
+          0x9a86: 0x5680,
+          0x9a87: 0x568a,
+          0x9a88: 0x56a0,
+          0x9a89: 0x5694,
+          0x9a8a: 0x568f,
+          0x9a8b: 0x56a5,
+          0x9a8c: 0x56ae,
+          0x9a8d: 0x56b6,
+          0x9a8e: 0x56b4,
+          0x9a8f: 0x56c2,
+          0x9a90: 0x56bc,
+          0x9a91: 0x56c1,
+          0x9a92: 0x56c3,
+          0x9a93: 0x56c0,
+          0x9a94: 0x56c8,
+          0x9a95: 0x56ce,
+          0x9a96: 0x56d1,
+          0x9a97: 0x56d3,
+          0x9a98: 0x56d7,
+          0x9a99: 0x56ee,
+          0x9a9a: 0x56f9,
+          0x9a9b: 0x5700,
+          0x9a9c: 0x56ff,
+          0x9a9d: 0x5704,
+          0x9a9e: 0x5709,
+          0x9a9f: 0x5708,
+          0x9aa0: 0x570b,
+          0x9aa1: 0x570d,
+          0x9aa2: 0x5713,
+          0x9aa3: 0x5718,
+          0x9aa4: 0x5716,
+          0x9aa5: 0x55c7,
+          0x9aa6: 0x571c,
+          0x9aa7: 0x5726,
+          0x9aa8: 0x5737,
+          0x9aa9: 0x5738,
+          0x9aaa: 0x574e,
+          0x9aab: 0x573b,
+          0x9aac: 0x5740,
+          0x9aad: 0x574f,
+          0x9aae: 0x5769,
+          0x9aaf: 0x57c0,
+          0x9ab0: 0x5788,
+          0x9ab1: 0x5761,
+          0x9ab2: 0x577f,
+          0x9ab3: 0x5789,
+          0x9ab4: 0x5793,
+          0x9ab5: 0x57a0,
+          0x9ab6: 0x57b3,
+          0x9ab7: 0x57a4,
+          0x9ab8: 0x57aa,
+          0x9ab9: 0x57b0,
+          0x9aba: 0x57c3,
+          0x9abb: 0x57c6,
+          0x9abc: 0x57d4,
+          0x9abd: 0x57d2,
+          0x9abe: 0x57d3,
+          0x9abf: 0x580a,
+          0x9ac0: 0x57d6,
+          0x9ac1: 0x57e3,
+          0x9ac2: 0x580b,
+          0x9ac3: 0x5819,
+          0x9ac4: 0x581d,
+          0x9ac5: 0x5872,
+          0x9ac6: 0x5821,
+          0x9ac7: 0x5862,
+          0x9ac8: 0x584b,
+          0x9ac9: 0x5870,
+          0x9aca: 0x6bc0,
+          0x9acb: 0x5852,
+          0x9acc: 0x583d,
+          0x9acd: 0x5879,
+          0x9ace: 0x5885,
+          0x9acf: 0x58b9,
+          0x9ad0: 0x589f,
+          0x9ad1: 0x58ab,
+          0x9ad2: 0x58ba,
+          0x9ad3: 0x58de,
+          0x9ad4: 0x58bb,
+          0x9ad5: 0x58b8,
+          0x9ad6: 0x58ae,
+          0x9ad7: 0x58c5,
+          0x9ad8: 0x58d3,
+          0x9ad9: 0x58d1,
+          0x9ada: 0x58d7,
+          0x9adb: 0x58d9,
+          0x9adc: 0x58d8,
+          0x9add: 0x58e5,
+          0x9ade: 0x58dc,
+          0x9adf: 0x58e4,
+          0x9ae0: 0x58df,
+          0x9ae1: 0x58ef,
+          0x9ae2: 0x58fa,
+          0x9ae3: 0x58f9,
+          0x9ae4: 0x58fb,
+          0x9ae5: 0x58fc,
+          0x9ae6: 0x58fd,
+          0x9ae7: 0x5902,
+          0x9ae8: 0x590a,
+          0x9ae9: 0x5910,
+          0x9aea: 0x591b,
+          0x9aeb: 0x68a6,
+          0x9aec: 0x5925,
+          0x9aed: 0x592c,
+          0x9aee: 0x592d,
+          0x9aef: 0x5932,
+          0x9af0: 0x5938,
+          0x9af1: 0x593e,
+          0x9af2: 0x7ad2,
+          0x9af3: 0x5955,
+          0x9af4: 0x5950,
+          0x9af5: 0x594e,
+          0x9af6: 0x595a,
+          0x9af7: 0x5958,
+          0x9af8: 0x5962,
+          0x9af9: 0x5960,
+          0x9afa: 0x5967,
+          0x9afb: 0x596c,
+          0x9afc: 0x5969,
+          0x9b40: 0x5978,
+          0x9b41: 0x5981,
+          0x9b42: 0x599d,
+          0x9b43: 0x4f5e,
+          0x9b44: 0x4fab,
+          0x9b45: 0x59a3,
+          0x9b46: 0x59b2,
+          0x9b47: 0x59c6,
+          0x9b48: 0x59e8,
+          0x9b49: 0x59dc,
+          0x9b4a: 0x598d,
+          0x9b4b: 0x59d9,
+          0x9b4c: 0x59da,
+          0x9b4d: 0x5a25,
+          0x9b4e: 0x5a1f,
+          0x9b4f: 0x5a11,
+          0x9b50: 0x5a1c,
+          0x9b51: 0x5a09,
+          0x9b52: 0x5a1a,
+          0x9b53: 0x5a40,
+          0x9b54: 0x5a6c,
+          0x9b55: 0x5a49,
+          0x9b56: 0x5a35,
+          0x9b57: 0x5a36,
+          0x9b58: 0x5a62,
+          0x9b59: 0x5a6a,
+          0x9b5a: 0x5a9a,
+          0x9b5b: 0x5abc,
+          0x9b5c: 0x5abe,
+          0x9b5d: 0x5acb,
+          0x9b5e: 0x5ac2,
+          0x9b5f: 0x5abd,
+          0x9b60: 0x5ae3,
+          0x9b61: 0x5ad7,
+          0x9b62: 0x5ae6,
+          0x9b63: 0x5ae9,
+          0x9b64: 0x5ad6,
+          0x9b65: 0x5afa,
+          0x9b66: 0x5afb,
+          0x9b67: 0x5b0c,
+          0x9b68: 0x5b0b,
+          0x9b69: 0x5b16,
+          0x9b6a: 0x5b32,
+          0x9b6b: 0x5ad0,
+          0x9b6c: 0x5b2a,
+          0x9b6d: 0x5b36,
+          0x9b6e: 0x5b3e,
+          0x9b6f: 0x5b43,
+          0x9b70: 0x5b45,
+          0x9b71: 0x5b40,
+          0x9b72: 0x5b51,
+          0x9b73: 0x5b55,
+          0x9b74: 0x5b5a,
+          0x9b75: 0x5b5b,
+          0x9b76: 0x5b65,
+          0x9b77: 0x5b69,
+          0x9b78: 0x5b70,
+          0x9b79: 0x5b73,
+          0x9b7a: 0x5b75,
+          0x9b7b: 0x5b78,
+          0x9b7c: 0x6588,
+          0x9b7d: 0x5b7a,
+          0x9b7e: 0x5b80,
+          0x9b80: 0x5b83,
+          0x9b81: 0x5ba6,
+          0x9b82: 0x5bb8,
+          0x9b83: 0x5bc3,
+          0x9b84: 0x5bc7,
+          0x9b85: 0x5bc9,
+          0x9b86: 0x5bd4,
+          0x9b87: 0x5bd0,
+          0x9b88: 0x5be4,
+          0x9b89: 0x5be6,
+          0x9b8a: 0x5be2,
+          0x9b8b: 0x5bde,
+          0x9b8c: 0x5be5,
+          0x9b8d: 0x5beb,
+          0x9b8e: 0x5bf0,
+          0x9b8f: 0x5bf6,
+          0x9b90: 0x5bf3,
+          0x9b91: 0x5c05,
+          0x9b92: 0x5c07,
+          0x9b93: 0x5c08,
+          0x9b94: 0x5c0d,
+          0x9b95: 0x5c13,
+          0x9b96: 0x5c20,
+          0x9b97: 0x5c22,
+          0x9b98: 0x5c28,
+          0x9b99: 0x5c38,
+          0x9b9a: 0x5c39,
+          0x9b9b: 0x5c41,
+          0x9b9c: 0x5c46,
+          0x9b9d: 0x5c4e,
+          0x9b9e: 0x5c53,
+          0x9b9f: 0x5c50,
+          0x9ba0: 0x5c4f,
+          0x9ba1: 0x5b71,
+          0x9ba2: 0x5c6c,
+          0x9ba3: 0x5c6e,
+          0x9ba4: 0x4e62,
+          0x9ba5: 0x5c76,
+          0x9ba6: 0x5c79,
+          0x9ba7: 0x5c8c,
+          0x9ba8: 0x5c91,
+          0x9ba9: 0x5c94,
+          0x9baa: 0x599b,
+          0x9bab: 0x5cab,
+          0x9bac: 0x5cbb,
+          0x9bad: 0x5cb6,
+          0x9bae: 0x5cbc,
+          0x9baf: 0x5cb7,
+          0x9bb0: 0x5cc5,
+          0x9bb1: 0x5cbe,
+          0x9bb2: 0x5cc7,
+          0x9bb3: 0x5cd9,
+          0x9bb4: 0x5ce9,
+          0x9bb5: 0x5cfd,
+          0x9bb6: 0x5cfa,
+          0x9bb7: 0x5ced,
+          0x9bb8: 0x5d8c,
+          0x9bb9: 0x5cea,
+          0x9bba: 0x5d0b,
+          0x9bbb: 0x5d15,
+          0x9bbc: 0x5d17,
+          0x9bbd: 0x5d5c,
+          0x9bbe: 0x5d1f,
+          0x9bbf: 0x5d1b,
+          0x9bc0: 0x5d11,
+          0x9bc1: 0x5d14,
+          0x9bc2: 0x5d22,
+          0x9bc3: 0x5d1a,
+          0x9bc4: 0x5d19,
+          0x9bc5: 0x5d18,
+          0x9bc6: 0x5d4c,
+          0x9bc7: 0x5d52,
+          0x9bc8: 0x5d4e,
+          0x9bc9: 0x5d4b,
+          0x9bca: 0x5d6c,
+          0x9bcb: 0x5d73,
+          0x9bcc: 0x5d76,
+          0x9bcd: 0x5d87,
+          0x9bce: 0x5d84,
+          0x9bcf: 0x5d82,
+          0x9bd0: 0x5da2,
+          0x9bd1: 0x5d9d,
+          0x9bd2: 0x5dac,
+          0x9bd3: 0x5dae,
+          0x9bd4: 0x5dbd,
+          0x9bd5: 0x5d90,
+          0x9bd6: 0x5db7,
+          0x9bd7: 0x5dbc,
+          0x9bd8: 0x5dc9,
+          0x9bd9: 0x5dcd,
+          0x9bda: 0x5dd3,
+          0x9bdb: 0x5dd2,
+          0x9bdc: 0x5dd6,
+          0x9bdd: 0x5ddb,
+          0x9bde: 0x5deb,
+          0x9bdf: 0x5df2,
+          0x9be0: 0x5df5,
+          0x9be1: 0x5e0b,
+          0x9be2: 0x5e1a,
+          0x9be3: 0x5e19,
+          0x9be4: 0x5e11,
+          0x9be5: 0x5e1b,
+          0x9be6: 0x5e36,
+          0x9be7: 0x5e37,
+          0x9be8: 0x5e44,
+          0x9be9: 0x5e43,
+          0x9bea: 0x5e40,
+          0x9beb: 0x5e4e,
+          0x9bec: 0x5e57,
+          0x9bed: 0x5e54,
+          0x9bee: 0x5e5f,
+          0x9bef: 0x5e62,
+          0x9bf0: 0x5e64,
+          0x9bf1: 0x5e47,
+          0x9bf2: 0x5e75,
+          0x9bf3: 0x5e76,
+          0x9bf4: 0x5e7a,
+          0x9bf5: 0x9ebc,
+          0x9bf6: 0x5e7f,
+          0x9bf7: 0x5ea0,
+          0x9bf8: 0x5ec1,
+          0x9bf9: 0x5ec2,
+          0x9bfa: 0x5ec8,
+          0x9bfb: 0x5ed0,
+          0x9bfc: 0x5ecf,
+          0x9c40: 0x5ed6,
+          0x9c41: 0x5ee3,
+          0x9c42: 0x5edd,
+          0x9c43: 0x5eda,
+          0x9c44: 0x5edb,
+          0x9c45: 0x5ee2,
+          0x9c46: 0x5ee1,
+          0x9c47: 0x5ee8,
+          0x9c48: 0x5ee9,
+          0x9c49: 0x5eec,
+          0x9c4a: 0x5ef1,
+          0x9c4b: 0x5ef3,
+          0x9c4c: 0x5ef0,
+          0x9c4d: 0x5ef4,
+          0x9c4e: 0x5ef8,
+          0x9c4f: 0x5efe,
+          0x9c50: 0x5f03,
+          0x9c51: 0x5f09,
+          0x9c52: 0x5f5d,
+          0x9c53: 0x5f5c,
+          0x9c54: 0x5f0b,
+          0x9c55: 0x5f11,
+          0x9c56: 0x5f16,
+          0x9c57: 0x5f29,
+          0x9c58: 0x5f2d,
+          0x9c59: 0x5f38,
+          0x9c5a: 0x5f41,
+          0x9c5b: 0x5f48,
+          0x9c5c: 0x5f4c,
+          0x9c5d: 0x5f4e,
+          0x9c5e: 0x5f2f,
+          0x9c5f: 0x5f51,
+          0x9c60: 0x5f56,
+          0x9c61: 0x5f57,
+          0x9c62: 0x5f59,
+          0x9c63: 0x5f61,
+          0x9c64: 0x5f6d,
+          0x9c65: 0x5f73,
+          0x9c66: 0x5f77,
+          0x9c67: 0x5f83,
+          0x9c68: 0x5f82,
+          0x9c69: 0x5f7f,
+          0x9c6a: 0x5f8a,
+          0x9c6b: 0x5f88,
+          0x9c6c: 0x5f91,
+          0x9c6d: 0x5f87,
+          0x9c6e: 0x5f9e,
+          0x9c6f: 0x5f99,
+          0x9c70: 0x5f98,
+          0x9c71: 0x5fa0,
+          0x9c72: 0x5fa8,
+          0x9c73: 0x5fad,
+          0x9c74: 0x5fbc,
+          0x9c75: 0x5fd6,
+          0x9c76: 0x5ffb,
+          0x9c77: 0x5fe4,
+          0x9c78: 0x5ff8,
+          0x9c79: 0x5ff1,
+          0x9c7a: 0x5fdd,
+          0x9c7b: 0x60b3,
+          0x9c7c: 0x5fff,
+          0x9c7d: 0x6021,
+          0x9c7e: 0x6060,
+          0x9c80: 0x6019,
+          0x9c81: 0x6010,
+          0x9c82: 0x6029,
+          0x9c83: 0x600e,
+          0x9c84: 0x6031,
+          0x9c85: 0x601b,
+          0x9c86: 0x6015,
+          0x9c87: 0x602b,
+          0x9c88: 0x6026,
+          0x9c89: 0x600f,
+          0x9c8a: 0x603a,
+          0x9c8b: 0x605a,
+          0x9c8c: 0x6041,
+          0x9c8d: 0x606a,
+          0x9c8e: 0x6077,
+          0x9c8f: 0x605f,
+          0x9c90: 0x604a,
+          0x9c91: 0x6046,
+          0x9c92: 0x604d,
+          0x9c93: 0x6063,
+          0x9c94: 0x6043,
+          0x9c95: 0x6064,
+          0x9c96: 0x6042,
+          0x9c97: 0x606c,
+          0x9c98: 0x606b,
+          0x9c99: 0x6059,
+          0x9c9a: 0x6081,
+          0x9c9b: 0x608d,
+          0x9c9c: 0x60e7,
+          0x9c9d: 0x6083,
+          0x9c9e: 0x609a,
+          0x9c9f: 0x6084,
+          0x9ca0: 0x609b,
+          0x9ca1: 0x6096,
+          0x9ca2: 0x6097,
+          0x9ca3: 0x6092,
+          0x9ca4: 0x60a7,
+          0x9ca5: 0x608b,
+          0x9ca6: 0x60e1,
+          0x9ca7: 0x60b8,
+          0x9ca8: 0x60e0,
+          0x9ca9: 0x60d3,
+          0x9caa: 0x60b4,
+          0x9cab: 0x5ff0,
+          0x9cac: 0x60bd,
+          0x9cad: 0x60c6,
+          0x9cae: 0x60b5,
+          0x9caf: 0x60d8,
+          0x9cb0: 0x614d,
+          0x9cb1: 0x6115,
+          0x9cb2: 0x6106,
+          0x9cb3: 0x60f6,
+          0x9cb4: 0x60f7,
+          0x9cb5: 0x6100,
+          0x9cb6: 0x60f4,
+          0x9cb7: 0x60fa,
+          0x9cb8: 0x6103,
+          0x9cb9: 0x6121,
+          0x9cba: 0x60fb,
+          0x9cbb: 0x60f1,
+          0x9cbc: 0x610d,
+          0x9cbd: 0x610e,
+          0x9cbe: 0x6147,
+          0x9cbf: 0x613e,
+          0x9cc0: 0x6128,
+          0x9cc1: 0x6127,
+          0x9cc2: 0x614a,
+          0x9cc3: 0x613f,
+          0x9cc4: 0x613c,
+          0x9cc5: 0x612c,
+          0x9cc6: 0x6134,
+          0x9cc7: 0x613d,
+          0x9cc8: 0x6142,
+          0x9cc9: 0x6144,
+          0x9cca: 0x6173,
+          0x9ccb: 0x6177,
+          0x9ccc: 0x6158,
+          0x9ccd: 0x6159,
+          0x9cce: 0x615a,
+          0x9ccf: 0x616b,
+          0x9cd0: 0x6174,
+          0x9cd1: 0x616f,
+          0x9cd2: 0x6165,
+          0x9cd3: 0x6171,
+          0x9cd4: 0x615f,
+          0x9cd5: 0x615d,
+          0x9cd6: 0x6153,
+          0x9cd7: 0x6175,
+          0x9cd8: 0x6199,
+          0x9cd9: 0x6196,
+          0x9cda: 0x6187,
+          0x9cdb: 0x61ac,
+          0x9cdc: 0x6194,
+          0x9cdd: 0x619a,
+          0x9cde: 0x618a,
+          0x9cdf: 0x6191,
+          0x9ce0: 0x61ab,
+          0x9ce1: 0x61ae,
+          0x9ce2: 0x61cc,
+          0x9ce3: 0x61ca,
+          0x9ce4: 0x61c9,
+          0x9ce5: 0x61f7,
+          0x9ce6: 0x61c8,
+          0x9ce7: 0x61c3,
+          0x9ce8: 0x61c6,
+          0x9ce9: 0x61ba,
+          0x9cea: 0x61cb,
+          0x9ceb: 0x7f79,
+          0x9cec: 0x61cd,
+          0x9ced: 0x61e6,
+          0x9cee: 0x61e3,
+          0x9cef: 0x61f6,
+          0x9cf0: 0x61fa,
+          0x9cf1: 0x61f4,
+          0x9cf2: 0x61ff,
+          0x9cf3: 0x61fd,
+          0x9cf4: 0x61fc,
+          0x9cf5: 0x61fe,
+          0x9cf6: 0x6200,
+          0x9cf7: 0x6208,
+          0x9cf8: 0x6209,
+          0x9cf9: 0x620d,
+          0x9cfa: 0x620c,
+          0x9cfb: 0x6214,
+          0x9cfc: 0x621b,
+          0x9d40: 0x621e,
+          0x9d41: 0x6221,
+          0x9d42: 0x622a,
+          0x9d43: 0x622e,
+          0x9d44: 0x6230,
+          0x9d45: 0x6232,
+          0x9d46: 0x6233,
+          0x9d47: 0x6241,
+          0x9d48: 0x624e,
+          0x9d49: 0x625e,
+          0x9d4a: 0x6263,
+          0x9d4b: 0x625b,
+          0x9d4c: 0x6260,
+          0x9d4d: 0x6268,
+          0x9d4e: 0x627c,
+          0x9d4f: 0x6282,
+          0x9d50: 0x6289,
+          0x9d51: 0x627e,
+          0x9d52: 0x6292,
+          0x9d53: 0x6293,
+          0x9d54: 0x6296,
+          0x9d55: 0x62d4,
+          0x9d56: 0x6283,
+          0x9d57: 0x6294,
+          0x9d58: 0x62d7,
+          0x9d59: 0x62d1,
+          0x9d5a: 0x62bb,
+          0x9d5b: 0x62cf,
+          0x9d5c: 0x62ff,
+          0x9d5d: 0x62c6,
+          0x9d5e: 0x64d4,
+          0x9d5f: 0x62c8,
+          0x9d60: 0x62dc,
+          0x9d61: 0x62cc,
+          0x9d62: 0x62ca,
+          0x9d63: 0x62c2,
+          0x9d64: 0x62c7,
+          0x9d65: 0x629b,
+          0x9d66: 0x62c9,
+          0x9d67: 0x630c,
+          0x9d68: 0x62ee,
+          0x9d69: 0x62f1,
+          0x9d6a: 0x6327,
+          0x9d6b: 0x6302,
+          0x9d6c: 0x6308,
+          0x9d6d: 0x62ef,
+          0x9d6e: 0x62f5,
+          0x9d6f: 0x6350,
+          0x9d70: 0x633e,
+          0x9d71: 0x634d,
+          0x9d72: 0x641c,
+          0x9d73: 0x634f,
+          0x9d74: 0x6396,
+          0x9d75: 0x638e,
+          0x9d76: 0x6380,
+          0x9d77: 0x63ab,
+          0x9d78: 0x6376,
+          0x9d79: 0x63a3,
+          0x9d7a: 0x638f,
+          0x9d7b: 0x6389,
+          0x9d7c: 0x639f,
+          0x9d7d: 0x63b5,
+          0x9d7e: 0x636b,
+          0x9d80: 0x6369,
+          0x9d81: 0x63be,
+          0x9d82: 0x63e9,
+          0x9d83: 0x63c0,
+          0x9d84: 0x63c6,
+          0x9d85: 0x63e3,
+          0x9d86: 0x63c9,
+          0x9d87: 0x63d2,
+          0x9d88: 0x63f6,
+          0x9d89: 0x63c4,
+          0x9d8a: 0x6416,
+          0x9d8b: 0x6434,
+          0x9d8c: 0x6406,
+          0x9d8d: 0x6413,
+          0x9d8e: 0x6426,
+          0x9d8f: 0x6436,
+          0x9d90: 0x651d,
+          0x9d91: 0x6417,
+          0x9d92: 0x6428,
+          0x9d93: 0x640f,
+          0x9d94: 0x6467,
+          0x9d95: 0x646f,
+          0x9d96: 0x6476,
+          0x9d97: 0x644e,
+          0x9d98: 0x652a,
+          0x9d99: 0x6495,
+          0x9d9a: 0x6493,
+          0x9d9b: 0x64a5,
+          0x9d9c: 0x64a9,
+          0x9d9d: 0x6488,
+          0x9d9e: 0x64bc,
+          0x9d9f: 0x64da,
+          0x9da0: 0x64d2,
+          0x9da1: 0x64c5,
+          0x9da2: 0x64c7,
+          0x9da3: 0x64bb,
+          0x9da4: 0x64d8,
+          0x9da5: 0x64c2,
+          0x9da6: 0x64f1,
+          0x9da7: 0x64e7,
+          0x9da8: 0x8209,
+          0x9da9: 0x64e0,
+          0x9daa: 0x64e1,
+          0x9dab: 0x62ac,
+          0x9dac: 0x64e3,
+          0x9dad: 0x64ef,
+          0x9dae: 0x652c,
+          0x9daf: 0x64f6,
+          0x9db0: 0x64f4,
+          0x9db1: 0x64f2,
+          0x9db2: 0x64fa,
+          0x9db3: 0x6500,
+          0x9db4: 0x64fd,
+          0x9db5: 0x6518,
+          0x9db6: 0x651c,
+          0x9db7: 0x6505,
+          0x9db8: 0x6524,
+          0x9db9: 0x6523,
+          0x9dba: 0x652b,
+          0x9dbb: 0x6534,
+          0x9dbc: 0x6535,
+          0x9dbd: 0x6537,
+          0x9dbe: 0x6536,
+          0x9dbf: 0x6538,
+          0x9dc0: 0x754b,
+          0x9dc1: 0x6548,
+          0x9dc2: 0x6556,
+          0x9dc3: 0x6555,
+          0x9dc4: 0x654d,
+          0x9dc5: 0x6558,
+          0x9dc6: 0x655e,
+          0x9dc7: 0x655d,
+          0x9dc8: 0x6572,
+          0x9dc9: 0x6578,
+          0x9dca: 0x6582,
+          0x9dcb: 0x6583,
+          0x9dcc: 0x8b8a,
+          0x9dcd: 0x659b,
+          0x9dce: 0x659f,
+          0x9dcf: 0x65ab,
+          0x9dd0: 0x65b7,
+          0x9dd1: 0x65c3,
+          0x9dd2: 0x65c6,
+          0x9dd3: 0x65c1,
+          0x9dd4: 0x65c4,
+          0x9dd5: 0x65cc,
+          0x9dd6: 0x65d2,
+          0x9dd7: 0x65db,
+          0x9dd8: 0x65d9,
+          0x9dd9: 0x65e0,
+          0x9dda: 0x65e1,
+          0x9ddb: 0x65f1,
+          0x9ddc: 0x6772,
+          0x9ddd: 0x660a,
+          0x9dde: 0x6603,
+          0x9ddf: 0x65fb,
+          0x9de0: 0x6773,
+          0x9de1: 0x6635,
+          0x9de2: 0x6636,
+          0x9de3: 0x6634,
+          0x9de4: 0x661c,
+          0x9de5: 0x664f,
+          0x9de6: 0x6644,
+          0x9de7: 0x6649,
+          0x9de8: 0x6641,
+          0x9de9: 0x665e,
+          0x9dea: 0x665d,
+          0x9deb: 0x6664,
+          0x9dec: 0x6667,
+          0x9ded: 0x6668,
+          0x9dee: 0x665f,
+          0x9def: 0x6662,
+          0x9df0: 0x6670,
+          0x9df1: 0x6683,
+          0x9df2: 0x6688,
+          0x9df3: 0x668e,
+          0x9df4: 0x6689,
+          0x9df5: 0x6684,
+          0x9df6: 0x6698,
+          0x9df7: 0x669d,
+          0x9df8: 0x66c1,
+          0x9df9: 0x66b9,
+          0x9dfa: 0x66c9,
+          0x9dfb: 0x66be,
+          0x9dfc: 0x66bc,
+          0x9e40: 0x66c4,
+          0x9e41: 0x66b8,
+          0x9e42: 0x66d6,
+          0x9e43: 0x66da,
+          0x9e44: 0x66e0,
+          0x9e45: 0x663f,
+          0x9e46: 0x66e6,
+          0x9e47: 0x66e9,
+          0x9e48: 0x66f0,
+          0x9e49: 0x66f5,
+          0x9e4a: 0x66f7,
+          0x9e4b: 0x670f,
+          0x9e4c: 0x6716,
+          0x9e4d: 0x671e,
+          0x9e4e: 0x6726,
+          0x9e4f: 0x6727,
+          0x9e50: 0x9738,
+          0x9e51: 0x672e,
+          0x9e52: 0x673f,
+          0x9e53: 0x6736,
+          0x9e54: 0x6741,
+          0x9e55: 0x6738,
+          0x9e56: 0x6737,
+          0x9e57: 0x6746,
+          0x9e58: 0x675e,
+          0x9e59: 0x6760,
+          0x9e5a: 0x6759,
+          0x9e5b: 0x6763,
+          0x9e5c: 0x6764,
+          0x9e5d: 0x6789,
+          0x9e5e: 0x6770,
+          0x9e5f: 0x67a9,
+          0x9e60: 0x677c,
+          0x9e61: 0x676a,
+          0x9e62: 0x678c,
+          0x9e63: 0x678b,
+          0x9e64: 0x67a6,
+          0x9e65: 0x67a1,
+          0x9e66: 0x6785,
+          0x9e67: 0x67b7,
+          0x9e68: 0x67ef,
+          0x9e69: 0x67b4,
+          0x9e6a: 0x67ec,
+          0x9e6b: 0x67b3,
+          0x9e6c: 0x67e9,
+          0x9e6d: 0x67b8,
+          0x9e6e: 0x67e4,
+          0x9e6f: 0x67de,
+          0x9e70: 0x67dd,
+          0x9e71: 0x67e2,
+          0x9e72: 0x67ee,
+          0x9e73: 0x67b9,
+          0x9e74: 0x67ce,
+          0x9e75: 0x67c6,
+          0x9e76: 0x67e7,
+          0x9e77: 0x6a9c,
+          0x9e78: 0x681e,
+          0x9e79: 0x6846,
+          0x9e7a: 0x6829,
+          0x9e7b: 0x6840,
+          0x9e7c: 0x684d,
+          0x9e7d: 0x6832,
+          0x9e7e: 0x684e,
+          0x9e80: 0x68b3,
+          0x9e81: 0x682b,
+          0x9e82: 0x6859,
+          0x9e83: 0x6863,
+          0x9e84: 0x6877,
+          0x9e85: 0x687f,
+          0x9e86: 0x689f,
+          0x9e87: 0x688f,
+          0x9e88: 0x68ad,
+          0x9e89: 0x6894,
+          0x9e8a: 0x689d,
+          0x9e8b: 0x689b,
+          0x9e8c: 0x6883,
+          0x9e8d: 0x6aae,
+          0x9e8e: 0x68b9,
+          0x9e8f: 0x6874,
+          0x9e90: 0x68b5,
+          0x9e91: 0x68a0,
+          0x9e92: 0x68ba,
+          0x9e93: 0x690f,
+          0x9e94: 0x688d,
+          0x9e95: 0x687e,
+          0x9e96: 0x6901,
+          0x9e97: 0x68ca,
+          0x9e98: 0x6908,
+          0x9e99: 0x68d8,
+          0x9e9a: 0x6922,
+          0x9e9b: 0x6926,
+          0x9e9c: 0x68e1,
+          0x9e9d: 0x690c,
+          0x9e9e: 0x68cd,
+          0x9e9f: 0x68d4,
+          0x9ea0: 0x68e7,
+          0x9ea1: 0x68d5,
+          0x9ea2: 0x6936,
+          0x9ea3: 0x6912,
+          0x9ea4: 0x6904,
+          0x9ea5: 0x68d7,
+          0x9ea6: 0x68e3,
+          0x9ea7: 0x6925,
+          0x9ea8: 0x68f9,
+          0x9ea9: 0x68e0,
+          0x9eaa: 0x68ef,
+          0x9eab: 0x6928,
+          0x9eac: 0x692a,
+          0x9ead: 0x691a,
+          0x9eae: 0x6923,
+          0x9eaf: 0x6921,
+          0x9eb0: 0x68c6,
+          0x9eb1: 0x6979,
+          0x9eb2: 0x6977,
+          0x9eb3: 0x695c,
+          0x9eb4: 0x6978,
+          0x9eb5: 0x696b,
+          0x9eb6: 0x6954,
+          0x9eb7: 0x697e,
+          0x9eb8: 0x696e,
+          0x9eb9: 0x6939,
+          0x9eba: 0x6974,
+          0x9ebb: 0x693d,
+          0x9ebc: 0x6959,
+          0x9ebd: 0x6930,
+          0x9ebe: 0x6961,
+          0x9ebf: 0x695e,
+          0x9ec0: 0x695d,
+          0x9ec1: 0x6981,
+          0x9ec2: 0x696a,
+          0x9ec3: 0x69b2,
+          0x9ec4: 0x69ae,
+          0x9ec5: 0x69d0,
+          0x9ec6: 0x69bf,
+          0x9ec7: 0x69c1,
+          0x9ec8: 0x69d3,
+          0x9ec9: 0x69be,
+          0x9eca: 0x69ce,
+          0x9ecb: 0x5be8,
+          0x9ecc: 0x69ca,
+          0x9ecd: 0x69dd,
+          0x9ece: 0x69bb,
+          0x9ecf: 0x69c3,
+          0x9ed0: 0x69a7,
+          0x9ed1: 0x6a2e,
+          0x9ed2: 0x6991,
+          0x9ed3: 0x69a0,
+          0x9ed4: 0x699c,
+          0x9ed5: 0x6995,
+          0x9ed6: 0x69b4,
+          0x9ed7: 0x69de,
+          0x9ed8: 0x69e8,
+          0x9ed9: 0x6a02,
+          0x9eda: 0x6a1b,
+          0x9edb: 0x69ff,
+          0x9edc: 0x6b0a,
+          0x9edd: 0x69f9,
+          0x9ede: 0x69f2,
+          0x9edf: 0x69e7,
+          0x9ee0: 0x6a05,
+          0x9ee1: 0x69b1,
+          0x9ee2: 0x6a1e,
+          0x9ee3: 0x69ed,
+          0x9ee4: 0x6a14,
+          0x9ee5: 0x69eb,
+          0x9ee6: 0x6a0a,
+          0x9ee7: 0x6a12,
+          0x9ee8: 0x6ac1,
+          0x9ee9: 0x6a23,
+          0x9eea: 0x6a13,
+          0x9eeb: 0x6a44,
+          0x9eec: 0x6a0c,
+          0x9eed: 0x6a72,
+          0x9eee: 0x6a36,
+          0x9eef: 0x6a78,
+          0x9ef0: 0x6a47,
+          0x9ef1: 0x6a62,
+          0x9ef2: 0x6a59,
+          0x9ef3: 0x6a66,
+          0x9ef4: 0x6a48,
+          0x9ef5: 0x6a38,
+          0x9ef6: 0x6a22,
+          0x9ef7: 0x6a90,
+          0x9ef8: 0x6a8d,
+          0x9ef9: 0x6aa0,
+          0x9efa: 0x6a84,
+          0x9efb: 0x6aa2,
+          0x9efc: 0x6aa3,
+          0x9f40: 0x6a97,
+          0x9f41: 0x8617,
+          0x9f42: 0x6abb,
+          0x9f43: 0x6ac3,
+          0x9f44: 0x6ac2,
+          0x9f45: 0x6ab8,
+          0x9f46: 0x6ab3,
+          0x9f47: 0x6aac,
+          0x9f48: 0x6ade,
+          0x9f49: 0x6ad1,
+          0x9f4a: 0x6adf,
+          0x9f4b: 0x6aaa,
+          0x9f4c: 0x6ada,
+          0x9f4d: 0x6aea,
+          0x9f4e: 0x6afb,
+          0x9f4f: 0x6b05,
+          0x9f50: 0x8616,
+          0x9f51: 0x6afa,
+          0x9f52: 0x6b12,
+          0x9f53: 0x6b16,
+          0x9f54: 0x9b31,
+          0x9f55: 0x6b1f,
+          0x9f56: 0x6b38,
+          0x9f57: 0x6b37,
+          0x9f58: 0x76dc,
+          0x9f59: 0x6b39,
+          0x9f5a: 0x98ee,
+          0x9f5b: 0x6b47,
+          0x9f5c: 0x6b43,
+          0x9f5d: 0x6b49,
+          0x9f5e: 0x6b50,
+          0x9f5f: 0x6b59,
+          0x9f60: 0x6b54,
+          0x9f61: 0x6b5b,
+          0x9f62: 0x6b5f,
+          0x9f63: 0x6b61,
+          0x9f64: 0x6b78,
+          0x9f65: 0x6b79,
+          0x9f66: 0x6b7f,
+          0x9f67: 0x6b80,
+          0x9f68: 0x6b84,
+          0x9f69: 0x6b83,
+          0x9f6a: 0x6b8d,
+          0x9f6b: 0x6b98,
+          0x9f6c: 0x6b95,
+          0x9f6d: 0x6b9e,
+          0x9f6e: 0x6ba4,
+          0x9f6f: 0x6baa,
+          0x9f70: 0x6bab,
+          0x9f71: 0x6baf,
+          0x9f72: 0x6bb2,
+          0x9f73: 0x6bb1,
+          0x9f74: 0x6bb3,
+          0x9f75: 0x6bb7,
+          0x9f76: 0x6bbc,
+          0x9f77: 0x6bc6,
+          0x9f78: 0x6bcb,
+          0x9f79: 0x6bd3,
+          0x9f7a: 0x6bdf,
+          0x9f7b: 0x6bec,
+          0x9f7c: 0x6beb,
+          0x9f7d: 0x6bf3,
+          0x9f7e: 0x6bef,
+          0x9f80: 0x9ebe,
+          0x9f81: 0x6c08,
+          0x9f82: 0x6c13,
+          0x9f83: 0x6c14,
+          0x9f84: 0x6c1b,
+          0x9f85: 0x6c24,
+          0x9f86: 0x6c23,
+          0x9f87: 0x6c5e,
+          0x9f88: 0x6c55,
+          0x9f89: 0x6c62,
+          0x9f8a: 0x6c6a,
+          0x9f8b: 0x6c82,
+          0x9f8c: 0x6c8d,
+          0x9f8d: 0x6c9a,
+          0x9f8e: 0x6c81,
+          0x9f8f: 0x6c9b,
+          0x9f90: 0x6c7e,
+          0x9f91: 0x6c68,
+          0x9f92: 0x6c73,
+          0x9f93: 0x6c92,
+          0x9f94: 0x6c90,
+          0x9f95: 0x6cc4,
+          0x9f96: 0x6cf1,
+          0x9f97: 0x6cd3,
+          0x9f98: 0x6cbd,
+          0x9f99: 0x6cd7,
+          0x9f9a: 0x6cc5,
+          0x9f9b: 0x6cdd,
+          0x9f9c: 0x6cae,
+          0x9f9d: 0x6cb1,
+          0x9f9e: 0x6cbe,
+          0x9f9f: 0x6cba,
+          0x9fa0: 0x6cdb,
+          0x9fa1: 0x6cef,
+          0x9fa2: 0x6cd9,
+          0x9fa3: 0x6cea,
+          0x9fa4: 0x6d1f,
+          0x9fa5: 0x884d,
+          0x9fa6: 0x6d36,
+          0x9fa7: 0x6d2b,
+          0x9fa8: 0x6d3d,
+          0x9fa9: 0x6d38,
+          0x9faa: 0x6d19,
+          0x9fab: 0x6d35,
+          0x9fac: 0x6d33,
+          0x9fad: 0x6d12,
+          0x9fae: 0x6d0c,
+          0x9faf: 0x6d63,
+          0x9fb0: 0x6d93,
+          0x9fb1: 0x6d64,
+          0x9fb2: 0x6d5a,
+          0x9fb3: 0x6d79,
+          0x9fb4: 0x6d59,
+          0x9fb5: 0x6d8e,
+          0x9fb6: 0x6d95,
+          0x9fb7: 0x6fe4,
+          0x9fb8: 0x6d85,
+          0x9fb9: 0x6df9,
+          0x9fba: 0x6e15,
+          0x9fbb: 0x6e0a,
+          0x9fbc: 0x6db5,
+          0x9fbd: 0x6dc7,
+          0x9fbe: 0x6de6,
+          0x9fbf: 0x6db8,
+          0x9fc0: 0x6dc6,
+          0x9fc1: 0x6dec,
+          0x9fc2: 0x6dde,
+          0x9fc3: 0x6dcc,
+          0x9fc4: 0x6de8,
+          0x9fc5: 0x6dd2,
+          0x9fc6: 0x6dc5,
+          0x9fc7: 0x6dfa,
+          0x9fc8: 0x6dd9,
+          0x9fc9: 0x6de4,
+          0x9fca: 0x6dd5,
+          0x9fcb: 0x6dea,
+          0x9fcc: 0x6dee,
+          0x9fcd: 0x6e2d,
+          0x9fce: 0x6e6e,
+          0x9fcf: 0x6e2e,
+          0x9fd0: 0x6e19,
+          0x9fd1: 0x6e72,
+          0x9fd2: 0x6e5f,
+          0x9fd3: 0x6e3e,
+          0x9fd4: 0x6e23,
+          0x9fd5: 0x6e6b,
+          0x9fd6: 0x6e2b,
+          0x9fd7: 0x6e76,
+          0x9fd8: 0x6e4d,
+          0x9fd9: 0x6e1f,
+          0x9fda: 0x6e43,
+          0x9fdb: 0x6e3a,
+          0x9fdc: 0x6e4e,
+          0x9fdd: 0x6e24,
+          0x9fde: 0x6eff,
+          0x9fdf: 0x6e1d,
+          0x9fe0: 0x6e38,
+          0x9fe1: 0x6e82,
+          0x9fe2: 0x6eaa,
+          0x9fe3: 0x6e98,
+          0x9fe4: 0x6ec9,
+          0x9fe5: 0x6eb7,
+          0x9fe6: 0x6ed3,
+          0x9fe7: 0x6ebd,
+          0x9fe8: 0x6eaf,
+          0x9fe9: 0x6ec4,
+          0x9fea: 0x6eb2,
+          0x9feb: 0x6ed4,
+          0x9fec: 0x6ed5,
+          0x9fed: 0x6e8f,
+          0x9fee: 0x6ea5,
+          0x9fef: 0x6ec2,
+          0x9ff0: 0x6e9f,
+          0x9ff1: 0x6f41,
+          0x9ff2: 0x6f11,
+          0x9ff3: 0x704c,
+          0x9ff4: 0x6eec,
+          0x9ff5: 0x6ef8,
+          0x9ff6: 0x6efe,
+          0x9ff7: 0x6f3f,
+          0x9ff8: 0x6ef2,
+          0x9ff9: 0x6f31,
+          0x9ffa: 0x6eef,
+          0x9ffb: 0x6f32,
+          0x9ffc: 0x6ecc,
+          0xa1: 0xff61,
+          0xa2: 0xff62,
+          0xa3: 0xff63,
+          0xa4: 0xff64,
+          0xa5: 0xff65,
+          0xa6: 0xff66,
+          0xa7: 0xff67,
+          0xa8: 0xff68,
+          0xa9: 0xff69,
+          0xaa: 0xff6a,
+          0xab: 0xff6b,
+          0xac: 0xff6c,
+          0xad: 0xff6d,
+          0xae: 0xff6e,
+          0xaf: 0xff6f,
+          0xb0: 0xff70,
+          0xb1: 0xff71,
+          0xb2: 0xff72,
+          0xb3: 0xff73,
+          0xb4: 0xff74,
+          0xb5: 0xff75,
+          0xb6: 0xff76,
+          0xb7: 0xff77,
+          0xb8: 0xff78,
+          0xb9: 0xff79,
+          0xba: 0xff7a,
+          0xbb: 0xff7b,
+          0xbc: 0xff7c,
+          0xbd: 0xff7d,
+          0xbe: 0xff7e,
+          0xbf: 0xff7f,
+          0xc0: 0xff80,
+          0xc1: 0xff81,
+          0xc2: 0xff82,
+          0xc3: 0xff83,
+          0xc4: 0xff84,
+          0xc5: 0xff85,
+          0xc6: 0xff86,
+          0xc7: 0xff87,
+          0xc8: 0xff88,
+          0xc9: 0xff89,
+          0xca: 0xff8a,
+          0xcb: 0xff8b,
+          0xcc: 0xff8c,
+          0xcd: 0xff8d,
+          0xce: 0xff8e,
+          0xcf: 0xff8f,
+          0xd0: 0xff90,
+          0xd1: 0xff91,
+          0xd2: 0xff92,
+          0xd3: 0xff93,
+          0xd4: 0xff94,
+          0xd5: 0xff95,
+          0xd6: 0xff96,
+          0xd7: 0xff97,
+          0xd8: 0xff98,
+          0xd9: 0xff99,
+          0xda: 0xff9a,
+          0xdb: 0xff9b,
+          0xdc: 0xff9c,
+          0xdd: 0xff9d,
+          0xde: 0xff9e,
+          0xdf: 0xff9f,
+          0xe040: 0x6f3e,
+          0xe041: 0x6f13,
+          0xe042: 0x6ef7,
+          0xe043: 0x6f86,
+          0xe044: 0x6f7a,
+          0xe045: 0x6f78,
+          0xe046: 0x6f81,
+          0xe047: 0x6f80,
+          0xe048: 0x6f6f,
+          0xe049: 0x6f5b,
+          0xe04a: 0x6ff3,
+          0xe04b: 0x6f6d,
+          0xe04c: 0x6f82,
+          0xe04d: 0x6f7c,
+          0xe04e: 0x6f58,
+          0xe04f: 0x6f8e,
+          0xe050: 0x6f91,
+          0xe051: 0x6fc2,
+          0xe052: 0x6f66,
+          0xe053: 0x6fb3,
+          0xe054: 0x6fa3,
+          0xe055: 0x6fa1,
+          0xe056: 0x6fa4,
+          0xe057: 0x6fb9,
+          0xe058: 0x6fc6,
+          0xe059: 0x6faa,
+          0xe05a: 0x6fdf,
+          0xe05b: 0x6fd5,
+          0xe05c: 0x6fec,
+          0xe05d: 0x6fd4,
+          0xe05e: 0x6fd8,
+          0xe05f: 0x6ff1,
+          0xe060: 0x6fee,
+          0xe061: 0x6fdb,
+          0xe062: 0x7009,
+          0xe063: 0x700b,
+          0xe064: 0x6ffa,
+          0xe065: 0x7011,
+          0xe066: 0x7001,
+          0xe067: 0x700f,
+          0xe068: 0x6ffe,
+          0xe069: 0x701b,
+          0xe06a: 0x701a,
+          0xe06b: 0x6f74,
+          0xe06c: 0x701d,
+          0xe06d: 0x7018,
+          0xe06e: 0x701f,
+          0xe06f: 0x7030,
+          0xe070: 0x703e,
+          0xe071: 0x7032,
+          0xe072: 0x7051,
+          0xe073: 0x7063,
+          0xe074: 0x7099,
+          0xe075: 0x7092,
+          0xe076: 0x70af,
+          0xe077: 0x70f1,
+          0xe078: 0x70ac,
+          0xe079: 0x70b8,
+          0xe07a: 0x70b3,
+          0xe07b: 0x70ae,
+          0xe07c: 0x70df,
+          0xe07d: 0x70cb,
+          0xe07e: 0x70dd,
+          0xe080: 0x70d9,
+          0xe081: 0x7109,
+          0xe082: 0x70fd,
+          0xe083: 0x711c,
+          0xe084: 0x7119,
+          0xe085: 0x7165,
+          0xe086: 0x7155,
+          0xe087: 0x7188,
+          0xe088: 0x7166,
+          0xe089: 0x7162,
+          0xe08a: 0x714c,
+          0xe08b: 0x7156,
+          0xe08c: 0x716c,
+          0xe08d: 0x718f,
+          0xe08e: 0x71fb,
+          0xe08f: 0x7184,
+          0xe090: 0x7195,
+          0xe091: 0x71a8,
+          0xe092: 0x71ac,
+          0xe093: 0x71d7,
+          0xe094: 0x71b9,
+          0xe095: 0x71be,
+          0xe096: 0x71d2,
+          0xe097: 0x71c9,
+          0xe098: 0x71d4,
+          0xe099: 0x71ce,
+          0xe09a: 0x71e0,
+          0xe09b: 0x71ec,
+          0xe09c: 0x71e7,
+          0xe09d: 0x71f5,
+          0xe09e: 0x71fc,
+          0xe09f: 0x71f9,
+          0xe0a0: 0x71ff,
+          0xe0a1: 0x720d,
+          0xe0a2: 0x7210,
+          0xe0a3: 0x721b,
+          0xe0a4: 0x7228,
+          0xe0a5: 0x722d,
+          0xe0a6: 0x722c,
+          0xe0a7: 0x7230,
+          0xe0a8: 0x7232,
+          0xe0a9: 0x723b,
+          0xe0aa: 0x723c,
+          0xe0ab: 0x723f,
+          0xe0ac: 0x7240,
+          0xe0ad: 0x7246,
+          0xe0ae: 0x724b,
+          0xe0af: 0x7258,
+          0xe0b0: 0x7274,
+          0xe0b1: 0x727e,
+          0xe0b2: 0x7282,
+          0xe0b3: 0x7281,
+          0xe0b4: 0x7287,
+          0xe0b5: 0x7292,
+          0xe0b6: 0x7296,
+          0xe0b7: 0x72a2,
+          0xe0b8: 0x72a7,
+          0xe0b9: 0x72b9,
+          0xe0ba: 0x72b2,
+          0xe0bb: 0x72c3,
+          0xe0bc: 0x72c6,
+          0xe0bd: 0x72c4,
+          0xe0be: 0x72ce,
+          0xe0bf: 0x72d2,
+          0xe0c0: 0x72e2,
+          0xe0c1: 0x72e0,
+          0xe0c2: 0x72e1,
+          0xe0c3: 0x72f9,
+          0xe0c4: 0x72f7,
+          0xe0c5: 0x500f,
+          0xe0c6: 0x7317,
+          0xe0c7: 0x730a,
+          0xe0c8: 0x731c,
+          0xe0c9: 0x7316,
+          0xe0ca: 0x731d,
+          0xe0cb: 0x7334,
+          0xe0cc: 0x732f,
+          0xe0cd: 0x7329,
+          0xe0ce: 0x7325,
+          0xe0cf: 0x733e,
+          0xe0d0: 0x734e,
+          0xe0d1: 0x734f,
+          0xe0d2: 0x9ed8,
+          0xe0d3: 0x7357,
+          0xe0d4: 0x736a,
+          0xe0d5: 0x7368,
+          0xe0d6: 0x7370,
+          0xe0d7: 0x7378,
+          0xe0d8: 0x7375,
+          0xe0d9: 0x737b,
+          0xe0da: 0x737a,
+          0xe0db: 0x73c8,
+          0xe0dc: 0x73b3,
+          0xe0dd: 0x73ce,
+          0xe0de: 0x73bb,
+          0xe0df: 0x73c0,
+          0xe0e0: 0x73e5,
+          0xe0e1: 0x73ee,
+          0xe0e2: 0x73de,
+          0xe0e3: 0x74a2,
+          0xe0e4: 0x7405,
+          0xe0e5: 0x746f,
+          0xe0e6: 0x7425,
+          0xe0e7: 0x73f8,
+          0xe0e8: 0x7432,
+          0xe0e9: 0x743a,
+          0xe0ea: 0x7455,
+          0xe0eb: 0x743f,
+          0xe0ec: 0x745f,
+          0xe0ed: 0x7459,
+          0xe0ee: 0x7441,
+          0xe0ef: 0x745c,
+          0xe0f0: 0x7469,
+          0xe0f1: 0x7470,
+          0xe0f2: 0x7463,
+          0xe0f3: 0x746a,
+          0xe0f4: 0x7476,
+          0xe0f5: 0x747e,
+          0xe0f6: 0x748b,
+          0xe0f7: 0x749e,
+          0xe0f8: 0x74a7,
+          0xe0f9: 0x74ca,
+          0xe0fa: 0x74cf,
+          0xe0fb: 0x74d4,
+          0xe0fc: 0x73f1,
+          0xe140: 0x74e0,
+          0xe141: 0x74e3,
+          0xe142: 0x74e7,
+          0xe143: 0x74e9,
+          0xe144: 0x74ee,
+          0xe145: 0x74f2,
+          0xe146: 0x74f0,
+          0xe147: 0x74f1,
+          0xe148: 0x74f8,
+          0xe149: 0x74f7,
+          0xe14a: 0x7504,
+          0xe14b: 0x7503,
+          0xe14c: 0x7505,
+          0xe14d: 0x750c,
+          0xe14e: 0x750e,
+          0xe14f: 0x750d,
+          0xe150: 0x7515,
+          0xe151: 0x7513,
+          0xe152: 0x751e,
+          0xe153: 0x7526,
+          0xe154: 0x752c,
+          0xe155: 0x753c,
+          0xe156: 0x7544,
+          0xe157: 0x754d,
+          0xe158: 0x754a,
+          0xe159: 0x7549,
+          0xe15a: 0x755b,
+          0xe15b: 0x7546,
+          0xe15c: 0x755a,
+          0xe15d: 0x7569,
+          0xe15e: 0x7564,
+          0xe15f: 0x7567,
+          0xe160: 0x756b,
+          0xe161: 0x756d,
+          0xe162: 0x7578,
+          0xe163: 0x7576,
+          0xe164: 0x7586,
+          0xe165: 0x7587,
+          0xe166: 0x7574,
+          0xe167: 0x758a,
+          0xe168: 0x7589,
+          0xe169: 0x7582,
+          0xe16a: 0x7594,
+          0xe16b: 0x759a,
+          0xe16c: 0x759d,
+          0xe16d: 0x75a5,
+          0xe16e: 0x75a3,
+          0xe16f: 0x75c2,
+          0xe170: 0x75b3,
+          0xe171: 0x75c3,
+          0xe172: 0x75b5,
+          0xe173: 0x75bd,
+          0xe174: 0x75b8,
+          0xe175: 0x75bc,
+          0xe176: 0x75b1,
+          0xe177: 0x75cd,
+          0xe178: 0x75ca,
+          0xe179: 0x75d2,
+          0xe17a: 0x75d9,
+          0xe17b: 0x75e3,
+          0xe17c: 0x75de,
+          0xe17d: 0x75fe,
+          0xe17e: 0x75ff,
+          0xe180: 0x75fc,
+          0xe181: 0x7601,
+          0xe182: 0x75f0,
+          0xe183: 0x75fa,
+          0xe184: 0x75f2,
+          0xe185: 0x75f3,
+          0xe186: 0x760b,
+          0xe187: 0x760d,
+          0xe188: 0x7609,
+          0xe189: 0x761f,
+          0xe18a: 0x7627,
+          0xe18b: 0x7620,
+          0xe18c: 0x7621,
+          0xe18d: 0x7622,
+          0xe18e: 0x7624,
+          0xe18f: 0x7634,
+          0xe190: 0x7630,
+          0xe191: 0x763b,
+          0xe192: 0x7647,
+          0xe193: 0x7648,
+          0xe194: 0x7646,
+          0xe195: 0x765c,
+          0xe196: 0x7658,
+          0xe197: 0x7661,
+          0xe198: 0x7662,
+          0xe199: 0x7668,
+          0xe19a: 0x7669,
+          0xe19b: 0x766a,
+          0xe19c: 0x7667,
+          0xe19d: 0x766c,
+          0xe19e: 0x7670,
+          0xe19f: 0x7672,
+          0xe1a0: 0x7676,
+          0xe1a1: 0x7678,
+          0xe1a2: 0x767c,
+          0xe1a3: 0x7680,
+          0xe1a4: 0x7683,
+          0xe1a5: 0x7688,
+          0xe1a6: 0x768b,
+          0xe1a7: 0x768e,
+          0xe1a8: 0x7696,
+          0xe1a9: 0x7693,
+          0xe1aa: 0x7699,
+          0xe1ab: 0x769a,
+          0xe1ac: 0x76b0,
+          0xe1ad: 0x76b4,
+          0xe1ae: 0x76b8,
+          0xe1af: 0x76b9,
+          0xe1b0: 0x76ba,
+          0xe1b1: 0x76c2,
+          0xe1b2: 0x76cd,
+          0xe1b3: 0x76d6,
+          0xe1b4: 0x76d2,
+          0xe1b5: 0x76de,
+          0xe1b6: 0x76e1,
+          0xe1b7: 0x76e5,
+          0xe1b8: 0x76e7,
+          0xe1b9: 0x76ea,
+          0xe1ba: 0x862f,
+          0xe1bb: 0x76fb,
+          0xe1bc: 0x7708,
+          0xe1bd: 0x7707,
+          0xe1be: 0x7704,
+          0xe1bf: 0x7729,
+          0xe1c0: 0x7724,
+          0xe1c1: 0x771e,
+          0xe1c2: 0x7725,
+          0xe1c3: 0x7726,
+          0xe1c4: 0x771b,
+          0xe1c5: 0x7737,
+          0xe1c6: 0x7738,
+          0xe1c7: 0x7747,
+          0xe1c8: 0x775a,
+          0xe1c9: 0x7768,
+          0xe1ca: 0x776b,
+          0xe1cb: 0x775b,
+          0xe1cc: 0x7765,
+          0xe1cd: 0x777f,
+          0xe1ce: 0x777e,
+          0xe1cf: 0x7779,
+          0xe1d0: 0x778e,
+          0xe1d1: 0x778b,
+          0xe1d2: 0x7791,
+          0xe1d3: 0x77a0,
+          0xe1d4: 0x779e,
+          0xe1d5: 0x77b0,
+          0xe1d6: 0x77b6,
+          0xe1d7: 0x77b9,
+          0xe1d8: 0x77bf,
+          0xe1d9: 0x77bc,
+          0xe1da: 0x77bd,
+          0xe1db: 0x77bb,
+          0xe1dc: 0x77c7,
+          0xe1dd: 0x77cd,
+          0xe1de: 0x77d7,
+          0xe1df: 0x77da,
+          0xe1e0: 0x77dc,
+          0xe1e1: 0x77e3,
+          0xe1e2: 0x77ee,
+          0xe1e3: 0x77fc,
+          0xe1e4: 0x780c,
+          0xe1e5: 0x7812,
+          0xe1e6: 0x7926,
+          0xe1e7: 0x7820,
+          0xe1e8: 0x792a,
+          0xe1e9: 0x7845,
+          0xe1ea: 0x788e,
+          0xe1eb: 0x7874,
+          0xe1ec: 0x7886,
+          0xe1ed: 0x787c,
+          0xe1ee: 0x789a,
+          0xe1ef: 0x788c,
+          0xe1f0: 0x78a3,
+          0xe1f1: 0x78b5,
+          0xe1f2: 0x78aa,
+          0xe1f3: 0x78af,
+          0xe1f4: 0x78d1,
+          0xe1f5: 0x78c6,
+          0xe1f6: 0x78cb,
+          0xe1f7: 0x78d4,
+          0xe1f8: 0x78be,
+          0xe1f9: 0x78bc,
+          0xe1fa: 0x78c5,
+          0xe1fb: 0x78ca,
+          0xe1fc: 0x78ec,
+          0xe240: 0x78e7,
+          0xe241: 0x78da,
+          0xe242: 0x78fd,
+          0xe243: 0x78f4,
+          0xe244: 0x7907,
+          0xe245: 0x7912,
+          0xe246: 0x7911,
+          0xe247: 0x7919,
+          0xe248: 0x792c,
+          0xe249: 0x792b,
+          0xe24a: 0x7940,
+          0xe24b: 0x7960,
+          0xe24c: 0x7957,
+          0xe24d: 0x795f,
+          0xe24e: 0x795a,
+          0xe24f: 0x7955,
+          0xe250: 0x7953,
+          0xe251: 0x797a,
+          0xe252: 0x797f,
+          0xe253: 0x798a,
+          0xe254: 0x799d,
+          0xe255: 0x79a7,
+          0xe256: 0x9f4b,
+          0xe257: 0x79aa,
+          0xe258: 0x79ae,
+          0xe259: 0x79b3,
+          0xe25a: 0x79b9,
+          0xe25b: 0x79ba,
+          0xe25c: 0x79c9,
+          0xe25d: 0x79d5,
+          0xe25e: 0x79e7,
+          0xe25f: 0x79ec,
+          0xe260: 0x79e1,
+          0xe261: 0x79e3,
+          0xe262: 0x7a08,
+          0xe263: 0x7a0d,
+          0xe264: 0x7a18,
+          0xe265: 0x7a19,
+          0xe266: 0x7a20,
+          0xe267: 0x7a1f,
+          0xe268: 0x7980,
+          0xe269: 0x7a31,
+          0xe26a: 0x7a3b,
+          0xe26b: 0x7a3e,
+          0xe26c: 0x7a37,
+          0xe26d: 0x7a43,
+          0xe26e: 0x7a57,
+          0xe26f: 0x7a49,
+          0xe270: 0x7a61,
+          0xe271: 0x7a62,
+          0xe272: 0x7a69,
+          0xe273: 0x9f9d,
+          0xe274: 0x7a70,
+          0xe275: 0x7a79,
+          0xe276: 0x7a7d,
+          0xe277: 0x7a88,
+          0xe278: 0x7a97,
+          0xe279: 0x7a95,
+          0xe27a: 0x7a98,
+          0xe27b: 0x7a96,
+          0xe27c: 0x7aa9,
+          0xe27d: 0x7ac8,
+          0xe27e: 0x7ab0,
+          0xe280: 0x7ab6,
+          0xe281: 0x7ac5,
+          0xe282: 0x7ac4,
+          0xe283: 0x7abf,
+          0xe284: 0x9083,
+          0xe285: 0x7ac7,
+          0xe286: 0x7aca,
+          0xe287: 0x7acd,
+          0xe288: 0x7acf,
+          0xe289: 0x7ad5,
+          0xe28a: 0x7ad3,
+          0xe28b: 0x7ad9,
+          0xe28c: 0x7ada,
+          0xe28d: 0x7add,
+          0xe28e: 0x7ae1,
+          0xe28f: 0x7ae2,
+          0xe290: 0x7ae6,
+          0xe291: 0x7aed,
+          0xe292: 0x7af0,
+          0xe293: 0x7b02,
+          0xe294: 0x7b0f,
+          0xe295: 0x7b0a,
+          0xe296: 0x7b06,
+          0xe297: 0x7b33,
+          0xe298: 0x7b18,
+          0xe299: 0x7b19,
+          0xe29a: 0x7b1e,
+          0xe29b: 0x7b35,
+          0xe29c: 0x7b28,
+          0xe29d: 0x7b36,
+          0xe29e: 0x7b50,
+          0xe29f: 0x7b7a,
+          0xe2a0: 0x7b04,
+          0xe2a1: 0x7b4d,
+          0xe2a2: 0x7b0b,
+          0xe2a3: 0x7b4c,
+          0xe2a4: 0x7b45,
+          0xe2a5: 0x7b75,
+          0xe2a6: 0x7b65,
+          0xe2a7: 0x7b74,
+          0xe2a8: 0x7b67,
+          0xe2a9: 0x7b70,
+          0xe2aa: 0x7b71,
+          0xe2ab: 0x7b6c,
+          0xe2ac: 0x7b6e,
+          0xe2ad: 0x7b9d,
+          0xe2ae: 0x7b98,
+          0xe2af: 0x7b9f,
+          0xe2b0: 0x7b8d,
+          0xe2b1: 0x7b9c,
+          0xe2b2: 0x7b9a,
+          0xe2b3: 0x7b8b,
+          0xe2b4: 0x7b92,
+          0xe2b5: 0x7b8f,
+          0xe2b6: 0x7b5d,
+          0xe2b7: 0x7b99,
+          0xe2b8: 0x7bcb,
+          0xe2b9: 0x7bc1,
+          0xe2ba: 0x7bcc,
+          0xe2bb: 0x7bcf,
+          0xe2bc: 0x7bb4,
+          0xe2bd: 0x7bc6,
+          0xe2be: 0x7bdd,
+          0xe2bf: 0x7be9,
+          0xe2c0: 0x7c11,
+          0xe2c1: 0x7c14,
+          0xe2c2: 0x7be6,
+          0xe2c3: 0x7be5,
+          0xe2c4: 0x7c60,
+          0xe2c5: 0x7c00,
+          0xe2c6: 0x7c07,
+          0xe2c7: 0x7c13,
+          0xe2c8: 0x7bf3,
+          0xe2c9: 0x7bf7,
+          0xe2ca: 0x7c17,
+          0xe2cb: 0x7c0d,
+          0xe2cc: 0x7bf6,
+          0xe2cd: 0x7c23,
+          0xe2ce: 0x7c27,
+          0xe2cf: 0x7c2a,
+          0xe2d0: 0x7c1f,
+          0xe2d1: 0x7c37,
+          0xe2d2: 0x7c2b,
+          0xe2d3: 0x7c3d,
+          0xe2d4: 0x7c4c,
+          0xe2d5: 0x7c43,
+          0xe2d6: 0x7c54,
+          0xe2d7: 0x7c4f,
+          0xe2d8: 0x7c40,
+          0xe2d9: 0x7c50,
+          0xe2da: 0x7c58,
+          0xe2db: 0x7c5f,
+          0xe2dc: 0x7c64,
+          0xe2dd: 0x7c56,
+          0xe2de: 0x7c65,
+          0xe2df: 0x7c6c,
+          0xe2e0: 0x7c75,
+          0xe2e1: 0x7c83,
+          0xe2e2: 0x7c90,
+          0xe2e3: 0x7ca4,
+          0xe2e4: 0x7cad,
+          0xe2e5: 0x7ca2,
+          0xe2e6: 0x7cab,
+          0xe2e7: 0x7ca1,
+          0xe2e8: 0x7ca8,
+          0xe2e9: 0x7cb3,
+          0xe2ea: 0x7cb2,
+          0xe2eb: 0x7cb1,
+          0xe2ec: 0x7cae,
+          0xe2ed: 0x7cb9,
+          0xe2ee: 0x7cbd,
+          0xe2ef: 0x7cc0,
+          0xe2f0: 0x7cc5,
+          0xe2f1: 0x7cc2,
+          0xe2f2: 0x7cd8,
+          0xe2f3: 0x7cd2,
+          0xe2f4: 0x7cdc,
+          0xe2f5: 0x7ce2,
+          0xe2f6: 0x9b3b,
+          0xe2f7: 0x7cef,
+          0xe2f8: 0x7cf2,
+          0xe2f9: 0x7cf4,
+          0xe2fa: 0x7cf6,
+          0xe2fb: 0x7cfa,
+          0xe2fc: 0x7d06,
+          0xe340: 0x7d02,
+          0xe341: 0x7d1c,
+          0xe342: 0x7d15,
+          0xe343: 0x7d0a,
+          0xe344: 0x7d45,
+          0xe345: 0x7d4b,
+          0xe346: 0x7d2e,
+          0xe347: 0x7d32,
+          0xe348: 0x7d3f,
+          0xe349: 0x7d35,
+          0xe34a: 0x7d46,
+          0xe34b: 0x7d73,
+          0xe34c: 0x7d56,
+          0xe34d: 0x7d4e,
+          0xe34e: 0x7d72,
+          0xe34f: 0x7d68,
+          0xe350: 0x7d6e,
+          0xe351: 0x7d4f,
+          0xe352: 0x7d63,
+          0xe353: 0x7d93,
+          0xe354: 0x7d89,
+          0xe355: 0x7d5b,
+          0xe356: 0x7d8f,
+          0xe357: 0x7d7d,
+          0xe358: 0x7d9b,
+          0xe359: 0x7dba,
+          0xe35a: 0x7dae,
+          0xe35b: 0x7da3,
+          0xe35c: 0x7db5,
+          0xe35d: 0x7dc7,
+          0xe35e: 0x7dbd,
+          0xe35f: 0x7dab,
+          0xe360: 0x7e3d,
+          0xe361: 0x7da2,
+          0xe362: 0x7daf,
+          0xe363: 0x7ddc,
+          0xe364: 0x7db8,
+          0xe365: 0x7d9f,
+          0xe366: 0x7db0,
+          0xe367: 0x7dd8,
+          0xe368: 0x7ddd,
+          0xe369: 0x7de4,
+          0xe36a: 0x7dde,
+          0xe36b: 0x7dfb,
+          0xe36c: 0x7df2,
+          0xe36d: 0x7de1,
+          0xe36e: 0x7e05,
+          0xe36f: 0x7e0a,
+          0xe370: 0x7e23,
+          0xe371: 0x7e21,
+          0xe372: 0x7e12,
+          0xe373: 0x7e31,
+          0xe374: 0x7e1f,
+          0xe375: 0x7e09,
+          0xe376: 0x7e0b,
+          0xe377: 0x7e22,
+          0xe378: 0x7e46,
+          0xe379: 0x7e66,
+          0xe37a: 0x7e3b,
+          0xe37b: 0x7e35,
+          0xe37c: 0x7e39,
+          0xe37d: 0x7e43,
+          0xe37e: 0x7e37,
+          0xe380: 0x7e32,
+          0xe381: 0x7e3a,
+          0xe382: 0x7e67,
+          0xe383: 0x7e5d,
+          0xe384: 0x7e56,
+          0xe385: 0x7e5e,
+          0xe386: 0x7e59,
+          0xe387: 0x7e5a,
+          0xe388: 0x7e79,
+          0xe389: 0x7e6a,
+          0xe38a: 0x7e69,
+          0xe38b: 0x7e7c,
+          0xe38c: 0x7e7b,
+          0xe38d: 0x7e83,
+          0xe38e: 0x7dd5,
+          0xe38f: 0x7e7d,
+          0xe390: 0x8fae,
+          0xe391: 0x7e7f,
+          0xe392: 0x7e88,
+          0xe393: 0x7e89,
+          0xe394: 0x7e8c,
+          0xe395: 0x7e92,
+          0xe396: 0x7e90,
+          0xe397: 0x7e93,
+          0xe398: 0x7e94,
+          0xe399: 0x7e96,
+          0xe39a: 0x7e8e,
+          0xe39b: 0x7e9b,
+          0xe39c: 0x7e9c,
+          0xe39d: 0x7f38,
+          0xe39e: 0x7f3a,
+          0xe39f: 0x7f45,
+          0xe3a0: 0x7f4c,
+          0xe3a1: 0x7f4d,
+          0xe3a2: 0x7f4e,
+          0xe3a3: 0x7f50,
+          0xe3a4: 0x7f51,
+          0xe3a5: 0x7f55,
+          0xe3a6: 0x7f54,
+          0xe3a7: 0x7f58,
+          0xe3a8: 0x7f5f,
+          0xe3a9: 0x7f60,
+          0xe3aa: 0x7f68,
+          0xe3ab: 0x7f69,
+          0xe3ac: 0x7f67,
+          0xe3ad: 0x7f78,
+          0xe3ae: 0x7f82,
+          0xe3af: 0x7f86,
+          0xe3b0: 0x7f83,
+          0xe3b1: 0x7f88,
+          0xe3b2: 0x7f87,
+          0xe3b3: 0x7f8c,
+          0xe3b4: 0x7f94,
+          0xe3b5: 0x7f9e,
+          0xe3b6: 0x7f9d,
+          0xe3b7: 0x7f9a,
+          0xe3b8: 0x7fa3,
+          0xe3b9: 0x7faf,
+          0xe3ba: 0x7fb2,
+          0xe3bb: 0x7fb9,
+          0xe3bc: 0x7fae,
+          0xe3bd: 0x7fb6,
+          0xe3be: 0x7fb8,
+          0xe3bf: 0x8b71,
+          0xe3c0: 0x7fc5,
+          0xe3c1: 0x7fc6,
+          0xe3c2: 0x7fca,
+          0xe3c3: 0x7fd5,
+          0xe3c4: 0x7fd4,
+          0xe3c5: 0x7fe1,
+          0xe3c6: 0x7fe6,
+          0xe3c7: 0x7fe9,
+          0xe3c8: 0x7ff3,
+          0xe3c9: 0x7ff9,
+          0xe3ca: 0x98dc,
+          0xe3cb: 0x8006,
+          0xe3cc: 0x8004,
+          0xe3cd: 0x800b,
+          0xe3ce: 0x8012,
+          0xe3cf: 0x8018,
+          0xe3d0: 0x8019,
+          0xe3d1: 0x801c,
+          0xe3d2: 0x8021,
+          0xe3d3: 0x8028,
+          0xe3d4: 0x803f,
+          0xe3d5: 0x803b,
+          0xe3d6: 0x804a,
+          0xe3d7: 0x8046,
+          0xe3d8: 0x8052,
+          0xe3d9: 0x8058,
+          0xe3da: 0x805a,
+          0xe3db: 0x805f,
+          0xe3dc: 0x8062,
+          0xe3dd: 0x8068,
+          0xe3de: 0x8073,
+          0xe3df: 0x8072,
+          0xe3e0: 0x8070,
+          0xe3e1: 0x8076,
+          0xe3e2: 0x8079,
+          0xe3e3: 0x807d,
+          0xe3e4: 0x807f,
+          0xe3e5: 0x8084,
+          0xe3e6: 0x8086,
+          0xe3e7: 0x8085,
+          0xe3e8: 0x809b,
+          0xe3e9: 0x8093,
+          0xe3ea: 0x809a,
+          0xe3eb: 0x80ad,
+          0xe3ec: 0x5190,
+          0xe3ed: 0x80ac,
+          0xe3ee: 0x80db,
+          0xe3ef: 0x80e5,
+          0xe3f0: 0x80d9,
+          0xe3f1: 0x80dd,
+          0xe3f2: 0x80c4,
+          0xe3f3: 0x80da,
+          0xe3f4: 0x80d6,
+          0xe3f5: 0x8109,
+          0xe3f6: 0x80ef,
+          0xe3f7: 0x80f1,
+          0xe3f8: 0x811b,
+          0xe3f9: 0x8129,
+          0xe3fa: 0x8123,
+          0xe3fb: 0x812f,
+          0xe3fc: 0x814b,
+          0xe440: 0x968b,
+          0xe441: 0x8146,
+          0xe442: 0x813e,
+          0xe443: 0x8153,
+          0xe444: 0x8151,
+          0xe445: 0x80fc,
+          0xe446: 0x8171,
+          0xe447: 0x816e,
+          0xe448: 0x8165,
+          0xe449: 0x8166,
+          0xe44a: 0x8174,
+          0xe44b: 0x8183,
+          0xe44c: 0x8188,
+          0xe44d: 0x818a,
+          0xe44e: 0x8180,
+          0xe44f: 0x8182,
+          0xe450: 0x81a0,
+          0xe451: 0x8195,
+          0xe452: 0x81a4,
+          0xe453: 0x81a3,
+          0xe454: 0x815f,
+          0xe455: 0x8193,
+          0xe456: 0x81a9,
+          0xe457: 0x81b0,
+          0xe458: 0x81b5,
+          0xe459: 0x81be,
+          0xe45a: 0x81b8,
+          0xe45b: 0x81bd,
+          0xe45c: 0x81c0,
+          0xe45d: 0x81c2,
+          0xe45e: 0x81ba,
+          0xe45f: 0x81c9,
+          0xe460: 0x81cd,
+          0xe461: 0x81d1,
+          0xe462: 0x81d9,
+          0xe463: 0x81d8,
+          0xe464: 0x81c8,
+          0xe465: 0x81da,
+          0xe466: 0x81df,
+          0xe467: 0x81e0,
+          0xe468: 0x81e7,
+          0xe469: 0x81fa,
+          0xe46a: 0x81fb,
+          0xe46b: 0x81fe,
+          0xe46c: 0x8201,
+          0xe46d: 0x8202,
+          0xe46e: 0x8205,
+          0xe46f: 0x8207,
+          0xe470: 0x820a,
+          0xe471: 0x820d,
+          0xe472: 0x8210,
+          0xe473: 0x8216,
+          0xe474: 0x8229,
+          0xe475: 0x822b,
+          0xe476: 0x8238,
+          0xe477: 0x8233,
+          0xe478: 0x8240,
+          0xe479: 0x8259,
+          0xe47a: 0x8258,
+          0xe47b: 0x825d,
+          0xe47c: 0x825a,
+          0xe47d: 0x825f,
+          0xe47e: 0x8264,
+          0xe480: 0x8262,
+          0xe481: 0x8268,
+          0xe482: 0x826a,
+          0xe483: 0x826b,
+          0xe484: 0x822e,
+          0xe485: 0x8271,
+          0xe486: 0x8277,
+          0xe487: 0x8278,
+          0xe488: 0x827e,
+          0xe489: 0x828d,
+          0xe48a: 0x8292,
+          0xe48b: 0x82ab,
+          0xe48c: 0x829f,
+          0xe48d: 0x82bb,
+          0xe48e: 0x82ac,
+          0xe48f: 0x82e1,
+          0xe490: 0x82e3,
+          0xe491: 0x82df,
+          0xe492: 0x82d2,
+          0xe493: 0x82f4,
+          0xe494: 0x82f3,
+          0xe495: 0x82fa,
+          0xe496: 0x8393,
+          0xe497: 0x8303,
+          0xe498: 0x82fb,
+          0xe499: 0x82f9,
+          0xe49a: 0x82de,
+          0xe49b: 0x8306,
+          0xe49c: 0x82dc,
+          0xe49d: 0x8309,
+          0xe49e: 0x82d9,
+          0xe49f: 0x8335,
+          0xe4a0: 0x8334,
+          0xe4a1: 0x8316,
+          0xe4a2: 0x8332,
+          0xe4a3: 0x8331,
+          0xe4a4: 0x8340,
+          0xe4a5: 0x8339,
+          0xe4a6: 0x8350,
+          0xe4a7: 0x8345,
+          0xe4a8: 0x832f,
+          0xe4a9: 0x832b,
+          0xe4aa: 0x8317,
+          0xe4ab: 0x8318,
+          0xe4ac: 0x8385,
+          0xe4ad: 0x839a,
+          0xe4ae: 0x83aa,
+          0xe4af: 0x839f,
+          0xe4b0: 0x83a2,
+          0xe4b1: 0x8396,
+          0xe4b2: 0x8323,
+          0xe4b3: 0x838e,
+          0xe4b4: 0x8387,
+          0xe4b5: 0x838a,
+          0xe4b6: 0x837c,
+          0xe4b7: 0x83b5,
+          0xe4b8: 0x8373,
+          0xe4b9: 0x8375,
+          0xe4ba: 0x83a0,
+          0xe4bb: 0x8389,
+          0xe4bc: 0x83a8,
+          0xe4bd: 0x83f4,
+          0xe4be: 0x8413,
+          0xe4bf: 0x83eb,
+          0xe4c0: 0x83ce,
+          0xe4c1: 0x83fd,
+          0xe4c2: 0x8403,
+          0xe4c3: 0x83d8,
+          0xe4c4: 0x840b,
+          0xe4c5: 0x83c1,
+          0xe4c6: 0x83f7,
+          0xe4c7: 0x8407,
+          0xe4c8: 0x83e0,
+          0xe4c9: 0x83f2,
+          0xe4ca: 0x840d,
+          0xe4cb: 0x8422,
+          0xe4cc: 0x8420,
+          0xe4cd: 0x83bd,
+          0xe4ce: 0x8438,
+          0xe4cf: 0x8506,
+          0xe4d0: 0x83fb,
+          0xe4d1: 0x846d,
+          0xe4d2: 0x842a,
+          0xe4d3: 0x843c,
+          0xe4d4: 0x855a,
+          0xe4d5: 0x8484,
+          0xe4d6: 0x8477,
+          0xe4d7: 0x846b,
+          0xe4d8: 0x84ad,
+          0xe4d9: 0x846e,
+          0xe4da: 0x8482,
+          0xe4db: 0x8469,
+          0xe4dc: 0x8446,
+          0xe4dd: 0x842c,
+          0xe4de: 0x846f,
+          0xe4df: 0x8479,
+          0xe4e0: 0x8435,
+          0xe4e1: 0x84ca,
+          0xe4e2: 0x8462,
+          0xe4e3: 0x84b9,
+          0xe4e4: 0x84bf,
+          0xe4e5: 0x849f,
+          0xe4e6: 0x84d9,
+          0xe4e7: 0x84cd,
+          0xe4e8: 0x84bb,
+          0xe4e9: 0x84da,
+          0xe4ea: 0x84d0,
+          0xe4eb: 0x84c1,
+          0xe4ec: 0x84c6,
+          0xe4ed: 0x84d6,
+          0xe4ee: 0x84a1,
+          0xe4ef: 0x8521,
+          0xe4f0: 0x84ff,
+          0xe4f1: 0x84f4,
+          0xe4f2: 0x8517,
+          0xe4f3: 0x8518,
+          0xe4f4: 0x852c,
+          0xe4f5: 0x851f,
+          0xe4f6: 0x8515,
+          0xe4f7: 0x8514,
+          0xe4f8: 0x84fc,
+          0xe4f9: 0x8540,
+          0xe4fa: 0x8563,
+          0xe4fb: 0x8558,
+          0xe4fc: 0x8548,
+          0xe540: 0x8541,
+          0xe541: 0x8602,
+          0xe542: 0x854b,
+          0xe543: 0x8555,
+          0xe544: 0x8580,
+          0xe545: 0x85a4,
+          0xe546: 0x8588,
+          0xe547: 0x8591,
+          0xe548: 0x858a,
+          0xe549: 0x85a8,
+          0xe54a: 0x856d,
+          0xe54b: 0x8594,
+          0xe54c: 0x859b,
+          0xe54d: 0x85ea,
+          0xe54e: 0x8587,
+          0xe54f: 0x859c,
+          0xe550: 0x8577,
+          0xe551: 0x857e,
+          0xe552: 0x8590,
+          0xe553: 0x85c9,
+          0xe554: 0x85ba,
+          0xe555: 0x85cf,
+          0xe556: 0x85b9,
+          0xe557: 0x85d0,
+          0xe558: 0x85d5,
+          0xe559: 0x85dd,
+          0xe55a: 0x85e5,
+          0xe55b: 0x85dc,
+          0xe55c: 0x85f9,
+          0xe55d: 0x860a,
+          0xe55e: 0x8613,
+          0xe55f: 0x860b,
+          0xe560: 0x85fe,
+          0xe561: 0x85fa,
+          0xe562: 0x8606,
+          0xe563: 0x8622,
+          0xe564: 0x861a,
+          0xe565: 0x8630,
+          0xe566: 0x863f,
+          0xe567: 0x864d,
+          0xe568: 0x4e55,
+          0xe569: 0x8654,
+          0xe56a: 0x865f,
+          0xe56b: 0x8667,
+          0xe56c: 0x8671,
+          0xe56d: 0x8693,
+          0xe56e: 0x86a3,
+          0xe56f: 0x86a9,
+          0xe570: 0x86aa,
+          0xe571: 0x868b,
+          0xe572: 0x868c,
+          0xe573: 0x86b6,
+          0xe574: 0x86af,
+          0xe575: 0x86c4,
+          0xe576: 0x86c6,
+          0xe577: 0x86b0,
+          0xe578: 0x86c9,
+          0xe579: 0x8823,
+          0xe57a: 0x86ab,
+          0xe57b: 0x86d4,
+          0xe57c: 0x86de,
+          0xe57d: 0x86e9,
+          0xe57e: 0x86ec,
+          0xe580: 0x86df,
+          0xe581: 0x86db,
+          0xe582: 0x86ef,
+          0xe583: 0x8712,
+          0xe584: 0x8706,
+          0xe585: 0x8708,
+          0xe586: 0x8700,
+          0xe587: 0x8703,
+          0xe588: 0x86fb,
+          0xe589: 0x8711,
+          0xe58a: 0x8709,
+          0xe58b: 0x870d,
+          0xe58c: 0x86f9,
+          0xe58d: 0x870a,
+          0xe58e: 0x8734,
+          0xe58f: 0x873f,
+          0xe590: 0x8737,
+          0xe591: 0x873b,
+          0xe592: 0x8725,
+          0xe593: 0x8729,
+          0xe594: 0x871a,
+          0xe595: 0x8760,
+          0xe596: 0x875f,
+          0xe597: 0x8778,
+          0xe598: 0x874c,
+          0xe599: 0x874e,
+          0xe59a: 0x8774,
+          0xe59b: 0x8757,
+          0xe59c: 0x8768,
+          0xe59d: 0x876e,
+          0xe59e: 0x8759,
+          0xe59f: 0x8753,
+          0xe5a0: 0x8763,
+          0xe5a1: 0x876a,
+          0xe5a2: 0x8805,
+          0xe5a3: 0x87a2,
+          0xe5a4: 0x879f,
+          0xe5a5: 0x8782,
+          0xe5a6: 0x87af,
+          0xe5a7: 0x87cb,
+          0xe5a8: 0x87bd,
+          0xe5a9: 0x87c0,
+          0xe5aa: 0x87d0,
+          0xe5ab: 0x96d6,
+          0xe5ac: 0x87ab,
+          0xe5ad: 0x87c4,
+          0xe5ae: 0x87b3,
+          0xe5af: 0x87c7,
+          0xe5b0: 0x87c6,
+          0xe5b1: 0x87bb,
+          0xe5b2: 0x87ef,
+          0xe5b3: 0x87f2,
+          0xe5b4: 0x87e0,
+          0xe5b5: 0x880f,
+          0xe5b6: 0x880d,
+          0xe5b7: 0x87fe,
+          0xe5b8: 0x87f6,
+          0xe5b9: 0x87f7,
+          0xe5ba: 0x880e,
+          0xe5bb: 0x87d2,
+          0xe5bc: 0x8811,
+          0xe5bd: 0x8816,
+          0xe5be: 0x8815,
+          0xe5bf: 0x8822,
+          0xe5c0: 0x8821,
+          0xe5c1: 0x8831,
+          0xe5c2: 0x8836,
+          0xe5c3: 0x8839,
+          0xe5c4: 0x8827,
+          0xe5c5: 0x883b,
+          0xe5c6: 0x8844,
+          0xe5c7: 0x8842,
+          0xe5c8: 0x8852,
+          0xe5c9: 0x8859,
+          0xe5ca: 0x885e,
+          0xe5cb: 0x8862,
+          0xe5cc: 0x886b,
+          0xe5cd: 0x8881,
+          0xe5ce: 0x887e,
+          0xe5cf: 0x889e,
+          0xe5d0: 0x8875,
+          0xe5d1: 0x887d,
+          0xe5d2: 0x88b5,
+          0xe5d3: 0x8872,
+          0xe5d4: 0x8882,
+          0xe5d5: 0x8897,
+          0xe5d6: 0x8892,
+          0xe5d7: 0x88ae,
+          0xe5d8: 0x8899,
+          0xe5d9: 0x88a2,
+          0xe5da: 0x888d,
+          0xe5db: 0x88a4,
+          0xe5dc: 0x88b0,
+          0xe5dd: 0x88bf,
+          0xe5de: 0x88b1,
+          0xe5df: 0x88c3,
+          0xe5e0: 0x88c4,
+          0xe5e1: 0x88d4,
+          0xe5e2: 0x88d8,
+          0xe5e3: 0x88d9,
+          0xe5e4: 0x88dd,
+          0xe5e5: 0x88f9,
+          0xe5e6: 0x8902,
+          0xe5e7: 0x88fc,
+          0xe5e8: 0x88f4,
+          0xe5e9: 0x88e8,
+          0xe5ea: 0x88f2,
+          0xe5eb: 0x8904,
+          0xe5ec: 0x890c,
+          0xe5ed: 0x890a,
+          0xe5ee: 0x8913,
+          0xe5ef: 0x8943,
+          0xe5f0: 0x891e,
+          0xe5f1: 0x8925,
+          0xe5f2: 0x892a,
+          0xe5f3: 0x892b,
+          0xe5f4: 0x8941,
+          0xe5f5: 0x8944,
+          0xe5f6: 0x893b,
+          0xe5f7: 0x8936,
+          0xe5f8: 0x8938,
+          0xe5f9: 0x894c,
+          0xe5fa: 0x891d,
+          0xe5fb: 0x8960,
+          0xe5fc: 0x895e,
+          0xe640: 0x8966,
+          0xe641: 0x8964,
+          0xe642: 0x896d,
+          0xe643: 0x896a,
+          0xe644: 0x896f,
+          0xe645: 0x8974,
+          0xe646: 0x8977,
+          0xe647: 0x897e,
+          0xe648: 0x8983,
+          0xe649: 0x8988,
+          0xe64a: 0x898a,
+          0xe64b: 0x8993,
+          0xe64c: 0x8998,
+          0xe64d: 0x89a1,
+          0xe64e: 0x89a9,
+          0xe64f: 0x89a6,
+          0xe650: 0x89ac,
+          0xe651: 0x89af,
+          0xe652: 0x89b2,
+          0xe653: 0x89ba,
+          0xe654: 0x89bd,
+          0xe655: 0x89bf,
+          0xe656: 0x89c0,
+          0xe657: 0x89da,
+          0xe658: 0x89dc,
+          0xe659: 0x89dd,
+          0xe65a: 0x89e7,
+          0xe65b: 0x89f4,
+          0xe65c: 0x89f8,
+          0xe65d: 0x8a03,
+          0xe65e: 0x8a16,
+          0xe65f: 0x8a10,
+          0xe660: 0x8a0c,
+          0xe661: 0x8a1b,
+          0xe662: 0x8a1d,
+          0xe663: 0x8a25,
+          0xe664: 0x8a36,
+          0xe665: 0x8a41,
+          0xe666: 0x8a5b,
+          0xe667: 0x8a52,
+          0xe668: 0x8a46,
+          0xe669: 0x8a48,
+          0xe66a: 0x8a7c,
+          0xe66b: 0x8a6d,
+          0xe66c: 0x8a6c,
+          0xe66d: 0x8a62,
+          0xe66e: 0x8a85,
+          0xe66f: 0x8a82,
+          0xe670: 0x8a84,
+          0xe671: 0x8aa8,
+          0xe672: 0x8aa1,
+          0xe673: 0x8a91,
+          0xe674: 0x8aa5,
+          0xe675: 0x8aa6,
+          0xe676: 0x8a9a,
+          0xe677: 0x8aa3,
+          0xe678: 0x8ac4,
+          0xe679: 0x8acd,
+          0xe67a: 0x8ac2,
+          0xe67b: 0x8ada,
+          0xe67c: 0x8aeb,
+          0xe67d: 0x8af3,
+          0xe67e: 0x8ae7,
+          0xe680: 0x8ae4,
+          0xe681: 0x8af1,
+          0xe682: 0x8b14,
+          0xe683: 0x8ae0,
+          0xe684: 0x8ae2,
+          0xe685: 0x8af7,
+          0xe686: 0x8ade,
+          0xe687: 0x8adb,
+          0xe688: 0x8b0c,
+          0xe689: 0x8b07,
+          0xe68a: 0x8b1a,
+          0xe68b: 0x8ae1,
+          0xe68c: 0x8b16,
+          0xe68d: 0x8b10,
+          0xe68e: 0x8b17,
+          0xe68f: 0x8b20,
+          0xe690: 0x8b33,
+          0xe691: 0x97ab,
+          0xe692: 0x8b26,
+          0xe693: 0x8b2b,
+          0xe694: 0x8b3e,
+          0xe695: 0x8b28,
+          0xe696: 0x8b41,
+          0xe697: 0x8b4c,
+          0xe698: 0x8b4f,
+          0xe699: 0x8b4e,
+          0xe69a: 0x8b49,
+          0xe69b: 0x8b56,
+          0xe69c: 0x8b5b,
+          0xe69d: 0x8b5a,
+          0xe69e: 0x8b6b,
+          0xe69f: 0x8b5f,
+          0xe6a0: 0x8b6c,
+          0xe6a1: 0x8b6f,
+          0xe6a2: 0x8b74,
+          0xe6a3: 0x8b7d,
+          0xe6a4: 0x8b80,
+          0xe6a5: 0x8b8c,
+          0xe6a6: 0x8b8e,
+          0xe6a7: 0x8b92,
+          0xe6a8: 0x8b93,
+          0xe6a9: 0x8b96,
+          0xe6aa: 0x8b99,
+          0xe6ab: 0x8b9a,
+          0xe6ac: 0x8c3a,
+          0xe6ad: 0x8c41,
+          0xe6ae: 0x8c3f,
+          0xe6af: 0x8c48,
+          0xe6b0: 0x8c4c,
+          0xe6b1: 0x8c4e,
+          0xe6b2: 0x8c50,
+          0xe6b3: 0x8c55,
+          0xe6b4: 0x8c62,
+          0xe6b5: 0x8c6c,
+          0xe6b6: 0x8c78,
+          0xe6b7: 0x8c7a,
+          0xe6b8: 0x8c82,
+          0xe6b9: 0x8c89,
+          0xe6ba: 0x8c85,
+          0xe6bb: 0x8c8a,
+          0xe6bc: 0x8c8d,
+          0xe6bd: 0x8c8e,
+          0xe6be: 0x8c94,
+          0xe6bf: 0x8c7c,
+          0xe6c0: 0x8c98,
+          0xe6c1: 0x621d,
+          0xe6c2: 0x8cad,
+          0xe6c3: 0x8caa,
+          0xe6c4: 0x8cbd,
+          0xe6c5: 0x8cb2,
+          0xe6c6: 0x8cb3,
+          0xe6c7: 0x8cae,
+          0xe6c8: 0x8cb6,
+          0xe6c9: 0x8cc8,
+          0xe6ca: 0x8cc1,
+          0xe6cb: 0x8ce4,
+          0xe6cc: 0x8ce3,
+          0xe6cd: 0x8cda,
+          0xe6ce: 0x8cfd,
+          0xe6cf: 0x8cfa,
+          0xe6d0: 0x8cfb,
+          0xe6d1: 0x8d04,
+          0xe6d2: 0x8d05,
+          0xe6d3: 0x8d0a,
+          0xe6d4: 0x8d07,
+          0xe6d5: 0x8d0f,
+          0xe6d6: 0x8d0d,
+          0xe6d7: 0x8d10,
+          0xe6d8: 0x9f4e,
+          0xe6d9: 0x8d13,
+          0xe6da: 0x8ccd,
+          0xe6db: 0x8d14,
+          0xe6dc: 0x8d16,
+          0xe6dd: 0x8d67,
+          0xe6de: 0x8d6d,
+          0xe6df: 0x8d71,
+          0xe6e0: 0x8d73,
+          0xe6e1: 0x8d81,
+          0xe6e2: 0x8d99,
+          0xe6e3: 0x8dc2,
+          0xe6e4: 0x8dbe,
+          0xe6e5: 0x8dba,
+          0xe6e6: 0x8dcf,
+          0xe6e7: 0x8dda,
+          0xe6e8: 0x8dd6,
+          0xe6e9: 0x8dcc,
+          0xe6ea: 0x8ddb,
+          0xe6eb: 0x8dcb,
+          0xe6ec: 0x8dea,
+          0xe6ed: 0x8deb,
+          0xe6ee: 0x8ddf,
+          0xe6ef: 0x8de3,
+          0xe6f0: 0x8dfc,
+          0xe6f1: 0x8e08,
+          0xe6f2: 0x8e09,
+          0xe6f3: 0x8dff,
+          0xe6f4: 0x8e1d,
+          0xe6f5: 0x8e1e,
+          0xe6f6: 0x8e10,
+          0xe6f7: 0x8e1f,
+          0xe6f8: 0x8e42,
+          0xe6f9: 0x8e35,
+          0xe6fa: 0x8e30,
+          0xe6fb: 0x8e34,
+          0xe6fc: 0x8e4a,
+          0xe740: 0x8e47,
+          0xe741: 0x8e49,
+          0xe742: 0x8e4c,
+          0xe743: 0x8e50,
+          0xe744: 0x8e48,
+          0xe745: 0x8e59,
+          0xe746: 0x8e64,
+          0xe747: 0x8e60,
+          0xe748: 0x8e2a,
+          0xe749: 0x8e63,
+          0xe74a: 0x8e55,
+          0xe74b: 0x8e76,
+          0xe74c: 0x8e72,
+          0xe74d: 0x8e7c,
+          0xe74e: 0x8e81,
+          0xe74f: 0x8e87,
+          0xe750: 0x8e85,
+          0xe751: 0x8e84,
+          0xe752: 0x8e8b,
+          0xe753: 0x8e8a,
+          0xe754: 0x8e93,
+          0xe755: 0x8e91,
+          0xe756: 0x8e94,
+          0xe757: 0x8e99,
+          0xe758: 0x8eaa,
+          0xe759: 0x8ea1,
+          0xe75a: 0x8eac,
+          0xe75b: 0x8eb0,
+          0xe75c: 0x8ec6,
+          0xe75d: 0x8eb1,
+          0xe75e: 0x8ebe,
+          0xe75f: 0x8ec5,
+          0xe760: 0x8ec8,
+          0xe761: 0x8ecb,
+          0xe762: 0x8edb,
+          0xe763: 0x8ee3,
+          0xe764: 0x8efc,
+          0xe765: 0x8efb,
+          0xe766: 0x8eeb,
+          0xe767: 0x8efe,
+          0xe768: 0x8f0a,
+          0xe769: 0x8f05,
+          0xe76a: 0x8f15,
+          0xe76b: 0x8f12,
+          0xe76c: 0x8f19,
+          0xe76d: 0x8f13,
+          0xe76e: 0x8f1c,
+          0xe76f: 0x8f1f,
+          0xe770: 0x8f1b,
+          0xe771: 0x8f0c,
+          0xe772: 0x8f26,
+          0xe773: 0x8f33,
+          0xe774: 0x8f3b,
+          0xe775: 0x8f39,
+          0xe776: 0x8f45,
+          0xe777: 0x8f42,
+          0xe778: 0x8f3e,
+          0xe779: 0x8f4c,
+          0xe77a: 0x8f49,
+          0xe77b: 0x8f46,
+          0xe77c: 0x8f4e,
+          0xe77d: 0x8f57,
+          0xe77e: 0x8f5c,
+          0xe780: 0x8f62,
+          0xe781: 0x8f63,
+          0xe782: 0x8f64,
+          0xe783: 0x8f9c,
+          0xe784: 0x8f9f,
+          0xe785: 0x8fa3,
+          0xe786: 0x8fad,
+          0xe787: 0x8faf,
+          0xe788: 0x8fb7,
+          0xe789: 0x8fda,
+          0xe78a: 0x8fe5,
+          0xe78b: 0x8fe2,
+          0xe78c: 0x8fea,
+          0xe78d: 0x8fef,
+          0xe78e: 0x9087,
+          0xe78f: 0x8ff4,
+          0xe790: 0x9005,
+          0xe791: 0x8ff9,
+          0xe792: 0x8ffa,
+          0xe793: 0x9011,
+          0xe794: 0x9015,
+          0xe795: 0x9021,
+          0xe796: 0x900d,
+          0xe797: 0x901e,
+          0xe798: 0x9016,
+          0xe799: 0x900b,
+          0xe79a: 0x9027,
+          0xe79b: 0x9036,
+          0xe79c: 0x9035,
+          0xe79d: 0x9039,
+          0xe79e: 0x8ff8,
+          0xe79f: 0x904f,
+          0xe7a0: 0x9050,
+          0xe7a1: 0x9051,
+          0xe7a2: 0x9052,
+          0xe7a3: 0x900e,
+          0xe7a4: 0x9049,
+          0xe7a5: 0x903e,
+          0xe7a6: 0x9056,
+          0xe7a7: 0x9058,
+          0xe7a8: 0x905e,
+          0xe7a9: 0x9068,
+          0xe7aa: 0x906f,
+          0xe7ab: 0x9076,
+          0xe7ac: 0x96a8,
+          0xe7ad: 0x9072,
+          0xe7ae: 0x9082,
+          0xe7af: 0x907d,
+          0xe7b0: 0x9081,
+          0xe7b1: 0x9080,
+          0xe7b2: 0x908a,
+          0xe7b3: 0x9089,
+          0xe7b4: 0x908f,
+          0xe7b5: 0x90a8,
+          0xe7b6: 0x90af,
+          0xe7b7: 0x90b1,
+          0xe7b8: 0x90b5,
+          0xe7b9: 0x90e2,
+          0xe7ba: 0x90e4,
+          0xe7bb: 0x6248,
+          0xe7bc: 0x90db,
+          0xe7bd: 0x9102,
+          0xe7be: 0x9112,
+          0xe7bf: 0x9119,
+          0xe7c0: 0x9132,
+          0xe7c1: 0x9130,
+          0xe7c2: 0x914a,
+          0xe7c3: 0x9156,
+          0xe7c4: 0x9158,
+          0xe7c5: 0x9163,
+          0xe7c6: 0x9165,
+          0xe7c7: 0x9169,
+          0xe7c8: 0x9173,
+          0xe7c9: 0x9172,
+          0xe7ca: 0x918b,
+          0xe7cb: 0x9189,
+          0xe7cc: 0x9182,
+          0xe7cd: 0x91a2,
+          0xe7ce: 0x91ab,
+          0xe7cf: 0x91af,
+          0xe7d0: 0x91aa,
+          0xe7d1: 0x91b5,
+          0xe7d2: 0x91b4,
+          0xe7d3: 0x91ba,
+          0xe7d4: 0x91c0,
+          0xe7d5: 0x91c1,
+          0xe7d6: 0x91c9,
+          0xe7d7: 0x91cb,
+          0xe7d8: 0x91d0,
+          0xe7d9: 0x91d6,
+          0xe7da: 0x91df,
+          0xe7db: 0x91e1,
+          0xe7dc: 0x91db,
+          0xe7dd: 0x91fc,
+          0xe7de: 0x91f5,
+          0xe7df: 0x91f6,
+          0xe7e0: 0x921e,
+          0xe7e1: 0x91ff,
+          0xe7e2: 0x9214,
+          0xe7e3: 0x922c,
+          0xe7e4: 0x9215,
+          0xe7e5: 0x9211,
+          0xe7e6: 0x925e,
+          0xe7e7: 0x9257,
+          0xe7e8: 0x9245,
+          0xe7e9: 0x9249,
+          0xe7ea: 0x9264,
+          0xe7eb: 0x9248,
+          0xe7ec: 0x9295,
+          0xe7ed: 0x923f,
+          0xe7ee: 0x924b,
+          0xe7ef: 0x9250,
+          0xe7f0: 0x929c,
+          0xe7f1: 0x9296,
+          0xe7f2: 0x9293,
+          0xe7f3: 0x929b,
+          0xe7f4: 0x925a,
+          0xe7f5: 0x92cf,
+          0xe7f6: 0x92b9,
+          0xe7f7: 0x92b7,
+          0xe7f8: 0x92e9,
+          0xe7f9: 0x930f,
+          0xe7fa: 0x92fa,
+          0xe7fb: 0x9344,
+          0xe7fc: 0x932e,
+          0xe840: 0x9319,
+          0xe841: 0x9322,
+          0xe842: 0x931a,
+          0xe843: 0x9323,
+          0xe844: 0x933a,
+          0xe845: 0x9335,
+          0xe846: 0x933b,
+          0xe847: 0x935c,
+          0xe848: 0x9360,
+          0xe849: 0x937c,
+          0xe84a: 0x936e,
+          0xe84b: 0x9356,
+          0xe84c: 0x93b0,
+          0xe84d: 0x93ac,
+          0xe84e: 0x93ad,
+          0xe84f: 0x9394,
+          0xe850: 0x93b9,
+          0xe851: 0x93d6,
+          0xe852: 0x93d7,
+          0xe853: 0x93e8,
+          0xe854: 0x93e5,
+          0xe855: 0x93d8,
+          0xe856: 0x93c3,
+          0xe857: 0x93dd,
+          0xe858: 0x93d0,
+          0xe859: 0x93c8,
+          0xe85a: 0x93e4,
+          0xe85b: 0x941a,
+          0xe85c: 0x9414,
+          0xe85d: 0x9413,
+          0xe85e: 0x9403,
+          0xe85f: 0x9407,
+          0xe860: 0x9410,
+          0xe861: 0x9436,
+          0xe862: 0x942b,
+          0xe863: 0x9435,
+          0xe864: 0x9421,
+          0xe865: 0x943a,
+          0xe866: 0x9441,
+          0xe867: 0x9452,
+          0xe868: 0x9444,
+          0xe869: 0x945b,
+          0xe86a: 0x9460,
+          0xe86b: 0x9462,
+          0xe86c: 0x945e,
+          0xe86d: 0x946a,
+          0xe86e: 0x9229,
+          0xe86f: 0x9470,
+          0xe870: 0x9475,
+          0xe871: 0x9477,
+          0xe872: 0x947d,
+          0xe873: 0x945a,
+          0xe874: 0x947c,
+          0xe875: 0x947e,
+          0xe876: 0x9481,
+          0xe877: 0x947f,
+          0xe878: 0x9582,
+          0xe879: 0x9587,
+          0xe87a: 0x958a,
+          0xe87b: 0x9594,
+          0xe87c: 0x9596,
+          0xe87d: 0x9598,
+          0xe87e: 0x9599,
+          0xe880: 0x95a0,
+          0xe881: 0x95a8,
+          0xe882: 0x95a7,
+          0xe883: 0x95ad,
+          0xe884: 0x95bc,
+          0xe885: 0x95bb,
+          0xe886: 0x95b9,
+          0xe887: 0x95be,
+          0xe888: 0x95ca,
+          0xe889: 0x6ff6,
+          0xe88a: 0x95c3,
+          0xe88b: 0x95cd,
+          0xe88c: 0x95cc,
+          0xe88d: 0x95d5,
+          0xe88e: 0x95d4,
+          0xe88f: 0x95d6,
+          0xe890: 0x95dc,
+          0xe891: 0x95e1,
+          0xe892: 0x95e5,
+          0xe893: 0x95e2,
+          0xe894: 0x9621,
+          0xe895: 0x9628,
+          0xe896: 0x962e,
+          0xe897: 0x962f,
+          0xe898: 0x9642,
+          0xe899: 0x964c,
+          0xe89a: 0x964f,
+          0xe89b: 0x964b,
+          0xe89c: 0x9677,
+          0xe89d: 0x965c,
+          0xe89e: 0x965e,
+          0xe89f: 0x965d,
+          0xe8a0: 0x965f,
+          0xe8a1: 0x9666,
+          0xe8a2: 0x9672,
+          0xe8a3: 0x966c,
+          0xe8a4: 0x968d,
+          0xe8a5: 0x9698,
+          0xe8a6: 0x9695,
+          0xe8a7: 0x9697,
+          0xe8a8: 0x96aa,
+          0xe8a9: 0x96a7,
+          0xe8aa: 0x96b1,
+          0xe8ab: 0x96b2,
+          0xe8ac: 0x96b0,
+          0xe8ad: 0x96b4,
+          0xe8ae: 0x96b6,
+          0xe8af: 0x96b8,
+          0xe8b0: 0x96b9,
+          0xe8b1: 0x96ce,
+          0xe8b2: 0x96cb,
+          0xe8b3: 0x96c9,
+          0xe8b4: 0x96cd,
+          0xe8b5: 0x894d,
+          0xe8b6: 0x96dc,
+          0xe8b7: 0x970d,
+          0xe8b8: 0x96d5,
+          0xe8b9: 0x96f9,
+          0xe8ba: 0x9704,
+          0xe8bb: 0x9706,
+          0xe8bc: 0x9708,
+          0xe8bd: 0x9713,
+          0xe8be: 0x970e,
+          0xe8bf: 0x9711,
+          0xe8c0: 0x970f,
+          0xe8c1: 0x9716,
+          0xe8c2: 0x9719,
+          0xe8c3: 0x9724,
+          0xe8c4: 0x972a,
+          0xe8c5: 0x9730,
+          0xe8c6: 0x9739,
+          0xe8c7: 0x973d,
+          0xe8c8: 0x973e,
+          0xe8c9: 0x9744,
+          0xe8ca: 0x9746,
+          0xe8cb: 0x9748,
+          0xe8cc: 0x9742,
+          0xe8cd: 0x9749,
+          0xe8ce: 0x975c,
+          0xe8cf: 0x9760,
+          0xe8d0: 0x9764,
+          0xe8d1: 0x9766,
+          0xe8d2: 0x9768,
+          0xe8d3: 0x52d2,
+          0xe8d4: 0x976b,
+          0xe8d5: 0x9771,
+          0xe8d6: 0x9779,
+          0xe8d7: 0x9785,
+          0xe8d8: 0x977c,
+          0xe8d9: 0x9781,
+          0xe8da: 0x977a,
+          0xe8db: 0x9786,
+          0xe8dc: 0x978b,
+          0xe8dd: 0x978f,
+          0xe8de: 0x9790,
+          0xe8df: 0x979c,
+          0xe8e0: 0x97a8,
+          0xe8e1: 0x97a6,
+          0xe8e2: 0x97a3,
+          0xe8e3: 0x97b3,
+          0xe8e4: 0x97b4,
+          0xe8e5: 0x97c3,
+          0xe8e6: 0x97c6,
+          0xe8e7: 0x97c8,
+          0xe8e8: 0x97cb,
+          0xe8e9: 0x97dc,
+          0xe8ea: 0x97ed,
+          0xe8eb: 0x9f4f,
+          0xe8ec: 0x97f2,
+          0xe8ed: 0x7adf,
+          0xe8ee: 0x97f6,
+          0xe8ef: 0x97f5,
+          0xe8f0: 0x980f,
+          0xe8f1: 0x980c,
+          0xe8f2: 0x9838,
+          0xe8f3: 0x9824,
+          0xe8f4: 0x9821,
+          0xe8f5: 0x9837,
+          0xe8f6: 0x983d,
+          0xe8f7: 0x9846,
+          0xe8f8: 0x984f,
+          0xe8f9: 0x984b,
+          0xe8fa: 0x986b,
+          0xe8fb: 0x986f,
+          0xe8fc: 0x9870,
+          0xe940: 0x9871,
+          0xe941: 0x9874,
+          0xe942: 0x9873,
+          0xe943: 0x98aa,
+          0xe944: 0x98af,
+          0xe945: 0x98b1,
+          0xe946: 0x98b6,
+          0xe947: 0x98c4,
+          0xe948: 0x98c3,
+          0xe949: 0x98c6,
+          0xe94a: 0x98e9,
+          0xe94b: 0x98eb,
+          0xe94c: 0x9903,
+          0xe94d: 0x9909,
+          0xe94e: 0x9912,
+          0xe94f: 0x9914,
+          0xe950: 0x9918,
+          0xe951: 0x9921,
+          0xe952: 0x991d,
+          0xe953: 0x991e,
+          0xe954: 0x9924,
+          0xe955: 0x9920,
+          0xe956: 0x992c,
+          0xe957: 0x992e,
+          0xe958: 0x993d,
+          0xe959: 0x993e,
+          0xe95a: 0x9942,
+          0xe95b: 0x9949,
+          0xe95c: 0x9945,
+          0xe95d: 0x9950,
+          0xe95e: 0x994b,
+          0xe95f: 0x9951,
+          0xe960: 0x9952,
+          0xe961: 0x994c,
+          0xe962: 0x9955,
+          0xe963: 0x9997,
+          0xe964: 0x9998,
+          0xe965: 0x99a5,
+          0xe966: 0x99ad,
+          0xe967: 0x99ae,
+          0xe968: 0x99bc,
+          0xe969: 0x99df,
+          0xe96a: 0x99db,
+          0xe96b: 0x99dd,
+          0xe96c: 0x99d8,
+          0xe96d: 0x99d1,
+          0xe96e: 0x99ed,
+          0xe96f: 0x99ee,
+          0xe970: 0x99f1,
+          0xe971: 0x99f2,
+          0xe972: 0x99fb,
+          0xe973: 0x99f8,
+          0xe974: 0x9a01,
+          0xe975: 0x9a0f,
+          0xe976: 0x9a05,
+          0xe977: 0x99e2,
+          0xe978: 0x9a19,
+          0xe979: 0x9a2b,
+          0xe97a: 0x9a37,
+          0xe97b: 0x9a45,
+          0xe97c: 0x9a42,
+          0xe97d: 0x9a40,
+          0xe97e: 0x9a43,
+          0xe980: 0x9a3e,
+          0xe981: 0x9a55,
+          0xe982: 0x9a4d,
+          0xe983: 0x9a5b,
+          0xe984: 0x9a57,
+          0xe985: 0x9a5f,
+          0xe986: 0x9a62,
+          0xe987: 0x9a65,
+          0xe988: 0x9a64,
+          0xe989: 0x9a69,
+          0xe98a: 0x9a6b,
+          0xe98b: 0x9a6a,
+          0xe98c: 0x9aad,
+          0xe98d: 0x9ab0,
+          0xe98e: 0x9abc,
+          0xe98f: 0x9ac0,
+          0xe990: 0x9acf,
+          0xe991: 0x9ad1,
+          0xe992: 0x9ad3,
+          0xe993: 0x9ad4,
+          0xe994: 0x9ade,
+          0xe995: 0x9adf,
+          0xe996: 0x9ae2,
+          0xe997: 0x9ae3,
+          0xe998: 0x9ae6,
+          0xe999: 0x9aef,
+          0xe99a: 0x9aeb,
+          0xe99b: 0x9aee,
+          0xe99c: 0x9af4,
+          0xe99d: 0x9af1,
+          0xe99e: 0x9af7,
+          0xe99f: 0x9afb,
+          0xe9a0: 0x9b06,
+          0xe9a1: 0x9b18,
+          0xe9a2: 0x9b1a,
+          0xe9a3: 0x9b1f,
+          0xe9a4: 0x9b22,
+          0xe9a5: 0x9b23,
+          0xe9a6: 0x9b25,
+          0xe9a7: 0x9b27,
+          0xe9a8: 0x9b28,
+          0xe9a9: 0x9b29,
+          0xe9aa: 0x9b2a,
+          0xe9ab: 0x9b2e,
+          0xe9ac: 0x9b2f,
+          0xe9ad: 0x9b32,
+          0xe9ae: 0x9b44,
+          0xe9af: 0x9b43,
+          0xe9b0: 0x9b4f,
+          0xe9b1: 0x9b4d,
+          0xe9b2: 0x9b4e,
+          0xe9b3: 0x9b51,
+          0xe9b4: 0x9b58,
+          0xe9b5: 0x9b74,
+          0xe9b6: 0x9b93,
+          0xe9b7: 0x9b83,
+          0xe9b8: 0x9b91,
+          0xe9b9: 0x9b96,
+          0xe9ba: 0x9b97,
+          0xe9bb: 0x9b9f,
+          0xe9bc: 0x9ba0,
+          0xe9bd: 0x9ba8,
+          0xe9be: 0x9bb4,
+          0xe9bf: 0x9bc0,
+          0xe9c0: 0x9bca,
+          0xe9c1: 0x9bb9,
+          0xe9c2: 0x9bc6,
+          0xe9c3: 0x9bcf,
+          0xe9c4: 0x9bd1,
+          0xe9c5: 0x9bd2,
+          0xe9c6: 0x9be3,
+          0xe9c7: 0x9be2,
+          0xe9c8: 0x9be4,
+          0xe9c9: 0x9bd4,
+          0xe9ca: 0x9be1,
+          0xe9cb: 0x9c3a,
+          0xe9cc: 0x9bf2,
+          0xe9cd: 0x9bf1,
+          0xe9ce: 0x9bf0,
+          0xe9cf: 0x9c15,
+          0xe9d0: 0x9c14,
+          0xe9d1: 0x9c09,
+          0xe9d2: 0x9c13,
+          0xe9d3: 0x9c0c,
+          0xe9d4: 0x9c06,
+          0xe9d5: 0x9c08,
+          0xe9d6: 0x9c12,
+          0xe9d7: 0x9c0a,
+          0xe9d8: 0x9c04,
+          0xe9d9: 0x9c2e,
+          0xe9da: 0x9c1b,
+          0xe9db: 0x9c25,
+          0xe9dc: 0x9c24,
+          0xe9dd: 0x9c21,
+          0xe9de: 0x9c30,
+          0xe9df: 0x9c47,
+          0xe9e0: 0x9c32,
+          0xe9e1: 0x9c46,
+          0xe9e2: 0x9c3e,
+          0xe9e3: 0x9c5a,
+          0xe9e4: 0x9c60,
+          0xe9e5: 0x9c67,
+          0xe9e6: 0x9c76,
+          0xe9e7: 0x9c78,
+          0xe9e8: 0x9ce7,
+          0xe9e9: 0x9cec,
+          0xe9ea: 0x9cf0,
+          0xe9eb: 0x9d09,
+          0xe9ec: 0x9d08,
+          0xe9ed: 0x9ceb,
+          0xe9ee: 0x9d03,
+          0xe9ef: 0x9d06,
+          0xe9f0: 0x9d2a,
+          0xe9f1: 0x9d26,
+          0xe9f2: 0x9daf,
+          0xe9f3: 0x9d23,
+          0xe9f4: 0x9d1f,
+          0xe9f5: 0x9d44,
+          0xe9f6: 0x9d15,
+          0xe9f7: 0x9d12,
+          0xe9f8: 0x9d41,
+          0xe9f9: 0x9d3f,
+          0xe9fa: 0x9d3e,
+          0xe9fb: 0x9d46,
+          0xe9fc: 0x9d48,
+          0xea40: 0x9d5d,
+          0xea41: 0x9d5e,
+          0xea42: 0x9d64,
+          0xea43: 0x9d51,
+          0xea44: 0x9d50,
+          0xea45: 0x9d59,
+          0xea46: 0x9d72,
+          0xea47: 0x9d89,
+          0xea48: 0x9d87,
+          0xea49: 0x9dab,
+          0xea4a: 0x9d6f,
+          0xea4b: 0x9d7a,
+          0xea4c: 0x9d9a,
+          0xea4d: 0x9da4,
+          0xea4e: 0x9da9,
+          0xea4f: 0x9db2,
+          0xea50: 0x9dc4,
+          0xea51: 0x9dc1,
+          0xea52: 0x9dbb,
+          0xea53: 0x9db8,
+          0xea54: 0x9dba,
+          0xea55: 0x9dc6,
+          0xea56: 0x9dcf,
+          0xea57: 0x9dc2,
+          0xea58: 0x9dd9,
+          0xea59: 0x9dd3,
+          0xea5a: 0x9df8,
+          0xea5b: 0x9de6,
+          0xea5c: 0x9ded,
+          0xea5d: 0x9def,
+          0xea5e: 0x9dfd,
+          0xea5f: 0x9e1a,
+          0xea60: 0x9e1b,
+          0xea61: 0x9e1e,
+          0xea62: 0x9e75,
+          0xea63: 0x9e79,
+          0xea64: 0x9e7d,
+          0xea65: 0x9e81,
+          0xea66: 0x9e88,
+          0xea67: 0x9e8b,
+          0xea68: 0x9e8c,
+          0xea69: 0x9e92,
+          0xea6a: 0x9e95,
+          0xea6b: 0x9e91,
+          0xea6c: 0x9e9d,
+          0xea6d: 0x9ea5,
+          0xea6e: 0x9ea9,
+          0xea6f: 0x9eb8,
+          0xea70: 0x9eaa,
+          0xea71: 0x9ead,
+          0xea72: 0x9761,
+          0xea73: 0x9ecc,
+          0xea74: 0x9ece,
+          0xea75: 0x9ecf,
+          0xea76: 0x9ed0,
+          0xea77: 0x9ed4,
+          0xea78: 0x9edc,
+          0xea79: 0x9ede,
+          0xea7a: 0x9edd,
+          0xea7b: 0x9ee0,
+          0xea7c: 0x9ee5,
+          0xea7d: 0x9ee8,
+          0xea7e: 0x9eef,
+          0xea80: 0x9ef4,
+          0xea81: 0x9ef6,
+          0xea82: 0x9ef7,
+          0xea83: 0x9ef9,
+          0xea84: 0x9efb,
+          0xea85: 0x9efc,
+          0xea86: 0x9efd,
+          0xea87: 0x9f07,
+          0xea88: 0x9f08,
+          0xea89: 0x76b7,
+          0xea8a: 0x9f15,
+          0xea8b: 0x9f21,
+          0xea8c: 0x9f2c,
+          0xea8d: 0x9f3e,
+          0xea8e: 0x9f4a,
+          0xea8f: 0x9f52,
+          0xea90: 0x9f54,
+          0xea91: 0x9f63,
+          0xea92: 0x9f5f,
+          0xea93: 0x9f60,
+          0xea94: 0x9f61,
+          0xea95: 0x9f66,
+          0xea96: 0x9f67,
+          0xea97: 0x9f6c,
+          0xea98: 0x9f6a,
+          0xea99: 0x9f77,
+          0xea9a: 0x9f72,
+          0xea9b: 0x9f76,
+          0xea9c: 0x9f95,
+          0xea9d: 0x9f9c,
+          0xea9e: 0x9fa0,
+          0xea9f: 0x582f,
+          0xeaa0: 0x69c7,
+          0xeaa1: 0x9059,
+          0xeaa2: 0x7464,
+          0xeaa3: 0x51dc,
+          0xeaa4: 0x7199,
+        };
 
-"use strict";
+        /***/
+      },
+      /* 9 */
+      /***/ function (module, exports, __webpack_require__) {
+        "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.shiftJISTable = {
-    0x20: 0x0020,
-    0x21: 0x0021,
-    0x22: 0x0022,
-    0x23: 0x0023,
-    0x24: 0x0024,
-    0x25: 0x0025,
-    0x26: 0x0026,
-    0x27: 0x0027,
-    0x28: 0x0028,
-    0x29: 0x0029,
-    0x2A: 0x002A,
-    0x2B: 0x002B,
-    0x2C: 0x002C,
-    0x2D: 0x002D,
-    0x2E: 0x002E,
-    0x2F: 0x002F,
-    0x30: 0x0030,
-    0x31: 0x0031,
-    0x32: 0x0032,
-    0x33: 0x0033,
-    0x34: 0x0034,
-    0x35: 0x0035,
-    0x36: 0x0036,
-    0x37: 0x0037,
-    0x38: 0x0038,
-    0x39: 0x0039,
-    0x3A: 0x003A,
-    0x3B: 0x003B,
-    0x3C: 0x003C,
-    0x3D: 0x003D,
-    0x3E: 0x003E,
-    0x3F: 0x003F,
-    0x40: 0x0040,
-    0x41: 0x0041,
-    0x42: 0x0042,
-    0x43: 0x0043,
-    0x44: 0x0044,
-    0x45: 0x0045,
-    0x46: 0x0046,
-    0x47: 0x0047,
-    0x48: 0x0048,
-    0x49: 0x0049,
-    0x4A: 0x004A,
-    0x4B: 0x004B,
-    0x4C: 0x004C,
-    0x4D: 0x004D,
-    0x4E: 0x004E,
-    0x4F: 0x004F,
-    0x50: 0x0050,
-    0x51: 0x0051,
-    0x52: 0x0052,
-    0x53: 0x0053,
-    0x54: 0x0054,
-    0x55: 0x0055,
-    0x56: 0x0056,
-    0x57: 0x0057,
-    0x58: 0x0058,
-    0x59: 0x0059,
-    0x5A: 0x005A,
-    0x5B: 0x005B,
-    0x5C: 0x00A5,
-    0x5D: 0x005D,
-    0x5E: 0x005E,
-    0x5F: 0x005F,
-    0x60: 0x0060,
-    0x61: 0x0061,
-    0x62: 0x0062,
-    0x63: 0x0063,
-    0x64: 0x0064,
-    0x65: 0x0065,
-    0x66: 0x0066,
-    0x67: 0x0067,
-    0x68: 0x0068,
-    0x69: 0x0069,
-    0x6A: 0x006A,
-    0x6B: 0x006B,
-    0x6C: 0x006C,
-    0x6D: 0x006D,
-    0x6E: 0x006E,
-    0x6F: 0x006F,
-    0x70: 0x0070,
-    0x71: 0x0071,
-    0x72: 0x0072,
-    0x73: 0x0073,
-    0x74: 0x0074,
-    0x75: 0x0075,
-    0x76: 0x0076,
-    0x77: 0x0077,
-    0x78: 0x0078,
-    0x79: 0x0079,
-    0x7A: 0x007A,
-    0x7B: 0x007B,
-    0x7C: 0x007C,
-    0x7D: 0x007D,
-    0x7E: 0x203E,
-    0x8140: 0x3000,
-    0x8141: 0x3001,
-    0x8142: 0x3002,
-    0x8143: 0xFF0C,
-    0x8144: 0xFF0E,
-    0x8145: 0x30FB,
-    0x8146: 0xFF1A,
-    0x8147: 0xFF1B,
-    0x8148: 0xFF1F,
-    0x8149: 0xFF01,
-    0x814A: 0x309B,
-    0x814B: 0x309C,
-    0x814C: 0x00B4,
-    0x814D: 0xFF40,
-    0x814E: 0x00A8,
-    0x814F: 0xFF3E,
-    0x8150: 0xFFE3,
-    0x8151: 0xFF3F,
-    0x8152: 0x30FD,
-    0x8153: 0x30FE,
-    0x8154: 0x309D,
-    0x8155: 0x309E,
-    0x8156: 0x3003,
-    0x8157: 0x4EDD,
-    0x8158: 0x3005,
-    0x8159: 0x3006,
-    0x815A: 0x3007,
-    0x815B: 0x30FC,
-    0x815C: 0x2015,
-    0x815D: 0x2010,
-    0x815E: 0xFF0F,
-    0x815F: 0x005C,
-    0x8160: 0x301C,
-    0x8161: 0x2016,
-    0x8162: 0xFF5C,
-    0x8163: 0x2026,
-    0x8164: 0x2025,
-    0x8165: 0x2018,
-    0x8166: 0x2019,
-    0x8167: 0x201C,
-    0x8168: 0x201D,
-    0x8169: 0xFF08,
-    0x816A: 0xFF09,
-    0x816B: 0x3014,
-    0x816C: 0x3015,
-    0x816D: 0xFF3B,
-    0x816E: 0xFF3D,
-    0x816F: 0xFF5B,
-    0x8170: 0xFF5D,
-    0x8171: 0x3008,
-    0x8172: 0x3009,
-    0x8173: 0x300A,
-    0x8174: 0x300B,
-    0x8175: 0x300C,
-    0x8176: 0x300D,
-    0x8177: 0x300E,
-    0x8178: 0x300F,
-    0x8179: 0x3010,
-    0x817A: 0x3011,
-    0x817B: 0xFF0B,
-    0x817C: 0x2212,
-    0x817D: 0x00B1,
-    0x817E: 0x00D7,
-    0x8180: 0x00F7,
-    0x8181: 0xFF1D,
-    0x8182: 0x2260,
-    0x8183: 0xFF1C,
-    0x8184: 0xFF1E,
-    0x8185: 0x2266,
-    0x8186: 0x2267,
-    0x8187: 0x221E,
-    0x8188: 0x2234,
-    0x8189: 0x2642,
-    0x818A: 0x2640,
-    0x818B: 0x00B0,
-    0x818C: 0x2032,
-    0x818D: 0x2033,
-    0x818E: 0x2103,
-    0x818F: 0xFFE5,
-    0x8190: 0xFF04,
-    0x8191: 0x00A2,
-    0x8192: 0x00A3,
-    0x8193: 0xFF05,
-    0x8194: 0xFF03,
-    0x8195: 0xFF06,
-    0x8196: 0xFF0A,
-    0x8197: 0xFF20,
-    0x8198: 0x00A7,
-    0x8199: 0x2606,
-    0x819A: 0x2605,
-    0x819B: 0x25CB,
-    0x819C: 0x25CF,
-    0x819D: 0x25CE,
-    0x819E: 0x25C7,
-    0x819F: 0x25C6,
-    0x81A0: 0x25A1,
-    0x81A1: 0x25A0,
-    0x81A2: 0x25B3,
-    0x81A3: 0x25B2,
-    0x81A4: 0x25BD,
-    0x81A5: 0x25BC,
-    0x81A6: 0x203B,
-    0x81A7: 0x3012,
-    0x81A8: 0x2192,
-    0x81A9: 0x2190,
-    0x81AA: 0x2191,
-    0x81AB: 0x2193,
-    0x81AC: 0x3013,
-    0x81B8: 0x2208,
-    0x81B9: 0x220B,
-    0x81BA: 0x2286,
-    0x81BB: 0x2287,
-    0x81BC: 0x2282,
-    0x81BD: 0x2283,
-    0x81BE: 0x222A,
-    0x81BF: 0x2229,
-    0x81C8: 0x2227,
-    0x81C9: 0x2228,
-    0x81CA: 0x00AC,
-    0x81CB: 0x21D2,
-    0x81CC: 0x21D4,
-    0x81CD: 0x2200,
-    0x81CE: 0x2203,
-    0x81DA: 0x2220,
-    0x81DB: 0x22A5,
-    0x81DC: 0x2312,
-    0x81DD: 0x2202,
-    0x81DE: 0x2207,
-    0x81DF: 0x2261,
-    0x81E0: 0x2252,
-    0x81E1: 0x226A,
-    0x81E2: 0x226B,
-    0x81E3: 0x221A,
-    0x81E4: 0x223D,
-    0x81E5: 0x221D,
-    0x81E6: 0x2235,
-    0x81E7: 0x222B,
-    0x81E8: 0x222C,
-    0x81F0: 0x212B,
-    0x81F1: 0x2030,
-    0x81F2: 0x266F,
-    0x81F3: 0x266D,
-    0x81F4: 0x266A,
-    0x81F5: 0x2020,
-    0x81F6: 0x2021,
-    0x81F7: 0x00B6,
-    0x81FC: 0x25EF,
-    0x824F: 0xFF10,
-    0x8250: 0xFF11,
-    0x8251: 0xFF12,
-    0x8252: 0xFF13,
-    0x8253: 0xFF14,
-    0x8254: 0xFF15,
-    0x8255: 0xFF16,
-    0x8256: 0xFF17,
-    0x8257: 0xFF18,
-    0x8258: 0xFF19,
-    0x8260: 0xFF21,
-    0x8261: 0xFF22,
-    0x8262: 0xFF23,
-    0x8263: 0xFF24,
-    0x8264: 0xFF25,
-    0x8265: 0xFF26,
-    0x8266: 0xFF27,
-    0x8267: 0xFF28,
-    0x8268: 0xFF29,
-    0x8269: 0xFF2A,
-    0x826A: 0xFF2B,
-    0x826B: 0xFF2C,
-    0x826C: 0xFF2D,
-    0x826D: 0xFF2E,
-    0x826E: 0xFF2F,
-    0x826F: 0xFF30,
-    0x8270: 0xFF31,
-    0x8271: 0xFF32,
-    0x8272: 0xFF33,
-    0x8273: 0xFF34,
-    0x8274: 0xFF35,
-    0x8275: 0xFF36,
-    0x8276: 0xFF37,
-    0x8277: 0xFF38,
-    0x8278: 0xFF39,
-    0x8279: 0xFF3A,
-    0x8281: 0xFF41,
-    0x8282: 0xFF42,
-    0x8283: 0xFF43,
-    0x8284: 0xFF44,
-    0x8285: 0xFF45,
-    0x8286: 0xFF46,
-    0x8287: 0xFF47,
-    0x8288: 0xFF48,
-    0x8289: 0xFF49,
-    0x828A: 0xFF4A,
-    0x828B: 0xFF4B,
-    0x828C: 0xFF4C,
-    0x828D: 0xFF4D,
-    0x828E: 0xFF4E,
-    0x828F: 0xFF4F,
-    0x8290: 0xFF50,
-    0x8291: 0xFF51,
-    0x8292: 0xFF52,
-    0x8293: 0xFF53,
-    0x8294: 0xFF54,
-    0x8295: 0xFF55,
-    0x8296: 0xFF56,
-    0x8297: 0xFF57,
-    0x8298: 0xFF58,
-    0x8299: 0xFF59,
-    0x829A: 0xFF5A,
-    0x829F: 0x3041,
-    0x82A0: 0x3042,
-    0x82A1: 0x3043,
-    0x82A2: 0x3044,
-    0x82A3: 0x3045,
-    0x82A4: 0x3046,
-    0x82A5: 0x3047,
-    0x82A6: 0x3048,
-    0x82A7: 0x3049,
-    0x82A8: 0x304A,
-    0x82A9: 0x304B,
-    0x82AA: 0x304C,
-    0x82AB: 0x304D,
-    0x82AC: 0x304E,
-    0x82AD: 0x304F,
-    0x82AE: 0x3050,
-    0x82AF: 0x3051,
-    0x82B0: 0x3052,
-    0x82B1: 0x3053,
-    0x82B2: 0x3054,
-    0x82B3: 0x3055,
-    0x82B4: 0x3056,
-    0x82B5: 0x3057,
-    0x82B6: 0x3058,
-    0x82B7: 0x3059,
-    0x82B8: 0x305A,
-    0x82B9: 0x305B,
-    0x82BA: 0x305C,
-    0x82BB: 0x305D,
-    0x82BC: 0x305E,
-    0x82BD: 0x305F,
-    0x82BE: 0x3060,
-    0x82BF: 0x3061,
-    0x82C0: 0x3062,
-    0x82C1: 0x3063,
-    0x82C2: 0x3064,
-    0x82C3: 0x3065,
-    0x82C4: 0x3066,
-    0x82C5: 0x3067,
-    0x82C6: 0x3068,
-    0x82C7: 0x3069,
-    0x82C8: 0x306A,
-    0x82C9: 0x306B,
-    0x82CA: 0x306C,
-    0x82CB: 0x306D,
-    0x82CC: 0x306E,
-    0x82CD: 0x306F,
-    0x82CE: 0x3070,
-    0x82CF: 0x3071,
-    0x82D0: 0x3072,
-    0x82D1: 0x3073,
-    0x82D2: 0x3074,
-    0x82D3: 0x3075,
-    0x82D4: 0x3076,
-    0x82D5: 0x3077,
-    0x82D6: 0x3078,
-    0x82D7: 0x3079,
-    0x82D8: 0x307A,
-    0x82D9: 0x307B,
-    0x82DA: 0x307C,
-    0x82DB: 0x307D,
-    0x82DC: 0x307E,
-    0x82DD: 0x307F,
-    0x82DE: 0x3080,
-    0x82DF: 0x3081,
-    0x82E0: 0x3082,
-    0x82E1: 0x3083,
-    0x82E2: 0x3084,
-    0x82E3: 0x3085,
-    0x82E4: 0x3086,
-    0x82E5: 0x3087,
-    0x82E6: 0x3088,
-    0x82E7: 0x3089,
-    0x82E8: 0x308A,
-    0x82E9: 0x308B,
-    0x82EA: 0x308C,
-    0x82EB: 0x308D,
-    0x82EC: 0x308E,
-    0x82ED: 0x308F,
-    0x82EE: 0x3090,
-    0x82EF: 0x3091,
-    0x82F0: 0x3092,
-    0x82F1: 0x3093,
-    0x8340: 0x30A1,
-    0x8341: 0x30A2,
-    0x8342: 0x30A3,
-    0x8343: 0x30A4,
-    0x8344: 0x30A5,
-    0x8345: 0x30A6,
-    0x8346: 0x30A7,
-    0x8347: 0x30A8,
-    0x8348: 0x30A9,
-    0x8349: 0x30AA,
-    0x834A: 0x30AB,
-    0x834B: 0x30AC,
-    0x834C: 0x30AD,
-    0x834D: 0x30AE,
-    0x834E: 0x30AF,
-    0x834F: 0x30B0,
-    0x8350: 0x30B1,
-    0x8351: 0x30B2,
-    0x8352: 0x30B3,
-    0x8353: 0x30B4,
-    0x8354: 0x30B5,
-    0x8355: 0x30B6,
-    0x8356: 0x30B7,
-    0x8357: 0x30B8,
-    0x8358: 0x30B9,
-    0x8359: 0x30BA,
-    0x835A: 0x30BB,
-    0x835B: 0x30BC,
-    0x835C: 0x30BD,
-    0x835D: 0x30BE,
-    0x835E: 0x30BF,
-    0x835F: 0x30C0,
-    0x8360: 0x30C1,
-    0x8361: 0x30C2,
-    0x8362: 0x30C3,
-    0x8363: 0x30C4,
-    0x8364: 0x30C5,
-    0x8365: 0x30C6,
-    0x8366: 0x30C7,
-    0x8367: 0x30C8,
-    0x8368: 0x30C9,
-    0x8369: 0x30CA,
-    0x836A: 0x30CB,
-    0x836B: 0x30CC,
-    0x836C: 0x30CD,
-    0x836D: 0x30CE,
-    0x836E: 0x30CF,
-    0x836F: 0x30D0,
-    0x8370: 0x30D1,
-    0x8371: 0x30D2,
-    0x8372: 0x30D3,
-    0x8373: 0x30D4,
-    0x8374: 0x30D5,
-    0x8375: 0x30D6,
-    0x8376: 0x30D7,
-    0x8377: 0x30D8,
-    0x8378: 0x30D9,
-    0x8379: 0x30DA,
-    0x837A: 0x30DB,
-    0x837B: 0x30DC,
-    0x837C: 0x30DD,
-    0x837D: 0x30DE,
-    0x837E: 0x30DF,
-    0x8380: 0x30E0,
-    0x8381: 0x30E1,
-    0x8382: 0x30E2,
-    0x8383: 0x30E3,
-    0x8384: 0x30E4,
-    0x8385: 0x30E5,
-    0x8386: 0x30E6,
-    0x8387: 0x30E7,
-    0x8388: 0x30E8,
-    0x8389: 0x30E9,
-    0x838A: 0x30EA,
-    0x838B: 0x30EB,
-    0x838C: 0x30EC,
-    0x838D: 0x30ED,
-    0x838E: 0x30EE,
-    0x838F: 0x30EF,
-    0x8390: 0x30F0,
-    0x8391: 0x30F1,
-    0x8392: 0x30F2,
-    0x8393: 0x30F3,
-    0x8394: 0x30F4,
-    0x8395: 0x30F5,
-    0x8396: 0x30F6,
-    0x839F: 0x0391,
-    0x83A0: 0x0392,
-    0x83A1: 0x0393,
-    0x83A2: 0x0394,
-    0x83A3: 0x0395,
-    0x83A4: 0x0396,
-    0x83A5: 0x0397,
-    0x83A6: 0x0398,
-    0x83A7: 0x0399,
-    0x83A8: 0x039A,
-    0x83A9: 0x039B,
-    0x83AA: 0x039C,
-    0x83AB: 0x039D,
-    0x83AC: 0x039E,
-    0x83AD: 0x039F,
-    0x83AE: 0x03A0,
-    0x83AF: 0x03A1,
-    0x83B0: 0x03A3,
-    0x83B1: 0x03A4,
-    0x83B2: 0x03A5,
-    0x83B3: 0x03A6,
-    0x83B4: 0x03A7,
-    0x83B5: 0x03A8,
-    0x83B6: 0x03A9,
-    0x83BF: 0x03B1,
-    0x83C0: 0x03B2,
-    0x83C1: 0x03B3,
-    0x83C2: 0x03B4,
-    0x83C3: 0x03B5,
-    0x83C4: 0x03B6,
-    0x83C5: 0x03B7,
-    0x83C6: 0x03B8,
-    0x83C7: 0x03B9,
-    0x83C8: 0x03BA,
-    0x83C9: 0x03BB,
-    0x83CA: 0x03BC,
-    0x83CB: 0x03BD,
-    0x83CC: 0x03BE,
-    0x83CD: 0x03BF,
-    0x83CE: 0x03C0,
-    0x83CF: 0x03C1,
-    0x83D0: 0x03C3,
-    0x83D1: 0x03C4,
-    0x83D2: 0x03C5,
-    0x83D3: 0x03C6,
-    0x83D4: 0x03C7,
-    0x83D5: 0x03C8,
-    0x83D6: 0x03C9,
-    0x8440: 0x0410,
-    0x8441: 0x0411,
-    0x8442: 0x0412,
-    0x8443: 0x0413,
-    0x8444: 0x0414,
-    0x8445: 0x0415,
-    0x8446: 0x0401,
-    0x8447: 0x0416,
-    0x8448: 0x0417,
-    0x8449: 0x0418,
-    0x844A: 0x0419,
-    0x844B: 0x041A,
-    0x844C: 0x041B,
-    0x844D: 0x041C,
-    0x844E: 0x041D,
-    0x844F: 0x041E,
-    0x8450: 0x041F,
-    0x8451: 0x0420,
-    0x8452: 0x0421,
-    0x8453: 0x0422,
-    0x8454: 0x0423,
-    0x8455: 0x0424,
-    0x8456: 0x0425,
-    0x8457: 0x0426,
-    0x8458: 0x0427,
-    0x8459: 0x0428,
-    0x845A: 0x0429,
-    0x845B: 0x042A,
-    0x845C: 0x042B,
-    0x845D: 0x042C,
-    0x845E: 0x042D,
-    0x845F: 0x042E,
-    0x8460: 0x042F,
-    0x8470: 0x0430,
-    0x8471: 0x0431,
-    0x8472: 0x0432,
-    0x8473: 0x0433,
-    0x8474: 0x0434,
-    0x8475: 0x0435,
-    0x8476: 0x0451,
-    0x8477: 0x0436,
-    0x8478: 0x0437,
-    0x8479: 0x0438,
-    0x847A: 0x0439,
-    0x847B: 0x043A,
-    0x847C: 0x043B,
-    0x847D: 0x043C,
-    0x847E: 0x043D,
-    0x8480: 0x043E,
-    0x8481: 0x043F,
-    0x8482: 0x0440,
-    0x8483: 0x0441,
-    0x8484: 0x0442,
-    0x8485: 0x0443,
-    0x8486: 0x0444,
-    0x8487: 0x0445,
-    0x8488: 0x0446,
-    0x8489: 0x0447,
-    0x848A: 0x0448,
-    0x848B: 0x0449,
-    0x848C: 0x044A,
-    0x848D: 0x044B,
-    0x848E: 0x044C,
-    0x848F: 0x044D,
-    0x8490: 0x044E,
-    0x8491: 0x044F,
-    0x849F: 0x2500,
-    0x84A0: 0x2502,
-    0x84A1: 0x250C,
-    0x84A2: 0x2510,
-    0x84A3: 0x2518,
-    0x84A4: 0x2514,
-    0x84A5: 0x251C,
-    0x84A6: 0x252C,
-    0x84A7: 0x2524,
-    0x84A8: 0x2534,
-    0x84A9: 0x253C,
-    0x84AA: 0x2501,
-    0x84AB: 0x2503,
-    0x84AC: 0x250F,
-    0x84AD: 0x2513,
-    0x84AE: 0x251B,
-    0x84AF: 0x2517,
-    0x84B0: 0x2523,
-    0x84B1: 0x2533,
-    0x84B2: 0x252B,
-    0x84B3: 0x253B,
-    0x84B4: 0x254B,
-    0x84B5: 0x2520,
-    0x84B6: 0x252F,
-    0x84B7: 0x2528,
-    0x84B8: 0x2537,
-    0x84B9: 0x253F,
-    0x84BA: 0x251D,
-    0x84BB: 0x2530,
-    0x84BC: 0x2525,
-    0x84BD: 0x2538,
-    0x84BE: 0x2542,
-    0x889F: 0x4E9C,
-    0x88A0: 0x5516,
-    0x88A1: 0x5A03,
-    0x88A2: 0x963F,
-    0x88A3: 0x54C0,
-    0x88A4: 0x611B,
-    0x88A5: 0x6328,
-    0x88A6: 0x59F6,
-    0x88A7: 0x9022,
-    0x88A8: 0x8475,
-    0x88A9: 0x831C,
-    0x88AA: 0x7A50,
-    0x88AB: 0x60AA,
-    0x88AC: 0x63E1,
-    0x88AD: 0x6E25,
-    0x88AE: 0x65ED,
-    0x88AF: 0x8466,
-    0x88B0: 0x82A6,
-    0x88B1: 0x9BF5,
-    0x88B2: 0x6893,
-    0x88B3: 0x5727,
-    0x88B4: 0x65A1,
-    0x88B5: 0x6271,
-    0x88B6: 0x5B9B,
-    0x88B7: 0x59D0,
-    0x88B8: 0x867B,
-    0x88B9: 0x98F4,
-    0x88BA: 0x7D62,
-    0x88BB: 0x7DBE,
-    0x88BC: 0x9B8E,
-    0x88BD: 0x6216,
-    0x88BE: 0x7C9F,
-    0x88BF: 0x88B7,
-    0x88C0: 0x5B89,
-    0x88C1: 0x5EB5,
-    0x88C2: 0x6309,
-    0x88C3: 0x6697,
-    0x88C4: 0x6848,
-    0x88C5: 0x95C7,
-    0x88C6: 0x978D,
-    0x88C7: 0x674F,
-    0x88C8: 0x4EE5,
-    0x88C9: 0x4F0A,
-    0x88CA: 0x4F4D,
-    0x88CB: 0x4F9D,
-    0x88CC: 0x5049,
-    0x88CD: 0x56F2,
-    0x88CE: 0x5937,
-    0x88CF: 0x59D4,
-    0x88D0: 0x5A01,
-    0x88D1: 0x5C09,
-    0x88D2: 0x60DF,
-    0x88D3: 0x610F,
-    0x88D4: 0x6170,
-    0x88D5: 0x6613,
-    0x88D6: 0x6905,
-    0x88D7: 0x70BA,
-    0x88D8: 0x754F,
-    0x88D9: 0x7570,
-    0x88DA: 0x79FB,
-    0x88DB: 0x7DAD,
-    0x88DC: 0x7DEF,
-    0x88DD: 0x80C3,
-    0x88DE: 0x840E,
-    0x88DF: 0x8863,
-    0x88E0: 0x8B02,
-    0x88E1: 0x9055,
-    0x88E2: 0x907A,
-    0x88E3: 0x533B,
-    0x88E4: 0x4E95,
-    0x88E5: 0x4EA5,
-    0x88E6: 0x57DF,
-    0x88E7: 0x80B2,
-    0x88E8: 0x90C1,
-    0x88E9: 0x78EF,
-    0x88EA: 0x4E00,
-    0x88EB: 0x58F1,
-    0x88EC: 0x6EA2,
-    0x88ED: 0x9038,
-    0x88EE: 0x7A32,
-    0x88EF: 0x8328,
-    0x88F0: 0x828B,
-    0x88F1: 0x9C2F,
-    0x88F2: 0x5141,
-    0x88F3: 0x5370,
-    0x88F4: 0x54BD,
-    0x88F5: 0x54E1,
-    0x88F6: 0x56E0,
-    0x88F7: 0x59FB,
-    0x88F8: 0x5F15,
-    0x88F9: 0x98F2,
-    0x88FA: 0x6DEB,
-    0x88FB: 0x80E4,
-    0x88FC: 0x852D,
-    0x8940: 0x9662,
-    0x8941: 0x9670,
-    0x8942: 0x96A0,
-    0x8943: 0x97FB,
-    0x8944: 0x540B,
-    0x8945: 0x53F3,
-    0x8946: 0x5B87,
-    0x8947: 0x70CF,
-    0x8948: 0x7FBD,
-    0x8949: 0x8FC2,
-    0x894A: 0x96E8,
-    0x894B: 0x536F,
-    0x894C: 0x9D5C,
-    0x894D: 0x7ABA,
-    0x894E: 0x4E11,
-    0x894F: 0x7893,
-    0x8950: 0x81FC,
-    0x8951: 0x6E26,
-    0x8952: 0x5618,
-    0x8953: 0x5504,
-    0x8954: 0x6B1D,
-    0x8955: 0x851A,
-    0x8956: 0x9C3B,
-    0x8957: 0x59E5,
-    0x8958: 0x53A9,
-    0x8959: 0x6D66,
-    0x895A: 0x74DC,
-    0x895B: 0x958F,
-    0x895C: 0x5642,
-    0x895D: 0x4E91,
-    0x895E: 0x904B,
-    0x895F: 0x96F2,
-    0x8960: 0x834F,
-    0x8961: 0x990C,
-    0x8962: 0x53E1,
-    0x8963: 0x55B6,
-    0x8964: 0x5B30,
-    0x8965: 0x5F71,
-    0x8966: 0x6620,
-    0x8967: 0x66F3,
-    0x8968: 0x6804,
-    0x8969: 0x6C38,
-    0x896A: 0x6CF3,
-    0x896B: 0x6D29,
-    0x896C: 0x745B,
-    0x896D: 0x76C8,
-    0x896E: 0x7A4E,
-    0x896F: 0x9834,
-    0x8970: 0x82F1,
-    0x8971: 0x885B,
-    0x8972: 0x8A60,
-    0x8973: 0x92ED,
-    0x8974: 0x6DB2,
-    0x8975: 0x75AB,
-    0x8976: 0x76CA,
-    0x8977: 0x99C5,
-    0x8978: 0x60A6,
-    0x8979: 0x8B01,
-    0x897A: 0x8D8A,
-    0x897B: 0x95B2,
-    0x897C: 0x698E,
-    0x897D: 0x53AD,
-    0x897E: 0x5186,
-    0x8980: 0x5712,
-    0x8981: 0x5830,
-    0x8982: 0x5944,
-    0x8983: 0x5BB4,
-    0x8984: 0x5EF6,
-    0x8985: 0x6028,
-    0x8986: 0x63A9,
-    0x8987: 0x63F4,
-    0x8988: 0x6CBF,
-    0x8989: 0x6F14,
-    0x898A: 0x708E,
-    0x898B: 0x7114,
-    0x898C: 0x7159,
-    0x898D: 0x71D5,
-    0x898E: 0x733F,
-    0x898F: 0x7E01,
-    0x8990: 0x8276,
-    0x8991: 0x82D1,
-    0x8992: 0x8597,
-    0x8993: 0x9060,
-    0x8994: 0x925B,
-    0x8995: 0x9D1B,
-    0x8996: 0x5869,
-    0x8997: 0x65BC,
-    0x8998: 0x6C5A,
-    0x8999: 0x7525,
-    0x899A: 0x51F9,
-    0x899B: 0x592E,
-    0x899C: 0x5965,
-    0x899D: 0x5F80,
-    0x899E: 0x5FDC,
-    0x899F: 0x62BC,
-    0x89A0: 0x65FA,
-    0x89A1: 0x6A2A,
-    0x89A2: 0x6B27,
-    0x89A3: 0x6BB4,
-    0x89A4: 0x738B,
-    0x89A5: 0x7FC1,
-    0x89A6: 0x8956,
-    0x89A7: 0x9D2C,
-    0x89A8: 0x9D0E,
-    0x89A9: 0x9EC4,
-    0x89AA: 0x5CA1,
-    0x89AB: 0x6C96,
-    0x89AC: 0x837B,
-    0x89AD: 0x5104,
-    0x89AE: 0x5C4B,
-    0x89AF: 0x61B6,
-    0x89B0: 0x81C6,
-    0x89B1: 0x6876,
-    0x89B2: 0x7261,
-    0x89B3: 0x4E59,
-    0x89B4: 0x4FFA,
-    0x89B5: 0x5378,
-    0x89B6: 0x6069,
-    0x89B7: 0x6E29,
-    0x89B8: 0x7A4F,
-    0x89B9: 0x97F3,
-    0x89BA: 0x4E0B,
-    0x89BB: 0x5316,
-    0x89BC: 0x4EEE,
-    0x89BD: 0x4F55,
-    0x89BE: 0x4F3D,
-    0x89BF: 0x4FA1,
-    0x89C0: 0x4F73,
-    0x89C1: 0x52A0,
-    0x89C2: 0x53EF,
-    0x89C3: 0x5609,
-    0x89C4: 0x590F,
-    0x89C5: 0x5AC1,
-    0x89C6: 0x5BB6,
-    0x89C7: 0x5BE1,
-    0x89C8: 0x79D1,
-    0x89C9: 0x6687,
-    0x89CA: 0x679C,
-    0x89CB: 0x67B6,
-    0x89CC: 0x6B4C,
-    0x89CD: 0x6CB3,
-    0x89CE: 0x706B,
-    0x89CF: 0x73C2,
-    0x89D0: 0x798D,
-    0x89D1: 0x79BE,
-    0x89D2: 0x7A3C,
-    0x89D3: 0x7B87,
-    0x89D4: 0x82B1,
-    0x89D5: 0x82DB,
-    0x89D6: 0x8304,
-    0x89D7: 0x8377,
-    0x89D8: 0x83EF,
-    0x89D9: 0x83D3,
-    0x89DA: 0x8766,
-    0x89DB: 0x8AB2,
-    0x89DC: 0x5629,
-    0x89DD: 0x8CA8,
-    0x89DE: 0x8FE6,
-    0x89DF: 0x904E,
-    0x89E0: 0x971E,
-    0x89E1: 0x868A,
-    0x89E2: 0x4FC4,
-    0x89E3: 0x5CE8,
-    0x89E4: 0x6211,
-    0x89E5: 0x7259,
-    0x89E6: 0x753B,
-    0x89E7: 0x81E5,
-    0x89E8: 0x82BD,
-    0x89E9: 0x86FE,
-    0x89EA: 0x8CC0,
-    0x89EB: 0x96C5,
-    0x89EC: 0x9913,
-    0x89ED: 0x99D5,
-    0x89EE: 0x4ECB,
-    0x89EF: 0x4F1A,
-    0x89F0: 0x89E3,
-    0x89F1: 0x56DE,
-    0x89F2: 0x584A,
-    0x89F3: 0x58CA,
-    0x89F4: 0x5EFB,
-    0x89F5: 0x5FEB,
-    0x89F6: 0x602A,
-    0x89F7: 0x6094,
-    0x89F8: 0x6062,
-    0x89F9: 0x61D0,
-    0x89FA: 0x6212,
-    0x89FB: 0x62D0,
-    0x89FC: 0x6539,
-    0x8A40: 0x9B41,
-    0x8A41: 0x6666,
-    0x8A42: 0x68B0,
-    0x8A43: 0x6D77,
-    0x8A44: 0x7070,
-    0x8A45: 0x754C,
-    0x8A46: 0x7686,
-    0x8A47: 0x7D75,
-    0x8A48: 0x82A5,
-    0x8A49: 0x87F9,
-    0x8A4A: 0x958B,
-    0x8A4B: 0x968E,
-    0x8A4C: 0x8C9D,
-    0x8A4D: 0x51F1,
-    0x8A4E: 0x52BE,
-    0x8A4F: 0x5916,
-    0x8A50: 0x54B3,
-    0x8A51: 0x5BB3,
-    0x8A52: 0x5D16,
-    0x8A53: 0x6168,
-    0x8A54: 0x6982,
-    0x8A55: 0x6DAF,
-    0x8A56: 0x788D,
-    0x8A57: 0x84CB,
-    0x8A58: 0x8857,
-    0x8A59: 0x8A72,
-    0x8A5A: 0x93A7,
-    0x8A5B: 0x9AB8,
-    0x8A5C: 0x6D6C,
-    0x8A5D: 0x99A8,
-    0x8A5E: 0x86D9,
-    0x8A5F: 0x57A3,
-    0x8A60: 0x67FF,
-    0x8A61: 0x86CE,
-    0x8A62: 0x920E,
-    0x8A63: 0x5283,
-    0x8A64: 0x5687,
-    0x8A65: 0x5404,
-    0x8A66: 0x5ED3,
-    0x8A67: 0x62E1,
-    0x8A68: 0x64B9,
-    0x8A69: 0x683C,
-    0x8A6A: 0x6838,
-    0x8A6B: 0x6BBB,
-    0x8A6C: 0x7372,
-    0x8A6D: 0x78BA,
-    0x8A6E: 0x7A6B,
-    0x8A6F: 0x899A,
-    0x8A70: 0x89D2,
-    0x8A71: 0x8D6B,
-    0x8A72: 0x8F03,
-    0x8A73: 0x90ED,
-    0x8A74: 0x95A3,
-    0x8A75: 0x9694,
-    0x8A76: 0x9769,
-    0x8A77: 0x5B66,
-    0x8A78: 0x5CB3,
-    0x8A79: 0x697D,
-    0x8A7A: 0x984D,
-    0x8A7B: 0x984E,
-    0x8A7C: 0x639B,
-    0x8A7D: 0x7B20,
-    0x8A7E: 0x6A2B,
-    0x8A80: 0x6A7F,
-    0x8A81: 0x68B6,
-    0x8A82: 0x9C0D,
-    0x8A83: 0x6F5F,
-    0x8A84: 0x5272,
-    0x8A85: 0x559D,
-    0x8A86: 0x6070,
-    0x8A87: 0x62EC,
-    0x8A88: 0x6D3B,
-    0x8A89: 0x6E07,
-    0x8A8A: 0x6ED1,
-    0x8A8B: 0x845B,
-    0x8A8C: 0x8910,
-    0x8A8D: 0x8F44,
-    0x8A8E: 0x4E14,
-    0x8A8F: 0x9C39,
-    0x8A90: 0x53F6,
-    0x8A91: 0x691B,
-    0x8A92: 0x6A3A,
-    0x8A93: 0x9784,
-    0x8A94: 0x682A,
-    0x8A95: 0x515C,
-    0x8A96: 0x7AC3,
-    0x8A97: 0x84B2,
-    0x8A98: 0x91DC,
-    0x8A99: 0x938C,
-    0x8A9A: 0x565B,
-    0x8A9B: 0x9D28,
-    0x8A9C: 0x6822,
-    0x8A9D: 0x8305,
-    0x8A9E: 0x8431,
-    0x8A9F: 0x7CA5,
-    0x8AA0: 0x5208,
-    0x8AA1: 0x82C5,
-    0x8AA2: 0x74E6,
-    0x8AA3: 0x4E7E,
-    0x8AA4: 0x4F83,
-    0x8AA5: 0x51A0,
-    0x8AA6: 0x5BD2,
-    0x8AA7: 0x520A,
-    0x8AA8: 0x52D8,
-    0x8AA9: 0x52E7,
-    0x8AAA: 0x5DFB,
-    0x8AAB: 0x559A,
-    0x8AAC: 0x582A,
-    0x8AAD: 0x59E6,
-    0x8AAE: 0x5B8C,
-    0x8AAF: 0x5B98,
-    0x8AB0: 0x5BDB,
-    0x8AB1: 0x5E72,
-    0x8AB2: 0x5E79,
-    0x8AB3: 0x60A3,
-    0x8AB4: 0x611F,
-    0x8AB5: 0x6163,
-    0x8AB6: 0x61BE,
-    0x8AB7: 0x63DB,
-    0x8AB8: 0x6562,
-    0x8AB9: 0x67D1,
-    0x8ABA: 0x6853,
-    0x8ABB: 0x68FA,
-    0x8ABC: 0x6B3E,
-    0x8ABD: 0x6B53,
-    0x8ABE: 0x6C57,
-    0x8ABF: 0x6F22,
-    0x8AC0: 0x6F97,
-    0x8AC1: 0x6F45,
-    0x8AC2: 0x74B0,
-    0x8AC3: 0x7518,
-    0x8AC4: 0x76E3,
-    0x8AC5: 0x770B,
-    0x8AC6: 0x7AFF,
-    0x8AC7: 0x7BA1,
-    0x8AC8: 0x7C21,
-    0x8AC9: 0x7DE9,
-    0x8ACA: 0x7F36,
-    0x8ACB: 0x7FF0,
-    0x8ACC: 0x809D,
-    0x8ACD: 0x8266,
-    0x8ACE: 0x839E,
-    0x8ACF: 0x89B3,
-    0x8AD0: 0x8ACC,
-    0x8AD1: 0x8CAB,
-    0x8AD2: 0x9084,
-    0x8AD3: 0x9451,
-    0x8AD4: 0x9593,
-    0x8AD5: 0x9591,
-    0x8AD6: 0x95A2,
-    0x8AD7: 0x9665,
-    0x8AD8: 0x97D3,
-    0x8AD9: 0x9928,
-    0x8ADA: 0x8218,
-    0x8ADB: 0x4E38,
-    0x8ADC: 0x542B,
-    0x8ADD: 0x5CB8,
-    0x8ADE: 0x5DCC,
-    0x8ADF: 0x73A9,
-    0x8AE0: 0x764C,
-    0x8AE1: 0x773C,
-    0x8AE2: 0x5CA9,
-    0x8AE3: 0x7FEB,
-    0x8AE4: 0x8D0B,
-    0x8AE5: 0x96C1,
-    0x8AE6: 0x9811,
-    0x8AE7: 0x9854,
-    0x8AE8: 0x9858,
-    0x8AE9: 0x4F01,
-    0x8AEA: 0x4F0E,
-    0x8AEB: 0x5371,
-    0x8AEC: 0x559C,
-    0x8AED: 0x5668,
-    0x8AEE: 0x57FA,
-    0x8AEF: 0x5947,
-    0x8AF0: 0x5B09,
-    0x8AF1: 0x5BC4,
-    0x8AF2: 0x5C90,
-    0x8AF3: 0x5E0C,
-    0x8AF4: 0x5E7E,
-    0x8AF5: 0x5FCC,
-    0x8AF6: 0x63EE,
-    0x8AF7: 0x673A,
-    0x8AF8: 0x65D7,
-    0x8AF9: 0x65E2,
-    0x8AFA: 0x671F,
-    0x8AFB: 0x68CB,
-    0x8AFC: 0x68C4,
-    0x8B40: 0x6A5F,
-    0x8B41: 0x5E30,
-    0x8B42: 0x6BC5,
-    0x8B43: 0x6C17,
-    0x8B44: 0x6C7D,
-    0x8B45: 0x757F,
-    0x8B46: 0x7948,
-    0x8B47: 0x5B63,
-    0x8B48: 0x7A00,
-    0x8B49: 0x7D00,
-    0x8B4A: 0x5FBD,
-    0x8B4B: 0x898F,
-    0x8B4C: 0x8A18,
-    0x8B4D: 0x8CB4,
-    0x8B4E: 0x8D77,
-    0x8B4F: 0x8ECC,
-    0x8B50: 0x8F1D,
-    0x8B51: 0x98E2,
-    0x8B52: 0x9A0E,
-    0x8B53: 0x9B3C,
-    0x8B54: 0x4E80,
-    0x8B55: 0x507D,
-    0x8B56: 0x5100,
-    0x8B57: 0x5993,
-    0x8B58: 0x5B9C,
-    0x8B59: 0x622F,
-    0x8B5A: 0x6280,
-    0x8B5B: 0x64EC,
-    0x8B5C: 0x6B3A,
-    0x8B5D: 0x72A0,
-    0x8B5E: 0x7591,
-    0x8B5F: 0x7947,
-    0x8B60: 0x7FA9,
-    0x8B61: 0x87FB,
-    0x8B62: 0x8ABC,
-    0x8B63: 0x8B70,
-    0x8B64: 0x63AC,
-    0x8B65: 0x83CA,
-    0x8B66: 0x97A0,
-    0x8B67: 0x5409,
-    0x8B68: 0x5403,
-    0x8B69: 0x55AB,
-    0x8B6A: 0x6854,
-    0x8B6B: 0x6A58,
-    0x8B6C: 0x8A70,
-    0x8B6D: 0x7827,
-    0x8B6E: 0x6775,
-    0x8B6F: 0x9ECD,
-    0x8B70: 0x5374,
-    0x8B71: 0x5BA2,
-    0x8B72: 0x811A,
-    0x8B73: 0x8650,
-    0x8B74: 0x9006,
-    0x8B75: 0x4E18,
-    0x8B76: 0x4E45,
-    0x8B77: 0x4EC7,
-    0x8B78: 0x4F11,
-    0x8B79: 0x53CA,
-    0x8B7A: 0x5438,
-    0x8B7B: 0x5BAE,
-    0x8B7C: 0x5F13,
-    0x8B7D: 0x6025,
-    0x8B7E: 0x6551,
-    0x8B80: 0x673D,
-    0x8B81: 0x6C42,
-    0x8B82: 0x6C72,
-    0x8B83: 0x6CE3,
-    0x8B84: 0x7078,
-    0x8B85: 0x7403,
-    0x8B86: 0x7A76,
-    0x8B87: 0x7AAE,
-    0x8B88: 0x7B08,
-    0x8B89: 0x7D1A,
-    0x8B8A: 0x7CFE,
-    0x8B8B: 0x7D66,
-    0x8B8C: 0x65E7,
-    0x8B8D: 0x725B,
-    0x8B8E: 0x53BB,
-    0x8B8F: 0x5C45,
-    0x8B90: 0x5DE8,
-    0x8B91: 0x62D2,
-    0x8B92: 0x62E0,
-    0x8B93: 0x6319,
-    0x8B94: 0x6E20,
-    0x8B95: 0x865A,
-    0x8B96: 0x8A31,
-    0x8B97: 0x8DDD,
-    0x8B98: 0x92F8,
-    0x8B99: 0x6F01,
-    0x8B9A: 0x79A6,
-    0x8B9B: 0x9B5A,
-    0x8B9C: 0x4EA8,
-    0x8B9D: 0x4EAB,
-    0x8B9E: 0x4EAC,
-    0x8B9F: 0x4F9B,
-    0x8BA0: 0x4FA0,
-    0x8BA1: 0x50D1,
-    0x8BA2: 0x5147,
-    0x8BA3: 0x7AF6,
-    0x8BA4: 0x5171,
-    0x8BA5: 0x51F6,
-    0x8BA6: 0x5354,
-    0x8BA7: 0x5321,
-    0x8BA8: 0x537F,
-    0x8BA9: 0x53EB,
-    0x8BAA: 0x55AC,
-    0x8BAB: 0x5883,
-    0x8BAC: 0x5CE1,
-    0x8BAD: 0x5F37,
-    0x8BAE: 0x5F4A,
-    0x8BAF: 0x602F,
-    0x8BB0: 0x6050,
-    0x8BB1: 0x606D,
-    0x8BB2: 0x631F,
-    0x8BB3: 0x6559,
-    0x8BB4: 0x6A4B,
-    0x8BB5: 0x6CC1,
-    0x8BB6: 0x72C2,
-    0x8BB7: 0x72ED,
-    0x8BB8: 0x77EF,
-    0x8BB9: 0x80F8,
-    0x8BBA: 0x8105,
-    0x8BBB: 0x8208,
-    0x8BBC: 0x854E,
-    0x8BBD: 0x90F7,
-    0x8BBE: 0x93E1,
-    0x8BBF: 0x97FF,
-    0x8BC0: 0x9957,
-    0x8BC1: 0x9A5A,
-    0x8BC2: 0x4EF0,
-    0x8BC3: 0x51DD,
-    0x8BC4: 0x5C2D,
-    0x8BC5: 0x6681,
-    0x8BC6: 0x696D,
-    0x8BC7: 0x5C40,
-    0x8BC8: 0x66F2,
-    0x8BC9: 0x6975,
-    0x8BCA: 0x7389,
-    0x8BCB: 0x6850,
-    0x8BCC: 0x7C81,
-    0x8BCD: 0x50C5,
-    0x8BCE: 0x52E4,
-    0x8BCF: 0x5747,
-    0x8BD0: 0x5DFE,
-    0x8BD1: 0x9326,
-    0x8BD2: 0x65A4,
-    0x8BD3: 0x6B23,
-    0x8BD4: 0x6B3D,
-    0x8BD5: 0x7434,
-    0x8BD6: 0x7981,
-    0x8BD7: 0x79BD,
-    0x8BD8: 0x7B4B,
-    0x8BD9: 0x7DCA,
-    0x8BDA: 0x82B9,
-    0x8BDB: 0x83CC,
-    0x8BDC: 0x887F,
-    0x8BDD: 0x895F,
-    0x8BDE: 0x8B39,
-    0x8BDF: 0x8FD1,
-    0x8BE0: 0x91D1,
-    0x8BE1: 0x541F,
-    0x8BE2: 0x9280,
-    0x8BE3: 0x4E5D,
-    0x8BE4: 0x5036,
-    0x8BE5: 0x53E5,
-    0x8BE6: 0x533A,
-    0x8BE7: 0x72D7,
-    0x8BE8: 0x7396,
-    0x8BE9: 0x77E9,
-    0x8BEA: 0x82E6,
-    0x8BEB: 0x8EAF,
-    0x8BEC: 0x99C6,
-    0x8BED: 0x99C8,
-    0x8BEE: 0x99D2,
-    0x8BEF: 0x5177,
-    0x8BF0: 0x611A,
-    0x8BF1: 0x865E,
-    0x8BF2: 0x55B0,
-    0x8BF3: 0x7A7A,
-    0x8BF4: 0x5076,
-    0x8BF5: 0x5BD3,
-    0x8BF6: 0x9047,
-    0x8BF7: 0x9685,
-    0x8BF8: 0x4E32,
-    0x8BF9: 0x6ADB,
-    0x8BFA: 0x91E7,
-    0x8BFB: 0x5C51,
-    0x8BFC: 0x5C48,
-    0x8C40: 0x6398,
-    0x8C41: 0x7A9F,
-    0x8C42: 0x6C93,
-    0x8C43: 0x9774,
-    0x8C44: 0x8F61,
-    0x8C45: 0x7AAA,
-    0x8C46: 0x718A,
-    0x8C47: 0x9688,
-    0x8C48: 0x7C82,
-    0x8C49: 0x6817,
-    0x8C4A: 0x7E70,
-    0x8C4B: 0x6851,
-    0x8C4C: 0x936C,
-    0x8C4D: 0x52F2,
-    0x8C4E: 0x541B,
-    0x8C4F: 0x85AB,
-    0x8C50: 0x8A13,
-    0x8C51: 0x7FA4,
-    0x8C52: 0x8ECD,
-    0x8C53: 0x90E1,
-    0x8C54: 0x5366,
-    0x8C55: 0x8888,
-    0x8C56: 0x7941,
-    0x8C57: 0x4FC2,
-    0x8C58: 0x50BE,
-    0x8C59: 0x5211,
-    0x8C5A: 0x5144,
-    0x8C5B: 0x5553,
-    0x8C5C: 0x572D,
-    0x8C5D: 0x73EA,
-    0x8C5E: 0x578B,
-    0x8C5F: 0x5951,
-    0x8C60: 0x5F62,
-    0x8C61: 0x5F84,
-    0x8C62: 0x6075,
-    0x8C63: 0x6176,
-    0x8C64: 0x6167,
-    0x8C65: 0x61A9,
-    0x8C66: 0x63B2,
-    0x8C67: 0x643A,
-    0x8C68: 0x656C,
-    0x8C69: 0x666F,
-    0x8C6A: 0x6842,
-    0x8C6B: 0x6E13,
-    0x8C6C: 0x7566,
-    0x8C6D: 0x7A3D,
-    0x8C6E: 0x7CFB,
-    0x8C6F: 0x7D4C,
-    0x8C70: 0x7D99,
-    0x8C71: 0x7E4B,
-    0x8C72: 0x7F6B,
-    0x8C73: 0x830E,
-    0x8C74: 0x834A,
-    0x8C75: 0x86CD,
-    0x8C76: 0x8A08,
-    0x8C77: 0x8A63,
-    0x8C78: 0x8B66,
-    0x8C79: 0x8EFD,
-    0x8C7A: 0x981A,
-    0x8C7B: 0x9D8F,
-    0x8C7C: 0x82B8,
-    0x8C7D: 0x8FCE,
-    0x8C7E: 0x9BE8,
-    0x8C80: 0x5287,
-    0x8C81: 0x621F,
-    0x8C82: 0x6483,
-    0x8C83: 0x6FC0,
-    0x8C84: 0x9699,
-    0x8C85: 0x6841,
-    0x8C86: 0x5091,
-    0x8C87: 0x6B20,
-    0x8C88: 0x6C7A,
-    0x8C89: 0x6F54,
-    0x8C8A: 0x7A74,
-    0x8C8B: 0x7D50,
-    0x8C8C: 0x8840,
-    0x8C8D: 0x8A23,
-    0x8C8E: 0x6708,
-    0x8C8F: 0x4EF6,
-    0x8C90: 0x5039,
-    0x8C91: 0x5026,
-    0x8C92: 0x5065,
-    0x8C93: 0x517C,
-    0x8C94: 0x5238,
-    0x8C95: 0x5263,
-    0x8C96: 0x55A7,
-    0x8C97: 0x570F,
-    0x8C98: 0x5805,
-    0x8C99: 0x5ACC,
-    0x8C9A: 0x5EFA,
-    0x8C9B: 0x61B2,
-    0x8C9C: 0x61F8,
-    0x8C9D: 0x62F3,
-    0x8C9E: 0x6372,
-    0x8C9F: 0x691C,
-    0x8CA0: 0x6A29,
-    0x8CA1: 0x727D,
-    0x8CA2: 0x72AC,
-    0x8CA3: 0x732E,
-    0x8CA4: 0x7814,
-    0x8CA5: 0x786F,
-    0x8CA6: 0x7D79,
-    0x8CA7: 0x770C,
-    0x8CA8: 0x80A9,
-    0x8CA9: 0x898B,
-    0x8CAA: 0x8B19,
-    0x8CAB: 0x8CE2,
-    0x8CAC: 0x8ED2,
-    0x8CAD: 0x9063,
-    0x8CAE: 0x9375,
-    0x8CAF: 0x967A,
-    0x8CB0: 0x9855,
-    0x8CB1: 0x9A13,
-    0x8CB2: 0x9E78,
-    0x8CB3: 0x5143,
-    0x8CB4: 0x539F,
-    0x8CB5: 0x53B3,
-    0x8CB6: 0x5E7B,
-    0x8CB7: 0x5F26,
-    0x8CB8: 0x6E1B,
-    0x8CB9: 0x6E90,
-    0x8CBA: 0x7384,
-    0x8CBB: 0x73FE,
-    0x8CBC: 0x7D43,
-    0x8CBD: 0x8237,
-    0x8CBE: 0x8A00,
-    0x8CBF: 0x8AFA,
-    0x8CC0: 0x9650,
-    0x8CC1: 0x4E4E,
-    0x8CC2: 0x500B,
-    0x8CC3: 0x53E4,
-    0x8CC4: 0x547C,
-    0x8CC5: 0x56FA,
-    0x8CC6: 0x59D1,
-    0x8CC7: 0x5B64,
-    0x8CC8: 0x5DF1,
-    0x8CC9: 0x5EAB,
-    0x8CCA: 0x5F27,
-    0x8CCB: 0x6238,
-    0x8CCC: 0x6545,
-    0x8CCD: 0x67AF,
-    0x8CCE: 0x6E56,
-    0x8CCF: 0x72D0,
-    0x8CD0: 0x7CCA,
-    0x8CD1: 0x88B4,
-    0x8CD2: 0x80A1,
-    0x8CD3: 0x80E1,
-    0x8CD4: 0x83F0,
-    0x8CD5: 0x864E,
-    0x8CD6: 0x8A87,
-    0x8CD7: 0x8DE8,
-    0x8CD8: 0x9237,
-    0x8CD9: 0x96C7,
-    0x8CDA: 0x9867,
-    0x8CDB: 0x9F13,
-    0x8CDC: 0x4E94,
-    0x8CDD: 0x4E92,
-    0x8CDE: 0x4F0D,
-    0x8CDF: 0x5348,
-    0x8CE0: 0x5449,
-    0x8CE1: 0x543E,
-    0x8CE2: 0x5A2F,
-    0x8CE3: 0x5F8C,
-    0x8CE4: 0x5FA1,
-    0x8CE5: 0x609F,
-    0x8CE6: 0x68A7,
-    0x8CE7: 0x6A8E,
-    0x8CE8: 0x745A,
-    0x8CE9: 0x7881,
-    0x8CEA: 0x8A9E,
-    0x8CEB: 0x8AA4,
-    0x8CEC: 0x8B77,
-    0x8CED: 0x9190,
-    0x8CEE: 0x4E5E,
-    0x8CEF: 0x9BC9,
-    0x8CF0: 0x4EA4,
-    0x8CF1: 0x4F7C,
-    0x8CF2: 0x4FAF,
-    0x8CF3: 0x5019,
-    0x8CF4: 0x5016,
-    0x8CF5: 0x5149,
-    0x8CF6: 0x516C,
-    0x8CF7: 0x529F,
-    0x8CF8: 0x52B9,
-    0x8CF9: 0x52FE,
-    0x8CFA: 0x539A,
-    0x8CFB: 0x53E3,
-    0x8CFC: 0x5411,
-    0x8D40: 0x540E,
-    0x8D41: 0x5589,
-    0x8D42: 0x5751,
-    0x8D43: 0x57A2,
-    0x8D44: 0x597D,
-    0x8D45: 0x5B54,
-    0x8D46: 0x5B5D,
-    0x8D47: 0x5B8F,
-    0x8D48: 0x5DE5,
-    0x8D49: 0x5DE7,
-    0x8D4A: 0x5DF7,
-    0x8D4B: 0x5E78,
-    0x8D4C: 0x5E83,
-    0x8D4D: 0x5E9A,
-    0x8D4E: 0x5EB7,
-    0x8D4F: 0x5F18,
-    0x8D50: 0x6052,
-    0x8D51: 0x614C,
-    0x8D52: 0x6297,
-    0x8D53: 0x62D8,
-    0x8D54: 0x63A7,
-    0x8D55: 0x653B,
-    0x8D56: 0x6602,
-    0x8D57: 0x6643,
-    0x8D58: 0x66F4,
-    0x8D59: 0x676D,
-    0x8D5A: 0x6821,
-    0x8D5B: 0x6897,
-    0x8D5C: 0x69CB,
-    0x8D5D: 0x6C5F,
-    0x8D5E: 0x6D2A,
-    0x8D5F: 0x6D69,
-    0x8D60: 0x6E2F,
-    0x8D61: 0x6E9D,
-    0x8D62: 0x7532,
-    0x8D63: 0x7687,
-    0x8D64: 0x786C,
-    0x8D65: 0x7A3F,
-    0x8D66: 0x7CE0,
-    0x8D67: 0x7D05,
-    0x8D68: 0x7D18,
-    0x8D69: 0x7D5E,
-    0x8D6A: 0x7DB1,
-    0x8D6B: 0x8015,
-    0x8D6C: 0x8003,
-    0x8D6D: 0x80AF,
-    0x8D6E: 0x80B1,
-    0x8D6F: 0x8154,
-    0x8D70: 0x818F,
-    0x8D71: 0x822A,
-    0x8D72: 0x8352,
-    0x8D73: 0x884C,
-    0x8D74: 0x8861,
-    0x8D75: 0x8B1B,
-    0x8D76: 0x8CA2,
-    0x8D77: 0x8CFC,
-    0x8D78: 0x90CA,
-    0x8D79: 0x9175,
-    0x8D7A: 0x9271,
-    0x8D7B: 0x783F,
-    0x8D7C: 0x92FC,
-    0x8D7D: 0x95A4,
-    0x8D7E: 0x964D,
-    0x8D80: 0x9805,
-    0x8D81: 0x9999,
-    0x8D82: 0x9AD8,
-    0x8D83: 0x9D3B,
-    0x8D84: 0x525B,
-    0x8D85: 0x52AB,
-    0x8D86: 0x53F7,
-    0x8D87: 0x5408,
-    0x8D88: 0x58D5,
-    0x8D89: 0x62F7,
-    0x8D8A: 0x6FE0,
-    0x8D8B: 0x8C6A,
-    0x8D8C: 0x8F5F,
-    0x8D8D: 0x9EB9,
-    0x8D8E: 0x514B,
-    0x8D8F: 0x523B,
-    0x8D90: 0x544A,
-    0x8D91: 0x56FD,
-    0x8D92: 0x7A40,
-    0x8D93: 0x9177,
-    0x8D94: 0x9D60,
-    0x8D95: 0x9ED2,
-    0x8D96: 0x7344,
-    0x8D97: 0x6F09,
-    0x8D98: 0x8170,
-    0x8D99: 0x7511,
-    0x8D9A: 0x5FFD,
-    0x8D9B: 0x60DA,
-    0x8D9C: 0x9AA8,
-    0x8D9D: 0x72DB,
-    0x8D9E: 0x8FBC,
-    0x8D9F: 0x6B64,
-    0x8DA0: 0x9803,
-    0x8DA1: 0x4ECA,
-    0x8DA2: 0x56F0,
-    0x8DA3: 0x5764,
-    0x8DA4: 0x58BE,
-    0x8DA5: 0x5A5A,
-    0x8DA6: 0x6068,
-    0x8DA7: 0x61C7,
-    0x8DA8: 0x660F,
-    0x8DA9: 0x6606,
-    0x8DAA: 0x6839,
-    0x8DAB: 0x68B1,
-    0x8DAC: 0x6DF7,
-    0x8DAD: 0x75D5,
-    0x8DAE: 0x7D3A,
-    0x8DAF: 0x826E,
-    0x8DB0: 0x9B42,
-    0x8DB1: 0x4E9B,
-    0x8DB2: 0x4F50,
-    0x8DB3: 0x53C9,
-    0x8DB4: 0x5506,
-    0x8DB5: 0x5D6F,
-    0x8DB6: 0x5DE6,
-    0x8DB7: 0x5DEE,
-    0x8DB8: 0x67FB,
-    0x8DB9: 0x6C99,
-    0x8DBA: 0x7473,
-    0x8DBB: 0x7802,
-    0x8DBC: 0x8A50,
-    0x8DBD: 0x9396,
-    0x8DBE: 0x88DF,
-    0x8DBF: 0x5750,
-    0x8DC0: 0x5EA7,
-    0x8DC1: 0x632B,
-    0x8DC2: 0x50B5,
-    0x8DC3: 0x50AC,
-    0x8DC4: 0x518D,
-    0x8DC5: 0x6700,
-    0x8DC6: 0x54C9,
-    0x8DC7: 0x585E,
-    0x8DC8: 0x59BB,
-    0x8DC9: 0x5BB0,
-    0x8DCA: 0x5F69,
-    0x8DCB: 0x624D,
-    0x8DCC: 0x63A1,
-    0x8DCD: 0x683D,
-    0x8DCE: 0x6B73,
-    0x8DCF: 0x6E08,
-    0x8DD0: 0x707D,
-    0x8DD1: 0x91C7,
-    0x8DD2: 0x7280,
-    0x8DD3: 0x7815,
-    0x8DD4: 0x7826,
-    0x8DD5: 0x796D,
-    0x8DD6: 0x658E,
-    0x8DD7: 0x7D30,
-    0x8DD8: 0x83DC,
-    0x8DD9: 0x88C1,
-    0x8DDA: 0x8F09,
-    0x8DDB: 0x969B,
-    0x8DDC: 0x5264,
-    0x8DDD: 0x5728,
-    0x8DDE: 0x6750,
-    0x8DDF: 0x7F6A,
-    0x8DE0: 0x8CA1,
-    0x8DE1: 0x51B4,
-    0x8DE2: 0x5742,
-    0x8DE3: 0x962A,
-    0x8DE4: 0x583A,
-    0x8DE5: 0x698A,
-    0x8DE6: 0x80B4,
-    0x8DE7: 0x54B2,
-    0x8DE8: 0x5D0E,
-    0x8DE9: 0x57FC,
-    0x8DEA: 0x7895,
-    0x8DEB: 0x9DFA,
-    0x8DEC: 0x4F5C,
-    0x8DED: 0x524A,
-    0x8DEE: 0x548B,
-    0x8DEF: 0x643E,
-    0x8DF0: 0x6628,
-    0x8DF1: 0x6714,
-    0x8DF2: 0x67F5,
-    0x8DF3: 0x7A84,
-    0x8DF4: 0x7B56,
-    0x8DF5: 0x7D22,
-    0x8DF6: 0x932F,
-    0x8DF7: 0x685C,
-    0x8DF8: 0x9BAD,
-    0x8DF9: 0x7B39,
-    0x8DFA: 0x5319,
-    0x8DFB: 0x518A,
-    0x8DFC: 0x5237,
-    0x8E40: 0x5BDF,
-    0x8E41: 0x62F6,
-    0x8E42: 0x64AE,
-    0x8E43: 0x64E6,
-    0x8E44: 0x672D,
-    0x8E45: 0x6BBA,
-    0x8E46: 0x85A9,
-    0x8E47: 0x96D1,
-    0x8E48: 0x7690,
-    0x8E49: 0x9BD6,
-    0x8E4A: 0x634C,
-    0x8E4B: 0x9306,
-    0x8E4C: 0x9BAB,
-    0x8E4D: 0x76BF,
-    0x8E4E: 0x6652,
-    0x8E4F: 0x4E09,
-    0x8E50: 0x5098,
-    0x8E51: 0x53C2,
-    0x8E52: 0x5C71,
-    0x8E53: 0x60E8,
-    0x8E54: 0x6492,
-    0x8E55: 0x6563,
-    0x8E56: 0x685F,
-    0x8E57: 0x71E6,
-    0x8E58: 0x73CA,
-    0x8E59: 0x7523,
-    0x8E5A: 0x7B97,
-    0x8E5B: 0x7E82,
-    0x8E5C: 0x8695,
-    0x8E5D: 0x8B83,
-    0x8E5E: 0x8CDB,
-    0x8E5F: 0x9178,
-    0x8E60: 0x9910,
-    0x8E61: 0x65AC,
-    0x8E62: 0x66AB,
-    0x8E63: 0x6B8B,
-    0x8E64: 0x4ED5,
-    0x8E65: 0x4ED4,
-    0x8E66: 0x4F3A,
-    0x8E67: 0x4F7F,
-    0x8E68: 0x523A,
-    0x8E69: 0x53F8,
-    0x8E6A: 0x53F2,
-    0x8E6B: 0x55E3,
-    0x8E6C: 0x56DB,
-    0x8E6D: 0x58EB,
-    0x8E6E: 0x59CB,
-    0x8E6F: 0x59C9,
-    0x8E70: 0x59FF,
-    0x8E71: 0x5B50,
-    0x8E72: 0x5C4D,
-    0x8E73: 0x5E02,
-    0x8E74: 0x5E2B,
-    0x8E75: 0x5FD7,
-    0x8E76: 0x601D,
-    0x8E77: 0x6307,
-    0x8E78: 0x652F,
-    0x8E79: 0x5B5C,
-    0x8E7A: 0x65AF,
-    0x8E7B: 0x65BD,
-    0x8E7C: 0x65E8,
-    0x8E7D: 0x679D,
-    0x8E7E: 0x6B62,
-    0x8E80: 0x6B7B,
-    0x8E81: 0x6C0F,
-    0x8E82: 0x7345,
-    0x8E83: 0x7949,
-    0x8E84: 0x79C1,
-    0x8E85: 0x7CF8,
-    0x8E86: 0x7D19,
-    0x8E87: 0x7D2B,
-    0x8E88: 0x80A2,
-    0x8E89: 0x8102,
-    0x8E8A: 0x81F3,
-    0x8E8B: 0x8996,
-    0x8E8C: 0x8A5E,
-    0x8E8D: 0x8A69,
-    0x8E8E: 0x8A66,
-    0x8E8F: 0x8A8C,
-    0x8E90: 0x8AEE,
-    0x8E91: 0x8CC7,
-    0x8E92: 0x8CDC,
-    0x8E93: 0x96CC,
-    0x8E94: 0x98FC,
-    0x8E95: 0x6B6F,
-    0x8E96: 0x4E8B,
-    0x8E97: 0x4F3C,
-    0x8E98: 0x4F8D,
-    0x8E99: 0x5150,
-    0x8E9A: 0x5B57,
-    0x8E9B: 0x5BFA,
-    0x8E9C: 0x6148,
-    0x8E9D: 0x6301,
-    0x8E9E: 0x6642,
-    0x8E9F: 0x6B21,
-    0x8EA0: 0x6ECB,
-    0x8EA1: 0x6CBB,
-    0x8EA2: 0x723E,
-    0x8EA3: 0x74BD,
-    0x8EA4: 0x75D4,
-    0x8EA5: 0x78C1,
-    0x8EA6: 0x793A,
-    0x8EA7: 0x800C,
-    0x8EA8: 0x8033,
-    0x8EA9: 0x81EA,
-    0x8EAA: 0x8494,
-    0x8EAB: 0x8F9E,
-    0x8EAC: 0x6C50,
-    0x8EAD: 0x9E7F,
-    0x8EAE: 0x5F0F,
-    0x8EAF: 0x8B58,
-    0x8EB0: 0x9D2B,
-    0x8EB1: 0x7AFA,
-    0x8EB2: 0x8EF8,
-    0x8EB3: 0x5B8D,
-    0x8EB4: 0x96EB,
-    0x8EB5: 0x4E03,
-    0x8EB6: 0x53F1,
-    0x8EB7: 0x57F7,
-    0x8EB8: 0x5931,
-    0x8EB9: 0x5AC9,
-    0x8EBA: 0x5BA4,
-    0x8EBB: 0x6089,
-    0x8EBC: 0x6E7F,
-    0x8EBD: 0x6F06,
-    0x8EBE: 0x75BE,
-    0x8EBF: 0x8CEA,
-    0x8EC0: 0x5B9F,
-    0x8EC1: 0x8500,
-    0x8EC2: 0x7BE0,
-    0x8EC3: 0x5072,
-    0x8EC4: 0x67F4,
-    0x8EC5: 0x829D,
-    0x8EC6: 0x5C61,
-    0x8EC7: 0x854A,
-    0x8EC8: 0x7E1E,
-    0x8EC9: 0x820E,
-    0x8ECA: 0x5199,
-    0x8ECB: 0x5C04,
-    0x8ECC: 0x6368,
-    0x8ECD: 0x8D66,
-    0x8ECE: 0x659C,
-    0x8ECF: 0x716E,
-    0x8ED0: 0x793E,
-    0x8ED1: 0x7D17,
-    0x8ED2: 0x8005,
-    0x8ED3: 0x8B1D,
-    0x8ED4: 0x8ECA,
-    0x8ED5: 0x906E,
-    0x8ED6: 0x86C7,
-    0x8ED7: 0x90AA,
-    0x8ED8: 0x501F,
-    0x8ED9: 0x52FA,
-    0x8EDA: 0x5C3A,
-    0x8EDB: 0x6753,
-    0x8EDC: 0x707C,
-    0x8EDD: 0x7235,
-    0x8EDE: 0x914C,
-    0x8EDF: 0x91C8,
-    0x8EE0: 0x932B,
-    0x8EE1: 0x82E5,
-    0x8EE2: 0x5BC2,
-    0x8EE3: 0x5F31,
-    0x8EE4: 0x60F9,
-    0x8EE5: 0x4E3B,
-    0x8EE6: 0x53D6,
-    0x8EE7: 0x5B88,
-    0x8EE8: 0x624B,
-    0x8EE9: 0x6731,
-    0x8EEA: 0x6B8A,
-    0x8EEB: 0x72E9,
-    0x8EEC: 0x73E0,
-    0x8EED: 0x7A2E,
-    0x8EEE: 0x816B,
-    0x8EEF: 0x8DA3,
-    0x8EF0: 0x9152,
-    0x8EF1: 0x9996,
-    0x8EF2: 0x5112,
-    0x8EF3: 0x53D7,
-    0x8EF4: 0x546A,
-    0x8EF5: 0x5BFF,
-    0x8EF6: 0x6388,
-    0x8EF7: 0x6A39,
-    0x8EF8: 0x7DAC,
-    0x8EF9: 0x9700,
-    0x8EFA: 0x56DA,
-    0x8EFB: 0x53CE,
-    0x8EFC: 0x5468,
-    0x8F40: 0x5B97,
-    0x8F41: 0x5C31,
-    0x8F42: 0x5DDE,
-    0x8F43: 0x4FEE,
-    0x8F44: 0x6101,
-    0x8F45: 0x62FE,
-    0x8F46: 0x6D32,
-    0x8F47: 0x79C0,
-    0x8F48: 0x79CB,
-    0x8F49: 0x7D42,
-    0x8F4A: 0x7E4D,
-    0x8F4B: 0x7FD2,
-    0x8F4C: 0x81ED,
-    0x8F4D: 0x821F,
-    0x8F4E: 0x8490,
-    0x8F4F: 0x8846,
-    0x8F50: 0x8972,
-    0x8F51: 0x8B90,
-    0x8F52: 0x8E74,
-    0x8F53: 0x8F2F,
-    0x8F54: 0x9031,
-    0x8F55: 0x914B,
-    0x8F56: 0x916C,
-    0x8F57: 0x96C6,
-    0x8F58: 0x919C,
-    0x8F59: 0x4EC0,
-    0x8F5A: 0x4F4F,
-    0x8F5B: 0x5145,
-    0x8F5C: 0x5341,
-    0x8F5D: 0x5F93,
-    0x8F5E: 0x620E,
-    0x8F5F: 0x67D4,
-    0x8F60: 0x6C41,
-    0x8F61: 0x6E0B,
-    0x8F62: 0x7363,
-    0x8F63: 0x7E26,
-    0x8F64: 0x91CD,
-    0x8F65: 0x9283,
-    0x8F66: 0x53D4,
-    0x8F67: 0x5919,
-    0x8F68: 0x5BBF,
-    0x8F69: 0x6DD1,
-    0x8F6A: 0x795D,
-    0x8F6B: 0x7E2E,
-    0x8F6C: 0x7C9B,
-    0x8F6D: 0x587E,
-    0x8F6E: 0x719F,
-    0x8F6F: 0x51FA,
-    0x8F70: 0x8853,
-    0x8F71: 0x8FF0,
-    0x8F72: 0x4FCA,
-    0x8F73: 0x5CFB,
-    0x8F74: 0x6625,
-    0x8F75: 0x77AC,
-    0x8F76: 0x7AE3,
-    0x8F77: 0x821C,
-    0x8F78: 0x99FF,
-    0x8F79: 0x51C6,
-    0x8F7A: 0x5FAA,
-    0x8F7B: 0x65EC,
-    0x8F7C: 0x696F,
-    0x8F7D: 0x6B89,
-    0x8F7E: 0x6DF3,
-    0x8F80: 0x6E96,
-    0x8F81: 0x6F64,
-    0x8F82: 0x76FE,
-    0x8F83: 0x7D14,
-    0x8F84: 0x5DE1,
-    0x8F85: 0x9075,
-    0x8F86: 0x9187,
-    0x8F87: 0x9806,
-    0x8F88: 0x51E6,
-    0x8F89: 0x521D,
-    0x8F8A: 0x6240,
-    0x8F8B: 0x6691,
-    0x8F8C: 0x66D9,
-    0x8F8D: 0x6E1A,
-    0x8F8E: 0x5EB6,
-    0x8F8F: 0x7DD2,
-    0x8F90: 0x7F72,
-    0x8F91: 0x66F8,
-    0x8F92: 0x85AF,
-    0x8F93: 0x85F7,
-    0x8F94: 0x8AF8,
-    0x8F95: 0x52A9,
-    0x8F96: 0x53D9,
-    0x8F97: 0x5973,
-    0x8F98: 0x5E8F,
-    0x8F99: 0x5F90,
-    0x8F9A: 0x6055,
-    0x8F9B: 0x92E4,
-    0x8F9C: 0x9664,
-    0x8F9D: 0x50B7,
-    0x8F9E: 0x511F,
-    0x8F9F: 0x52DD,
-    0x8FA0: 0x5320,
-    0x8FA1: 0x5347,
-    0x8FA2: 0x53EC,
-    0x8FA3: 0x54E8,
-    0x8FA4: 0x5546,
-    0x8FA5: 0x5531,
-    0x8FA6: 0x5617,
-    0x8FA7: 0x5968,
-    0x8FA8: 0x59BE,
-    0x8FA9: 0x5A3C,
-    0x8FAA: 0x5BB5,
-    0x8FAB: 0x5C06,
-    0x8FAC: 0x5C0F,
-    0x8FAD: 0x5C11,
-    0x8FAE: 0x5C1A,
-    0x8FAF: 0x5E84,
-    0x8FB0: 0x5E8A,
-    0x8FB1: 0x5EE0,
-    0x8FB2: 0x5F70,
-    0x8FB3: 0x627F,
-    0x8FB4: 0x6284,
-    0x8FB5: 0x62DB,
-    0x8FB6: 0x638C,
-    0x8FB7: 0x6377,
-    0x8FB8: 0x6607,
-    0x8FB9: 0x660C,
-    0x8FBA: 0x662D,
-    0x8FBB: 0x6676,
-    0x8FBC: 0x677E,
-    0x8FBD: 0x68A2,
-    0x8FBE: 0x6A1F,
-    0x8FBF: 0x6A35,
-    0x8FC0: 0x6CBC,
-    0x8FC1: 0x6D88,
-    0x8FC2: 0x6E09,
-    0x8FC3: 0x6E58,
-    0x8FC4: 0x713C,
-    0x8FC5: 0x7126,
-    0x8FC6: 0x7167,
-    0x8FC7: 0x75C7,
-    0x8FC8: 0x7701,
-    0x8FC9: 0x785D,
-    0x8FCA: 0x7901,
-    0x8FCB: 0x7965,
-    0x8FCC: 0x79F0,
-    0x8FCD: 0x7AE0,
-    0x8FCE: 0x7B11,
-    0x8FCF: 0x7CA7,
-    0x8FD0: 0x7D39,
-    0x8FD1: 0x8096,
-    0x8FD2: 0x83D6,
-    0x8FD3: 0x848B,
-    0x8FD4: 0x8549,
-    0x8FD5: 0x885D,
-    0x8FD6: 0x88F3,
-    0x8FD7: 0x8A1F,
-    0x8FD8: 0x8A3C,
-    0x8FD9: 0x8A54,
-    0x8FDA: 0x8A73,
-    0x8FDB: 0x8C61,
-    0x8FDC: 0x8CDE,
-    0x8FDD: 0x91A4,
-    0x8FDE: 0x9266,
-    0x8FDF: 0x937E,
-    0x8FE0: 0x9418,
-    0x8FE1: 0x969C,
-    0x8FE2: 0x9798,
-    0x8FE3: 0x4E0A,
-    0x8FE4: 0x4E08,
-    0x8FE5: 0x4E1E,
-    0x8FE6: 0x4E57,
-    0x8FE7: 0x5197,
-    0x8FE8: 0x5270,
-    0x8FE9: 0x57CE,
-    0x8FEA: 0x5834,
-    0x8FEB: 0x58CC,
-    0x8FEC: 0x5B22,
-    0x8FED: 0x5E38,
-    0x8FEE: 0x60C5,
-    0x8FEF: 0x64FE,
-    0x8FF0: 0x6761,
-    0x8FF1: 0x6756,
-    0x8FF2: 0x6D44,
-    0x8FF3: 0x72B6,
-    0x8FF4: 0x7573,
-    0x8FF5: 0x7A63,
-    0x8FF6: 0x84B8,
-    0x8FF7: 0x8B72,
-    0x8FF8: 0x91B8,
-    0x8FF9: 0x9320,
-    0x8FFA: 0x5631,
-    0x8FFB: 0x57F4,
-    0x8FFC: 0x98FE,
-    0x9040: 0x62ED,
-    0x9041: 0x690D,
-    0x9042: 0x6B96,
-    0x9043: 0x71ED,
-    0x9044: 0x7E54,
-    0x9045: 0x8077,
-    0x9046: 0x8272,
-    0x9047: 0x89E6,
-    0x9048: 0x98DF,
-    0x9049: 0x8755,
-    0x904A: 0x8FB1,
-    0x904B: 0x5C3B,
-    0x904C: 0x4F38,
-    0x904D: 0x4FE1,
-    0x904E: 0x4FB5,
-    0x904F: 0x5507,
-    0x9050: 0x5A20,
-    0x9051: 0x5BDD,
-    0x9052: 0x5BE9,
-    0x9053: 0x5FC3,
-    0x9054: 0x614E,
-    0x9055: 0x632F,
-    0x9056: 0x65B0,
-    0x9057: 0x664B,
-    0x9058: 0x68EE,
-    0x9059: 0x699B,
-    0x905A: 0x6D78,
-    0x905B: 0x6DF1,
-    0x905C: 0x7533,
-    0x905D: 0x75B9,
-    0x905E: 0x771F,
-    0x905F: 0x795E,
-    0x9060: 0x79E6,
-    0x9061: 0x7D33,
-    0x9062: 0x81E3,
-    0x9063: 0x82AF,
-    0x9064: 0x85AA,
-    0x9065: 0x89AA,
-    0x9066: 0x8A3A,
-    0x9067: 0x8EAB,
-    0x9068: 0x8F9B,
-    0x9069: 0x9032,
-    0x906A: 0x91DD,
-    0x906B: 0x9707,
-    0x906C: 0x4EBA,
-    0x906D: 0x4EC1,
-    0x906E: 0x5203,
-    0x906F: 0x5875,
-    0x9070: 0x58EC,
-    0x9071: 0x5C0B,
-    0x9072: 0x751A,
-    0x9073: 0x5C3D,
-    0x9074: 0x814E,
-    0x9075: 0x8A0A,
-    0x9076: 0x8FC5,
-    0x9077: 0x9663,
-    0x9078: 0x976D,
-    0x9079: 0x7B25,
-    0x907A: 0x8ACF,
-    0x907B: 0x9808,
-    0x907C: 0x9162,
-    0x907D: 0x56F3,
-    0x907E: 0x53A8,
-    0x9080: 0x9017,
-    0x9081: 0x5439,
-    0x9082: 0x5782,
-    0x9083: 0x5E25,
-    0x9084: 0x63A8,
-    0x9085: 0x6C34,
-    0x9086: 0x708A,
-    0x9087: 0x7761,
-    0x9088: 0x7C8B,
-    0x9089: 0x7FE0,
-    0x908A: 0x8870,
-    0x908B: 0x9042,
-    0x908C: 0x9154,
-    0x908D: 0x9310,
-    0x908E: 0x9318,
-    0x908F: 0x968F,
-    0x9090: 0x745E,
-    0x9091: 0x9AC4,
-    0x9092: 0x5D07,
-    0x9093: 0x5D69,
-    0x9094: 0x6570,
-    0x9095: 0x67A2,
-    0x9096: 0x8DA8,
-    0x9097: 0x96DB,
-    0x9098: 0x636E,
-    0x9099: 0x6749,
-    0x909A: 0x6919,
-    0x909B: 0x83C5,
-    0x909C: 0x9817,
-    0x909D: 0x96C0,
-    0x909E: 0x88FE,
-    0x909F: 0x6F84,
-    0x90A0: 0x647A,
-    0x90A1: 0x5BF8,
-    0x90A2: 0x4E16,
-    0x90A3: 0x702C,
-    0x90A4: 0x755D,
-    0x90A5: 0x662F,
-    0x90A6: 0x51C4,
-    0x90A7: 0x5236,
-    0x90A8: 0x52E2,
-    0x90A9: 0x59D3,
-    0x90AA: 0x5F81,
-    0x90AB: 0x6027,
-    0x90AC: 0x6210,
-    0x90AD: 0x653F,
-    0x90AE: 0x6574,
-    0x90AF: 0x661F,
-    0x90B0: 0x6674,
-    0x90B1: 0x68F2,
-    0x90B2: 0x6816,
-    0x90B3: 0x6B63,
-    0x90B4: 0x6E05,
-    0x90B5: 0x7272,
-    0x90B6: 0x751F,
-    0x90B7: 0x76DB,
-    0x90B8: 0x7CBE,
-    0x90B9: 0x8056,
-    0x90BA: 0x58F0,
-    0x90BB: 0x88FD,
-    0x90BC: 0x897F,
-    0x90BD: 0x8AA0,
-    0x90BE: 0x8A93,
-    0x90BF: 0x8ACB,
-    0x90C0: 0x901D,
-    0x90C1: 0x9192,
-    0x90C2: 0x9752,
-    0x90C3: 0x9759,
-    0x90C4: 0x6589,
-    0x90C5: 0x7A0E,
-    0x90C6: 0x8106,
-    0x90C7: 0x96BB,
-    0x90C8: 0x5E2D,
-    0x90C9: 0x60DC,
-    0x90CA: 0x621A,
-    0x90CB: 0x65A5,
-    0x90CC: 0x6614,
-    0x90CD: 0x6790,
-    0x90CE: 0x77F3,
-    0x90CF: 0x7A4D,
-    0x90D0: 0x7C4D,
-    0x90D1: 0x7E3E,
-    0x90D2: 0x810A,
-    0x90D3: 0x8CAC,
-    0x90D4: 0x8D64,
-    0x90D5: 0x8DE1,
-    0x90D6: 0x8E5F,
-    0x90D7: 0x78A9,
-    0x90D8: 0x5207,
-    0x90D9: 0x62D9,
-    0x90DA: 0x63A5,
-    0x90DB: 0x6442,
-    0x90DC: 0x6298,
-    0x90DD: 0x8A2D,
-    0x90DE: 0x7A83,
-    0x90DF: 0x7BC0,
-    0x90E0: 0x8AAC,
-    0x90E1: 0x96EA,
-    0x90E2: 0x7D76,
-    0x90E3: 0x820C,
-    0x90E4: 0x8749,
-    0x90E5: 0x4ED9,
-    0x90E6: 0x5148,
-    0x90E7: 0x5343,
-    0x90E8: 0x5360,
-    0x90E9: 0x5BA3,
-    0x90EA: 0x5C02,
-    0x90EB: 0x5C16,
-    0x90EC: 0x5DDD,
-    0x90ED: 0x6226,
-    0x90EE: 0x6247,
-    0x90EF: 0x64B0,
-    0x90F0: 0x6813,
-    0x90F1: 0x6834,
-    0x90F2: 0x6CC9,
-    0x90F3: 0x6D45,
-    0x90F4: 0x6D17,
-    0x90F5: 0x67D3,
-    0x90F6: 0x6F5C,
-    0x90F7: 0x714E,
-    0x90F8: 0x717D,
-    0x90F9: 0x65CB,
-    0x90FA: 0x7A7F,
-    0x90FB: 0x7BAD,
-    0x90FC: 0x7DDA,
-    0x9140: 0x7E4A,
-    0x9141: 0x7FA8,
-    0x9142: 0x817A,
-    0x9143: 0x821B,
-    0x9144: 0x8239,
-    0x9145: 0x85A6,
-    0x9146: 0x8A6E,
-    0x9147: 0x8CCE,
-    0x9148: 0x8DF5,
-    0x9149: 0x9078,
-    0x914A: 0x9077,
-    0x914B: 0x92AD,
-    0x914C: 0x9291,
-    0x914D: 0x9583,
-    0x914E: 0x9BAE,
-    0x914F: 0x524D,
-    0x9150: 0x5584,
-    0x9151: 0x6F38,
-    0x9152: 0x7136,
-    0x9153: 0x5168,
-    0x9154: 0x7985,
-    0x9155: 0x7E55,
-    0x9156: 0x81B3,
-    0x9157: 0x7CCE,
-    0x9158: 0x564C,
-    0x9159: 0x5851,
-    0x915A: 0x5CA8,
-    0x915B: 0x63AA,
-    0x915C: 0x66FE,
-    0x915D: 0x66FD,
-    0x915E: 0x695A,
-    0x915F: 0x72D9,
-    0x9160: 0x758F,
-    0x9161: 0x758E,
-    0x9162: 0x790E,
-    0x9163: 0x7956,
-    0x9164: 0x79DF,
-    0x9165: 0x7C97,
-    0x9166: 0x7D20,
-    0x9167: 0x7D44,
-    0x9168: 0x8607,
-    0x9169: 0x8A34,
-    0x916A: 0x963B,
-    0x916B: 0x9061,
-    0x916C: 0x9F20,
-    0x916D: 0x50E7,
-    0x916E: 0x5275,
-    0x916F: 0x53CC,
-    0x9170: 0x53E2,
-    0x9171: 0x5009,
-    0x9172: 0x55AA,
-    0x9173: 0x58EE,
-    0x9174: 0x594F,
-    0x9175: 0x723D,
-    0x9176: 0x5B8B,
-    0x9177: 0x5C64,
-    0x9178: 0x531D,
-    0x9179: 0x60E3,
-    0x917A: 0x60F3,
-    0x917B: 0x635C,
-    0x917C: 0x6383,
-    0x917D: 0x633F,
-    0x917E: 0x63BB,
-    0x9180: 0x64CD,
-    0x9181: 0x65E9,
-    0x9182: 0x66F9,
-    0x9183: 0x5DE3,
-    0x9184: 0x69CD,
-    0x9185: 0x69FD,
-    0x9186: 0x6F15,
-    0x9187: 0x71E5,
-    0x9188: 0x4E89,
-    0x9189: 0x75E9,
-    0x918A: 0x76F8,
-    0x918B: 0x7A93,
-    0x918C: 0x7CDF,
-    0x918D: 0x7DCF,
-    0x918E: 0x7D9C,
-    0x918F: 0x8061,
-    0x9190: 0x8349,
-    0x9191: 0x8358,
-    0x9192: 0x846C,
-    0x9193: 0x84BC,
-    0x9194: 0x85FB,
-    0x9195: 0x88C5,
-    0x9196: 0x8D70,
-    0x9197: 0x9001,
-    0x9198: 0x906D,
-    0x9199: 0x9397,
-    0x919A: 0x971C,
-    0x919B: 0x9A12,
-    0x919C: 0x50CF,
-    0x919D: 0x5897,
-    0x919E: 0x618E,
-    0x919F: 0x81D3,
-    0x91A0: 0x8535,
-    0x91A1: 0x8D08,
-    0x91A2: 0x9020,
-    0x91A3: 0x4FC3,
-    0x91A4: 0x5074,
-    0x91A5: 0x5247,
-    0x91A6: 0x5373,
-    0x91A7: 0x606F,
-    0x91A8: 0x6349,
-    0x91A9: 0x675F,
-    0x91AA: 0x6E2C,
-    0x91AB: 0x8DB3,
-    0x91AC: 0x901F,
-    0x91AD: 0x4FD7,
-    0x91AE: 0x5C5E,
-    0x91AF: 0x8CCA,
-    0x91B0: 0x65CF,
-    0x91B1: 0x7D9A,
-    0x91B2: 0x5352,
-    0x91B3: 0x8896,
-    0x91B4: 0x5176,
-    0x91B5: 0x63C3,
-    0x91B6: 0x5B58,
-    0x91B7: 0x5B6B,
-    0x91B8: 0x5C0A,
-    0x91B9: 0x640D,
-    0x91BA: 0x6751,
-    0x91BB: 0x905C,
-    0x91BC: 0x4ED6,
-    0x91BD: 0x591A,
-    0x91BE: 0x592A,
-    0x91BF: 0x6C70,
-    0x91C0: 0x8A51,
-    0x91C1: 0x553E,
-    0x91C2: 0x5815,
-    0x91C3: 0x59A5,
-    0x91C4: 0x60F0,
-    0x91C5: 0x6253,
-    0x91C6: 0x67C1,
-    0x91C7: 0x8235,
-    0x91C8: 0x6955,
-    0x91C9: 0x9640,
-    0x91CA: 0x99C4,
-    0x91CB: 0x9A28,
-    0x91CC: 0x4F53,
-    0x91CD: 0x5806,
-    0x91CE: 0x5BFE,
-    0x91CF: 0x8010,
-    0x91D0: 0x5CB1,
-    0x91D1: 0x5E2F,
-    0x91D2: 0x5F85,
-    0x91D3: 0x6020,
-    0x91D4: 0x614B,
-    0x91D5: 0x6234,
-    0x91D6: 0x66FF,
-    0x91D7: 0x6CF0,
-    0x91D8: 0x6EDE,
-    0x91D9: 0x80CE,
-    0x91DA: 0x817F,
-    0x91DB: 0x82D4,
-    0x91DC: 0x888B,
-    0x91DD: 0x8CB8,
-    0x91DE: 0x9000,
-    0x91DF: 0x902E,
-    0x91E0: 0x968A,
-    0x91E1: 0x9EDB,
-    0x91E2: 0x9BDB,
-    0x91E3: 0x4EE3,
-    0x91E4: 0x53F0,
-    0x91E5: 0x5927,
-    0x91E6: 0x7B2C,
-    0x91E7: 0x918D,
-    0x91E8: 0x984C,
-    0x91E9: 0x9DF9,
-    0x91EA: 0x6EDD,
-    0x91EB: 0x7027,
-    0x91EC: 0x5353,
-    0x91ED: 0x5544,
-    0x91EE: 0x5B85,
-    0x91EF: 0x6258,
-    0x91F0: 0x629E,
-    0x91F1: 0x62D3,
-    0x91F2: 0x6CA2,
-    0x91F3: 0x6FEF,
-    0x91F4: 0x7422,
-    0x91F5: 0x8A17,
-    0x91F6: 0x9438,
-    0x91F7: 0x6FC1,
-    0x91F8: 0x8AFE,
-    0x91F9: 0x8338,
-    0x91FA: 0x51E7,
-    0x91FB: 0x86F8,
-    0x91FC: 0x53EA,
-    0x9240: 0x53E9,
-    0x9241: 0x4F46,
-    0x9242: 0x9054,
-    0x9243: 0x8FB0,
-    0x9244: 0x596A,
-    0x9245: 0x8131,
-    0x9246: 0x5DFD,
-    0x9247: 0x7AEA,
-    0x9248: 0x8FBF,
-    0x9249: 0x68DA,
-    0x924A: 0x8C37,
-    0x924B: 0x72F8,
-    0x924C: 0x9C48,
-    0x924D: 0x6A3D,
-    0x924E: 0x8AB0,
-    0x924F: 0x4E39,
-    0x9250: 0x5358,
-    0x9251: 0x5606,
-    0x9252: 0x5766,
-    0x9253: 0x62C5,
-    0x9254: 0x63A2,
-    0x9255: 0x65E6,
-    0x9256: 0x6B4E,
-    0x9257: 0x6DE1,
-    0x9258: 0x6E5B,
-    0x9259: 0x70AD,
-    0x925A: 0x77ED,
-    0x925B: 0x7AEF,
-    0x925C: 0x7BAA,
-    0x925D: 0x7DBB,
-    0x925E: 0x803D,
-    0x925F: 0x80C6,
-    0x9260: 0x86CB,
-    0x9261: 0x8A95,
-    0x9262: 0x935B,
-    0x9263: 0x56E3,
-    0x9264: 0x58C7,
-    0x9265: 0x5F3E,
-    0x9266: 0x65AD,
-    0x9267: 0x6696,
-    0x9268: 0x6A80,
-    0x9269: 0x6BB5,
-    0x926A: 0x7537,
-    0x926B: 0x8AC7,
-    0x926C: 0x5024,
-    0x926D: 0x77E5,
-    0x926E: 0x5730,
-    0x926F: 0x5F1B,
-    0x9270: 0x6065,
-    0x9271: 0x667A,
-    0x9272: 0x6C60,
-    0x9273: 0x75F4,
-    0x9274: 0x7A1A,
-    0x9275: 0x7F6E,
-    0x9276: 0x81F4,
-    0x9277: 0x8718,
-    0x9278: 0x9045,
-    0x9279: 0x99B3,
-    0x927A: 0x7BC9,
-    0x927B: 0x755C,
-    0x927C: 0x7AF9,
-    0x927D: 0x7B51,
-    0x927E: 0x84C4,
-    0x9280: 0x9010,
-    0x9281: 0x79E9,
-    0x9282: 0x7A92,
-    0x9283: 0x8336,
-    0x9284: 0x5AE1,
-    0x9285: 0x7740,
-    0x9286: 0x4E2D,
-    0x9287: 0x4EF2,
-    0x9288: 0x5B99,
-    0x9289: 0x5FE0,
-    0x928A: 0x62BD,
-    0x928B: 0x663C,
-    0x928C: 0x67F1,
-    0x928D: 0x6CE8,
-    0x928E: 0x866B,
-    0x928F: 0x8877,
-    0x9290: 0x8A3B,
-    0x9291: 0x914E,
-    0x9292: 0x92F3,
-    0x9293: 0x99D0,
-    0x9294: 0x6A17,
-    0x9295: 0x7026,
-    0x9296: 0x732A,
-    0x9297: 0x82E7,
-    0x9298: 0x8457,
-    0x9299: 0x8CAF,
-    0x929A: 0x4E01,
-    0x929B: 0x5146,
-    0x929C: 0x51CB,
-    0x929D: 0x558B,
-    0x929E: 0x5BF5,
-    0x929F: 0x5E16,
-    0x92A0: 0x5E33,
-    0x92A1: 0x5E81,
-    0x92A2: 0x5F14,
-    0x92A3: 0x5F35,
-    0x92A4: 0x5F6B,
-    0x92A5: 0x5FB4,
-    0x92A6: 0x61F2,
-    0x92A7: 0x6311,
-    0x92A8: 0x66A2,
-    0x92A9: 0x671D,
-    0x92AA: 0x6F6E,
-    0x92AB: 0x7252,
-    0x92AC: 0x753A,
-    0x92AD: 0x773A,
-    0x92AE: 0x8074,
-    0x92AF: 0x8139,
-    0x92B0: 0x8178,
-    0x92B1: 0x8776,
-    0x92B2: 0x8ABF,
-    0x92B3: 0x8ADC,
-    0x92B4: 0x8D85,
-    0x92B5: 0x8DF3,
-    0x92B6: 0x929A,
-    0x92B7: 0x9577,
-    0x92B8: 0x9802,
-    0x92B9: 0x9CE5,
-    0x92BA: 0x52C5,
-    0x92BB: 0x6357,
-    0x92BC: 0x76F4,
-    0x92BD: 0x6715,
-    0x92BE: 0x6C88,
-    0x92BF: 0x73CD,
-    0x92C0: 0x8CC3,
-    0x92C1: 0x93AE,
-    0x92C2: 0x9673,
-    0x92C3: 0x6D25,
-    0x92C4: 0x589C,
-    0x92C5: 0x690E,
-    0x92C6: 0x69CC,
-    0x92C7: 0x8FFD,
-    0x92C8: 0x939A,
-    0x92C9: 0x75DB,
-    0x92CA: 0x901A,
-    0x92CB: 0x585A,
-    0x92CC: 0x6802,
-    0x92CD: 0x63B4,
-    0x92CE: 0x69FB,
-    0x92CF: 0x4F43,
-    0x92D0: 0x6F2C,
-    0x92D1: 0x67D8,
-    0x92D2: 0x8FBB,
-    0x92D3: 0x8526,
-    0x92D4: 0x7DB4,
-    0x92D5: 0x9354,
-    0x92D6: 0x693F,
-    0x92D7: 0x6F70,
-    0x92D8: 0x576A,
-    0x92D9: 0x58F7,
-    0x92DA: 0x5B2C,
-    0x92DB: 0x7D2C,
-    0x92DC: 0x722A,
-    0x92DD: 0x540A,
-    0x92DE: 0x91E3,
-    0x92DF: 0x9DB4,
-    0x92E0: 0x4EAD,
-    0x92E1: 0x4F4E,
-    0x92E2: 0x505C,
-    0x92E3: 0x5075,
-    0x92E4: 0x5243,
-    0x92E5: 0x8C9E,
-    0x92E6: 0x5448,
-    0x92E7: 0x5824,
-    0x92E8: 0x5B9A,
-    0x92E9: 0x5E1D,
-    0x92EA: 0x5E95,
-    0x92EB: 0x5EAD,
-    0x92EC: 0x5EF7,
-    0x92ED: 0x5F1F,
-    0x92EE: 0x608C,
-    0x92EF: 0x62B5,
-    0x92F0: 0x633A,
-    0x92F1: 0x63D0,
-    0x92F2: 0x68AF,
-    0x92F3: 0x6C40,
-    0x92F4: 0x7887,
-    0x92F5: 0x798E,
-    0x92F6: 0x7A0B,
-    0x92F7: 0x7DE0,
-    0x92F8: 0x8247,
-    0x92F9: 0x8A02,
-    0x92FA: 0x8AE6,
-    0x92FB: 0x8E44,
-    0x92FC: 0x9013,
-    0x9340: 0x90B8,
-    0x9341: 0x912D,
-    0x9342: 0x91D8,
-    0x9343: 0x9F0E,
-    0x9344: 0x6CE5,
-    0x9345: 0x6458,
-    0x9346: 0x64E2,
-    0x9347: 0x6575,
-    0x9348: 0x6EF4,
-    0x9349: 0x7684,
-    0x934A: 0x7B1B,
-    0x934B: 0x9069,
-    0x934C: 0x93D1,
-    0x934D: 0x6EBA,
-    0x934E: 0x54F2,
-    0x934F: 0x5FB9,
-    0x9350: 0x64A4,
-    0x9351: 0x8F4D,
-    0x9352: 0x8FED,
-    0x9353: 0x9244,
-    0x9354: 0x5178,
-    0x9355: 0x586B,
-    0x9356: 0x5929,
-    0x9357: 0x5C55,
-    0x9358: 0x5E97,
-    0x9359: 0x6DFB,
-    0x935A: 0x7E8F,
-    0x935B: 0x751C,
-    0x935C: 0x8CBC,
-    0x935D: 0x8EE2,
-    0x935E: 0x985B,
-    0x935F: 0x70B9,
-    0x9360: 0x4F1D,
-    0x9361: 0x6BBF,
-    0x9362: 0x6FB1,
-    0x9363: 0x7530,
-    0x9364: 0x96FB,
-    0x9365: 0x514E,
-    0x9366: 0x5410,
-    0x9367: 0x5835,
-    0x9368: 0x5857,
-    0x9369: 0x59AC,
-    0x936A: 0x5C60,
-    0x936B: 0x5F92,
-    0x936C: 0x6597,
-    0x936D: 0x675C,
-    0x936E: 0x6E21,
-    0x936F: 0x767B,
-    0x9370: 0x83DF,
-    0x9371: 0x8CED,
-    0x9372: 0x9014,
-    0x9373: 0x90FD,
-    0x9374: 0x934D,
-    0x9375: 0x7825,
-    0x9376: 0x783A,
-    0x9377: 0x52AA,
-    0x9378: 0x5EA6,
-    0x9379: 0x571F,
-    0x937A: 0x5974,
-    0x937B: 0x6012,
-    0x937C: 0x5012,
-    0x937D: 0x515A,
-    0x937E: 0x51AC,
-    0x9380: 0x51CD,
-    0x9381: 0x5200,
-    0x9382: 0x5510,
-    0x9383: 0x5854,
-    0x9384: 0x5858,
-    0x9385: 0x5957,
-    0x9386: 0x5B95,
-    0x9387: 0x5CF6,
-    0x9388: 0x5D8B,
-    0x9389: 0x60BC,
-    0x938A: 0x6295,
-    0x938B: 0x642D,
-    0x938C: 0x6771,
-    0x938D: 0x6843,
-    0x938E: 0x68BC,
-    0x938F: 0x68DF,
-    0x9390: 0x76D7,
-    0x9391: 0x6DD8,
-    0x9392: 0x6E6F,
-    0x9393: 0x6D9B,
-    0x9394: 0x706F,
-    0x9395: 0x71C8,
-    0x9396: 0x5F53,
-    0x9397: 0x75D8,
-    0x9398: 0x7977,
-    0x9399: 0x7B49,
-    0x939A: 0x7B54,
-    0x939B: 0x7B52,
-    0x939C: 0x7CD6,
-    0x939D: 0x7D71,
-    0x939E: 0x5230,
-    0x939F: 0x8463,
-    0x93A0: 0x8569,
-    0x93A1: 0x85E4,
-    0x93A2: 0x8A0E,
-    0x93A3: 0x8B04,
-    0x93A4: 0x8C46,
-    0x93A5: 0x8E0F,
-    0x93A6: 0x9003,
-    0x93A7: 0x900F,
-    0x93A8: 0x9419,
-    0x93A9: 0x9676,
-    0x93AA: 0x982D,
-    0x93AB: 0x9A30,
-    0x93AC: 0x95D8,
-    0x93AD: 0x50CD,
-    0x93AE: 0x52D5,
-    0x93AF: 0x540C,
-    0x93B0: 0x5802,
-    0x93B1: 0x5C0E,
-    0x93B2: 0x61A7,
-    0x93B3: 0x649E,
-    0x93B4: 0x6D1E,
-    0x93B5: 0x77B3,
-    0x93B6: 0x7AE5,
-    0x93B7: 0x80F4,
-    0x93B8: 0x8404,
-    0x93B9: 0x9053,
-    0x93BA: 0x9285,
-    0x93BB: 0x5CE0,
-    0x93BC: 0x9D07,
-    0x93BD: 0x533F,
-    0x93BE: 0x5F97,
-    0x93BF: 0x5FB3,
-    0x93C0: 0x6D9C,
-    0x93C1: 0x7279,
-    0x93C2: 0x7763,
-    0x93C3: 0x79BF,
-    0x93C4: 0x7BE4,
-    0x93C5: 0x6BD2,
-    0x93C6: 0x72EC,
-    0x93C7: 0x8AAD,
-    0x93C8: 0x6803,
-    0x93C9: 0x6A61,
-    0x93CA: 0x51F8,
-    0x93CB: 0x7A81,
-    0x93CC: 0x6934,
-    0x93CD: 0x5C4A,
-    0x93CE: 0x9CF6,
-    0x93CF: 0x82EB,
-    0x93D0: 0x5BC5,
-    0x93D1: 0x9149,
-    0x93D2: 0x701E,
-    0x93D3: 0x5678,
-    0x93D4: 0x5C6F,
-    0x93D5: 0x60C7,
-    0x93D6: 0x6566,
-    0x93D7: 0x6C8C,
-    0x93D8: 0x8C5A,
-    0x93D9: 0x9041,
-    0x93DA: 0x9813,
-    0x93DB: 0x5451,
-    0x93DC: 0x66C7,
-    0x93DD: 0x920D,
-    0x93DE: 0x5948,
-    0x93DF: 0x90A3,
-    0x93E0: 0x5185,
-    0x93E1: 0x4E4D,
-    0x93E2: 0x51EA,
-    0x93E3: 0x8599,
-    0x93E4: 0x8B0E,
-    0x93E5: 0x7058,
-    0x93E6: 0x637A,
-    0x93E7: 0x934B,
-    0x93E8: 0x6962,
-    0x93E9: 0x99B4,
-    0x93EA: 0x7E04,
-    0x93EB: 0x7577,
-    0x93EC: 0x5357,
-    0x93ED: 0x6960,
-    0x93EE: 0x8EDF,
-    0x93EF: 0x96E3,
-    0x93F0: 0x6C5D,
-    0x93F1: 0x4E8C,
-    0x93F2: 0x5C3C,
-    0x93F3: 0x5F10,
-    0x93F4: 0x8FE9,
-    0x93F5: 0x5302,
-    0x93F6: 0x8CD1,
-    0x93F7: 0x8089,
-    0x93F8: 0x8679,
-    0x93F9: 0x5EFF,
-    0x93FA: 0x65E5,
-    0x93FB: 0x4E73,
-    0x93FC: 0x5165,
-    0x9440: 0x5982,
-    0x9441: 0x5C3F,
-    0x9442: 0x97EE,
-    0x9443: 0x4EFB,
-    0x9444: 0x598A,
-    0x9445: 0x5FCD,
-    0x9446: 0x8A8D,
-    0x9447: 0x6FE1,
-    0x9448: 0x79B0,
-    0x9449: 0x7962,
-    0x944A: 0x5BE7,
-    0x944B: 0x8471,
-    0x944C: 0x732B,
-    0x944D: 0x71B1,
-    0x944E: 0x5E74,
-    0x944F: 0x5FF5,
-    0x9450: 0x637B,
-    0x9451: 0x649A,
-    0x9452: 0x71C3,
-    0x9453: 0x7C98,
-    0x9454: 0x4E43,
-    0x9455: 0x5EFC,
-    0x9456: 0x4E4B,
-    0x9457: 0x57DC,
-    0x9458: 0x56A2,
-    0x9459: 0x60A9,
-    0x945A: 0x6FC3,
-    0x945B: 0x7D0D,
-    0x945C: 0x80FD,
-    0x945D: 0x8133,
-    0x945E: 0x81BF,
-    0x945F: 0x8FB2,
-    0x9460: 0x8997,
-    0x9461: 0x86A4,
-    0x9462: 0x5DF4,
-    0x9463: 0x628A,
-    0x9464: 0x64AD,
-    0x9465: 0x8987,
-    0x9466: 0x6777,
-    0x9467: 0x6CE2,
-    0x9468: 0x6D3E,
-    0x9469: 0x7436,
-    0x946A: 0x7834,
-    0x946B: 0x5A46,
-    0x946C: 0x7F75,
-    0x946D: 0x82AD,
-    0x946E: 0x99AC,
-    0x946F: 0x4FF3,
-    0x9470: 0x5EC3,
-    0x9471: 0x62DD,
-    0x9472: 0x6392,
-    0x9473: 0x6557,
-    0x9474: 0x676F,
-    0x9475: 0x76C3,
-    0x9476: 0x724C,
-    0x9477: 0x80CC,
-    0x9478: 0x80BA,
-    0x9479: 0x8F29,
-    0x947A: 0x914D,
-    0x947B: 0x500D,
-    0x947C: 0x57F9,
-    0x947D: 0x5A92,
-    0x947E: 0x6885,
-    0x9480: 0x6973,
-    0x9481: 0x7164,
-    0x9482: 0x72FD,
-    0x9483: 0x8CB7,
-    0x9484: 0x58F2,
-    0x9485: 0x8CE0,
-    0x9486: 0x966A,
-    0x9487: 0x9019,
-    0x9488: 0x877F,
-    0x9489: 0x79E4,
-    0x948A: 0x77E7,
-    0x948B: 0x8429,
-    0x948C: 0x4F2F,
-    0x948D: 0x5265,
-    0x948E: 0x535A,
-    0x948F: 0x62CD,
-    0x9490: 0x67CF,
-    0x9491: 0x6CCA,
-    0x9492: 0x767D,
-    0x9493: 0x7B94,
-    0x9494: 0x7C95,
-    0x9495: 0x8236,
-    0x9496: 0x8584,
-    0x9497: 0x8FEB,
-    0x9498: 0x66DD,
-    0x9499: 0x6F20,
-    0x949A: 0x7206,
-    0x949B: 0x7E1B,
-    0x949C: 0x83AB,
-    0x949D: 0x99C1,
-    0x949E: 0x9EA6,
-    0x949F: 0x51FD,
-    0x94A0: 0x7BB1,
-    0x94A1: 0x7872,
-    0x94A2: 0x7BB8,
-    0x94A3: 0x8087,
-    0x94A4: 0x7B48,
-    0x94A5: 0x6AE8,
-    0x94A6: 0x5E61,
-    0x94A7: 0x808C,
-    0x94A8: 0x7551,
-    0x94A9: 0x7560,
-    0x94AA: 0x516B,
-    0x94AB: 0x9262,
-    0x94AC: 0x6E8C,
-    0x94AD: 0x767A,
-    0x94AE: 0x9197,
-    0x94AF: 0x9AEA,
-    0x94B0: 0x4F10,
-    0x94B1: 0x7F70,
-    0x94B2: 0x629C,
-    0x94B3: 0x7B4F,
-    0x94B4: 0x95A5,
-    0x94B5: 0x9CE9,
-    0x94B6: 0x567A,
-    0x94B7: 0x5859,
-    0x94B8: 0x86E4,
-    0x94B9: 0x96BC,
-    0x94BA: 0x4F34,
-    0x94BB: 0x5224,
-    0x94BC: 0x534A,
-    0x94BD: 0x53CD,
-    0x94BE: 0x53DB,
-    0x94BF: 0x5E06,
-    0x94C0: 0x642C,
-    0x94C1: 0x6591,
-    0x94C2: 0x677F,
-    0x94C3: 0x6C3E,
-    0x94C4: 0x6C4E,
-    0x94C5: 0x7248,
-    0x94C6: 0x72AF,
-    0x94C7: 0x73ED,
-    0x94C8: 0x7554,
-    0x94C9: 0x7E41,
-    0x94CA: 0x822C,
-    0x94CB: 0x85E9,
-    0x94CC: 0x8CA9,
-    0x94CD: 0x7BC4,
-    0x94CE: 0x91C6,
-    0x94CF: 0x7169,
-    0x94D0: 0x9812,
-    0x94D1: 0x98EF,
-    0x94D2: 0x633D,
-    0x94D3: 0x6669,
-    0x94D4: 0x756A,
-    0x94D5: 0x76E4,
-    0x94D6: 0x78D0,
-    0x94D7: 0x8543,
-    0x94D8: 0x86EE,
-    0x94D9: 0x532A,
-    0x94DA: 0x5351,
-    0x94DB: 0x5426,
-    0x94DC: 0x5983,
-    0x94DD: 0x5E87,
-    0x94DE: 0x5F7C,
-    0x94DF: 0x60B2,
-    0x94E0: 0x6249,
-    0x94E1: 0x6279,
-    0x94E2: 0x62AB,
-    0x94E3: 0x6590,
-    0x94E4: 0x6BD4,
-    0x94E5: 0x6CCC,
-    0x94E6: 0x75B2,
-    0x94E7: 0x76AE,
-    0x94E8: 0x7891,
-    0x94E9: 0x79D8,
-    0x94EA: 0x7DCB,
-    0x94EB: 0x7F77,
-    0x94EC: 0x80A5,
-    0x94ED: 0x88AB,
-    0x94EE: 0x8AB9,
-    0x94EF: 0x8CBB,
-    0x94F0: 0x907F,
-    0x94F1: 0x975E,
-    0x94F2: 0x98DB,
-    0x94F3: 0x6A0B,
-    0x94F4: 0x7C38,
-    0x94F5: 0x5099,
-    0x94F6: 0x5C3E,
-    0x94F7: 0x5FAE,
-    0x94F8: 0x6787,
-    0x94F9: 0x6BD8,
-    0x94FA: 0x7435,
-    0x94FB: 0x7709,
-    0x94FC: 0x7F8E,
-    0x9540: 0x9F3B,
-    0x9541: 0x67CA,
-    0x9542: 0x7A17,
-    0x9543: 0x5339,
-    0x9544: 0x758B,
-    0x9545: 0x9AED,
-    0x9546: 0x5F66,
-    0x9547: 0x819D,
-    0x9548: 0x83F1,
-    0x9549: 0x8098,
-    0x954A: 0x5F3C,
-    0x954B: 0x5FC5,
-    0x954C: 0x7562,
-    0x954D: 0x7B46,
-    0x954E: 0x903C,
-    0x954F: 0x6867,
-    0x9550: 0x59EB,
-    0x9551: 0x5A9B,
-    0x9552: 0x7D10,
-    0x9553: 0x767E,
-    0x9554: 0x8B2C,
-    0x9555: 0x4FF5,
-    0x9556: 0x5F6A,
-    0x9557: 0x6A19,
-    0x9558: 0x6C37,
-    0x9559: 0x6F02,
-    0x955A: 0x74E2,
-    0x955B: 0x7968,
-    0x955C: 0x8868,
-    0x955D: 0x8A55,
-    0x955E: 0x8C79,
-    0x955F: 0x5EDF,
-    0x9560: 0x63CF,
-    0x9561: 0x75C5,
-    0x9562: 0x79D2,
-    0x9563: 0x82D7,
-    0x9564: 0x9328,
-    0x9565: 0x92F2,
-    0x9566: 0x849C,
-    0x9567: 0x86ED,
-    0x9568: 0x9C2D,
-    0x9569: 0x54C1,
-    0x956A: 0x5F6C,
-    0x956B: 0x658C,
-    0x956C: 0x6D5C,
-    0x956D: 0x7015,
-    0x956E: 0x8CA7,
-    0x956F: 0x8CD3,
-    0x9570: 0x983B,
-    0x9571: 0x654F,
-    0x9572: 0x74F6,
-    0x9573: 0x4E0D,
-    0x9574: 0x4ED8,
-    0x9575: 0x57E0,
-    0x9576: 0x592B,
-    0x9577: 0x5A66,
-    0x9578: 0x5BCC,
-    0x9579: 0x51A8,
-    0x957A: 0x5E03,
-    0x957B: 0x5E9C,
-    0x957C: 0x6016,
-    0x957D: 0x6276,
-    0x957E: 0x6577,
-    0x9580: 0x65A7,
-    0x9581: 0x666E,
-    0x9582: 0x6D6E,
-    0x9583: 0x7236,
-    0x9584: 0x7B26,
-    0x9585: 0x8150,
-    0x9586: 0x819A,
-    0x9587: 0x8299,
-    0x9588: 0x8B5C,
-    0x9589: 0x8CA0,
-    0x958A: 0x8CE6,
-    0x958B: 0x8D74,
-    0x958C: 0x961C,
-    0x958D: 0x9644,
-    0x958E: 0x4FAE,
-    0x958F: 0x64AB,
-    0x9590: 0x6B66,
-    0x9591: 0x821E,
-    0x9592: 0x8461,
-    0x9593: 0x856A,
-    0x9594: 0x90E8,
-    0x9595: 0x5C01,
-    0x9596: 0x6953,
-    0x9597: 0x98A8,
-    0x9598: 0x847A,
-    0x9599: 0x8557,
-    0x959A: 0x4F0F,
-    0x959B: 0x526F,
-    0x959C: 0x5FA9,
-    0x959D: 0x5E45,
-    0x959E: 0x670D,
-    0x959F: 0x798F,
-    0x95A0: 0x8179,
-    0x95A1: 0x8907,
-    0x95A2: 0x8986,
-    0x95A3: 0x6DF5,
-    0x95A4: 0x5F17,
-    0x95A5: 0x6255,
-    0x95A6: 0x6CB8,
-    0x95A7: 0x4ECF,
-    0x95A8: 0x7269,
-    0x95A9: 0x9B92,
-    0x95AA: 0x5206,
-    0x95AB: 0x543B,
-    0x95AC: 0x5674,
-    0x95AD: 0x58B3,
-    0x95AE: 0x61A4,
-    0x95AF: 0x626E,
-    0x95B0: 0x711A,
-    0x95B1: 0x596E,
-    0x95B2: 0x7C89,
-    0x95B3: 0x7CDE,
-    0x95B4: 0x7D1B,
-    0x95B5: 0x96F0,
-    0x95B6: 0x6587,
-    0x95B7: 0x805E,
-    0x95B8: 0x4E19,
-    0x95B9: 0x4F75,
-    0x95BA: 0x5175,
-    0x95BB: 0x5840,
-    0x95BC: 0x5E63,
-    0x95BD: 0x5E73,
-    0x95BE: 0x5F0A,
-    0x95BF: 0x67C4,
-    0x95C0: 0x4E26,
-    0x95C1: 0x853D,
-    0x95C2: 0x9589,
-    0x95C3: 0x965B,
-    0x95C4: 0x7C73,
-    0x95C5: 0x9801,
-    0x95C6: 0x50FB,
-    0x95C7: 0x58C1,
-    0x95C8: 0x7656,
-    0x95C9: 0x78A7,
-    0x95CA: 0x5225,
-    0x95CB: 0x77A5,
-    0x95CC: 0x8511,
-    0x95CD: 0x7B86,
-    0x95CE: 0x504F,
-    0x95CF: 0x5909,
-    0x95D0: 0x7247,
-    0x95D1: 0x7BC7,
-    0x95D2: 0x7DE8,
-    0x95D3: 0x8FBA,
-    0x95D4: 0x8FD4,
-    0x95D5: 0x904D,
-    0x95D6: 0x4FBF,
-    0x95D7: 0x52C9,
-    0x95D8: 0x5A29,
-    0x95D9: 0x5F01,
-    0x95DA: 0x97AD,
-    0x95DB: 0x4FDD,
-    0x95DC: 0x8217,
-    0x95DD: 0x92EA,
-    0x95DE: 0x5703,
-    0x95DF: 0x6355,
-    0x95E0: 0x6B69,
-    0x95E1: 0x752B,
-    0x95E2: 0x88DC,
-    0x95E3: 0x8F14,
-    0x95E4: 0x7A42,
-    0x95E5: 0x52DF,
-    0x95E6: 0x5893,
-    0x95E7: 0x6155,
-    0x95E8: 0x620A,
-    0x95E9: 0x66AE,
-    0x95EA: 0x6BCD,
-    0x95EB: 0x7C3F,
-    0x95EC: 0x83E9,
-    0x95ED: 0x5023,
-    0x95EE: 0x4FF8,
-    0x95EF: 0x5305,
-    0x95F0: 0x5446,
-    0x95F1: 0x5831,
-    0x95F2: 0x5949,
-    0x95F3: 0x5B9D,
-    0x95F4: 0x5CF0,
-    0x95F5: 0x5CEF,
-    0x95F6: 0x5D29,
-    0x95F7: 0x5E96,
-    0x95F8: 0x62B1,
-    0x95F9: 0x6367,
-    0x95FA: 0x653E,
-    0x95FB: 0x65B9,
-    0x95FC: 0x670B,
-    0x9640: 0x6CD5,
-    0x9641: 0x6CE1,
-    0x9642: 0x70F9,
-    0x9643: 0x7832,
-    0x9644: 0x7E2B,
-    0x9645: 0x80DE,
-    0x9646: 0x82B3,
-    0x9647: 0x840C,
-    0x9648: 0x84EC,
-    0x9649: 0x8702,
-    0x964A: 0x8912,
-    0x964B: 0x8A2A,
-    0x964C: 0x8C4A,
-    0x964D: 0x90A6,
-    0x964E: 0x92D2,
-    0x964F: 0x98FD,
-    0x9650: 0x9CF3,
-    0x9651: 0x9D6C,
-    0x9652: 0x4E4F,
-    0x9653: 0x4EA1,
-    0x9654: 0x508D,
-    0x9655: 0x5256,
-    0x9656: 0x574A,
-    0x9657: 0x59A8,
-    0x9658: 0x5E3D,
-    0x9659: 0x5FD8,
-    0x965A: 0x5FD9,
-    0x965B: 0x623F,
-    0x965C: 0x66B4,
-    0x965D: 0x671B,
-    0x965E: 0x67D0,
-    0x965F: 0x68D2,
-    0x9660: 0x5192,
-    0x9661: 0x7D21,
-    0x9662: 0x80AA,
-    0x9663: 0x81A8,
-    0x9664: 0x8B00,
-    0x9665: 0x8C8C,
-    0x9666: 0x8CBF,
-    0x9667: 0x927E,
-    0x9668: 0x9632,
-    0x9669: 0x5420,
-    0x966A: 0x982C,
-    0x966B: 0x5317,
-    0x966C: 0x50D5,
-    0x966D: 0x535C,
-    0x966E: 0x58A8,
-    0x966F: 0x64B2,
-    0x9670: 0x6734,
-    0x9671: 0x7267,
-    0x9672: 0x7766,
-    0x9673: 0x7A46,
-    0x9674: 0x91E6,
-    0x9675: 0x52C3,
-    0x9676: 0x6CA1,
-    0x9677: 0x6B86,
-    0x9678: 0x5800,
-    0x9679: 0x5E4C,
-    0x967A: 0x5954,
-    0x967B: 0x672C,
-    0x967C: 0x7FFB,
-    0x967D: 0x51E1,
-    0x967E: 0x76C6,
-    0x9680: 0x6469,
-    0x9681: 0x78E8,
-    0x9682: 0x9B54,
-    0x9683: 0x9EBB,
-    0x9684: 0x57CB,
-    0x9685: 0x59B9,
-    0x9686: 0x6627,
-    0x9687: 0x679A,
-    0x9688: 0x6BCE,
-    0x9689: 0x54E9,
-    0x968A: 0x69D9,
-    0x968B: 0x5E55,
-    0x968C: 0x819C,
-    0x968D: 0x6795,
-    0x968E: 0x9BAA,
-    0x968F: 0x67FE,
-    0x9690: 0x9C52,
-    0x9691: 0x685D,
-    0x9692: 0x4EA6,
-    0x9693: 0x4FE3,
-    0x9694: 0x53C8,
-    0x9695: 0x62B9,
-    0x9696: 0x672B,
-    0x9697: 0x6CAB,
-    0x9698: 0x8FC4,
-    0x9699: 0x4FAD,
-    0x969A: 0x7E6D,
-    0x969B: 0x9EBF,
-    0x969C: 0x4E07,
-    0x969D: 0x6162,
-    0x969E: 0x6E80,
-    0x969F: 0x6F2B,
-    0x96A0: 0x8513,
-    0x96A1: 0x5473,
-    0x96A2: 0x672A,
-    0x96A3: 0x9B45,
-    0x96A4: 0x5DF3,
-    0x96A5: 0x7B95,
-    0x96A6: 0x5CAC,
-    0x96A7: 0x5BC6,
-    0x96A8: 0x871C,
-    0x96A9: 0x6E4A,
-    0x96AA: 0x84D1,
-    0x96AB: 0x7A14,
-    0x96AC: 0x8108,
-    0x96AD: 0x5999,
-    0x96AE: 0x7C8D,
-    0x96AF: 0x6C11,
-    0x96B0: 0x7720,
-    0x96B1: 0x52D9,
-    0x96B2: 0x5922,
-    0x96B3: 0x7121,
-    0x96B4: 0x725F,
-    0x96B5: 0x77DB,
-    0x96B6: 0x9727,
-    0x96B7: 0x9D61,
-    0x96B8: 0x690B,
-    0x96B9: 0x5A7F,
-    0x96BA: 0x5A18,
-    0x96BB: 0x51A5,
-    0x96BC: 0x540D,
-    0x96BD: 0x547D,
-    0x96BE: 0x660E,
-    0x96BF: 0x76DF,
-    0x96C0: 0x8FF7,
-    0x96C1: 0x9298,
-    0x96C2: 0x9CF4,
-    0x96C3: 0x59EA,
-    0x96C4: 0x725D,
-    0x96C5: 0x6EC5,
-    0x96C6: 0x514D,
-    0x96C7: 0x68C9,
-    0x96C8: 0x7DBF,
-    0x96C9: 0x7DEC,
-    0x96CA: 0x9762,
-    0x96CB: 0x9EBA,
-    0x96CC: 0x6478,
-    0x96CD: 0x6A21,
-    0x96CE: 0x8302,
-    0x96CF: 0x5984,
-    0x96D0: 0x5B5F,
-    0x96D1: 0x6BDB,
-    0x96D2: 0x731B,
-    0x96D3: 0x76F2,
-    0x96D4: 0x7DB2,
-    0x96D5: 0x8017,
-    0x96D6: 0x8499,
-    0x96D7: 0x5132,
-    0x96D8: 0x6728,
-    0x96D9: 0x9ED9,
-    0x96DA: 0x76EE,
-    0x96DB: 0x6762,
-    0x96DC: 0x52FF,
-    0x96DD: 0x9905,
-    0x96DE: 0x5C24,
-    0x96DF: 0x623B,
-    0x96E0: 0x7C7E,
-    0x96E1: 0x8CB0,
-    0x96E2: 0x554F,
-    0x96E3: 0x60B6,
-    0x96E4: 0x7D0B,
-    0x96E5: 0x9580,
-    0x96E6: 0x5301,
-    0x96E7: 0x4E5F,
-    0x96E8: 0x51B6,
-    0x96E9: 0x591C,
-    0x96EA: 0x723A,
-    0x96EB: 0x8036,
-    0x96EC: 0x91CE,
-    0x96ED: 0x5F25,
-    0x96EE: 0x77E2,
-    0x96EF: 0x5384,
-    0x96F0: 0x5F79,
-    0x96F1: 0x7D04,
-    0x96F2: 0x85AC,
-    0x96F3: 0x8A33,
-    0x96F4: 0x8E8D,
-    0x96F5: 0x9756,
-    0x96F6: 0x67F3,
-    0x96F7: 0x85AE,
-    0x96F8: 0x9453,
-    0x96F9: 0x6109,
-    0x96FA: 0x6108,
-    0x96FB: 0x6CB9,
-    0x96FC: 0x7652,
-    0x9740: 0x8AED,
-    0x9741: 0x8F38,
-    0x9742: 0x552F,
-    0x9743: 0x4F51,
-    0x9744: 0x512A,
-    0x9745: 0x52C7,
-    0x9746: 0x53CB,
-    0x9747: 0x5BA5,
-    0x9748: 0x5E7D,
-    0x9749: 0x60A0,
-    0x974A: 0x6182,
-    0x974B: 0x63D6,
-    0x974C: 0x6709,
-    0x974D: 0x67DA,
-    0x974E: 0x6E67,
-    0x974F: 0x6D8C,
-    0x9750: 0x7336,
-    0x9751: 0x7337,
-    0x9752: 0x7531,
-    0x9753: 0x7950,
-    0x9754: 0x88D5,
-    0x9755: 0x8A98,
-    0x9756: 0x904A,
-    0x9757: 0x9091,
-    0x9758: 0x90F5,
-    0x9759: 0x96C4,
-    0x975A: 0x878D,
-    0x975B: 0x5915,
-    0x975C: 0x4E88,
-    0x975D: 0x4F59,
-    0x975E: 0x4E0E,
-    0x975F: 0x8A89,
-    0x9760: 0x8F3F,
-    0x9761: 0x9810,
-    0x9762: 0x50AD,
-    0x9763: 0x5E7C,
-    0x9764: 0x5996,
-    0x9765: 0x5BB9,
-    0x9766: 0x5EB8,
-    0x9767: 0x63DA,
-    0x9768: 0x63FA,
-    0x9769: 0x64C1,
-    0x976A: 0x66DC,
-    0x976B: 0x694A,
-    0x976C: 0x69D8,
-    0x976D: 0x6D0B,
-    0x976E: 0x6EB6,
-    0x976F: 0x7194,
-    0x9770: 0x7528,
-    0x9771: 0x7AAF,
-    0x9772: 0x7F8A,
-    0x9773: 0x8000,
-    0x9774: 0x8449,
-    0x9775: 0x84C9,
-    0x9776: 0x8981,
-    0x9777: 0x8B21,
-    0x9778: 0x8E0A,
-    0x9779: 0x9065,
-    0x977A: 0x967D,
-    0x977B: 0x990A,
-    0x977C: 0x617E,
-    0x977D: 0x6291,
-    0x977E: 0x6B32,
-    0x9780: 0x6C83,
-    0x9781: 0x6D74,
-    0x9782: 0x7FCC,
-    0x9783: 0x7FFC,
-    0x9784: 0x6DC0,
-    0x9785: 0x7F85,
-    0x9786: 0x87BA,
-    0x9787: 0x88F8,
-    0x9788: 0x6765,
-    0x9789: 0x83B1,
-    0x978A: 0x983C,
-    0x978B: 0x96F7,
-    0x978C: 0x6D1B,
-    0x978D: 0x7D61,
-    0x978E: 0x843D,
-    0x978F: 0x916A,
-    0x9790: 0x4E71,
-    0x9791: 0x5375,
-    0x9792: 0x5D50,
-    0x9793: 0x6B04,
-    0x9794: 0x6FEB,
-    0x9795: 0x85CD,
-    0x9796: 0x862D,
-    0x9797: 0x89A7,
-    0x9798: 0x5229,
-    0x9799: 0x540F,
-    0x979A: 0x5C65,
-    0x979B: 0x674E,
-    0x979C: 0x68A8,
-    0x979D: 0x7406,
-    0x979E: 0x7483,
-    0x979F: 0x75E2,
-    0x97A0: 0x88CF,
-    0x97A1: 0x88E1,
-    0x97A2: 0x91CC,
-    0x97A3: 0x96E2,
-    0x97A4: 0x9678,
-    0x97A5: 0x5F8B,
-    0x97A6: 0x7387,
-    0x97A7: 0x7ACB,
-    0x97A8: 0x844E,
-    0x97A9: 0x63A0,
-    0x97AA: 0x7565,
-    0x97AB: 0x5289,
-    0x97AC: 0x6D41,
-    0x97AD: 0x6E9C,
-    0x97AE: 0x7409,
-    0x97AF: 0x7559,
-    0x97B0: 0x786B,
-    0x97B1: 0x7C92,
-    0x97B2: 0x9686,
-    0x97B3: 0x7ADC,
-    0x97B4: 0x9F8D,
-    0x97B5: 0x4FB6,
-    0x97B6: 0x616E,
-    0x97B7: 0x65C5,
-    0x97B8: 0x865C,
-    0x97B9: 0x4E86,
-    0x97BA: 0x4EAE,
-    0x97BB: 0x50DA,
-    0x97BC: 0x4E21,
-    0x97BD: 0x51CC,
-    0x97BE: 0x5BEE,
-    0x97BF: 0x6599,
-    0x97C0: 0x6881,
-    0x97C1: 0x6DBC,
-    0x97C2: 0x731F,
-    0x97C3: 0x7642,
-    0x97C4: 0x77AD,
-    0x97C5: 0x7A1C,
-    0x97C6: 0x7CE7,
-    0x97C7: 0x826F,
-    0x97C8: 0x8AD2,
-    0x97C9: 0x907C,
-    0x97CA: 0x91CF,
-    0x97CB: 0x9675,
-    0x97CC: 0x9818,
-    0x97CD: 0x529B,
-    0x97CE: 0x7DD1,
-    0x97CF: 0x502B,
-    0x97D0: 0x5398,
-    0x97D1: 0x6797,
-    0x97D2: 0x6DCB,
-    0x97D3: 0x71D0,
-    0x97D4: 0x7433,
-    0x97D5: 0x81E8,
-    0x97D6: 0x8F2A,
-    0x97D7: 0x96A3,
-    0x97D8: 0x9C57,
-    0x97D9: 0x9E9F,
-    0x97DA: 0x7460,
-    0x97DB: 0x5841,
-    0x97DC: 0x6D99,
-    0x97DD: 0x7D2F,
-    0x97DE: 0x985E,
-    0x97DF: 0x4EE4,
-    0x97E0: 0x4F36,
-    0x97E1: 0x4F8B,
-    0x97E2: 0x51B7,
-    0x97E3: 0x52B1,
-    0x97E4: 0x5DBA,
-    0x97E5: 0x601C,
-    0x97E6: 0x73B2,
-    0x97E7: 0x793C,
-    0x97E8: 0x82D3,
-    0x97E9: 0x9234,
-    0x97EA: 0x96B7,
-    0x97EB: 0x96F6,
-    0x97EC: 0x970A,
-    0x97ED: 0x9E97,
-    0x97EE: 0x9F62,
-    0x97EF: 0x66A6,
-    0x97F0: 0x6B74,
-    0x97F1: 0x5217,
-    0x97F2: 0x52A3,
-    0x97F3: 0x70C8,
-    0x97F4: 0x88C2,
-    0x97F5: 0x5EC9,
-    0x97F6: 0x604B,
-    0x97F7: 0x6190,
-    0x97F8: 0x6F23,
-    0x97F9: 0x7149,
-    0x97FA: 0x7C3E,
-    0x97FB: 0x7DF4,
-    0x97FC: 0x806F,
-    0x9840: 0x84EE,
-    0x9841: 0x9023,
-    0x9842: 0x932C,
-    0x9843: 0x5442,
-    0x9844: 0x9B6F,
-    0x9845: 0x6AD3,
-    0x9846: 0x7089,
-    0x9847: 0x8CC2,
-    0x9848: 0x8DEF,
-    0x9849: 0x9732,
-    0x984A: 0x52B4,
-    0x984B: 0x5A41,
-    0x984C: 0x5ECA,
-    0x984D: 0x5F04,
-    0x984E: 0x6717,
-    0x984F: 0x697C,
-    0x9850: 0x6994,
-    0x9851: 0x6D6A,
-    0x9852: 0x6F0F,
-    0x9853: 0x7262,
-    0x9854: 0x72FC,
-    0x9855: 0x7BED,
-    0x9856: 0x8001,
-    0x9857: 0x807E,
-    0x9858: 0x874B,
-    0x9859: 0x90CE,
-    0x985A: 0x516D,
-    0x985B: 0x9E93,
-    0x985C: 0x7984,
-    0x985D: 0x808B,
-    0x985E: 0x9332,
-    0x985F: 0x8AD6,
-    0x9860: 0x502D,
-    0x9861: 0x548C,
-    0x9862: 0x8A71,
-    0x9863: 0x6B6A,
-    0x9864: 0x8CC4,
-    0x9865: 0x8107,
-    0x9866: 0x60D1,
-    0x9867: 0x67A0,
-    0x9868: 0x9DF2,
-    0x9869: 0x4E99,
-    0x986A: 0x4E98,
-    0x986B: 0x9C10,
-    0x986C: 0x8A6B,
-    0x986D: 0x85C1,
-    0x986E: 0x8568,
-    0x986F: 0x6900,
-    0x9870: 0x6E7E,
-    0x9871: 0x7897,
-    0x9872: 0x8155,
-    0x989F: 0x5F0C,
-    0x98A0: 0x4E10,
-    0x98A1: 0x4E15,
-    0x98A2: 0x4E2A,
-    0x98A3: 0x4E31,
-    0x98A4: 0x4E36,
-    0x98A5: 0x4E3C,
-    0x98A6: 0x4E3F,
-    0x98A7: 0x4E42,
-    0x98A8: 0x4E56,
-    0x98A9: 0x4E58,
-    0x98AA: 0x4E82,
-    0x98AB: 0x4E85,
-    0x98AC: 0x8C6B,
-    0x98AD: 0x4E8A,
-    0x98AE: 0x8212,
-    0x98AF: 0x5F0D,
-    0x98B0: 0x4E8E,
-    0x98B1: 0x4E9E,
-    0x98B2: 0x4E9F,
-    0x98B3: 0x4EA0,
-    0x98B4: 0x4EA2,
-    0x98B5: 0x4EB0,
-    0x98B6: 0x4EB3,
-    0x98B7: 0x4EB6,
-    0x98B8: 0x4ECE,
-    0x98B9: 0x4ECD,
-    0x98BA: 0x4EC4,
-    0x98BB: 0x4EC6,
-    0x98BC: 0x4EC2,
-    0x98BD: 0x4ED7,
-    0x98BE: 0x4EDE,
-    0x98BF: 0x4EED,
-    0x98C0: 0x4EDF,
-    0x98C1: 0x4EF7,
-    0x98C2: 0x4F09,
-    0x98C3: 0x4F5A,
-    0x98C4: 0x4F30,
-    0x98C5: 0x4F5B,
-    0x98C6: 0x4F5D,
-    0x98C7: 0x4F57,
-    0x98C8: 0x4F47,
-    0x98C9: 0x4F76,
-    0x98CA: 0x4F88,
-    0x98CB: 0x4F8F,
-    0x98CC: 0x4F98,
-    0x98CD: 0x4F7B,
-    0x98CE: 0x4F69,
-    0x98CF: 0x4F70,
-    0x98D0: 0x4F91,
-    0x98D1: 0x4F6F,
-    0x98D2: 0x4F86,
-    0x98D3: 0x4F96,
-    0x98D4: 0x5118,
-    0x98D5: 0x4FD4,
-    0x98D6: 0x4FDF,
-    0x98D7: 0x4FCE,
-    0x98D8: 0x4FD8,
-    0x98D9: 0x4FDB,
-    0x98DA: 0x4FD1,
-    0x98DB: 0x4FDA,
-    0x98DC: 0x4FD0,
-    0x98DD: 0x4FE4,
-    0x98DE: 0x4FE5,
-    0x98DF: 0x501A,
-    0x98E0: 0x5028,
-    0x98E1: 0x5014,
-    0x98E2: 0x502A,
-    0x98E3: 0x5025,
-    0x98E4: 0x5005,
-    0x98E5: 0x4F1C,
-    0x98E6: 0x4FF6,
-    0x98E7: 0x5021,
-    0x98E8: 0x5029,
-    0x98E9: 0x502C,
-    0x98EA: 0x4FFE,
-    0x98EB: 0x4FEF,
-    0x98EC: 0x5011,
-    0x98ED: 0x5006,
-    0x98EE: 0x5043,
-    0x98EF: 0x5047,
-    0x98F0: 0x6703,
-    0x98F1: 0x5055,
-    0x98F2: 0x5050,
-    0x98F3: 0x5048,
-    0x98F4: 0x505A,
-    0x98F5: 0x5056,
-    0x98F6: 0x506C,
-    0x98F7: 0x5078,
-    0x98F8: 0x5080,
-    0x98F9: 0x509A,
-    0x98FA: 0x5085,
-    0x98FB: 0x50B4,
-    0x98FC: 0x50B2,
-    0x9940: 0x50C9,
-    0x9941: 0x50CA,
-    0x9942: 0x50B3,
-    0x9943: 0x50C2,
-    0x9944: 0x50D6,
-    0x9945: 0x50DE,
-    0x9946: 0x50E5,
-    0x9947: 0x50ED,
-    0x9948: 0x50E3,
-    0x9949: 0x50EE,
-    0x994A: 0x50F9,
-    0x994B: 0x50F5,
-    0x994C: 0x5109,
-    0x994D: 0x5101,
-    0x994E: 0x5102,
-    0x994F: 0x5116,
-    0x9950: 0x5115,
-    0x9951: 0x5114,
-    0x9952: 0x511A,
-    0x9953: 0x5121,
-    0x9954: 0x513A,
-    0x9955: 0x5137,
-    0x9956: 0x513C,
-    0x9957: 0x513B,
-    0x9958: 0x513F,
-    0x9959: 0x5140,
-    0x995A: 0x5152,
-    0x995B: 0x514C,
-    0x995C: 0x5154,
-    0x995D: 0x5162,
-    0x995E: 0x7AF8,
-    0x995F: 0x5169,
-    0x9960: 0x516A,
-    0x9961: 0x516E,
-    0x9962: 0x5180,
-    0x9963: 0x5182,
-    0x9964: 0x56D8,
-    0x9965: 0x518C,
-    0x9966: 0x5189,
-    0x9967: 0x518F,
-    0x9968: 0x5191,
-    0x9969: 0x5193,
-    0x996A: 0x5195,
-    0x996B: 0x5196,
-    0x996C: 0x51A4,
-    0x996D: 0x51A6,
-    0x996E: 0x51A2,
-    0x996F: 0x51A9,
-    0x9970: 0x51AA,
-    0x9971: 0x51AB,
-    0x9972: 0x51B3,
-    0x9973: 0x51B1,
-    0x9974: 0x51B2,
-    0x9975: 0x51B0,
-    0x9976: 0x51B5,
-    0x9977: 0x51BD,
-    0x9978: 0x51C5,
-    0x9979: 0x51C9,
-    0x997A: 0x51DB,
-    0x997B: 0x51E0,
-    0x997C: 0x8655,
-    0x997D: 0x51E9,
-    0x997E: 0x51ED,
-    0x9980: 0x51F0,
-    0x9981: 0x51F5,
-    0x9982: 0x51FE,
-    0x9983: 0x5204,
-    0x9984: 0x520B,
-    0x9985: 0x5214,
-    0x9986: 0x520E,
-    0x9987: 0x5227,
-    0x9988: 0x522A,
-    0x9989: 0x522E,
-    0x998A: 0x5233,
-    0x998B: 0x5239,
-    0x998C: 0x524F,
-    0x998D: 0x5244,
-    0x998E: 0x524B,
-    0x998F: 0x524C,
-    0x9990: 0x525E,
-    0x9991: 0x5254,
-    0x9992: 0x526A,
-    0x9993: 0x5274,
-    0x9994: 0x5269,
-    0x9995: 0x5273,
-    0x9996: 0x527F,
-    0x9997: 0x527D,
-    0x9998: 0x528D,
-    0x9999: 0x5294,
-    0x999A: 0x5292,
-    0x999B: 0x5271,
-    0x999C: 0x5288,
-    0x999D: 0x5291,
-    0x999E: 0x8FA8,
-    0x999F: 0x8FA7,
-    0x99A0: 0x52AC,
-    0x99A1: 0x52AD,
-    0x99A2: 0x52BC,
-    0x99A3: 0x52B5,
-    0x99A4: 0x52C1,
-    0x99A5: 0x52CD,
-    0x99A6: 0x52D7,
-    0x99A7: 0x52DE,
-    0x99A8: 0x52E3,
-    0x99A9: 0x52E6,
-    0x99AA: 0x98ED,
-    0x99AB: 0x52E0,
-    0x99AC: 0x52F3,
-    0x99AD: 0x52F5,
-    0x99AE: 0x52F8,
-    0x99AF: 0x52F9,
-    0x99B0: 0x5306,
-    0x99B1: 0x5308,
-    0x99B2: 0x7538,
-    0x99B3: 0x530D,
-    0x99B4: 0x5310,
-    0x99B5: 0x530F,
-    0x99B6: 0x5315,
-    0x99B7: 0x531A,
-    0x99B8: 0x5323,
-    0x99B9: 0x532F,
-    0x99BA: 0x5331,
-    0x99BB: 0x5333,
-    0x99BC: 0x5338,
-    0x99BD: 0x5340,
-    0x99BE: 0x5346,
-    0x99BF: 0x5345,
-    0x99C0: 0x4E17,
-    0x99C1: 0x5349,
-    0x99C2: 0x534D,
-    0x99C3: 0x51D6,
-    0x99C4: 0x535E,
-    0x99C5: 0x5369,
-    0x99C6: 0x536E,
-    0x99C7: 0x5918,
-    0x99C8: 0x537B,
-    0x99C9: 0x5377,
-    0x99CA: 0x5382,
-    0x99CB: 0x5396,
-    0x99CC: 0x53A0,
-    0x99CD: 0x53A6,
-    0x99CE: 0x53A5,
-    0x99CF: 0x53AE,
-    0x99D0: 0x53B0,
-    0x99D1: 0x53B6,
-    0x99D2: 0x53C3,
-    0x99D3: 0x7C12,
-    0x99D4: 0x96D9,
-    0x99D5: 0x53DF,
-    0x99D6: 0x66FC,
-    0x99D7: 0x71EE,
-    0x99D8: 0x53EE,
-    0x99D9: 0x53E8,
-    0x99DA: 0x53ED,
-    0x99DB: 0x53FA,
-    0x99DC: 0x5401,
-    0x99DD: 0x543D,
-    0x99DE: 0x5440,
-    0x99DF: 0x542C,
-    0x99E0: 0x542D,
-    0x99E1: 0x543C,
-    0x99E2: 0x542E,
-    0x99E3: 0x5436,
-    0x99E4: 0x5429,
-    0x99E5: 0x541D,
-    0x99E6: 0x544E,
-    0x99E7: 0x548F,
-    0x99E8: 0x5475,
-    0x99E9: 0x548E,
-    0x99EA: 0x545F,
-    0x99EB: 0x5471,
-    0x99EC: 0x5477,
-    0x99ED: 0x5470,
-    0x99EE: 0x5492,
-    0x99EF: 0x547B,
-    0x99F0: 0x5480,
-    0x99F1: 0x5476,
-    0x99F2: 0x5484,
-    0x99F3: 0x5490,
-    0x99F4: 0x5486,
-    0x99F5: 0x54C7,
-    0x99F6: 0x54A2,
-    0x99F7: 0x54B8,
-    0x99F8: 0x54A5,
-    0x99F9: 0x54AC,
-    0x99FA: 0x54C4,
-    0x99FB: 0x54C8,
-    0x99FC: 0x54A8,
-    0x9A40: 0x54AB,
-    0x9A41: 0x54C2,
-    0x9A42: 0x54A4,
-    0x9A43: 0x54BE,
-    0x9A44: 0x54BC,
-    0x9A45: 0x54D8,
-    0x9A46: 0x54E5,
-    0x9A47: 0x54E6,
-    0x9A48: 0x550F,
-    0x9A49: 0x5514,
-    0x9A4A: 0x54FD,
-    0x9A4B: 0x54EE,
-    0x9A4C: 0x54ED,
-    0x9A4D: 0x54FA,
-    0x9A4E: 0x54E2,
-    0x9A4F: 0x5539,
-    0x9A50: 0x5540,
-    0x9A51: 0x5563,
-    0x9A52: 0x554C,
-    0x9A53: 0x552E,
-    0x9A54: 0x555C,
-    0x9A55: 0x5545,
-    0x9A56: 0x5556,
-    0x9A57: 0x5557,
-    0x9A58: 0x5538,
-    0x9A59: 0x5533,
-    0x9A5A: 0x555D,
-    0x9A5B: 0x5599,
-    0x9A5C: 0x5580,
-    0x9A5D: 0x54AF,
-    0x9A5E: 0x558A,
-    0x9A5F: 0x559F,
-    0x9A60: 0x557B,
-    0x9A61: 0x557E,
-    0x9A62: 0x5598,
-    0x9A63: 0x559E,
-    0x9A64: 0x55AE,
-    0x9A65: 0x557C,
-    0x9A66: 0x5583,
-    0x9A67: 0x55A9,
-    0x9A68: 0x5587,
-    0x9A69: 0x55A8,
-    0x9A6A: 0x55DA,
-    0x9A6B: 0x55C5,
-    0x9A6C: 0x55DF,
-    0x9A6D: 0x55C4,
-    0x9A6E: 0x55DC,
-    0x9A6F: 0x55E4,
-    0x9A70: 0x55D4,
-    0x9A71: 0x5614,
-    0x9A72: 0x55F7,
-    0x9A73: 0x5616,
-    0x9A74: 0x55FE,
-    0x9A75: 0x55FD,
-    0x9A76: 0x561B,
-    0x9A77: 0x55F9,
-    0x9A78: 0x564E,
-    0x9A79: 0x5650,
-    0x9A7A: 0x71DF,
-    0x9A7B: 0x5634,
-    0x9A7C: 0x5636,
-    0x9A7D: 0x5632,
-    0x9A7E: 0x5638,
-    0x9A80: 0x566B,
-    0x9A81: 0x5664,
-    0x9A82: 0x562F,
-    0x9A83: 0x566C,
-    0x9A84: 0x566A,
-    0x9A85: 0x5686,
-    0x9A86: 0x5680,
-    0x9A87: 0x568A,
-    0x9A88: 0x56A0,
-    0x9A89: 0x5694,
-    0x9A8A: 0x568F,
-    0x9A8B: 0x56A5,
-    0x9A8C: 0x56AE,
-    0x9A8D: 0x56B6,
-    0x9A8E: 0x56B4,
-    0x9A8F: 0x56C2,
-    0x9A90: 0x56BC,
-    0x9A91: 0x56C1,
-    0x9A92: 0x56C3,
-    0x9A93: 0x56C0,
-    0x9A94: 0x56C8,
-    0x9A95: 0x56CE,
-    0x9A96: 0x56D1,
-    0x9A97: 0x56D3,
-    0x9A98: 0x56D7,
-    0x9A99: 0x56EE,
-    0x9A9A: 0x56F9,
-    0x9A9B: 0x5700,
-    0x9A9C: 0x56FF,
-    0x9A9D: 0x5704,
-    0x9A9E: 0x5709,
-    0x9A9F: 0x5708,
-    0x9AA0: 0x570B,
-    0x9AA1: 0x570D,
-    0x9AA2: 0x5713,
-    0x9AA3: 0x5718,
-    0x9AA4: 0x5716,
-    0x9AA5: 0x55C7,
-    0x9AA6: 0x571C,
-    0x9AA7: 0x5726,
-    0x9AA8: 0x5737,
-    0x9AA9: 0x5738,
-    0x9AAA: 0x574E,
-    0x9AAB: 0x573B,
-    0x9AAC: 0x5740,
-    0x9AAD: 0x574F,
-    0x9AAE: 0x5769,
-    0x9AAF: 0x57C0,
-    0x9AB0: 0x5788,
-    0x9AB1: 0x5761,
-    0x9AB2: 0x577F,
-    0x9AB3: 0x5789,
-    0x9AB4: 0x5793,
-    0x9AB5: 0x57A0,
-    0x9AB6: 0x57B3,
-    0x9AB7: 0x57A4,
-    0x9AB8: 0x57AA,
-    0x9AB9: 0x57B0,
-    0x9ABA: 0x57C3,
-    0x9ABB: 0x57C6,
-    0x9ABC: 0x57D4,
-    0x9ABD: 0x57D2,
-    0x9ABE: 0x57D3,
-    0x9ABF: 0x580A,
-    0x9AC0: 0x57D6,
-    0x9AC1: 0x57E3,
-    0x9AC2: 0x580B,
-    0x9AC3: 0x5819,
-    0x9AC4: 0x581D,
-    0x9AC5: 0x5872,
-    0x9AC6: 0x5821,
-    0x9AC7: 0x5862,
-    0x9AC8: 0x584B,
-    0x9AC9: 0x5870,
-    0x9ACA: 0x6BC0,
-    0x9ACB: 0x5852,
-    0x9ACC: 0x583D,
-    0x9ACD: 0x5879,
-    0x9ACE: 0x5885,
-    0x9ACF: 0x58B9,
-    0x9AD0: 0x589F,
-    0x9AD1: 0x58AB,
-    0x9AD2: 0x58BA,
-    0x9AD3: 0x58DE,
-    0x9AD4: 0x58BB,
-    0x9AD5: 0x58B8,
-    0x9AD6: 0x58AE,
-    0x9AD7: 0x58C5,
-    0x9AD8: 0x58D3,
-    0x9AD9: 0x58D1,
-    0x9ADA: 0x58D7,
-    0x9ADB: 0x58D9,
-    0x9ADC: 0x58D8,
-    0x9ADD: 0x58E5,
-    0x9ADE: 0x58DC,
-    0x9ADF: 0x58E4,
-    0x9AE0: 0x58DF,
-    0x9AE1: 0x58EF,
-    0x9AE2: 0x58FA,
-    0x9AE3: 0x58F9,
-    0x9AE4: 0x58FB,
-    0x9AE5: 0x58FC,
-    0x9AE6: 0x58FD,
-    0x9AE7: 0x5902,
-    0x9AE8: 0x590A,
-    0x9AE9: 0x5910,
-    0x9AEA: 0x591B,
-    0x9AEB: 0x68A6,
-    0x9AEC: 0x5925,
-    0x9AED: 0x592C,
-    0x9AEE: 0x592D,
-    0x9AEF: 0x5932,
-    0x9AF0: 0x5938,
-    0x9AF1: 0x593E,
-    0x9AF2: 0x7AD2,
-    0x9AF3: 0x5955,
-    0x9AF4: 0x5950,
-    0x9AF5: 0x594E,
-    0x9AF6: 0x595A,
-    0x9AF7: 0x5958,
-    0x9AF8: 0x5962,
-    0x9AF9: 0x5960,
-    0x9AFA: 0x5967,
-    0x9AFB: 0x596C,
-    0x9AFC: 0x5969,
-    0x9B40: 0x5978,
-    0x9B41: 0x5981,
-    0x9B42: 0x599D,
-    0x9B43: 0x4F5E,
-    0x9B44: 0x4FAB,
-    0x9B45: 0x59A3,
-    0x9B46: 0x59B2,
-    0x9B47: 0x59C6,
-    0x9B48: 0x59E8,
-    0x9B49: 0x59DC,
-    0x9B4A: 0x598D,
-    0x9B4B: 0x59D9,
-    0x9B4C: 0x59DA,
-    0x9B4D: 0x5A25,
-    0x9B4E: 0x5A1F,
-    0x9B4F: 0x5A11,
-    0x9B50: 0x5A1C,
-    0x9B51: 0x5A09,
-    0x9B52: 0x5A1A,
-    0x9B53: 0x5A40,
-    0x9B54: 0x5A6C,
-    0x9B55: 0x5A49,
-    0x9B56: 0x5A35,
-    0x9B57: 0x5A36,
-    0x9B58: 0x5A62,
-    0x9B59: 0x5A6A,
-    0x9B5A: 0x5A9A,
-    0x9B5B: 0x5ABC,
-    0x9B5C: 0x5ABE,
-    0x9B5D: 0x5ACB,
-    0x9B5E: 0x5AC2,
-    0x9B5F: 0x5ABD,
-    0x9B60: 0x5AE3,
-    0x9B61: 0x5AD7,
-    0x9B62: 0x5AE6,
-    0x9B63: 0x5AE9,
-    0x9B64: 0x5AD6,
-    0x9B65: 0x5AFA,
-    0x9B66: 0x5AFB,
-    0x9B67: 0x5B0C,
-    0x9B68: 0x5B0B,
-    0x9B69: 0x5B16,
-    0x9B6A: 0x5B32,
-    0x9B6B: 0x5AD0,
-    0x9B6C: 0x5B2A,
-    0x9B6D: 0x5B36,
-    0x9B6E: 0x5B3E,
-    0x9B6F: 0x5B43,
-    0x9B70: 0x5B45,
-    0x9B71: 0x5B40,
-    0x9B72: 0x5B51,
-    0x9B73: 0x5B55,
-    0x9B74: 0x5B5A,
-    0x9B75: 0x5B5B,
-    0x9B76: 0x5B65,
-    0x9B77: 0x5B69,
-    0x9B78: 0x5B70,
-    0x9B79: 0x5B73,
-    0x9B7A: 0x5B75,
-    0x9B7B: 0x5B78,
-    0x9B7C: 0x6588,
-    0x9B7D: 0x5B7A,
-    0x9B7E: 0x5B80,
-    0x9B80: 0x5B83,
-    0x9B81: 0x5BA6,
-    0x9B82: 0x5BB8,
-    0x9B83: 0x5BC3,
-    0x9B84: 0x5BC7,
-    0x9B85: 0x5BC9,
-    0x9B86: 0x5BD4,
-    0x9B87: 0x5BD0,
-    0x9B88: 0x5BE4,
-    0x9B89: 0x5BE6,
-    0x9B8A: 0x5BE2,
-    0x9B8B: 0x5BDE,
-    0x9B8C: 0x5BE5,
-    0x9B8D: 0x5BEB,
-    0x9B8E: 0x5BF0,
-    0x9B8F: 0x5BF6,
-    0x9B90: 0x5BF3,
-    0x9B91: 0x5C05,
-    0x9B92: 0x5C07,
-    0x9B93: 0x5C08,
-    0x9B94: 0x5C0D,
-    0x9B95: 0x5C13,
-    0x9B96: 0x5C20,
-    0x9B97: 0x5C22,
-    0x9B98: 0x5C28,
-    0x9B99: 0x5C38,
-    0x9B9A: 0x5C39,
-    0x9B9B: 0x5C41,
-    0x9B9C: 0x5C46,
-    0x9B9D: 0x5C4E,
-    0x9B9E: 0x5C53,
-    0x9B9F: 0x5C50,
-    0x9BA0: 0x5C4F,
-    0x9BA1: 0x5B71,
-    0x9BA2: 0x5C6C,
-    0x9BA3: 0x5C6E,
-    0x9BA4: 0x4E62,
-    0x9BA5: 0x5C76,
-    0x9BA6: 0x5C79,
-    0x9BA7: 0x5C8C,
-    0x9BA8: 0x5C91,
-    0x9BA9: 0x5C94,
-    0x9BAA: 0x599B,
-    0x9BAB: 0x5CAB,
-    0x9BAC: 0x5CBB,
-    0x9BAD: 0x5CB6,
-    0x9BAE: 0x5CBC,
-    0x9BAF: 0x5CB7,
-    0x9BB0: 0x5CC5,
-    0x9BB1: 0x5CBE,
-    0x9BB2: 0x5CC7,
-    0x9BB3: 0x5CD9,
-    0x9BB4: 0x5CE9,
-    0x9BB5: 0x5CFD,
-    0x9BB6: 0x5CFA,
-    0x9BB7: 0x5CED,
-    0x9BB8: 0x5D8C,
-    0x9BB9: 0x5CEA,
-    0x9BBA: 0x5D0B,
-    0x9BBB: 0x5D15,
-    0x9BBC: 0x5D17,
-    0x9BBD: 0x5D5C,
-    0x9BBE: 0x5D1F,
-    0x9BBF: 0x5D1B,
-    0x9BC0: 0x5D11,
-    0x9BC1: 0x5D14,
-    0x9BC2: 0x5D22,
-    0x9BC3: 0x5D1A,
-    0x9BC4: 0x5D19,
-    0x9BC5: 0x5D18,
-    0x9BC6: 0x5D4C,
-    0x9BC7: 0x5D52,
-    0x9BC8: 0x5D4E,
-    0x9BC9: 0x5D4B,
-    0x9BCA: 0x5D6C,
-    0x9BCB: 0x5D73,
-    0x9BCC: 0x5D76,
-    0x9BCD: 0x5D87,
-    0x9BCE: 0x5D84,
-    0x9BCF: 0x5D82,
-    0x9BD0: 0x5DA2,
-    0x9BD1: 0x5D9D,
-    0x9BD2: 0x5DAC,
-    0x9BD3: 0x5DAE,
-    0x9BD4: 0x5DBD,
-    0x9BD5: 0x5D90,
-    0x9BD6: 0x5DB7,
-    0x9BD7: 0x5DBC,
-    0x9BD8: 0x5DC9,
-    0x9BD9: 0x5DCD,
-    0x9BDA: 0x5DD3,
-    0x9BDB: 0x5DD2,
-    0x9BDC: 0x5DD6,
-    0x9BDD: 0x5DDB,
-    0x9BDE: 0x5DEB,
-    0x9BDF: 0x5DF2,
-    0x9BE0: 0x5DF5,
-    0x9BE1: 0x5E0B,
-    0x9BE2: 0x5E1A,
-    0x9BE3: 0x5E19,
-    0x9BE4: 0x5E11,
-    0x9BE5: 0x5E1B,
-    0x9BE6: 0x5E36,
-    0x9BE7: 0x5E37,
-    0x9BE8: 0x5E44,
-    0x9BE9: 0x5E43,
-    0x9BEA: 0x5E40,
-    0x9BEB: 0x5E4E,
-    0x9BEC: 0x5E57,
-    0x9BED: 0x5E54,
-    0x9BEE: 0x5E5F,
-    0x9BEF: 0x5E62,
-    0x9BF0: 0x5E64,
-    0x9BF1: 0x5E47,
-    0x9BF2: 0x5E75,
-    0x9BF3: 0x5E76,
-    0x9BF4: 0x5E7A,
-    0x9BF5: 0x9EBC,
-    0x9BF6: 0x5E7F,
-    0x9BF7: 0x5EA0,
-    0x9BF8: 0x5EC1,
-    0x9BF9: 0x5EC2,
-    0x9BFA: 0x5EC8,
-    0x9BFB: 0x5ED0,
-    0x9BFC: 0x5ECF,
-    0x9C40: 0x5ED6,
-    0x9C41: 0x5EE3,
-    0x9C42: 0x5EDD,
-    0x9C43: 0x5EDA,
-    0x9C44: 0x5EDB,
-    0x9C45: 0x5EE2,
-    0x9C46: 0x5EE1,
-    0x9C47: 0x5EE8,
-    0x9C48: 0x5EE9,
-    0x9C49: 0x5EEC,
-    0x9C4A: 0x5EF1,
-    0x9C4B: 0x5EF3,
-    0x9C4C: 0x5EF0,
-    0x9C4D: 0x5EF4,
-    0x9C4E: 0x5EF8,
-    0x9C4F: 0x5EFE,
-    0x9C50: 0x5F03,
-    0x9C51: 0x5F09,
-    0x9C52: 0x5F5D,
-    0x9C53: 0x5F5C,
-    0x9C54: 0x5F0B,
-    0x9C55: 0x5F11,
-    0x9C56: 0x5F16,
-    0x9C57: 0x5F29,
-    0x9C58: 0x5F2D,
-    0x9C59: 0x5F38,
-    0x9C5A: 0x5F41,
-    0x9C5B: 0x5F48,
-    0x9C5C: 0x5F4C,
-    0x9C5D: 0x5F4E,
-    0x9C5E: 0x5F2F,
-    0x9C5F: 0x5F51,
-    0x9C60: 0x5F56,
-    0x9C61: 0x5F57,
-    0x9C62: 0x5F59,
-    0x9C63: 0x5F61,
-    0x9C64: 0x5F6D,
-    0x9C65: 0x5F73,
-    0x9C66: 0x5F77,
-    0x9C67: 0x5F83,
-    0x9C68: 0x5F82,
-    0x9C69: 0x5F7F,
-    0x9C6A: 0x5F8A,
-    0x9C6B: 0x5F88,
-    0x9C6C: 0x5F91,
-    0x9C6D: 0x5F87,
-    0x9C6E: 0x5F9E,
-    0x9C6F: 0x5F99,
-    0x9C70: 0x5F98,
-    0x9C71: 0x5FA0,
-    0x9C72: 0x5FA8,
-    0x9C73: 0x5FAD,
-    0x9C74: 0x5FBC,
-    0x9C75: 0x5FD6,
-    0x9C76: 0x5FFB,
-    0x9C77: 0x5FE4,
-    0x9C78: 0x5FF8,
-    0x9C79: 0x5FF1,
-    0x9C7A: 0x5FDD,
-    0x9C7B: 0x60B3,
-    0x9C7C: 0x5FFF,
-    0x9C7D: 0x6021,
-    0x9C7E: 0x6060,
-    0x9C80: 0x6019,
-    0x9C81: 0x6010,
-    0x9C82: 0x6029,
-    0x9C83: 0x600E,
-    0x9C84: 0x6031,
-    0x9C85: 0x601B,
-    0x9C86: 0x6015,
-    0x9C87: 0x602B,
-    0x9C88: 0x6026,
-    0x9C89: 0x600F,
-    0x9C8A: 0x603A,
-    0x9C8B: 0x605A,
-    0x9C8C: 0x6041,
-    0x9C8D: 0x606A,
-    0x9C8E: 0x6077,
-    0x9C8F: 0x605F,
-    0x9C90: 0x604A,
-    0x9C91: 0x6046,
-    0x9C92: 0x604D,
-    0x9C93: 0x6063,
-    0x9C94: 0x6043,
-    0x9C95: 0x6064,
-    0x9C96: 0x6042,
-    0x9C97: 0x606C,
-    0x9C98: 0x606B,
-    0x9C99: 0x6059,
-    0x9C9A: 0x6081,
-    0x9C9B: 0x608D,
-    0x9C9C: 0x60E7,
-    0x9C9D: 0x6083,
-    0x9C9E: 0x609A,
-    0x9C9F: 0x6084,
-    0x9CA0: 0x609B,
-    0x9CA1: 0x6096,
-    0x9CA2: 0x6097,
-    0x9CA3: 0x6092,
-    0x9CA4: 0x60A7,
-    0x9CA5: 0x608B,
-    0x9CA6: 0x60E1,
-    0x9CA7: 0x60B8,
-    0x9CA8: 0x60E0,
-    0x9CA9: 0x60D3,
-    0x9CAA: 0x60B4,
-    0x9CAB: 0x5FF0,
-    0x9CAC: 0x60BD,
-    0x9CAD: 0x60C6,
-    0x9CAE: 0x60B5,
-    0x9CAF: 0x60D8,
-    0x9CB0: 0x614D,
-    0x9CB1: 0x6115,
-    0x9CB2: 0x6106,
-    0x9CB3: 0x60F6,
-    0x9CB4: 0x60F7,
-    0x9CB5: 0x6100,
-    0x9CB6: 0x60F4,
-    0x9CB7: 0x60FA,
-    0x9CB8: 0x6103,
-    0x9CB9: 0x6121,
-    0x9CBA: 0x60FB,
-    0x9CBB: 0x60F1,
-    0x9CBC: 0x610D,
-    0x9CBD: 0x610E,
-    0x9CBE: 0x6147,
-    0x9CBF: 0x613E,
-    0x9CC0: 0x6128,
-    0x9CC1: 0x6127,
-    0x9CC2: 0x614A,
-    0x9CC3: 0x613F,
-    0x9CC4: 0x613C,
-    0x9CC5: 0x612C,
-    0x9CC6: 0x6134,
-    0x9CC7: 0x613D,
-    0x9CC8: 0x6142,
-    0x9CC9: 0x6144,
-    0x9CCA: 0x6173,
-    0x9CCB: 0x6177,
-    0x9CCC: 0x6158,
-    0x9CCD: 0x6159,
-    0x9CCE: 0x615A,
-    0x9CCF: 0x616B,
-    0x9CD0: 0x6174,
-    0x9CD1: 0x616F,
-    0x9CD2: 0x6165,
-    0x9CD3: 0x6171,
-    0x9CD4: 0x615F,
-    0x9CD5: 0x615D,
-    0x9CD6: 0x6153,
-    0x9CD7: 0x6175,
-    0x9CD8: 0x6199,
-    0x9CD9: 0x6196,
-    0x9CDA: 0x6187,
-    0x9CDB: 0x61AC,
-    0x9CDC: 0x6194,
-    0x9CDD: 0x619A,
-    0x9CDE: 0x618A,
-    0x9CDF: 0x6191,
-    0x9CE0: 0x61AB,
-    0x9CE1: 0x61AE,
-    0x9CE2: 0x61CC,
-    0x9CE3: 0x61CA,
-    0x9CE4: 0x61C9,
-    0x9CE5: 0x61F7,
-    0x9CE6: 0x61C8,
-    0x9CE7: 0x61C3,
-    0x9CE8: 0x61C6,
-    0x9CE9: 0x61BA,
-    0x9CEA: 0x61CB,
-    0x9CEB: 0x7F79,
-    0x9CEC: 0x61CD,
-    0x9CED: 0x61E6,
-    0x9CEE: 0x61E3,
-    0x9CEF: 0x61F6,
-    0x9CF0: 0x61FA,
-    0x9CF1: 0x61F4,
-    0x9CF2: 0x61FF,
-    0x9CF3: 0x61FD,
-    0x9CF4: 0x61FC,
-    0x9CF5: 0x61FE,
-    0x9CF6: 0x6200,
-    0x9CF7: 0x6208,
-    0x9CF8: 0x6209,
-    0x9CF9: 0x620D,
-    0x9CFA: 0x620C,
-    0x9CFB: 0x6214,
-    0x9CFC: 0x621B,
-    0x9D40: 0x621E,
-    0x9D41: 0x6221,
-    0x9D42: 0x622A,
-    0x9D43: 0x622E,
-    0x9D44: 0x6230,
-    0x9D45: 0x6232,
-    0x9D46: 0x6233,
-    0x9D47: 0x6241,
-    0x9D48: 0x624E,
-    0x9D49: 0x625E,
-    0x9D4A: 0x6263,
-    0x9D4B: 0x625B,
-    0x9D4C: 0x6260,
-    0x9D4D: 0x6268,
-    0x9D4E: 0x627C,
-    0x9D4F: 0x6282,
-    0x9D50: 0x6289,
-    0x9D51: 0x627E,
-    0x9D52: 0x6292,
-    0x9D53: 0x6293,
-    0x9D54: 0x6296,
-    0x9D55: 0x62D4,
-    0x9D56: 0x6283,
-    0x9D57: 0x6294,
-    0x9D58: 0x62D7,
-    0x9D59: 0x62D1,
-    0x9D5A: 0x62BB,
-    0x9D5B: 0x62CF,
-    0x9D5C: 0x62FF,
-    0x9D5D: 0x62C6,
-    0x9D5E: 0x64D4,
-    0x9D5F: 0x62C8,
-    0x9D60: 0x62DC,
-    0x9D61: 0x62CC,
-    0x9D62: 0x62CA,
-    0x9D63: 0x62C2,
-    0x9D64: 0x62C7,
-    0x9D65: 0x629B,
-    0x9D66: 0x62C9,
-    0x9D67: 0x630C,
-    0x9D68: 0x62EE,
-    0x9D69: 0x62F1,
-    0x9D6A: 0x6327,
-    0x9D6B: 0x6302,
-    0x9D6C: 0x6308,
-    0x9D6D: 0x62EF,
-    0x9D6E: 0x62F5,
-    0x9D6F: 0x6350,
-    0x9D70: 0x633E,
-    0x9D71: 0x634D,
-    0x9D72: 0x641C,
-    0x9D73: 0x634F,
-    0x9D74: 0x6396,
-    0x9D75: 0x638E,
-    0x9D76: 0x6380,
-    0x9D77: 0x63AB,
-    0x9D78: 0x6376,
-    0x9D79: 0x63A3,
-    0x9D7A: 0x638F,
-    0x9D7B: 0x6389,
-    0x9D7C: 0x639F,
-    0x9D7D: 0x63B5,
-    0x9D7E: 0x636B,
-    0x9D80: 0x6369,
-    0x9D81: 0x63BE,
-    0x9D82: 0x63E9,
-    0x9D83: 0x63C0,
-    0x9D84: 0x63C6,
-    0x9D85: 0x63E3,
-    0x9D86: 0x63C9,
-    0x9D87: 0x63D2,
-    0x9D88: 0x63F6,
-    0x9D89: 0x63C4,
-    0x9D8A: 0x6416,
-    0x9D8B: 0x6434,
-    0x9D8C: 0x6406,
-    0x9D8D: 0x6413,
-    0x9D8E: 0x6426,
-    0x9D8F: 0x6436,
-    0x9D90: 0x651D,
-    0x9D91: 0x6417,
-    0x9D92: 0x6428,
-    0x9D93: 0x640F,
-    0x9D94: 0x6467,
-    0x9D95: 0x646F,
-    0x9D96: 0x6476,
-    0x9D97: 0x644E,
-    0x9D98: 0x652A,
-    0x9D99: 0x6495,
-    0x9D9A: 0x6493,
-    0x9D9B: 0x64A5,
-    0x9D9C: 0x64A9,
-    0x9D9D: 0x6488,
-    0x9D9E: 0x64BC,
-    0x9D9F: 0x64DA,
-    0x9DA0: 0x64D2,
-    0x9DA1: 0x64C5,
-    0x9DA2: 0x64C7,
-    0x9DA3: 0x64BB,
-    0x9DA4: 0x64D8,
-    0x9DA5: 0x64C2,
-    0x9DA6: 0x64F1,
-    0x9DA7: 0x64E7,
-    0x9DA8: 0x8209,
-    0x9DA9: 0x64E0,
-    0x9DAA: 0x64E1,
-    0x9DAB: 0x62AC,
-    0x9DAC: 0x64E3,
-    0x9DAD: 0x64EF,
-    0x9DAE: 0x652C,
-    0x9DAF: 0x64F6,
-    0x9DB0: 0x64F4,
-    0x9DB1: 0x64F2,
-    0x9DB2: 0x64FA,
-    0x9DB3: 0x6500,
-    0x9DB4: 0x64FD,
-    0x9DB5: 0x6518,
-    0x9DB6: 0x651C,
-    0x9DB7: 0x6505,
-    0x9DB8: 0x6524,
-    0x9DB9: 0x6523,
-    0x9DBA: 0x652B,
-    0x9DBB: 0x6534,
-    0x9DBC: 0x6535,
-    0x9DBD: 0x6537,
-    0x9DBE: 0x6536,
-    0x9DBF: 0x6538,
-    0x9DC0: 0x754B,
-    0x9DC1: 0x6548,
-    0x9DC2: 0x6556,
-    0x9DC3: 0x6555,
-    0x9DC4: 0x654D,
-    0x9DC5: 0x6558,
-    0x9DC6: 0x655E,
-    0x9DC7: 0x655D,
-    0x9DC8: 0x6572,
-    0x9DC9: 0x6578,
-    0x9DCA: 0x6582,
-    0x9DCB: 0x6583,
-    0x9DCC: 0x8B8A,
-    0x9DCD: 0x659B,
-    0x9DCE: 0x659F,
-    0x9DCF: 0x65AB,
-    0x9DD0: 0x65B7,
-    0x9DD1: 0x65C3,
-    0x9DD2: 0x65C6,
-    0x9DD3: 0x65C1,
-    0x9DD4: 0x65C4,
-    0x9DD5: 0x65CC,
-    0x9DD6: 0x65D2,
-    0x9DD7: 0x65DB,
-    0x9DD8: 0x65D9,
-    0x9DD9: 0x65E0,
-    0x9DDA: 0x65E1,
-    0x9DDB: 0x65F1,
-    0x9DDC: 0x6772,
-    0x9DDD: 0x660A,
-    0x9DDE: 0x6603,
-    0x9DDF: 0x65FB,
-    0x9DE0: 0x6773,
-    0x9DE1: 0x6635,
-    0x9DE2: 0x6636,
-    0x9DE3: 0x6634,
-    0x9DE4: 0x661C,
-    0x9DE5: 0x664F,
-    0x9DE6: 0x6644,
-    0x9DE7: 0x6649,
-    0x9DE8: 0x6641,
-    0x9DE9: 0x665E,
-    0x9DEA: 0x665D,
-    0x9DEB: 0x6664,
-    0x9DEC: 0x6667,
-    0x9DED: 0x6668,
-    0x9DEE: 0x665F,
-    0x9DEF: 0x6662,
-    0x9DF0: 0x6670,
-    0x9DF1: 0x6683,
-    0x9DF2: 0x6688,
-    0x9DF3: 0x668E,
-    0x9DF4: 0x6689,
-    0x9DF5: 0x6684,
-    0x9DF6: 0x6698,
-    0x9DF7: 0x669D,
-    0x9DF8: 0x66C1,
-    0x9DF9: 0x66B9,
-    0x9DFA: 0x66C9,
-    0x9DFB: 0x66BE,
-    0x9DFC: 0x66BC,
-    0x9E40: 0x66C4,
-    0x9E41: 0x66B8,
-    0x9E42: 0x66D6,
-    0x9E43: 0x66DA,
-    0x9E44: 0x66E0,
-    0x9E45: 0x663F,
-    0x9E46: 0x66E6,
-    0x9E47: 0x66E9,
-    0x9E48: 0x66F0,
-    0x9E49: 0x66F5,
-    0x9E4A: 0x66F7,
-    0x9E4B: 0x670F,
-    0x9E4C: 0x6716,
-    0x9E4D: 0x671E,
-    0x9E4E: 0x6726,
-    0x9E4F: 0x6727,
-    0x9E50: 0x9738,
-    0x9E51: 0x672E,
-    0x9E52: 0x673F,
-    0x9E53: 0x6736,
-    0x9E54: 0x6741,
-    0x9E55: 0x6738,
-    0x9E56: 0x6737,
-    0x9E57: 0x6746,
-    0x9E58: 0x675E,
-    0x9E59: 0x6760,
-    0x9E5A: 0x6759,
-    0x9E5B: 0x6763,
-    0x9E5C: 0x6764,
-    0x9E5D: 0x6789,
-    0x9E5E: 0x6770,
-    0x9E5F: 0x67A9,
-    0x9E60: 0x677C,
-    0x9E61: 0x676A,
-    0x9E62: 0x678C,
-    0x9E63: 0x678B,
-    0x9E64: 0x67A6,
-    0x9E65: 0x67A1,
-    0x9E66: 0x6785,
-    0x9E67: 0x67B7,
-    0x9E68: 0x67EF,
-    0x9E69: 0x67B4,
-    0x9E6A: 0x67EC,
-    0x9E6B: 0x67B3,
-    0x9E6C: 0x67E9,
-    0x9E6D: 0x67B8,
-    0x9E6E: 0x67E4,
-    0x9E6F: 0x67DE,
-    0x9E70: 0x67DD,
-    0x9E71: 0x67E2,
-    0x9E72: 0x67EE,
-    0x9E73: 0x67B9,
-    0x9E74: 0x67CE,
-    0x9E75: 0x67C6,
-    0x9E76: 0x67E7,
-    0x9E77: 0x6A9C,
-    0x9E78: 0x681E,
-    0x9E79: 0x6846,
-    0x9E7A: 0x6829,
-    0x9E7B: 0x6840,
-    0x9E7C: 0x684D,
-    0x9E7D: 0x6832,
-    0x9E7E: 0x684E,
-    0x9E80: 0x68B3,
-    0x9E81: 0x682B,
-    0x9E82: 0x6859,
-    0x9E83: 0x6863,
-    0x9E84: 0x6877,
-    0x9E85: 0x687F,
-    0x9E86: 0x689F,
-    0x9E87: 0x688F,
-    0x9E88: 0x68AD,
-    0x9E89: 0x6894,
-    0x9E8A: 0x689D,
-    0x9E8B: 0x689B,
-    0x9E8C: 0x6883,
-    0x9E8D: 0x6AAE,
-    0x9E8E: 0x68B9,
-    0x9E8F: 0x6874,
-    0x9E90: 0x68B5,
-    0x9E91: 0x68A0,
-    0x9E92: 0x68BA,
-    0x9E93: 0x690F,
-    0x9E94: 0x688D,
-    0x9E95: 0x687E,
-    0x9E96: 0x6901,
-    0x9E97: 0x68CA,
-    0x9E98: 0x6908,
-    0x9E99: 0x68D8,
-    0x9E9A: 0x6922,
-    0x9E9B: 0x6926,
-    0x9E9C: 0x68E1,
-    0x9E9D: 0x690C,
-    0x9E9E: 0x68CD,
-    0x9E9F: 0x68D4,
-    0x9EA0: 0x68E7,
-    0x9EA1: 0x68D5,
-    0x9EA2: 0x6936,
-    0x9EA3: 0x6912,
-    0x9EA4: 0x6904,
-    0x9EA5: 0x68D7,
-    0x9EA6: 0x68E3,
-    0x9EA7: 0x6925,
-    0x9EA8: 0x68F9,
-    0x9EA9: 0x68E0,
-    0x9EAA: 0x68EF,
-    0x9EAB: 0x6928,
-    0x9EAC: 0x692A,
-    0x9EAD: 0x691A,
-    0x9EAE: 0x6923,
-    0x9EAF: 0x6921,
-    0x9EB0: 0x68C6,
-    0x9EB1: 0x6979,
-    0x9EB2: 0x6977,
-    0x9EB3: 0x695C,
-    0x9EB4: 0x6978,
-    0x9EB5: 0x696B,
-    0x9EB6: 0x6954,
-    0x9EB7: 0x697E,
-    0x9EB8: 0x696E,
-    0x9EB9: 0x6939,
-    0x9EBA: 0x6974,
-    0x9EBB: 0x693D,
-    0x9EBC: 0x6959,
-    0x9EBD: 0x6930,
-    0x9EBE: 0x6961,
-    0x9EBF: 0x695E,
-    0x9EC0: 0x695D,
-    0x9EC1: 0x6981,
-    0x9EC2: 0x696A,
-    0x9EC3: 0x69B2,
-    0x9EC4: 0x69AE,
-    0x9EC5: 0x69D0,
-    0x9EC6: 0x69BF,
-    0x9EC7: 0x69C1,
-    0x9EC8: 0x69D3,
-    0x9EC9: 0x69BE,
-    0x9ECA: 0x69CE,
-    0x9ECB: 0x5BE8,
-    0x9ECC: 0x69CA,
-    0x9ECD: 0x69DD,
-    0x9ECE: 0x69BB,
-    0x9ECF: 0x69C3,
-    0x9ED0: 0x69A7,
-    0x9ED1: 0x6A2E,
-    0x9ED2: 0x6991,
-    0x9ED3: 0x69A0,
-    0x9ED4: 0x699C,
-    0x9ED5: 0x6995,
-    0x9ED6: 0x69B4,
-    0x9ED7: 0x69DE,
-    0x9ED8: 0x69E8,
-    0x9ED9: 0x6A02,
-    0x9EDA: 0x6A1B,
-    0x9EDB: 0x69FF,
-    0x9EDC: 0x6B0A,
-    0x9EDD: 0x69F9,
-    0x9EDE: 0x69F2,
-    0x9EDF: 0x69E7,
-    0x9EE0: 0x6A05,
-    0x9EE1: 0x69B1,
-    0x9EE2: 0x6A1E,
-    0x9EE3: 0x69ED,
-    0x9EE4: 0x6A14,
-    0x9EE5: 0x69EB,
-    0x9EE6: 0x6A0A,
-    0x9EE7: 0x6A12,
-    0x9EE8: 0x6AC1,
-    0x9EE9: 0x6A23,
-    0x9EEA: 0x6A13,
-    0x9EEB: 0x6A44,
-    0x9EEC: 0x6A0C,
-    0x9EED: 0x6A72,
-    0x9EEE: 0x6A36,
-    0x9EEF: 0x6A78,
-    0x9EF0: 0x6A47,
-    0x9EF1: 0x6A62,
-    0x9EF2: 0x6A59,
-    0x9EF3: 0x6A66,
-    0x9EF4: 0x6A48,
-    0x9EF5: 0x6A38,
-    0x9EF6: 0x6A22,
-    0x9EF7: 0x6A90,
-    0x9EF8: 0x6A8D,
-    0x9EF9: 0x6AA0,
-    0x9EFA: 0x6A84,
-    0x9EFB: 0x6AA2,
-    0x9EFC: 0x6AA3,
-    0x9F40: 0x6A97,
-    0x9F41: 0x8617,
-    0x9F42: 0x6ABB,
-    0x9F43: 0x6AC3,
-    0x9F44: 0x6AC2,
-    0x9F45: 0x6AB8,
-    0x9F46: 0x6AB3,
-    0x9F47: 0x6AAC,
-    0x9F48: 0x6ADE,
-    0x9F49: 0x6AD1,
-    0x9F4A: 0x6ADF,
-    0x9F4B: 0x6AAA,
-    0x9F4C: 0x6ADA,
-    0x9F4D: 0x6AEA,
-    0x9F4E: 0x6AFB,
-    0x9F4F: 0x6B05,
-    0x9F50: 0x8616,
-    0x9F51: 0x6AFA,
-    0x9F52: 0x6B12,
-    0x9F53: 0x6B16,
-    0x9F54: 0x9B31,
-    0x9F55: 0x6B1F,
-    0x9F56: 0x6B38,
-    0x9F57: 0x6B37,
-    0x9F58: 0x76DC,
-    0x9F59: 0x6B39,
-    0x9F5A: 0x98EE,
-    0x9F5B: 0x6B47,
-    0x9F5C: 0x6B43,
-    0x9F5D: 0x6B49,
-    0x9F5E: 0x6B50,
-    0x9F5F: 0x6B59,
-    0x9F60: 0x6B54,
-    0x9F61: 0x6B5B,
-    0x9F62: 0x6B5F,
-    0x9F63: 0x6B61,
-    0x9F64: 0x6B78,
-    0x9F65: 0x6B79,
-    0x9F66: 0x6B7F,
-    0x9F67: 0x6B80,
-    0x9F68: 0x6B84,
-    0x9F69: 0x6B83,
-    0x9F6A: 0x6B8D,
-    0x9F6B: 0x6B98,
-    0x9F6C: 0x6B95,
-    0x9F6D: 0x6B9E,
-    0x9F6E: 0x6BA4,
-    0x9F6F: 0x6BAA,
-    0x9F70: 0x6BAB,
-    0x9F71: 0x6BAF,
-    0x9F72: 0x6BB2,
-    0x9F73: 0x6BB1,
-    0x9F74: 0x6BB3,
-    0x9F75: 0x6BB7,
-    0x9F76: 0x6BBC,
-    0x9F77: 0x6BC6,
-    0x9F78: 0x6BCB,
-    0x9F79: 0x6BD3,
-    0x9F7A: 0x6BDF,
-    0x9F7B: 0x6BEC,
-    0x9F7C: 0x6BEB,
-    0x9F7D: 0x6BF3,
-    0x9F7E: 0x6BEF,
-    0x9F80: 0x9EBE,
-    0x9F81: 0x6C08,
-    0x9F82: 0x6C13,
-    0x9F83: 0x6C14,
-    0x9F84: 0x6C1B,
-    0x9F85: 0x6C24,
-    0x9F86: 0x6C23,
-    0x9F87: 0x6C5E,
-    0x9F88: 0x6C55,
-    0x9F89: 0x6C62,
-    0x9F8A: 0x6C6A,
-    0x9F8B: 0x6C82,
-    0x9F8C: 0x6C8D,
-    0x9F8D: 0x6C9A,
-    0x9F8E: 0x6C81,
-    0x9F8F: 0x6C9B,
-    0x9F90: 0x6C7E,
-    0x9F91: 0x6C68,
-    0x9F92: 0x6C73,
-    0x9F93: 0x6C92,
-    0x9F94: 0x6C90,
-    0x9F95: 0x6CC4,
-    0x9F96: 0x6CF1,
-    0x9F97: 0x6CD3,
-    0x9F98: 0x6CBD,
-    0x9F99: 0x6CD7,
-    0x9F9A: 0x6CC5,
-    0x9F9B: 0x6CDD,
-    0x9F9C: 0x6CAE,
-    0x9F9D: 0x6CB1,
-    0x9F9E: 0x6CBE,
-    0x9F9F: 0x6CBA,
-    0x9FA0: 0x6CDB,
-    0x9FA1: 0x6CEF,
-    0x9FA2: 0x6CD9,
-    0x9FA3: 0x6CEA,
-    0x9FA4: 0x6D1F,
-    0x9FA5: 0x884D,
-    0x9FA6: 0x6D36,
-    0x9FA7: 0x6D2B,
-    0x9FA8: 0x6D3D,
-    0x9FA9: 0x6D38,
-    0x9FAA: 0x6D19,
-    0x9FAB: 0x6D35,
-    0x9FAC: 0x6D33,
-    0x9FAD: 0x6D12,
-    0x9FAE: 0x6D0C,
-    0x9FAF: 0x6D63,
-    0x9FB0: 0x6D93,
-    0x9FB1: 0x6D64,
-    0x9FB2: 0x6D5A,
-    0x9FB3: 0x6D79,
-    0x9FB4: 0x6D59,
-    0x9FB5: 0x6D8E,
-    0x9FB6: 0x6D95,
-    0x9FB7: 0x6FE4,
-    0x9FB8: 0x6D85,
-    0x9FB9: 0x6DF9,
-    0x9FBA: 0x6E15,
-    0x9FBB: 0x6E0A,
-    0x9FBC: 0x6DB5,
-    0x9FBD: 0x6DC7,
-    0x9FBE: 0x6DE6,
-    0x9FBF: 0x6DB8,
-    0x9FC0: 0x6DC6,
-    0x9FC1: 0x6DEC,
-    0x9FC2: 0x6DDE,
-    0x9FC3: 0x6DCC,
-    0x9FC4: 0x6DE8,
-    0x9FC5: 0x6DD2,
-    0x9FC6: 0x6DC5,
-    0x9FC7: 0x6DFA,
-    0x9FC8: 0x6DD9,
-    0x9FC9: 0x6DE4,
-    0x9FCA: 0x6DD5,
-    0x9FCB: 0x6DEA,
-    0x9FCC: 0x6DEE,
-    0x9FCD: 0x6E2D,
-    0x9FCE: 0x6E6E,
-    0x9FCF: 0x6E2E,
-    0x9FD0: 0x6E19,
-    0x9FD1: 0x6E72,
-    0x9FD2: 0x6E5F,
-    0x9FD3: 0x6E3E,
-    0x9FD4: 0x6E23,
-    0x9FD5: 0x6E6B,
-    0x9FD6: 0x6E2B,
-    0x9FD7: 0x6E76,
-    0x9FD8: 0x6E4D,
-    0x9FD9: 0x6E1F,
-    0x9FDA: 0x6E43,
-    0x9FDB: 0x6E3A,
-    0x9FDC: 0x6E4E,
-    0x9FDD: 0x6E24,
-    0x9FDE: 0x6EFF,
-    0x9FDF: 0x6E1D,
-    0x9FE0: 0x6E38,
-    0x9FE1: 0x6E82,
-    0x9FE2: 0x6EAA,
-    0x9FE3: 0x6E98,
-    0x9FE4: 0x6EC9,
-    0x9FE5: 0x6EB7,
-    0x9FE6: 0x6ED3,
-    0x9FE7: 0x6EBD,
-    0x9FE8: 0x6EAF,
-    0x9FE9: 0x6EC4,
-    0x9FEA: 0x6EB2,
-    0x9FEB: 0x6ED4,
-    0x9FEC: 0x6ED5,
-    0x9FED: 0x6E8F,
-    0x9FEE: 0x6EA5,
-    0x9FEF: 0x6EC2,
-    0x9FF0: 0x6E9F,
-    0x9FF1: 0x6F41,
-    0x9FF2: 0x6F11,
-    0x9FF3: 0x704C,
-    0x9FF4: 0x6EEC,
-    0x9FF5: 0x6EF8,
-    0x9FF6: 0x6EFE,
-    0x9FF7: 0x6F3F,
-    0x9FF8: 0x6EF2,
-    0x9FF9: 0x6F31,
-    0x9FFA: 0x6EEF,
-    0x9FFB: 0x6F32,
-    0x9FFC: 0x6ECC,
-    0xA1: 0xFF61,
-    0xA2: 0xFF62,
-    0xA3: 0xFF63,
-    0xA4: 0xFF64,
-    0xA5: 0xFF65,
-    0xA6: 0xFF66,
-    0xA7: 0xFF67,
-    0xA8: 0xFF68,
-    0xA9: 0xFF69,
-    0xAA: 0xFF6A,
-    0xAB: 0xFF6B,
-    0xAC: 0xFF6C,
-    0xAD: 0xFF6D,
-    0xAE: 0xFF6E,
-    0xAF: 0xFF6F,
-    0xB0: 0xFF70,
-    0xB1: 0xFF71,
-    0xB2: 0xFF72,
-    0xB3: 0xFF73,
-    0xB4: 0xFF74,
-    0xB5: 0xFF75,
-    0xB6: 0xFF76,
-    0xB7: 0xFF77,
-    0xB8: 0xFF78,
-    0xB9: 0xFF79,
-    0xBA: 0xFF7A,
-    0xBB: 0xFF7B,
-    0xBC: 0xFF7C,
-    0xBD: 0xFF7D,
-    0xBE: 0xFF7E,
-    0xBF: 0xFF7F,
-    0xC0: 0xFF80,
-    0xC1: 0xFF81,
-    0xC2: 0xFF82,
-    0xC3: 0xFF83,
-    0xC4: 0xFF84,
-    0xC5: 0xFF85,
-    0xC6: 0xFF86,
-    0xC7: 0xFF87,
-    0xC8: 0xFF88,
-    0xC9: 0xFF89,
-    0xCA: 0xFF8A,
-    0xCB: 0xFF8B,
-    0xCC: 0xFF8C,
-    0xCD: 0xFF8D,
-    0xCE: 0xFF8E,
-    0xCF: 0xFF8F,
-    0xD0: 0xFF90,
-    0xD1: 0xFF91,
-    0xD2: 0xFF92,
-    0xD3: 0xFF93,
-    0xD4: 0xFF94,
-    0xD5: 0xFF95,
-    0xD6: 0xFF96,
-    0xD7: 0xFF97,
-    0xD8: 0xFF98,
-    0xD9: 0xFF99,
-    0xDA: 0xFF9A,
-    0xDB: 0xFF9B,
-    0xDC: 0xFF9C,
-    0xDD: 0xFF9D,
-    0xDE: 0xFF9E,
-    0xDF: 0xFF9F,
-    0xE040: 0x6F3E,
-    0xE041: 0x6F13,
-    0xE042: 0x6EF7,
-    0xE043: 0x6F86,
-    0xE044: 0x6F7A,
-    0xE045: 0x6F78,
-    0xE046: 0x6F81,
-    0xE047: 0x6F80,
-    0xE048: 0x6F6F,
-    0xE049: 0x6F5B,
-    0xE04A: 0x6FF3,
-    0xE04B: 0x6F6D,
-    0xE04C: 0x6F82,
-    0xE04D: 0x6F7C,
-    0xE04E: 0x6F58,
-    0xE04F: 0x6F8E,
-    0xE050: 0x6F91,
-    0xE051: 0x6FC2,
-    0xE052: 0x6F66,
-    0xE053: 0x6FB3,
-    0xE054: 0x6FA3,
-    0xE055: 0x6FA1,
-    0xE056: 0x6FA4,
-    0xE057: 0x6FB9,
-    0xE058: 0x6FC6,
-    0xE059: 0x6FAA,
-    0xE05A: 0x6FDF,
-    0xE05B: 0x6FD5,
-    0xE05C: 0x6FEC,
-    0xE05D: 0x6FD4,
-    0xE05E: 0x6FD8,
-    0xE05F: 0x6FF1,
-    0xE060: 0x6FEE,
-    0xE061: 0x6FDB,
-    0xE062: 0x7009,
-    0xE063: 0x700B,
-    0xE064: 0x6FFA,
-    0xE065: 0x7011,
-    0xE066: 0x7001,
-    0xE067: 0x700F,
-    0xE068: 0x6FFE,
-    0xE069: 0x701B,
-    0xE06A: 0x701A,
-    0xE06B: 0x6F74,
-    0xE06C: 0x701D,
-    0xE06D: 0x7018,
-    0xE06E: 0x701F,
-    0xE06F: 0x7030,
-    0xE070: 0x703E,
-    0xE071: 0x7032,
-    0xE072: 0x7051,
-    0xE073: 0x7063,
-    0xE074: 0x7099,
-    0xE075: 0x7092,
-    0xE076: 0x70AF,
-    0xE077: 0x70F1,
-    0xE078: 0x70AC,
-    0xE079: 0x70B8,
-    0xE07A: 0x70B3,
-    0xE07B: 0x70AE,
-    0xE07C: 0x70DF,
-    0xE07D: 0x70CB,
-    0xE07E: 0x70DD,
-    0xE080: 0x70D9,
-    0xE081: 0x7109,
-    0xE082: 0x70FD,
-    0xE083: 0x711C,
-    0xE084: 0x7119,
-    0xE085: 0x7165,
-    0xE086: 0x7155,
-    0xE087: 0x7188,
-    0xE088: 0x7166,
-    0xE089: 0x7162,
-    0xE08A: 0x714C,
-    0xE08B: 0x7156,
-    0xE08C: 0x716C,
-    0xE08D: 0x718F,
-    0xE08E: 0x71FB,
-    0xE08F: 0x7184,
-    0xE090: 0x7195,
-    0xE091: 0x71A8,
-    0xE092: 0x71AC,
-    0xE093: 0x71D7,
-    0xE094: 0x71B9,
-    0xE095: 0x71BE,
-    0xE096: 0x71D2,
-    0xE097: 0x71C9,
-    0xE098: 0x71D4,
-    0xE099: 0x71CE,
-    0xE09A: 0x71E0,
-    0xE09B: 0x71EC,
-    0xE09C: 0x71E7,
-    0xE09D: 0x71F5,
-    0xE09E: 0x71FC,
-    0xE09F: 0x71F9,
-    0xE0A0: 0x71FF,
-    0xE0A1: 0x720D,
-    0xE0A2: 0x7210,
-    0xE0A3: 0x721B,
-    0xE0A4: 0x7228,
-    0xE0A5: 0x722D,
-    0xE0A6: 0x722C,
-    0xE0A7: 0x7230,
-    0xE0A8: 0x7232,
-    0xE0A9: 0x723B,
-    0xE0AA: 0x723C,
-    0xE0AB: 0x723F,
-    0xE0AC: 0x7240,
-    0xE0AD: 0x7246,
-    0xE0AE: 0x724B,
-    0xE0AF: 0x7258,
-    0xE0B0: 0x7274,
-    0xE0B1: 0x727E,
-    0xE0B2: 0x7282,
-    0xE0B3: 0x7281,
-    0xE0B4: 0x7287,
-    0xE0B5: 0x7292,
-    0xE0B6: 0x7296,
-    0xE0B7: 0x72A2,
-    0xE0B8: 0x72A7,
-    0xE0B9: 0x72B9,
-    0xE0BA: 0x72B2,
-    0xE0BB: 0x72C3,
-    0xE0BC: 0x72C6,
-    0xE0BD: 0x72C4,
-    0xE0BE: 0x72CE,
-    0xE0BF: 0x72D2,
-    0xE0C0: 0x72E2,
-    0xE0C1: 0x72E0,
-    0xE0C2: 0x72E1,
-    0xE0C3: 0x72F9,
-    0xE0C4: 0x72F7,
-    0xE0C5: 0x500F,
-    0xE0C6: 0x7317,
-    0xE0C7: 0x730A,
-    0xE0C8: 0x731C,
-    0xE0C9: 0x7316,
-    0xE0CA: 0x731D,
-    0xE0CB: 0x7334,
-    0xE0CC: 0x732F,
-    0xE0CD: 0x7329,
-    0xE0CE: 0x7325,
-    0xE0CF: 0x733E,
-    0xE0D0: 0x734E,
-    0xE0D1: 0x734F,
-    0xE0D2: 0x9ED8,
-    0xE0D3: 0x7357,
-    0xE0D4: 0x736A,
-    0xE0D5: 0x7368,
-    0xE0D6: 0x7370,
-    0xE0D7: 0x7378,
-    0xE0D8: 0x7375,
-    0xE0D9: 0x737B,
-    0xE0DA: 0x737A,
-    0xE0DB: 0x73C8,
-    0xE0DC: 0x73B3,
-    0xE0DD: 0x73CE,
-    0xE0DE: 0x73BB,
-    0xE0DF: 0x73C0,
-    0xE0E0: 0x73E5,
-    0xE0E1: 0x73EE,
-    0xE0E2: 0x73DE,
-    0xE0E3: 0x74A2,
-    0xE0E4: 0x7405,
-    0xE0E5: 0x746F,
-    0xE0E6: 0x7425,
-    0xE0E7: 0x73F8,
-    0xE0E8: 0x7432,
-    0xE0E9: 0x743A,
-    0xE0EA: 0x7455,
-    0xE0EB: 0x743F,
-    0xE0EC: 0x745F,
-    0xE0ED: 0x7459,
-    0xE0EE: 0x7441,
-    0xE0EF: 0x745C,
-    0xE0F0: 0x7469,
-    0xE0F1: 0x7470,
-    0xE0F2: 0x7463,
-    0xE0F3: 0x746A,
-    0xE0F4: 0x7476,
-    0xE0F5: 0x747E,
-    0xE0F6: 0x748B,
-    0xE0F7: 0x749E,
-    0xE0F8: 0x74A7,
-    0xE0F9: 0x74CA,
-    0xE0FA: 0x74CF,
-    0xE0FB: 0x74D4,
-    0xE0FC: 0x73F1,
-    0xE140: 0x74E0,
-    0xE141: 0x74E3,
-    0xE142: 0x74E7,
-    0xE143: 0x74E9,
-    0xE144: 0x74EE,
-    0xE145: 0x74F2,
-    0xE146: 0x74F0,
-    0xE147: 0x74F1,
-    0xE148: 0x74F8,
-    0xE149: 0x74F7,
-    0xE14A: 0x7504,
-    0xE14B: 0x7503,
-    0xE14C: 0x7505,
-    0xE14D: 0x750C,
-    0xE14E: 0x750E,
-    0xE14F: 0x750D,
-    0xE150: 0x7515,
-    0xE151: 0x7513,
-    0xE152: 0x751E,
-    0xE153: 0x7526,
-    0xE154: 0x752C,
-    0xE155: 0x753C,
-    0xE156: 0x7544,
-    0xE157: 0x754D,
-    0xE158: 0x754A,
-    0xE159: 0x7549,
-    0xE15A: 0x755B,
-    0xE15B: 0x7546,
-    0xE15C: 0x755A,
-    0xE15D: 0x7569,
-    0xE15E: 0x7564,
-    0xE15F: 0x7567,
-    0xE160: 0x756B,
-    0xE161: 0x756D,
-    0xE162: 0x7578,
-    0xE163: 0x7576,
-    0xE164: 0x7586,
-    0xE165: 0x7587,
-    0xE166: 0x7574,
-    0xE167: 0x758A,
-    0xE168: 0x7589,
-    0xE169: 0x7582,
-    0xE16A: 0x7594,
-    0xE16B: 0x759A,
-    0xE16C: 0x759D,
-    0xE16D: 0x75A5,
-    0xE16E: 0x75A3,
-    0xE16F: 0x75C2,
-    0xE170: 0x75B3,
-    0xE171: 0x75C3,
-    0xE172: 0x75B5,
-    0xE173: 0x75BD,
-    0xE174: 0x75B8,
-    0xE175: 0x75BC,
-    0xE176: 0x75B1,
-    0xE177: 0x75CD,
-    0xE178: 0x75CA,
-    0xE179: 0x75D2,
-    0xE17A: 0x75D9,
-    0xE17B: 0x75E3,
-    0xE17C: 0x75DE,
-    0xE17D: 0x75FE,
-    0xE17E: 0x75FF,
-    0xE180: 0x75FC,
-    0xE181: 0x7601,
-    0xE182: 0x75F0,
-    0xE183: 0x75FA,
-    0xE184: 0x75F2,
-    0xE185: 0x75F3,
-    0xE186: 0x760B,
-    0xE187: 0x760D,
-    0xE188: 0x7609,
-    0xE189: 0x761F,
-    0xE18A: 0x7627,
-    0xE18B: 0x7620,
-    0xE18C: 0x7621,
-    0xE18D: 0x7622,
-    0xE18E: 0x7624,
-    0xE18F: 0x7634,
-    0xE190: 0x7630,
-    0xE191: 0x763B,
-    0xE192: 0x7647,
-    0xE193: 0x7648,
-    0xE194: 0x7646,
-    0xE195: 0x765C,
-    0xE196: 0x7658,
-    0xE197: 0x7661,
-    0xE198: 0x7662,
-    0xE199: 0x7668,
-    0xE19A: 0x7669,
-    0xE19B: 0x766A,
-    0xE19C: 0x7667,
-    0xE19D: 0x766C,
-    0xE19E: 0x7670,
-    0xE19F: 0x7672,
-    0xE1A0: 0x7676,
-    0xE1A1: 0x7678,
-    0xE1A2: 0x767C,
-    0xE1A3: 0x7680,
-    0xE1A4: 0x7683,
-    0xE1A5: 0x7688,
-    0xE1A6: 0x768B,
-    0xE1A7: 0x768E,
-    0xE1A8: 0x7696,
-    0xE1A9: 0x7693,
-    0xE1AA: 0x7699,
-    0xE1AB: 0x769A,
-    0xE1AC: 0x76B0,
-    0xE1AD: 0x76B4,
-    0xE1AE: 0x76B8,
-    0xE1AF: 0x76B9,
-    0xE1B0: 0x76BA,
-    0xE1B1: 0x76C2,
-    0xE1B2: 0x76CD,
-    0xE1B3: 0x76D6,
-    0xE1B4: 0x76D2,
-    0xE1B5: 0x76DE,
-    0xE1B6: 0x76E1,
-    0xE1B7: 0x76E5,
-    0xE1B8: 0x76E7,
-    0xE1B9: 0x76EA,
-    0xE1BA: 0x862F,
-    0xE1BB: 0x76FB,
-    0xE1BC: 0x7708,
-    0xE1BD: 0x7707,
-    0xE1BE: 0x7704,
-    0xE1BF: 0x7729,
-    0xE1C0: 0x7724,
-    0xE1C1: 0x771E,
-    0xE1C2: 0x7725,
-    0xE1C3: 0x7726,
-    0xE1C4: 0x771B,
-    0xE1C5: 0x7737,
-    0xE1C6: 0x7738,
-    0xE1C7: 0x7747,
-    0xE1C8: 0x775A,
-    0xE1C9: 0x7768,
-    0xE1CA: 0x776B,
-    0xE1CB: 0x775B,
-    0xE1CC: 0x7765,
-    0xE1CD: 0x777F,
-    0xE1CE: 0x777E,
-    0xE1CF: 0x7779,
-    0xE1D0: 0x778E,
-    0xE1D1: 0x778B,
-    0xE1D2: 0x7791,
-    0xE1D3: 0x77A0,
-    0xE1D4: 0x779E,
-    0xE1D5: 0x77B0,
-    0xE1D6: 0x77B6,
-    0xE1D7: 0x77B9,
-    0xE1D8: 0x77BF,
-    0xE1D9: 0x77BC,
-    0xE1DA: 0x77BD,
-    0xE1DB: 0x77BB,
-    0xE1DC: 0x77C7,
-    0xE1DD: 0x77CD,
-    0xE1DE: 0x77D7,
-    0xE1DF: 0x77DA,
-    0xE1E0: 0x77DC,
-    0xE1E1: 0x77E3,
-    0xE1E2: 0x77EE,
-    0xE1E3: 0x77FC,
-    0xE1E4: 0x780C,
-    0xE1E5: 0x7812,
-    0xE1E6: 0x7926,
-    0xE1E7: 0x7820,
-    0xE1E8: 0x792A,
-    0xE1E9: 0x7845,
-    0xE1EA: 0x788E,
-    0xE1EB: 0x7874,
-    0xE1EC: 0x7886,
-    0xE1ED: 0x787C,
-    0xE1EE: 0x789A,
-    0xE1EF: 0x788C,
-    0xE1F0: 0x78A3,
-    0xE1F1: 0x78B5,
-    0xE1F2: 0x78AA,
-    0xE1F3: 0x78AF,
-    0xE1F4: 0x78D1,
-    0xE1F5: 0x78C6,
-    0xE1F6: 0x78CB,
-    0xE1F7: 0x78D4,
-    0xE1F8: 0x78BE,
-    0xE1F9: 0x78BC,
-    0xE1FA: 0x78C5,
-    0xE1FB: 0x78CA,
-    0xE1FC: 0x78EC,
-    0xE240: 0x78E7,
-    0xE241: 0x78DA,
-    0xE242: 0x78FD,
-    0xE243: 0x78F4,
-    0xE244: 0x7907,
-    0xE245: 0x7912,
-    0xE246: 0x7911,
-    0xE247: 0x7919,
-    0xE248: 0x792C,
-    0xE249: 0x792B,
-    0xE24A: 0x7940,
-    0xE24B: 0x7960,
-    0xE24C: 0x7957,
-    0xE24D: 0x795F,
-    0xE24E: 0x795A,
-    0xE24F: 0x7955,
-    0xE250: 0x7953,
-    0xE251: 0x797A,
-    0xE252: 0x797F,
-    0xE253: 0x798A,
-    0xE254: 0x799D,
-    0xE255: 0x79A7,
-    0xE256: 0x9F4B,
-    0xE257: 0x79AA,
-    0xE258: 0x79AE,
-    0xE259: 0x79B3,
-    0xE25A: 0x79B9,
-    0xE25B: 0x79BA,
-    0xE25C: 0x79C9,
-    0xE25D: 0x79D5,
-    0xE25E: 0x79E7,
-    0xE25F: 0x79EC,
-    0xE260: 0x79E1,
-    0xE261: 0x79E3,
-    0xE262: 0x7A08,
-    0xE263: 0x7A0D,
-    0xE264: 0x7A18,
-    0xE265: 0x7A19,
-    0xE266: 0x7A20,
-    0xE267: 0x7A1F,
-    0xE268: 0x7980,
-    0xE269: 0x7A31,
-    0xE26A: 0x7A3B,
-    0xE26B: 0x7A3E,
-    0xE26C: 0x7A37,
-    0xE26D: 0x7A43,
-    0xE26E: 0x7A57,
-    0xE26F: 0x7A49,
-    0xE270: 0x7A61,
-    0xE271: 0x7A62,
-    0xE272: 0x7A69,
-    0xE273: 0x9F9D,
-    0xE274: 0x7A70,
-    0xE275: 0x7A79,
-    0xE276: 0x7A7D,
-    0xE277: 0x7A88,
-    0xE278: 0x7A97,
-    0xE279: 0x7A95,
-    0xE27A: 0x7A98,
-    0xE27B: 0x7A96,
-    0xE27C: 0x7AA9,
-    0xE27D: 0x7AC8,
-    0xE27E: 0x7AB0,
-    0xE280: 0x7AB6,
-    0xE281: 0x7AC5,
-    0xE282: 0x7AC4,
-    0xE283: 0x7ABF,
-    0xE284: 0x9083,
-    0xE285: 0x7AC7,
-    0xE286: 0x7ACA,
-    0xE287: 0x7ACD,
-    0xE288: 0x7ACF,
-    0xE289: 0x7AD5,
-    0xE28A: 0x7AD3,
-    0xE28B: 0x7AD9,
-    0xE28C: 0x7ADA,
-    0xE28D: 0x7ADD,
-    0xE28E: 0x7AE1,
-    0xE28F: 0x7AE2,
-    0xE290: 0x7AE6,
-    0xE291: 0x7AED,
-    0xE292: 0x7AF0,
-    0xE293: 0x7B02,
-    0xE294: 0x7B0F,
-    0xE295: 0x7B0A,
-    0xE296: 0x7B06,
-    0xE297: 0x7B33,
-    0xE298: 0x7B18,
-    0xE299: 0x7B19,
-    0xE29A: 0x7B1E,
-    0xE29B: 0x7B35,
-    0xE29C: 0x7B28,
-    0xE29D: 0x7B36,
-    0xE29E: 0x7B50,
-    0xE29F: 0x7B7A,
-    0xE2A0: 0x7B04,
-    0xE2A1: 0x7B4D,
-    0xE2A2: 0x7B0B,
-    0xE2A3: 0x7B4C,
-    0xE2A4: 0x7B45,
-    0xE2A5: 0x7B75,
-    0xE2A6: 0x7B65,
-    0xE2A7: 0x7B74,
-    0xE2A8: 0x7B67,
-    0xE2A9: 0x7B70,
-    0xE2AA: 0x7B71,
-    0xE2AB: 0x7B6C,
-    0xE2AC: 0x7B6E,
-    0xE2AD: 0x7B9D,
-    0xE2AE: 0x7B98,
-    0xE2AF: 0x7B9F,
-    0xE2B0: 0x7B8D,
-    0xE2B1: 0x7B9C,
-    0xE2B2: 0x7B9A,
-    0xE2B3: 0x7B8B,
-    0xE2B4: 0x7B92,
-    0xE2B5: 0x7B8F,
-    0xE2B6: 0x7B5D,
-    0xE2B7: 0x7B99,
-    0xE2B8: 0x7BCB,
-    0xE2B9: 0x7BC1,
-    0xE2BA: 0x7BCC,
-    0xE2BB: 0x7BCF,
-    0xE2BC: 0x7BB4,
-    0xE2BD: 0x7BC6,
-    0xE2BE: 0x7BDD,
-    0xE2BF: 0x7BE9,
-    0xE2C0: 0x7C11,
-    0xE2C1: 0x7C14,
-    0xE2C2: 0x7BE6,
-    0xE2C3: 0x7BE5,
-    0xE2C4: 0x7C60,
-    0xE2C5: 0x7C00,
-    0xE2C6: 0x7C07,
-    0xE2C7: 0x7C13,
-    0xE2C8: 0x7BF3,
-    0xE2C9: 0x7BF7,
-    0xE2CA: 0x7C17,
-    0xE2CB: 0x7C0D,
-    0xE2CC: 0x7BF6,
-    0xE2CD: 0x7C23,
-    0xE2CE: 0x7C27,
-    0xE2CF: 0x7C2A,
-    0xE2D0: 0x7C1F,
-    0xE2D1: 0x7C37,
-    0xE2D2: 0x7C2B,
-    0xE2D3: 0x7C3D,
-    0xE2D4: 0x7C4C,
-    0xE2D5: 0x7C43,
-    0xE2D6: 0x7C54,
-    0xE2D7: 0x7C4F,
-    0xE2D8: 0x7C40,
-    0xE2D9: 0x7C50,
-    0xE2DA: 0x7C58,
-    0xE2DB: 0x7C5F,
-    0xE2DC: 0x7C64,
-    0xE2DD: 0x7C56,
-    0xE2DE: 0x7C65,
-    0xE2DF: 0x7C6C,
-    0xE2E0: 0x7C75,
-    0xE2E1: 0x7C83,
-    0xE2E2: 0x7C90,
-    0xE2E3: 0x7CA4,
-    0xE2E4: 0x7CAD,
-    0xE2E5: 0x7CA2,
-    0xE2E6: 0x7CAB,
-    0xE2E7: 0x7CA1,
-    0xE2E8: 0x7CA8,
-    0xE2E9: 0x7CB3,
-    0xE2EA: 0x7CB2,
-    0xE2EB: 0x7CB1,
-    0xE2EC: 0x7CAE,
-    0xE2ED: 0x7CB9,
-    0xE2EE: 0x7CBD,
-    0xE2EF: 0x7CC0,
-    0xE2F0: 0x7CC5,
-    0xE2F1: 0x7CC2,
-    0xE2F2: 0x7CD8,
-    0xE2F3: 0x7CD2,
-    0xE2F4: 0x7CDC,
-    0xE2F5: 0x7CE2,
-    0xE2F6: 0x9B3B,
-    0xE2F7: 0x7CEF,
-    0xE2F8: 0x7CF2,
-    0xE2F9: 0x7CF4,
-    0xE2FA: 0x7CF6,
-    0xE2FB: 0x7CFA,
-    0xE2FC: 0x7D06,
-    0xE340: 0x7D02,
-    0xE341: 0x7D1C,
-    0xE342: 0x7D15,
-    0xE343: 0x7D0A,
-    0xE344: 0x7D45,
-    0xE345: 0x7D4B,
-    0xE346: 0x7D2E,
-    0xE347: 0x7D32,
-    0xE348: 0x7D3F,
-    0xE349: 0x7D35,
-    0xE34A: 0x7D46,
-    0xE34B: 0x7D73,
-    0xE34C: 0x7D56,
-    0xE34D: 0x7D4E,
-    0xE34E: 0x7D72,
-    0xE34F: 0x7D68,
-    0xE350: 0x7D6E,
-    0xE351: 0x7D4F,
-    0xE352: 0x7D63,
-    0xE353: 0x7D93,
-    0xE354: 0x7D89,
-    0xE355: 0x7D5B,
-    0xE356: 0x7D8F,
-    0xE357: 0x7D7D,
-    0xE358: 0x7D9B,
-    0xE359: 0x7DBA,
-    0xE35A: 0x7DAE,
-    0xE35B: 0x7DA3,
-    0xE35C: 0x7DB5,
-    0xE35D: 0x7DC7,
-    0xE35E: 0x7DBD,
-    0xE35F: 0x7DAB,
-    0xE360: 0x7E3D,
-    0xE361: 0x7DA2,
-    0xE362: 0x7DAF,
-    0xE363: 0x7DDC,
-    0xE364: 0x7DB8,
-    0xE365: 0x7D9F,
-    0xE366: 0x7DB0,
-    0xE367: 0x7DD8,
-    0xE368: 0x7DDD,
-    0xE369: 0x7DE4,
-    0xE36A: 0x7DDE,
-    0xE36B: 0x7DFB,
-    0xE36C: 0x7DF2,
-    0xE36D: 0x7DE1,
-    0xE36E: 0x7E05,
-    0xE36F: 0x7E0A,
-    0xE370: 0x7E23,
-    0xE371: 0x7E21,
-    0xE372: 0x7E12,
-    0xE373: 0x7E31,
-    0xE374: 0x7E1F,
-    0xE375: 0x7E09,
-    0xE376: 0x7E0B,
-    0xE377: 0x7E22,
-    0xE378: 0x7E46,
-    0xE379: 0x7E66,
-    0xE37A: 0x7E3B,
-    0xE37B: 0x7E35,
-    0xE37C: 0x7E39,
-    0xE37D: 0x7E43,
-    0xE37E: 0x7E37,
-    0xE380: 0x7E32,
-    0xE381: 0x7E3A,
-    0xE382: 0x7E67,
-    0xE383: 0x7E5D,
-    0xE384: 0x7E56,
-    0xE385: 0x7E5E,
-    0xE386: 0x7E59,
-    0xE387: 0x7E5A,
-    0xE388: 0x7E79,
-    0xE389: 0x7E6A,
-    0xE38A: 0x7E69,
-    0xE38B: 0x7E7C,
-    0xE38C: 0x7E7B,
-    0xE38D: 0x7E83,
-    0xE38E: 0x7DD5,
-    0xE38F: 0x7E7D,
-    0xE390: 0x8FAE,
-    0xE391: 0x7E7F,
-    0xE392: 0x7E88,
-    0xE393: 0x7E89,
-    0xE394: 0x7E8C,
-    0xE395: 0x7E92,
-    0xE396: 0x7E90,
-    0xE397: 0x7E93,
-    0xE398: 0x7E94,
-    0xE399: 0x7E96,
-    0xE39A: 0x7E8E,
-    0xE39B: 0x7E9B,
-    0xE39C: 0x7E9C,
-    0xE39D: 0x7F38,
-    0xE39E: 0x7F3A,
-    0xE39F: 0x7F45,
-    0xE3A0: 0x7F4C,
-    0xE3A1: 0x7F4D,
-    0xE3A2: 0x7F4E,
-    0xE3A3: 0x7F50,
-    0xE3A4: 0x7F51,
-    0xE3A5: 0x7F55,
-    0xE3A6: 0x7F54,
-    0xE3A7: 0x7F58,
-    0xE3A8: 0x7F5F,
-    0xE3A9: 0x7F60,
-    0xE3AA: 0x7F68,
-    0xE3AB: 0x7F69,
-    0xE3AC: 0x7F67,
-    0xE3AD: 0x7F78,
-    0xE3AE: 0x7F82,
-    0xE3AF: 0x7F86,
-    0xE3B0: 0x7F83,
-    0xE3B1: 0x7F88,
-    0xE3B2: 0x7F87,
-    0xE3B3: 0x7F8C,
-    0xE3B4: 0x7F94,
-    0xE3B5: 0x7F9E,
-    0xE3B6: 0x7F9D,
-    0xE3B7: 0x7F9A,
-    0xE3B8: 0x7FA3,
-    0xE3B9: 0x7FAF,
-    0xE3BA: 0x7FB2,
-    0xE3BB: 0x7FB9,
-    0xE3BC: 0x7FAE,
-    0xE3BD: 0x7FB6,
-    0xE3BE: 0x7FB8,
-    0xE3BF: 0x8B71,
-    0xE3C0: 0x7FC5,
-    0xE3C1: 0x7FC6,
-    0xE3C2: 0x7FCA,
-    0xE3C3: 0x7FD5,
-    0xE3C4: 0x7FD4,
-    0xE3C5: 0x7FE1,
-    0xE3C6: 0x7FE6,
-    0xE3C7: 0x7FE9,
-    0xE3C8: 0x7FF3,
-    0xE3C9: 0x7FF9,
-    0xE3CA: 0x98DC,
-    0xE3CB: 0x8006,
-    0xE3CC: 0x8004,
-    0xE3CD: 0x800B,
-    0xE3CE: 0x8012,
-    0xE3CF: 0x8018,
-    0xE3D0: 0x8019,
-    0xE3D1: 0x801C,
-    0xE3D2: 0x8021,
-    0xE3D3: 0x8028,
-    0xE3D4: 0x803F,
-    0xE3D5: 0x803B,
-    0xE3D6: 0x804A,
-    0xE3D7: 0x8046,
-    0xE3D8: 0x8052,
-    0xE3D9: 0x8058,
-    0xE3DA: 0x805A,
-    0xE3DB: 0x805F,
-    0xE3DC: 0x8062,
-    0xE3DD: 0x8068,
-    0xE3DE: 0x8073,
-    0xE3DF: 0x8072,
-    0xE3E0: 0x8070,
-    0xE3E1: 0x8076,
-    0xE3E2: 0x8079,
-    0xE3E3: 0x807D,
-    0xE3E4: 0x807F,
-    0xE3E5: 0x8084,
-    0xE3E6: 0x8086,
-    0xE3E7: 0x8085,
-    0xE3E8: 0x809B,
-    0xE3E9: 0x8093,
-    0xE3EA: 0x809A,
-    0xE3EB: 0x80AD,
-    0xE3EC: 0x5190,
-    0xE3ED: 0x80AC,
-    0xE3EE: 0x80DB,
-    0xE3EF: 0x80E5,
-    0xE3F0: 0x80D9,
-    0xE3F1: 0x80DD,
-    0xE3F2: 0x80C4,
-    0xE3F3: 0x80DA,
-    0xE3F4: 0x80D6,
-    0xE3F5: 0x8109,
-    0xE3F6: 0x80EF,
-    0xE3F7: 0x80F1,
-    0xE3F8: 0x811B,
-    0xE3F9: 0x8129,
-    0xE3FA: 0x8123,
-    0xE3FB: 0x812F,
-    0xE3FC: 0x814B,
-    0xE440: 0x968B,
-    0xE441: 0x8146,
-    0xE442: 0x813E,
-    0xE443: 0x8153,
-    0xE444: 0x8151,
-    0xE445: 0x80FC,
-    0xE446: 0x8171,
-    0xE447: 0x816E,
-    0xE448: 0x8165,
-    0xE449: 0x8166,
-    0xE44A: 0x8174,
-    0xE44B: 0x8183,
-    0xE44C: 0x8188,
-    0xE44D: 0x818A,
-    0xE44E: 0x8180,
-    0xE44F: 0x8182,
-    0xE450: 0x81A0,
-    0xE451: 0x8195,
-    0xE452: 0x81A4,
-    0xE453: 0x81A3,
-    0xE454: 0x815F,
-    0xE455: 0x8193,
-    0xE456: 0x81A9,
-    0xE457: 0x81B0,
-    0xE458: 0x81B5,
-    0xE459: 0x81BE,
-    0xE45A: 0x81B8,
-    0xE45B: 0x81BD,
-    0xE45C: 0x81C0,
-    0xE45D: 0x81C2,
-    0xE45E: 0x81BA,
-    0xE45F: 0x81C9,
-    0xE460: 0x81CD,
-    0xE461: 0x81D1,
-    0xE462: 0x81D9,
-    0xE463: 0x81D8,
-    0xE464: 0x81C8,
-    0xE465: 0x81DA,
-    0xE466: 0x81DF,
-    0xE467: 0x81E0,
-    0xE468: 0x81E7,
-    0xE469: 0x81FA,
-    0xE46A: 0x81FB,
-    0xE46B: 0x81FE,
-    0xE46C: 0x8201,
-    0xE46D: 0x8202,
-    0xE46E: 0x8205,
-    0xE46F: 0x8207,
-    0xE470: 0x820A,
-    0xE471: 0x820D,
-    0xE472: 0x8210,
-    0xE473: 0x8216,
-    0xE474: 0x8229,
-    0xE475: 0x822B,
-    0xE476: 0x8238,
-    0xE477: 0x8233,
-    0xE478: 0x8240,
-    0xE479: 0x8259,
-    0xE47A: 0x8258,
-    0xE47B: 0x825D,
-    0xE47C: 0x825A,
-    0xE47D: 0x825F,
-    0xE47E: 0x8264,
-    0xE480: 0x8262,
-    0xE481: 0x8268,
-    0xE482: 0x826A,
-    0xE483: 0x826B,
-    0xE484: 0x822E,
-    0xE485: 0x8271,
-    0xE486: 0x8277,
-    0xE487: 0x8278,
-    0xE488: 0x827E,
-    0xE489: 0x828D,
-    0xE48A: 0x8292,
-    0xE48B: 0x82AB,
-    0xE48C: 0x829F,
-    0xE48D: 0x82BB,
-    0xE48E: 0x82AC,
-    0xE48F: 0x82E1,
-    0xE490: 0x82E3,
-    0xE491: 0x82DF,
-    0xE492: 0x82D2,
-    0xE493: 0x82F4,
-    0xE494: 0x82F3,
-    0xE495: 0x82FA,
-    0xE496: 0x8393,
-    0xE497: 0x8303,
-    0xE498: 0x82FB,
-    0xE499: 0x82F9,
-    0xE49A: 0x82DE,
-    0xE49B: 0x8306,
-    0xE49C: 0x82DC,
-    0xE49D: 0x8309,
-    0xE49E: 0x82D9,
-    0xE49F: 0x8335,
-    0xE4A0: 0x8334,
-    0xE4A1: 0x8316,
-    0xE4A2: 0x8332,
-    0xE4A3: 0x8331,
-    0xE4A4: 0x8340,
-    0xE4A5: 0x8339,
-    0xE4A6: 0x8350,
-    0xE4A7: 0x8345,
-    0xE4A8: 0x832F,
-    0xE4A9: 0x832B,
-    0xE4AA: 0x8317,
-    0xE4AB: 0x8318,
-    0xE4AC: 0x8385,
-    0xE4AD: 0x839A,
-    0xE4AE: 0x83AA,
-    0xE4AF: 0x839F,
-    0xE4B0: 0x83A2,
-    0xE4B1: 0x8396,
-    0xE4B2: 0x8323,
-    0xE4B3: 0x838E,
-    0xE4B4: 0x8387,
-    0xE4B5: 0x838A,
-    0xE4B6: 0x837C,
-    0xE4B7: 0x83B5,
-    0xE4B8: 0x8373,
-    0xE4B9: 0x8375,
-    0xE4BA: 0x83A0,
-    0xE4BB: 0x8389,
-    0xE4BC: 0x83A8,
-    0xE4BD: 0x83F4,
-    0xE4BE: 0x8413,
-    0xE4BF: 0x83EB,
-    0xE4C0: 0x83CE,
-    0xE4C1: 0x83FD,
-    0xE4C2: 0x8403,
-    0xE4C3: 0x83D8,
-    0xE4C4: 0x840B,
-    0xE4C5: 0x83C1,
-    0xE4C6: 0x83F7,
-    0xE4C7: 0x8407,
-    0xE4C8: 0x83E0,
-    0xE4C9: 0x83F2,
-    0xE4CA: 0x840D,
-    0xE4CB: 0x8422,
-    0xE4CC: 0x8420,
-    0xE4CD: 0x83BD,
-    0xE4CE: 0x8438,
-    0xE4CF: 0x8506,
-    0xE4D0: 0x83FB,
-    0xE4D1: 0x846D,
-    0xE4D2: 0x842A,
-    0xE4D3: 0x843C,
-    0xE4D4: 0x855A,
-    0xE4D5: 0x8484,
-    0xE4D6: 0x8477,
-    0xE4D7: 0x846B,
-    0xE4D8: 0x84AD,
-    0xE4D9: 0x846E,
-    0xE4DA: 0x8482,
-    0xE4DB: 0x8469,
-    0xE4DC: 0x8446,
-    0xE4DD: 0x842C,
-    0xE4DE: 0x846F,
-    0xE4DF: 0x8479,
-    0xE4E0: 0x8435,
-    0xE4E1: 0x84CA,
-    0xE4E2: 0x8462,
-    0xE4E3: 0x84B9,
-    0xE4E4: 0x84BF,
-    0xE4E5: 0x849F,
-    0xE4E6: 0x84D9,
-    0xE4E7: 0x84CD,
-    0xE4E8: 0x84BB,
-    0xE4E9: 0x84DA,
-    0xE4EA: 0x84D0,
-    0xE4EB: 0x84C1,
-    0xE4EC: 0x84C6,
-    0xE4ED: 0x84D6,
-    0xE4EE: 0x84A1,
-    0xE4EF: 0x8521,
-    0xE4F0: 0x84FF,
-    0xE4F1: 0x84F4,
-    0xE4F2: 0x8517,
-    0xE4F3: 0x8518,
-    0xE4F4: 0x852C,
-    0xE4F5: 0x851F,
-    0xE4F6: 0x8515,
-    0xE4F7: 0x8514,
-    0xE4F8: 0x84FC,
-    0xE4F9: 0x8540,
-    0xE4FA: 0x8563,
-    0xE4FB: 0x8558,
-    0xE4FC: 0x8548,
-    0xE540: 0x8541,
-    0xE541: 0x8602,
-    0xE542: 0x854B,
-    0xE543: 0x8555,
-    0xE544: 0x8580,
-    0xE545: 0x85A4,
-    0xE546: 0x8588,
-    0xE547: 0x8591,
-    0xE548: 0x858A,
-    0xE549: 0x85A8,
-    0xE54A: 0x856D,
-    0xE54B: 0x8594,
-    0xE54C: 0x859B,
-    0xE54D: 0x85EA,
-    0xE54E: 0x8587,
-    0xE54F: 0x859C,
-    0xE550: 0x8577,
-    0xE551: 0x857E,
-    0xE552: 0x8590,
-    0xE553: 0x85C9,
-    0xE554: 0x85BA,
-    0xE555: 0x85CF,
-    0xE556: 0x85B9,
-    0xE557: 0x85D0,
-    0xE558: 0x85D5,
-    0xE559: 0x85DD,
-    0xE55A: 0x85E5,
-    0xE55B: 0x85DC,
-    0xE55C: 0x85F9,
-    0xE55D: 0x860A,
-    0xE55E: 0x8613,
-    0xE55F: 0x860B,
-    0xE560: 0x85FE,
-    0xE561: 0x85FA,
-    0xE562: 0x8606,
-    0xE563: 0x8622,
-    0xE564: 0x861A,
-    0xE565: 0x8630,
-    0xE566: 0x863F,
-    0xE567: 0x864D,
-    0xE568: 0x4E55,
-    0xE569: 0x8654,
-    0xE56A: 0x865F,
-    0xE56B: 0x8667,
-    0xE56C: 0x8671,
-    0xE56D: 0x8693,
-    0xE56E: 0x86A3,
-    0xE56F: 0x86A9,
-    0xE570: 0x86AA,
-    0xE571: 0x868B,
-    0xE572: 0x868C,
-    0xE573: 0x86B6,
-    0xE574: 0x86AF,
-    0xE575: 0x86C4,
-    0xE576: 0x86C6,
-    0xE577: 0x86B0,
-    0xE578: 0x86C9,
-    0xE579: 0x8823,
-    0xE57A: 0x86AB,
-    0xE57B: 0x86D4,
-    0xE57C: 0x86DE,
-    0xE57D: 0x86E9,
-    0xE57E: 0x86EC,
-    0xE580: 0x86DF,
-    0xE581: 0x86DB,
-    0xE582: 0x86EF,
-    0xE583: 0x8712,
-    0xE584: 0x8706,
-    0xE585: 0x8708,
-    0xE586: 0x8700,
-    0xE587: 0x8703,
-    0xE588: 0x86FB,
-    0xE589: 0x8711,
-    0xE58A: 0x8709,
-    0xE58B: 0x870D,
-    0xE58C: 0x86F9,
-    0xE58D: 0x870A,
-    0xE58E: 0x8734,
-    0xE58F: 0x873F,
-    0xE590: 0x8737,
-    0xE591: 0x873B,
-    0xE592: 0x8725,
-    0xE593: 0x8729,
-    0xE594: 0x871A,
-    0xE595: 0x8760,
-    0xE596: 0x875F,
-    0xE597: 0x8778,
-    0xE598: 0x874C,
-    0xE599: 0x874E,
-    0xE59A: 0x8774,
-    0xE59B: 0x8757,
-    0xE59C: 0x8768,
-    0xE59D: 0x876E,
-    0xE59E: 0x8759,
-    0xE59F: 0x8753,
-    0xE5A0: 0x8763,
-    0xE5A1: 0x876A,
-    0xE5A2: 0x8805,
-    0xE5A3: 0x87A2,
-    0xE5A4: 0x879F,
-    0xE5A5: 0x8782,
-    0xE5A6: 0x87AF,
-    0xE5A7: 0x87CB,
-    0xE5A8: 0x87BD,
-    0xE5A9: 0x87C0,
-    0xE5AA: 0x87D0,
-    0xE5AB: 0x96D6,
-    0xE5AC: 0x87AB,
-    0xE5AD: 0x87C4,
-    0xE5AE: 0x87B3,
-    0xE5AF: 0x87C7,
-    0xE5B0: 0x87C6,
-    0xE5B1: 0x87BB,
-    0xE5B2: 0x87EF,
-    0xE5B3: 0x87F2,
-    0xE5B4: 0x87E0,
-    0xE5B5: 0x880F,
-    0xE5B6: 0x880D,
-    0xE5B7: 0x87FE,
-    0xE5B8: 0x87F6,
-    0xE5B9: 0x87F7,
-    0xE5BA: 0x880E,
-    0xE5BB: 0x87D2,
-    0xE5BC: 0x8811,
-    0xE5BD: 0x8816,
-    0xE5BE: 0x8815,
-    0xE5BF: 0x8822,
-    0xE5C0: 0x8821,
-    0xE5C1: 0x8831,
-    0xE5C2: 0x8836,
-    0xE5C3: 0x8839,
-    0xE5C4: 0x8827,
-    0xE5C5: 0x883B,
-    0xE5C6: 0x8844,
-    0xE5C7: 0x8842,
-    0xE5C8: 0x8852,
-    0xE5C9: 0x8859,
-    0xE5CA: 0x885E,
-    0xE5CB: 0x8862,
-    0xE5CC: 0x886B,
-    0xE5CD: 0x8881,
-    0xE5CE: 0x887E,
-    0xE5CF: 0x889E,
-    0xE5D0: 0x8875,
-    0xE5D1: 0x887D,
-    0xE5D2: 0x88B5,
-    0xE5D3: 0x8872,
-    0xE5D4: 0x8882,
-    0xE5D5: 0x8897,
-    0xE5D6: 0x8892,
-    0xE5D7: 0x88AE,
-    0xE5D8: 0x8899,
-    0xE5D9: 0x88A2,
-    0xE5DA: 0x888D,
-    0xE5DB: 0x88A4,
-    0xE5DC: 0x88B0,
-    0xE5DD: 0x88BF,
-    0xE5DE: 0x88B1,
-    0xE5DF: 0x88C3,
-    0xE5E0: 0x88C4,
-    0xE5E1: 0x88D4,
-    0xE5E2: 0x88D8,
-    0xE5E3: 0x88D9,
-    0xE5E4: 0x88DD,
-    0xE5E5: 0x88F9,
-    0xE5E6: 0x8902,
-    0xE5E7: 0x88FC,
-    0xE5E8: 0x88F4,
-    0xE5E9: 0x88E8,
-    0xE5EA: 0x88F2,
-    0xE5EB: 0x8904,
-    0xE5EC: 0x890C,
-    0xE5ED: 0x890A,
-    0xE5EE: 0x8913,
-    0xE5EF: 0x8943,
-    0xE5F0: 0x891E,
-    0xE5F1: 0x8925,
-    0xE5F2: 0x892A,
-    0xE5F3: 0x892B,
-    0xE5F4: 0x8941,
-    0xE5F5: 0x8944,
-    0xE5F6: 0x893B,
-    0xE5F7: 0x8936,
-    0xE5F8: 0x8938,
-    0xE5F9: 0x894C,
-    0xE5FA: 0x891D,
-    0xE5FB: 0x8960,
-    0xE5FC: 0x895E,
-    0xE640: 0x8966,
-    0xE641: 0x8964,
-    0xE642: 0x896D,
-    0xE643: 0x896A,
-    0xE644: 0x896F,
-    0xE645: 0x8974,
-    0xE646: 0x8977,
-    0xE647: 0x897E,
-    0xE648: 0x8983,
-    0xE649: 0x8988,
-    0xE64A: 0x898A,
-    0xE64B: 0x8993,
-    0xE64C: 0x8998,
-    0xE64D: 0x89A1,
-    0xE64E: 0x89A9,
-    0xE64F: 0x89A6,
-    0xE650: 0x89AC,
-    0xE651: 0x89AF,
-    0xE652: 0x89B2,
-    0xE653: 0x89BA,
-    0xE654: 0x89BD,
-    0xE655: 0x89BF,
-    0xE656: 0x89C0,
-    0xE657: 0x89DA,
-    0xE658: 0x89DC,
-    0xE659: 0x89DD,
-    0xE65A: 0x89E7,
-    0xE65B: 0x89F4,
-    0xE65C: 0x89F8,
-    0xE65D: 0x8A03,
-    0xE65E: 0x8A16,
-    0xE65F: 0x8A10,
-    0xE660: 0x8A0C,
-    0xE661: 0x8A1B,
-    0xE662: 0x8A1D,
-    0xE663: 0x8A25,
-    0xE664: 0x8A36,
-    0xE665: 0x8A41,
-    0xE666: 0x8A5B,
-    0xE667: 0x8A52,
-    0xE668: 0x8A46,
-    0xE669: 0x8A48,
-    0xE66A: 0x8A7C,
-    0xE66B: 0x8A6D,
-    0xE66C: 0x8A6C,
-    0xE66D: 0x8A62,
-    0xE66E: 0x8A85,
-    0xE66F: 0x8A82,
-    0xE670: 0x8A84,
-    0xE671: 0x8AA8,
-    0xE672: 0x8AA1,
-    0xE673: 0x8A91,
-    0xE674: 0x8AA5,
-    0xE675: 0x8AA6,
-    0xE676: 0x8A9A,
-    0xE677: 0x8AA3,
-    0xE678: 0x8AC4,
-    0xE679: 0x8ACD,
-    0xE67A: 0x8AC2,
-    0xE67B: 0x8ADA,
-    0xE67C: 0x8AEB,
-    0xE67D: 0x8AF3,
-    0xE67E: 0x8AE7,
-    0xE680: 0x8AE4,
-    0xE681: 0x8AF1,
-    0xE682: 0x8B14,
-    0xE683: 0x8AE0,
-    0xE684: 0x8AE2,
-    0xE685: 0x8AF7,
-    0xE686: 0x8ADE,
-    0xE687: 0x8ADB,
-    0xE688: 0x8B0C,
-    0xE689: 0x8B07,
-    0xE68A: 0x8B1A,
-    0xE68B: 0x8AE1,
-    0xE68C: 0x8B16,
-    0xE68D: 0x8B10,
-    0xE68E: 0x8B17,
-    0xE68F: 0x8B20,
-    0xE690: 0x8B33,
-    0xE691: 0x97AB,
-    0xE692: 0x8B26,
-    0xE693: 0x8B2B,
-    0xE694: 0x8B3E,
-    0xE695: 0x8B28,
-    0xE696: 0x8B41,
-    0xE697: 0x8B4C,
-    0xE698: 0x8B4F,
-    0xE699: 0x8B4E,
-    0xE69A: 0x8B49,
-    0xE69B: 0x8B56,
-    0xE69C: 0x8B5B,
-    0xE69D: 0x8B5A,
-    0xE69E: 0x8B6B,
-    0xE69F: 0x8B5F,
-    0xE6A0: 0x8B6C,
-    0xE6A1: 0x8B6F,
-    0xE6A2: 0x8B74,
-    0xE6A3: 0x8B7D,
-    0xE6A4: 0x8B80,
-    0xE6A5: 0x8B8C,
-    0xE6A6: 0x8B8E,
-    0xE6A7: 0x8B92,
-    0xE6A8: 0x8B93,
-    0xE6A9: 0x8B96,
-    0xE6AA: 0x8B99,
-    0xE6AB: 0x8B9A,
-    0xE6AC: 0x8C3A,
-    0xE6AD: 0x8C41,
-    0xE6AE: 0x8C3F,
-    0xE6AF: 0x8C48,
-    0xE6B0: 0x8C4C,
-    0xE6B1: 0x8C4E,
-    0xE6B2: 0x8C50,
-    0xE6B3: 0x8C55,
-    0xE6B4: 0x8C62,
-    0xE6B5: 0x8C6C,
-    0xE6B6: 0x8C78,
-    0xE6B7: 0x8C7A,
-    0xE6B8: 0x8C82,
-    0xE6B9: 0x8C89,
-    0xE6BA: 0x8C85,
-    0xE6BB: 0x8C8A,
-    0xE6BC: 0x8C8D,
-    0xE6BD: 0x8C8E,
-    0xE6BE: 0x8C94,
-    0xE6BF: 0x8C7C,
-    0xE6C0: 0x8C98,
-    0xE6C1: 0x621D,
-    0xE6C2: 0x8CAD,
-    0xE6C3: 0x8CAA,
-    0xE6C4: 0x8CBD,
-    0xE6C5: 0x8CB2,
-    0xE6C6: 0x8CB3,
-    0xE6C7: 0x8CAE,
-    0xE6C8: 0x8CB6,
-    0xE6C9: 0x8CC8,
-    0xE6CA: 0x8CC1,
-    0xE6CB: 0x8CE4,
-    0xE6CC: 0x8CE3,
-    0xE6CD: 0x8CDA,
-    0xE6CE: 0x8CFD,
-    0xE6CF: 0x8CFA,
-    0xE6D0: 0x8CFB,
-    0xE6D1: 0x8D04,
-    0xE6D2: 0x8D05,
-    0xE6D3: 0x8D0A,
-    0xE6D4: 0x8D07,
-    0xE6D5: 0x8D0F,
-    0xE6D6: 0x8D0D,
-    0xE6D7: 0x8D10,
-    0xE6D8: 0x9F4E,
-    0xE6D9: 0x8D13,
-    0xE6DA: 0x8CCD,
-    0xE6DB: 0x8D14,
-    0xE6DC: 0x8D16,
-    0xE6DD: 0x8D67,
-    0xE6DE: 0x8D6D,
-    0xE6DF: 0x8D71,
-    0xE6E0: 0x8D73,
-    0xE6E1: 0x8D81,
-    0xE6E2: 0x8D99,
-    0xE6E3: 0x8DC2,
-    0xE6E4: 0x8DBE,
-    0xE6E5: 0x8DBA,
-    0xE6E6: 0x8DCF,
-    0xE6E7: 0x8DDA,
-    0xE6E8: 0x8DD6,
-    0xE6E9: 0x8DCC,
-    0xE6EA: 0x8DDB,
-    0xE6EB: 0x8DCB,
-    0xE6EC: 0x8DEA,
-    0xE6ED: 0x8DEB,
-    0xE6EE: 0x8DDF,
-    0xE6EF: 0x8DE3,
-    0xE6F0: 0x8DFC,
-    0xE6F1: 0x8E08,
-    0xE6F2: 0x8E09,
-    0xE6F3: 0x8DFF,
-    0xE6F4: 0x8E1D,
-    0xE6F5: 0x8E1E,
-    0xE6F6: 0x8E10,
-    0xE6F7: 0x8E1F,
-    0xE6F8: 0x8E42,
-    0xE6F9: 0x8E35,
-    0xE6FA: 0x8E30,
-    0xE6FB: 0x8E34,
-    0xE6FC: 0x8E4A,
-    0xE740: 0x8E47,
-    0xE741: 0x8E49,
-    0xE742: 0x8E4C,
-    0xE743: 0x8E50,
-    0xE744: 0x8E48,
-    0xE745: 0x8E59,
-    0xE746: 0x8E64,
-    0xE747: 0x8E60,
-    0xE748: 0x8E2A,
-    0xE749: 0x8E63,
-    0xE74A: 0x8E55,
-    0xE74B: 0x8E76,
-    0xE74C: 0x8E72,
-    0xE74D: 0x8E7C,
-    0xE74E: 0x8E81,
-    0xE74F: 0x8E87,
-    0xE750: 0x8E85,
-    0xE751: 0x8E84,
-    0xE752: 0x8E8B,
-    0xE753: 0x8E8A,
-    0xE754: 0x8E93,
-    0xE755: 0x8E91,
-    0xE756: 0x8E94,
-    0xE757: 0x8E99,
-    0xE758: 0x8EAA,
-    0xE759: 0x8EA1,
-    0xE75A: 0x8EAC,
-    0xE75B: 0x8EB0,
-    0xE75C: 0x8EC6,
-    0xE75D: 0x8EB1,
-    0xE75E: 0x8EBE,
-    0xE75F: 0x8EC5,
-    0xE760: 0x8EC8,
-    0xE761: 0x8ECB,
-    0xE762: 0x8EDB,
-    0xE763: 0x8EE3,
-    0xE764: 0x8EFC,
-    0xE765: 0x8EFB,
-    0xE766: 0x8EEB,
-    0xE767: 0x8EFE,
-    0xE768: 0x8F0A,
-    0xE769: 0x8F05,
-    0xE76A: 0x8F15,
-    0xE76B: 0x8F12,
-    0xE76C: 0x8F19,
-    0xE76D: 0x8F13,
-    0xE76E: 0x8F1C,
-    0xE76F: 0x8F1F,
-    0xE770: 0x8F1B,
-    0xE771: 0x8F0C,
-    0xE772: 0x8F26,
-    0xE773: 0x8F33,
-    0xE774: 0x8F3B,
-    0xE775: 0x8F39,
-    0xE776: 0x8F45,
-    0xE777: 0x8F42,
-    0xE778: 0x8F3E,
-    0xE779: 0x8F4C,
-    0xE77A: 0x8F49,
-    0xE77B: 0x8F46,
-    0xE77C: 0x8F4E,
-    0xE77D: 0x8F57,
-    0xE77E: 0x8F5C,
-    0xE780: 0x8F62,
-    0xE781: 0x8F63,
-    0xE782: 0x8F64,
-    0xE783: 0x8F9C,
-    0xE784: 0x8F9F,
-    0xE785: 0x8FA3,
-    0xE786: 0x8FAD,
-    0xE787: 0x8FAF,
-    0xE788: 0x8FB7,
-    0xE789: 0x8FDA,
-    0xE78A: 0x8FE5,
-    0xE78B: 0x8FE2,
-    0xE78C: 0x8FEA,
-    0xE78D: 0x8FEF,
-    0xE78E: 0x9087,
-    0xE78F: 0x8FF4,
-    0xE790: 0x9005,
-    0xE791: 0x8FF9,
-    0xE792: 0x8FFA,
-    0xE793: 0x9011,
-    0xE794: 0x9015,
-    0xE795: 0x9021,
-    0xE796: 0x900D,
-    0xE797: 0x901E,
-    0xE798: 0x9016,
-    0xE799: 0x900B,
-    0xE79A: 0x9027,
-    0xE79B: 0x9036,
-    0xE79C: 0x9035,
-    0xE79D: 0x9039,
-    0xE79E: 0x8FF8,
-    0xE79F: 0x904F,
-    0xE7A0: 0x9050,
-    0xE7A1: 0x9051,
-    0xE7A2: 0x9052,
-    0xE7A3: 0x900E,
-    0xE7A4: 0x9049,
-    0xE7A5: 0x903E,
-    0xE7A6: 0x9056,
-    0xE7A7: 0x9058,
-    0xE7A8: 0x905E,
-    0xE7A9: 0x9068,
-    0xE7AA: 0x906F,
-    0xE7AB: 0x9076,
-    0xE7AC: 0x96A8,
-    0xE7AD: 0x9072,
-    0xE7AE: 0x9082,
-    0xE7AF: 0x907D,
-    0xE7B0: 0x9081,
-    0xE7B1: 0x9080,
-    0xE7B2: 0x908A,
-    0xE7B3: 0x9089,
-    0xE7B4: 0x908F,
-    0xE7B5: 0x90A8,
-    0xE7B6: 0x90AF,
-    0xE7B7: 0x90B1,
-    0xE7B8: 0x90B5,
-    0xE7B9: 0x90E2,
-    0xE7BA: 0x90E4,
-    0xE7BB: 0x6248,
-    0xE7BC: 0x90DB,
-    0xE7BD: 0x9102,
-    0xE7BE: 0x9112,
-    0xE7BF: 0x9119,
-    0xE7C0: 0x9132,
-    0xE7C1: 0x9130,
-    0xE7C2: 0x914A,
-    0xE7C3: 0x9156,
-    0xE7C4: 0x9158,
-    0xE7C5: 0x9163,
-    0xE7C6: 0x9165,
-    0xE7C7: 0x9169,
-    0xE7C8: 0x9173,
-    0xE7C9: 0x9172,
-    0xE7CA: 0x918B,
-    0xE7CB: 0x9189,
-    0xE7CC: 0x9182,
-    0xE7CD: 0x91A2,
-    0xE7CE: 0x91AB,
-    0xE7CF: 0x91AF,
-    0xE7D0: 0x91AA,
-    0xE7D1: 0x91B5,
-    0xE7D2: 0x91B4,
-    0xE7D3: 0x91BA,
-    0xE7D4: 0x91C0,
-    0xE7D5: 0x91C1,
-    0xE7D6: 0x91C9,
-    0xE7D7: 0x91CB,
-    0xE7D8: 0x91D0,
-    0xE7D9: 0x91D6,
-    0xE7DA: 0x91DF,
-    0xE7DB: 0x91E1,
-    0xE7DC: 0x91DB,
-    0xE7DD: 0x91FC,
-    0xE7DE: 0x91F5,
-    0xE7DF: 0x91F6,
-    0xE7E0: 0x921E,
-    0xE7E1: 0x91FF,
-    0xE7E2: 0x9214,
-    0xE7E3: 0x922C,
-    0xE7E4: 0x9215,
-    0xE7E5: 0x9211,
-    0xE7E6: 0x925E,
-    0xE7E7: 0x9257,
-    0xE7E8: 0x9245,
-    0xE7E9: 0x9249,
-    0xE7EA: 0x9264,
-    0xE7EB: 0x9248,
-    0xE7EC: 0x9295,
-    0xE7ED: 0x923F,
-    0xE7EE: 0x924B,
-    0xE7EF: 0x9250,
-    0xE7F0: 0x929C,
-    0xE7F1: 0x9296,
-    0xE7F2: 0x9293,
-    0xE7F3: 0x929B,
-    0xE7F4: 0x925A,
-    0xE7F5: 0x92CF,
-    0xE7F6: 0x92B9,
-    0xE7F7: 0x92B7,
-    0xE7F8: 0x92E9,
-    0xE7F9: 0x930F,
-    0xE7FA: 0x92FA,
-    0xE7FB: 0x9344,
-    0xE7FC: 0x932E,
-    0xE840: 0x9319,
-    0xE841: 0x9322,
-    0xE842: 0x931A,
-    0xE843: 0x9323,
-    0xE844: 0x933A,
-    0xE845: 0x9335,
-    0xE846: 0x933B,
-    0xE847: 0x935C,
-    0xE848: 0x9360,
-    0xE849: 0x937C,
-    0xE84A: 0x936E,
-    0xE84B: 0x9356,
-    0xE84C: 0x93B0,
-    0xE84D: 0x93AC,
-    0xE84E: 0x93AD,
-    0xE84F: 0x9394,
-    0xE850: 0x93B9,
-    0xE851: 0x93D6,
-    0xE852: 0x93D7,
-    0xE853: 0x93E8,
-    0xE854: 0x93E5,
-    0xE855: 0x93D8,
-    0xE856: 0x93C3,
-    0xE857: 0x93DD,
-    0xE858: 0x93D0,
-    0xE859: 0x93C8,
-    0xE85A: 0x93E4,
-    0xE85B: 0x941A,
-    0xE85C: 0x9414,
-    0xE85D: 0x9413,
-    0xE85E: 0x9403,
-    0xE85F: 0x9407,
-    0xE860: 0x9410,
-    0xE861: 0x9436,
-    0xE862: 0x942B,
-    0xE863: 0x9435,
-    0xE864: 0x9421,
-    0xE865: 0x943A,
-    0xE866: 0x9441,
-    0xE867: 0x9452,
-    0xE868: 0x9444,
-    0xE869: 0x945B,
-    0xE86A: 0x9460,
-    0xE86B: 0x9462,
-    0xE86C: 0x945E,
-    0xE86D: 0x946A,
-    0xE86E: 0x9229,
-    0xE86F: 0x9470,
-    0xE870: 0x9475,
-    0xE871: 0x9477,
-    0xE872: 0x947D,
-    0xE873: 0x945A,
-    0xE874: 0x947C,
-    0xE875: 0x947E,
-    0xE876: 0x9481,
-    0xE877: 0x947F,
-    0xE878: 0x9582,
-    0xE879: 0x9587,
-    0xE87A: 0x958A,
-    0xE87B: 0x9594,
-    0xE87C: 0x9596,
-    0xE87D: 0x9598,
-    0xE87E: 0x9599,
-    0xE880: 0x95A0,
-    0xE881: 0x95A8,
-    0xE882: 0x95A7,
-    0xE883: 0x95AD,
-    0xE884: 0x95BC,
-    0xE885: 0x95BB,
-    0xE886: 0x95B9,
-    0xE887: 0x95BE,
-    0xE888: 0x95CA,
-    0xE889: 0x6FF6,
-    0xE88A: 0x95C3,
-    0xE88B: 0x95CD,
-    0xE88C: 0x95CC,
-    0xE88D: 0x95D5,
-    0xE88E: 0x95D4,
-    0xE88F: 0x95D6,
-    0xE890: 0x95DC,
-    0xE891: 0x95E1,
-    0xE892: 0x95E5,
-    0xE893: 0x95E2,
-    0xE894: 0x9621,
-    0xE895: 0x9628,
-    0xE896: 0x962E,
-    0xE897: 0x962F,
-    0xE898: 0x9642,
-    0xE899: 0x964C,
-    0xE89A: 0x964F,
-    0xE89B: 0x964B,
-    0xE89C: 0x9677,
-    0xE89D: 0x965C,
-    0xE89E: 0x965E,
-    0xE89F: 0x965D,
-    0xE8A0: 0x965F,
-    0xE8A1: 0x9666,
-    0xE8A2: 0x9672,
-    0xE8A3: 0x966C,
-    0xE8A4: 0x968D,
-    0xE8A5: 0x9698,
-    0xE8A6: 0x9695,
-    0xE8A7: 0x9697,
-    0xE8A8: 0x96AA,
-    0xE8A9: 0x96A7,
-    0xE8AA: 0x96B1,
-    0xE8AB: 0x96B2,
-    0xE8AC: 0x96B0,
-    0xE8AD: 0x96B4,
-    0xE8AE: 0x96B6,
-    0xE8AF: 0x96B8,
-    0xE8B0: 0x96B9,
-    0xE8B1: 0x96CE,
-    0xE8B2: 0x96CB,
-    0xE8B3: 0x96C9,
-    0xE8B4: 0x96CD,
-    0xE8B5: 0x894D,
-    0xE8B6: 0x96DC,
-    0xE8B7: 0x970D,
-    0xE8B8: 0x96D5,
-    0xE8B9: 0x96F9,
-    0xE8BA: 0x9704,
-    0xE8BB: 0x9706,
-    0xE8BC: 0x9708,
-    0xE8BD: 0x9713,
-    0xE8BE: 0x970E,
-    0xE8BF: 0x9711,
-    0xE8C0: 0x970F,
-    0xE8C1: 0x9716,
-    0xE8C2: 0x9719,
-    0xE8C3: 0x9724,
-    0xE8C4: 0x972A,
-    0xE8C5: 0x9730,
-    0xE8C6: 0x9739,
-    0xE8C7: 0x973D,
-    0xE8C8: 0x973E,
-    0xE8C9: 0x9744,
-    0xE8CA: 0x9746,
-    0xE8CB: 0x9748,
-    0xE8CC: 0x9742,
-    0xE8CD: 0x9749,
-    0xE8CE: 0x975C,
-    0xE8CF: 0x9760,
-    0xE8D0: 0x9764,
-    0xE8D1: 0x9766,
-    0xE8D2: 0x9768,
-    0xE8D3: 0x52D2,
-    0xE8D4: 0x976B,
-    0xE8D5: 0x9771,
-    0xE8D6: 0x9779,
-    0xE8D7: 0x9785,
-    0xE8D8: 0x977C,
-    0xE8D9: 0x9781,
-    0xE8DA: 0x977A,
-    0xE8DB: 0x9786,
-    0xE8DC: 0x978B,
-    0xE8DD: 0x978F,
-    0xE8DE: 0x9790,
-    0xE8DF: 0x979C,
-    0xE8E0: 0x97A8,
-    0xE8E1: 0x97A6,
-    0xE8E2: 0x97A3,
-    0xE8E3: 0x97B3,
-    0xE8E4: 0x97B4,
-    0xE8E5: 0x97C3,
-    0xE8E6: 0x97C6,
-    0xE8E7: 0x97C8,
-    0xE8E8: 0x97CB,
-    0xE8E9: 0x97DC,
-    0xE8EA: 0x97ED,
-    0xE8EB: 0x9F4F,
-    0xE8EC: 0x97F2,
-    0xE8ED: 0x7ADF,
-    0xE8EE: 0x97F6,
-    0xE8EF: 0x97F5,
-    0xE8F0: 0x980F,
-    0xE8F1: 0x980C,
-    0xE8F2: 0x9838,
-    0xE8F3: 0x9824,
-    0xE8F4: 0x9821,
-    0xE8F5: 0x9837,
-    0xE8F6: 0x983D,
-    0xE8F7: 0x9846,
-    0xE8F8: 0x984F,
-    0xE8F9: 0x984B,
-    0xE8FA: 0x986B,
-    0xE8FB: 0x986F,
-    0xE8FC: 0x9870,
-    0xE940: 0x9871,
-    0xE941: 0x9874,
-    0xE942: 0x9873,
-    0xE943: 0x98AA,
-    0xE944: 0x98AF,
-    0xE945: 0x98B1,
-    0xE946: 0x98B6,
-    0xE947: 0x98C4,
-    0xE948: 0x98C3,
-    0xE949: 0x98C6,
-    0xE94A: 0x98E9,
-    0xE94B: 0x98EB,
-    0xE94C: 0x9903,
-    0xE94D: 0x9909,
-    0xE94E: 0x9912,
-    0xE94F: 0x9914,
-    0xE950: 0x9918,
-    0xE951: 0x9921,
-    0xE952: 0x991D,
-    0xE953: 0x991E,
-    0xE954: 0x9924,
-    0xE955: 0x9920,
-    0xE956: 0x992C,
-    0xE957: 0x992E,
-    0xE958: 0x993D,
-    0xE959: 0x993E,
-    0xE95A: 0x9942,
-    0xE95B: 0x9949,
-    0xE95C: 0x9945,
-    0xE95D: 0x9950,
-    0xE95E: 0x994B,
-    0xE95F: 0x9951,
-    0xE960: 0x9952,
-    0xE961: 0x994C,
-    0xE962: 0x9955,
-    0xE963: 0x9997,
-    0xE964: 0x9998,
-    0xE965: 0x99A5,
-    0xE966: 0x99AD,
-    0xE967: 0x99AE,
-    0xE968: 0x99BC,
-    0xE969: 0x99DF,
-    0xE96A: 0x99DB,
-    0xE96B: 0x99DD,
-    0xE96C: 0x99D8,
-    0xE96D: 0x99D1,
-    0xE96E: 0x99ED,
-    0xE96F: 0x99EE,
-    0xE970: 0x99F1,
-    0xE971: 0x99F2,
-    0xE972: 0x99FB,
-    0xE973: 0x99F8,
-    0xE974: 0x9A01,
-    0xE975: 0x9A0F,
-    0xE976: 0x9A05,
-    0xE977: 0x99E2,
-    0xE978: 0x9A19,
-    0xE979: 0x9A2B,
-    0xE97A: 0x9A37,
-    0xE97B: 0x9A45,
-    0xE97C: 0x9A42,
-    0xE97D: 0x9A40,
-    0xE97E: 0x9A43,
-    0xE980: 0x9A3E,
-    0xE981: 0x9A55,
-    0xE982: 0x9A4D,
-    0xE983: 0x9A5B,
-    0xE984: 0x9A57,
-    0xE985: 0x9A5F,
-    0xE986: 0x9A62,
-    0xE987: 0x9A65,
-    0xE988: 0x9A64,
-    0xE989: 0x9A69,
-    0xE98A: 0x9A6B,
-    0xE98B: 0x9A6A,
-    0xE98C: 0x9AAD,
-    0xE98D: 0x9AB0,
-    0xE98E: 0x9ABC,
-    0xE98F: 0x9AC0,
-    0xE990: 0x9ACF,
-    0xE991: 0x9AD1,
-    0xE992: 0x9AD3,
-    0xE993: 0x9AD4,
-    0xE994: 0x9ADE,
-    0xE995: 0x9ADF,
-    0xE996: 0x9AE2,
-    0xE997: 0x9AE3,
-    0xE998: 0x9AE6,
-    0xE999: 0x9AEF,
-    0xE99A: 0x9AEB,
-    0xE99B: 0x9AEE,
-    0xE99C: 0x9AF4,
-    0xE99D: 0x9AF1,
-    0xE99E: 0x9AF7,
-    0xE99F: 0x9AFB,
-    0xE9A0: 0x9B06,
-    0xE9A1: 0x9B18,
-    0xE9A2: 0x9B1A,
-    0xE9A3: 0x9B1F,
-    0xE9A4: 0x9B22,
-    0xE9A5: 0x9B23,
-    0xE9A6: 0x9B25,
-    0xE9A7: 0x9B27,
-    0xE9A8: 0x9B28,
-    0xE9A9: 0x9B29,
-    0xE9AA: 0x9B2A,
-    0xE9AB: 0x9B2E,
-    0xE9AC: 0x9B2F,
-    0xE9AD: 0x9B32,
-    0xE9AE: 0x9B44,
-    0xE9AF: 0x9B43,
-    0xE9B0: 0x9B4F,
-    0xE9B1: 0x9B4D,
-    0xE9B2: 0x9B4E,
-    0xE9B3: 0x9B51,
-    0xE9B4: 0x9B58,
-    0xE9B5: 0x9B74,
-    0xE9B6: 0x9B93,
-    0xE9B7: 0x9B83,
-    0xE9B8: 0x9B91,
-    0xE9B9: 0x9B96,
-    0xE9BA: 0x9B97,
-    0xE9BB: 0x9B9F,
-    0xE9BC: 0x9BA0,
-    0xE9BD: 0x9BA8,
-    0xE9BE: 0x9BB4,
-    0xE9BF: 0x9BC0,
-    0xE9C0: 0x9BCA,
-    0xE9C1: 0x9BB9,
-    0xE9C2: 0x9BC6,
-    0xE9C3: 0x9BCF,
-    0xE9C4: 0x9BD1,
-    0xE9C5: 0x9BD2,
-    0xE9C6: 0x9BE3,
-    0xE9C7: 0x9BE2,
-    0xE9C8: 0x9BE4,
-    0xE9C9: 0x9BD4,
-    0xE9CA: 0x9BE1,
-    0xE9CB: 0x9C3A,
-    0xE9CC: 0x9BF2,
-    0xE9CD: 0x9BF1,
-    0xE9CE: 0x9BF0,
-    0xE9CF: 0x9C15,
-    0xE9D0: 0x9C14,
-    0xE9D1: 0x9C09,
-    0xE9D2: 0x9C13,
-    0xE9D3: 0x9C0C,
-    0xE9D4: 0x9C06,
-    0xE9D5: 0x9C08,
-    0xE9D6: 0x9C12,
-    0xE9D7: 0x9C0A,
-    0xE9D8: 0x9C04,
-    0xE9D9: 0x9C2E,
-    0xE9DA: 0x9C1B,
-    0xE9DB: 0x9C25,
-    0xE9DC: 0x9C24,
-    0xE9DD: 0x9C21,
-    0xE9DE: 0x9C30,
-    0xE9DF: 0x9C47,
-    0xE9E0: 0x9C32,
-    0xE9E1: 0x9C46,
-    0xE9E2: 0x9C3E,
-    0xE9E3: 0x9C5A,
-    0xE9E4: 0x9C60,
-    0xE9E5: 0x9C67,
-    0xE9E6: 0x9C76,
-    0xE9E7: 0x9C78,
-    0xE9E8: 0x9CE7,
-    0xE9E9: 0x9CEC,
-    0xE9EA: 0x9CF0,
-    0xE9EB: 0x9D09,
-    0xE9EC: 0x9D08,
-    0xE9ED: 0x9CEB,
-    0xE9EE: 0x9D03,
-    0xE9EF: 0x9D06,
-    0xE9F0: 0x9D2A,
-    0xE9F1: 0x9D26,
-    0xE9F2: 0x9DAF,
-    0xE9F3: 0x9D23,
-    0xE9F4: 0x9D1F,
-    0xE9F5: 0x9D44,
-    0xE9F6: 0x9D15,
-    0xE9F7: 0x9D12,
-    0xE9F8: 0x9D41,
-    0xE9F9: 0x9D3F,
-    0xE9FA: 0x9D3E,
-    0xE9FB: 0x9D46,
-    0xE9FC: 0x9D48,
-    0xEA40: 0x9D5D,
-    0xEA41: 0x9D5E,
-    0xEA42: 0x9D64,
-    0xEA43: 0x9D51,
-    0xEA44: 0x9D50,
-    0xEA45: 0x9D59,
-    0xEA46: 0x9D72,
-    0xEA47: 0x9D89,
-    0xEA48: 0x9D87,
-    0xEA49: 0x9DAB,
-    0xEA4A: 0x9D6F,
-    0xEA4B: 0x9D7A,
-    0xEA4C: 0x9D9A,
-    0xEA4D: 0x9DA4,
-    0xEA4E: 0x9DA9,
-    0xEA4F: 0x9DB2,
-    0xEA50: 0x9DC4,
-    0xEA51: 0x9DC1,
-    0xEA52: 0x9DBB,
-    0xEA53: 0x9DB8,
-    0xEA54: 0x9DBA,
-    0xEA55: 0x9DC6,
-    0xEA56: 0x9DCF,
-    0xEA57: 0x9DC2,
-    0xEA58: 0x9DD9,
-    0xEA59: 0x9DD3,
-    0xEA5A: 0x9DF8,
-    0xEA5B: 0x9DE6,
-    0xEA5C: 0x9DED,
-    0xEA5D: 0x9DEF,
-    0xEA5E: 0x9DFD,
-    0xEA5F: 0x9E1A,
-    0xEA60: 0x9E1B,
-    0xEA61: 0x9E1E,
-    0xEA62: 0x9E75,
-    0xEA63: 0x9E79,
-    0xEA64: 0x9E7D,
-    0xEA65: 0x9E81,
-    0xEA66: 0x9E88,
-    0xEA67: 0x9E8B,
-    0xEA68: 0x9E8C,
-    0xEA69: 0x9E92,
-    0xEA6A: 0x9E95,
-    0xEA6B: 0x9E91,
-    0xEA6C: 0x9E9D,
-    0xEA6D: 0x9EA5,
-    0xEA6E: 0x9EA9,
-    0xEA6F: 0x9EB8,
-    0xEA70: 0x9EAA,
-    0xEA71: 0x9EAD,
-    0xEA72: 0x9761,
-    0xEA73: 0x9ECC,
-    0xEA74: 0x9ECE,
-    0xEA75: 0x9ECF,
-    0xEA76: 0x9ED0,
-    0xEA77: 0x9ED4,
-    0xEA78: 0x9EDC,
-    0xEA79: 0x9EDE,
-    0xEA7A: 0x9EDD,
-    0xEA7B: 0x9EE0,
-    0xEA7C: 0x9EE5,
-    0xEA7D: 0x9EE8,
-    0xEA7E: 0x9EEF,
-    0xEA80: 0x9EF4,
-    0xEA81: 0x9EF6,
-    0xEA82: 0x9EF7,
-    0xEA83: 0x9EF9,
-    0xEA84: 0x9EFB,
-    0xEA85: 0x9EFC,
-    0xEA86: 0x9EFD,
-    0xEA87: 0x9F07,
-    0xEA88: 0x9F08,
-    0xEA89: 0x76B7,
-    0xEA8A: 0x9F15,
-    0xEA8B: 0x9F21,
-    0xEA8C: 0x9F2C,
-    0xEA8D: 0x9F3E,
-    0xEA8E: 0x9F4A,
-    0xEA8F: 0x9F52,
-    0xEA90: 0x9F54,
-    0xEA91: 0x9F63,
-    0xEA92: 0x9F5F,
-    0xEA93: 0x9F60,
-    0xEA94: 0x9F61,
-    0xEA95: 0x9F66,
-    0xEA96: 0x9F67,
-    0xEA97: 0x9F6C,
-    0xEA98: 0x9F6A,
-    0xEA99: 0x9F77,
-    0xEA9A: 0x9F72,
-    0xEA9B: 0x9F76,
-    0xEA9C: 0x9F95,
-    0xEA9D: 0x9F9C,
-    0xEA9E: 0x9FA0,
-    0xEA9F: 0x582F,
-    0xEAA0: 0x69C7,
-    0xEAA1: 0x9059,
-    0xEAA2: 0x7464,
-    0xEAA3: 0x51DC,
-    0xEAA4: 0x7199,
-};
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var GenericGF_1 = __webpack_require__(1);
-var GenericGFPoly_1 = __webpack_require__(2);
-function runEuclideanAlgorithm(field, a, b, R) {
-    var _a;
-    // Assume a's degree is >= b's
-    if (a.degree() < b.degree()) {
-        _a = [b, a], a = _a[0], b = _a[1];
-    }
-    var rLast = a;
-    var r = b;
-    var tLast = field.zero;
-    var t = field.one;
-    // Run Euclidean algorithm until r's degree is less than R/2
-    while (r.degree() >= R / 2) {
-        var rLastLast = rLast;
-        var tLastLast = tLast;
-        rLast = r;
-        tLast = t;
-        // Divide rLastLast by rLast, with quotient in q and remainder in r
-        if (rLast.isZero()) {
-            // Euclidean algorithm already terminated?
-            return null;
-        }
-        r = rLastLast;
-        var q = field.zero;
-        var denominatorLeadingTerm = rLast.getCoefficient(rLast.degree());
-        var dltInverse = field.inverse(denominatorLeadingTerm);
-        while (r.degree() >= rLast.degree() && !r.isZero()) {
-            var degreeDiff = r.degree() - rLast.degree();
-            var scale = field.multiply(r.getCoefficient(r.degree()), dltInverse);
-            q = q.addOrSubtract(field.buildMonomial(degreeDiff, scale));
-            r = r.addOrSubtract(rLast.multiplyByMonomial(degreeDiff, scale));
-        }
-        t = q.multiplyPoly(tLast).addOrSubtract(tLastLast);
-        if (r.degree() >= rLast.degree()) {
-            return null;
-        }
-    }
-    var sigmaTildeAtZero = t.getCoefficient(0);
-    if (sigmaTildeAtZero === 0) {
-        return null;
-    }
-    var inverse = field.inverse(sigmaTildeAtZero);
-    return [t.multiply(inverse), r.multiply(inverse)];
-}
-function findErrorLocations(field, errorLocator) {
-    // This is a direct application of Chien's search
-    var numErrors = errorLocator.degree();
-    if (numErrors === 1) {
-        return [errorLocator.getCoefficient(1)];
-    }
-    var result = new Array(numErrors);
-    var errorCount = 0;
-    for (var i = 1; i < field.size && errorCount < numErrors; i++) {
-        if (errorLocator.evaluateAt(i) === 0) {
-            result[errorCount] = field.inverse(i);
-            errorCount++;
-        }
-    }
-    if (errorCount !== numErrors) {
-        return null;
-    }
-    return result;
-}
-function findErrorMagnitudes(field, errorEvaluator, errorLocations) {
-    // This is directly applying Forney's Formula
-    var s = errorLocations.length;
-    var result = new Array(s);
-    for (var i = 0; i < s; i++) {
-        var xiInverse = field.inverse(errorLocations[i]);
-        var denominator = 1;
-        for (var j = 0; j < s; j++) {
-            if (i !== j) {
-                denominator = field.multiply(denominator, GenericGF_1.addOrSubtractGF(1, field.multiply(errorLocations[j], xiInverse)));
+        Object.defineProperty(exports, "__esModule", { value: true });
+        var GenericGF_1 = __webpack_require__(1);
+        var GenericGFPoly_1 = __webpack_require__(2);
+        function runEuclideanAlgorithm(field, a, b, R) {
+          var _a;
+          // Assume a's degree is >= b's
+          if (a.degree() < b.degree()) {
+            (_a = [b, a]), (a = _a[0]), (b = _a[1]);
+          }
+          var rLast = a;
+          var r = b;
+          var tLast = field.zero;
+          var t = field.one;
+          // Run Euclidean algorithm until r's degree is less than R/2
+          while (r.degree() >= R / 2) {
+            var rLastLast = rLast;
+            var tLastLast = tLast;
+            rLast = r;
+            tLast = t;
+            // Divide rLastLast by rLast, with quotient in q and remainder in r
+            if (rLast.isZero()) {
+              // Euclidean algorithm already terminated?
+              return null;
             }
-        }
-        result[i] = field.multiply(errorEvaluator.evaluateAt(xiInverse), field.inverse(denominator));
-        if (field.generatorBase !== 0) {
-            result[i] = field.multiply(result[i], xiInverse);
-        }
-    }
-    return result;
-}
-function decode(bytes, twoS) {
-    var outputBytes = new Uint8ClampedArray(bytes.length);
-    outputBytes.set(bytes);
-    var field = new GenericGF_1.default(0x011D, 256, 0); // x^8 + x^4 + x^3 + x^2 + 1
-    var poly = new GenericGFPoly_1.default(field, outputBytes);
-    var syndromeCoefficients = new Uint8ClampedArray(twoS);
-    var error = false;
-    for (var s = 0; s < twoS; s++) {
-        var evaluation = poly.evaluateAt(field.exp(s + field.generatorBase));
-        syndromeCoefficients[syndromeCoefficients.length - 1 - s] = evaluation;
-        if (evaluation !== 0) {
-            error = true;
-        }
-    }
-    if (!error) {
-        return outputBytes;
-    }
-    var syndrome = new GenericGFPoly_1.default(field, syndromeCoefficients);
-    var sigmaOmega = runEuclideanAlgorithm(field, field.buildMonomial(twoS, 1), syndrome, twoS);
-    if (sigmaOmega === null) {
-        return null;
-    }
-    var errorLocations = findErrorLocations(field, sigmaOmega[0]);
-    if (errorLocations == null) {
-        return null;
-    }
-    var errorMagnitudes = findErrorMagnitudes(field, sigmaOmega[1], errorLocations);
-    for (var i = 0; i < errorLocations.length; i++) {
-        var position = outputBytes.length - 1 - field.log(errorLocations[i]);
-        if (position < 0) {
+            r = rLastLast;
+            var q = field.zero;
+            var denominatorLeadingTerm = rLast.getCoefficient(rLast.degree());
+            var dltInverse = field.inverse(denominatorLeadingTerm);
+            while (r.degree() >= rLast.degree() && !r.isZero()) {
+              var degreeDiff = r.degree() - rLast.degree();
+              var scale = field.multiply(
+                r.getCoefficient(r.degree()),
+                dltInverse
+              );
+              q = q.addOrSubtract(field.buildMonomial(degreeDiff, scale));
+              r = r.addOrSubtract(rLast.multiplyByMonomial(degreeDiff, scale));
+            }
+            t = q.multiplyPoly(tLast).addOrSubtract(tLastLast);
+            if (r.degree() >= rLast.degree()) {
+              return null;
+            }
+          }
+          var sigmaTildeAtZero = t.getCoefficient(0);
+          if (sigmaTildeAtZero === 0) {
             return null;
+          }
+          var inverse = field.inverse(sigmaTildeAtZero);
+          return [t.multiply(inverse), r.multiply(inverse)];
         }
-        outputBytes[position] = GenericGF_1.addOrSubtractGF(outputBytes[position], errorMagnitudes[i]);
-    }
-    return outputBytes;
-}
-exports.decode = decode;
+        function findErrorLocations(field, errorLocator) {
+          // This is a direct application of Chien's search
+          var numErrors = errorLocator.degree();
+          if (numErrors === 1) {
+            return [errorLocator.getCoefficient(1)];
+          }
+          var result = new Array(numErrors);
+          var errorCount = 0;
+          for (var i = 1; i < field.size && errorCount < numErrors; i++) {
+            if (errorLocator.evaluateAt(i) === 0) {
+              result[errorCount] = field.inverse(i);
+              errorCount++;
+            }
+          }
+          if (errorCount !== numErrors) {
+            return null;
+          }
+          return result;
+        }
+        function findErrorMagnitudes(field, errorEvaluator, errorLocations) {
+          // This is directly applying Forney's Formula
+          var s = errorLocations.length;
+          var result = new Array(s);
+          for (var i = 0; i < s; i++) {
+            var xiInverse = field.inverse(errorLocations[i]);
+            var denominator = 1;
+            for (var j = 0; j < s; j++) {
+              if (i !== j) {
+                denominator = field.multiply(
+                  denominator,
+                  GenericGF_1.addOrSubtractGF(
+                    1,
+                    field.multiply(errorLocations[j], xiInverse)
+                  )
+                );
+              }
+            }
+            result[i] = field.multiply(
+              errorEvaluator.evaluateAt(xiInverse),
+              field.inverse(denominator)
+            );
+            if (field.generatorBase !== 0) {
+              result[i] = field.multiply(result[i], xiInverse);
+            }
+          }
+          return result;
+        }
+        function decode(bytes, twoS) {
+          var outputBytes = new Uint8ClampedArray(bytes.length);
+          outputBytes.set(bytes);
+          var field = new GenericGF_1.default(0x011d, 256, 0); // x^8 + x^4 + x^3 + x^2 + 1
+          var poly = new GenericGFPoly_1.default(field, outputBytes);
+          var syndromeCoefficients = new Uint8ClampedArray(twoS);
+          var error = false;
+          for (var s = 0; s < twoS; s++) {
+            var evaluation = poly.evaluateAt(
+              field.exp(s + field.generatorBase)
+            );
+            syndromeCoefficients[
+              syndromeCoefficients.length - 1 - s
+            ] = evaluation;
+            if (evaluation !== 0) {
+              error = true;
+            }
+          }
+          if (!error) {
+            return outputBytes;
+          }
+          var syndrome = new GenericGFPoly_1.default(
+            field,
+            syndromeCoefficients
+          );
+          var sigmaOmega = runEuclideanAlgorithm(
+            field,
+            field.buildMonomial(twoS, 1),
+            syndrome,
+            twoS
+          );
+          if (sigmaOmega === null) {
+            return null;
+          }
+          var errorLocations = findErrorLocations(field, sigmaOmega[0]);
+          if (errorLocations == null) {
+            return null;
+          }
+          var errorMagnitudes = findErrorMagnitudes(
+            field,
+            sigmaOmega[1],
+            errorLocations
+          );
+          for (var i = 0; i < errorLocations.length; i++) {
+            var position =
+              outputBytes.length - 1 - field.log(errorLocations[i]);
+            if (position < 0) {
+              return null;
+            }
+            outputBytes[position] = GenericGF_1.addOrSubtractGF(
+              outputBytes[position],
+              errorMagnitudes[i]
+            );
+          }
+          return outputBytes;
+        }
+        exports.decode = decode;
 
+        /***/
+      },
+      /* 10 */
+      /***/ function (module, exports, __webpack_require__) {
+        "use strict";
 
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.VERSIONS = [
-    {
-        infoBits: null,
-        versionNumber: 1,
-        alignmentPatternCenters: [],
-        errorCorrectionLevels: [
-            {
+        Object.defineProperty(exports, "__esModule", { value: true });
+        exports.VERSIONS = [
+          {
+            infoBits: null,
+            versionNumber: 1,
+            alignmentPatternCenters: [],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 7,
                 ecBlocks: [{ numBlocks: 1, dataCodewordsPerBlock: 19 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 10,
                 ecBlocks: [{ numBlocks: 1, dataCodewordsPerBlock: 16 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 13,
                 ecBlocks: [{ numBlocks: 1, dataCodewordsPerBlock: 13 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 17,
                 ecBlocks: [{ numBlocks: 1, dataCodewordsPerBlock: 9 }],
-            },
-        ],
-    },
-    {
-        infoBits: null,
-        versionNumber: 2,
-        alignmentPatternCenters: [6, 18],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: null,
+            versionNumber: 2,
+            alignmentPatternCenters: [6, 18],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 10,
                 ecBlocks: [{ numBlocks: 1, dataCodewordsPerBlock: 34 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 16,
                 ecBlocks: [{ numBlocks: 1, dataCodewordsPerBlock: 28 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 22,
                 ecBlocks: [{ numBlocks: 1, dataCodewordsPerBlock: 22 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [{ numBlocks: 1, dataCodewordsPerBlock: 16 }],
-            },
-        ],
-    },
-    {
-        infoBits: null,
-        versionNumber: 3,
-        alignmentPatternCenters: [6, 22],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: null,
+            versionNumber: 3,
+            alignmentPatternCenters: [6, 22],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 15,
                 ecBlocks: [{ numBlocks: 1, dataCodewordsPerBlock: 55 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 26,
                 ecBlocks: [{ numBlocks: 1, dataCodewordsPerBlock: 44 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 18,
                 ecBlocks: [{ numBlocks: 2, dataCodewordsPerBlock: 17 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 22,
                 ecBlocks: [{ numBlocks: 2, dataCodewordsPerBlock: 13 }],
-            },
-        ],
-    },
-    {
-        infoBits: null,
-        versionNumber: 4,
-        alignmentPatternCenters: [6, 26],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: null,
+            versionNumber: 4,
+            alignmentPatternCenters: [6, 26],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 20,
                 ecBlocks: [{ numBlocks: 1, dataCodewordsPerBlock: 80 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 18,
                 ecBlocks: [{ numBlocks: 2, dataCodewordsPerBlock: 32 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 26,
                 ecBlocks: [{ numBlocks: 2, dataCodewordsPerBlock: 24 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 16,
                 ecBlocks: [{ numBlocks: 4, dataCodewordsPerBlock: 9 }],
-            },
-        ],
-    },
-    {
-        infoBits: null,
-        versionNumber: 5,
-        alignmentPatternCenters: [6, 30],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: null,
+            versionNumber: 5,
+            alignmentPatternCenters: [6, 30],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 26,
                 ecBlocks: [{ numBlocks: 1, dataCodewordsPerBlock: 108 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 24,
                 ecBlocks: [{ numBlocks: 2, dataCodewordsPerBlock: 43 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 18,
                 ecBlocks: [
-                    { numBlocks: 2, dataCodewordsPerBlock: 15 },
-                    { numBlocks: 2, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 16 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 22,
                 ecBlocks: [
-                    { numBlocks: 2, dataCodewordsPerBlock: 11 },
-                    { numBlocks: 2, dataCodewordsPerBlock: 12 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 11 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 12 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: null,
-        versionNumber: 6,
-        alignmentPatternCenters: [6, 34],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: null,
+            versionNumber: 6,
+            alignmentPatternCenters: [6, 34],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 18,
                 ecBlocks: [{ numBlocks: 2, dataCodewordsPerBlock: 68 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 16,
                 ecBlocks: [{ numBlocks: 4, dataCodewordsPerBlock: 27 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 24,
                 ecBlocks: [{ numBlocks: 4, dataCodewordsPerBlock: 19 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [{ numBlocks: 4, dataCodewordsPerBlock: 15 }],
-            },
-        ],
-    },
-    {
-        infoBits: 0x07C94,
-        versionNumber: 7,
-        alignmentPatternCenters: [6, 22, 38],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x07c94,
+            versionNumber: 7,
+            alignmentPatternCenters: [6, 22, 38],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 20,
                 ecBlocks: [{ numBlocks: 2, dataCodewordsPerBlock: 78 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 18,
                 ecBlocks: [{ numBlocks: 4, dataCodewordsPerBlock: 31 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 18,
                 ecBlocks: [
-                    { numBlocks: 2, dataCodewordsPerBlock: 14 },
-                    { numBlocks: 4, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 14 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 15 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 26,
                 ecBlocks: [
-                    { numBlocks: 4, dataCodewordsPerBlock: 13 },
-                    { numBlocks: 1, dataCodewordsPerBlock: 14 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 13 },
+                  { numBlocks: 1, dataCodewordsPerBlock: 14 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x085BC,
-        versionNumber: 8,
-        alignmentPatternCenters: [6, 24, 42],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x085bc,
+            versionNumber: 8,
+            alignmentPatternCenters: [6, 24, 42],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 24,
                 ecBlocks: [{ numBlocks: 2, dataCodewordsPerBlock: 97 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 22,
                 ecBlocks: [
-                    { numBlocks: 2, dataCodewordsPerBlock: 38 },
-                    { numBlocks: 2, dataCodewordsPerBlock: 39 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 38 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 39 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 22,
                 ecBlocks: [
-                    { numBlocks: 4, dataCodewordsPerBlock: 18 },
-                    { numBlocks: 2, dataCodewordsPerBlock: 19 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 18 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 19 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 26,
                 ecBlocks: [
-                    { numBlocks: 4, dataCodewordsPerBlock: 14 },
-                    { numBlocks: 2, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 14 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 15 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x09A99,
-        versionNumber: 9,
-        alignmentPatternCenters: [6, 26, 46],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x09a99,
+            versionNumber: 9,
+            alignmentPatternCenters: [6, 26, 46],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [{ numBlocks: 2, dataCodewordsPerBlock: 116 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 22,
                 ecBlocks: [
-                    { numBlocks: 3, dataCodewordsPerBlock: 36 },
-                    { numBlocks: 2, dataCodewordsPerBlock: 37 },
+                  { numBlocks: 3, dataCodewordsPerBlock: 36 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 37 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 20,
                 ecBlocks: [
-                    { numBlocks: 4, dataCodewordsPerBlock: 16 },
-                    { numBlocks: 4, dataCodewordsPerBlock: 17 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 17 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 24,
                 ecBlocks: [
-                    { numBlocks: 4, dataCodewordsPerBlock: 12 },
-                    { numBlocks: 4, dataCodewordsPerBlock: 13 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 12 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 13 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x0A4D3,
-        versionNumber: 10,
-        alignmentPatternCenters: [6, 28, 50],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x0a4d3,
+            versionNumber: 10,
+            alignmentPatternCenters: [6, 28, 50],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 18,
                 ecBlocks: [
-                    { numBlocks: 2, dataCodewordsPerBlock: 68 },
-                    { numBlocks: 2, dataCodewordsPerBlock: 69 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 68 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 69 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 26,
                 ecBlocks: [
-                    { numBlocks: 4, dataCodewordsPerBlock: 43 },
-                    { numBlocks: 1, dataCodewordsPerBlock: 44 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 43 },
+                  { numBlocks: 1, dataCodewordsPerBlock: 44 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 24,
                 ecBlocks: [
-                    { numBlocks: 6, dataCodewordsPerBlock: 19 },
-                    { numBlocks: 2, dataCodewordsPerBlock: 20 },
+                  { numBlocks: 6, dataCodewordsPerBlock: 19 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 20 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 6, dataCodewordsPerBlock: 15 },
-                    { numBlocks: 2, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 6, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 16 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x0BBF6,
-        versionNumber: 11,
-        alignmentPatternCenters: [6, 30, 54],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x0bbf6,
+            versionNumber: 11,
+            alignmentPatternCenters: [6, 30, 54],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 20,
                 ecBlocks: [{ numBlocks: 4, dataCodewordsPerBlock: 81 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 1, dataCodewordsPerBlock: 50 },
-                    { numBlocks: 4, dataCodewordsPerBlock: 51 },
+                  { numBlocks: 1, dataCodewordsPerBlock: 50 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 51 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 4, dataCodewordsPerBlock: 22 },
-                    { numBlocks: 4, dataCodewordsPerBlock: 23 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 22 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 23 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 24,
                 ecBlocks: [
-                    { numBlocks: 3, dataCodewordsPerBlock: 12 },
-                    { numBlocks: 8, dataCodewordsPerBlock: 13 },
+                  { numBlocks: 3, dataCodewordsPerBlock: 12 },
+                  { numBlocks: 8, dataCodewordsPerBlock: 13 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x0C762,
-        versionNumber: 12,
-        alignmentPatternCenters: [6, 32, 58],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x0c762,
+            versionNumber: 12,
+            alignmentPatternCenters: [6, 32, 58],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 24,
                 ecBlocks: [
-                    { numBlocks: 2, dataCodewordsPerBlock: 92 },
-                    { numBlocks: 2, dataCodewordsPerBlock: 93 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 92 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 93 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 22,
                 ecBlocks: [
-                    { numBlocks: 6, dataCodewordsPerBlock: 36 },
-                    { numBlocks: 2, dataCodewordsPerBlock: 37 },
+                  { numBlocks: 6, dataCodewordsPerBlock: 36 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 37 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 26,
                 ecBlocks: [
-                    { numBlocks: 4, dataCodewordsPerBlock: 20 },
-                    { numBlocks: 6, dataCodewordsPerBlock: 21 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 20 },
+                  { numBlocks: 6, dataCodewordsPerBlock: 21 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 7, dataCodewordsPerBlock: 14 },
-                    { numBlocks: 4, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 7, dataCodewordsPerBlock: 14 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 15 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x0D847,
-        versionNumber: 13,
-        alignmentPatternCenters: [6, 34, 62],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x0d847,
+            versionNumber: 13,
+            alignmentPatternCenters: [6, 34, 62],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 26,
                 ecBlocks: [{ numBlocks: 4, dataCodewordsPerBlock: 107 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 22,
                 ecBlocks: [
-                    { numBlocks: 8, dataCodewordsPerBlock: 37 },
-                    { numBlocks: 1, dataCodewordsPerBlock: 38 },
+                  { numBlocks: 8, dataCodewordsPerBlock: 37 },
+                  { numBlocks: 1, dataCodewordsPerBlock: 38 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 24,
                 ecBlocks: [
-                    { numBlocks: 8, dataCodewordsPerBlock: 20 },
-                    { numBlocks: 4, dataCodewordsPerBlock: 21 },
+                  { numBlocks: 8, dataCodewordsPerBlock: 20 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 21 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 22,
                 ecBlocks: [
-                    { numBlocks: 12, dataCodewordsPerBlock: 11 },
-                    { numBlocks: 4, dataCodewordsPerBlock: 12 },
+                  { numBlocks: 12, dataCodewordsPerBlock: 11 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 12 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x0E60D,
-        versionNumber: 14,
-        alignmentPatternCenters: [6, 26, 46, 66],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x0e60d,
+            versionNumber: 14,
+            alignmentPatternCenters: [6, 26, 46, 66],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 3, dataCodewordsPerBlock: 115 },
-                    { numBlocks: 1, dataCodewordsPerBlock: 116 },
+                  { numBlocks: 3, dataCodewordsPerBlock: 115 },
+                  { numBlocks: 1, dataCodewordsPerBlock: 116 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 24,
                 ecBlocks: [
-                    { numBlocks: 4, dataCodewordsPerBlock: 40 },
-                    { numBlocks: 5, dataCodewordsPerBlock: 41 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 40 },
+                  { numBlocks: 5, dataCodewordsPerBlock: 41 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 20,
                 ecBlocks: [
-                    { numBlocks: 11, dataCodewordsPerBlock: 16 },
-                    { numBlocks: 5, dataCodewordsPerBlock: 17 },
+                  { numBlocks: 11, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 5, dataCodewordsPerBlock: 17 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 24,
                 ecBlocks: [
-                    { numBlocks: 11, dataCodewordsPerBlock: 12 },
-                    { numBlocks: 5, dataCodewordsPerBlock: 13 },
+                  { numBlocks: 11, dataCodewordsPerBlock: 12 },
+                  { numBlocks: 5, dataCodewordsPerBlock: 13 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x0F928,
-        versionNumber: 15,
-        alignmentPatternCenters: [6, 26, 48, 70],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x0f928,
+            versionNumber: 15,
+            alignmentPatternCenters: [6, 26, 48, 70],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 22,
                 ecBlocks: [
-                    { numBlocks: 5, dataCodewordsPerBlock: 87 },
-                    { numBlocks: 1, dataCodewordsPerBlock: 88 },
+                  { numBlocks: 5, dataCodewordsPerBlock: 87 },
+                  { numBlocks: 1, dataCodewordsPerBlock: 88 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 24,
                 ecBlocks: [
-                    { numBlocks: 5, dataCodewordsPerBlock: 41 },
-                    { numBlocks: 5, dataCodewordsPerBlock: 42 },
+                  { numBlocks: 5, dataCodewordsPerBlock: 41 },
+                  { numBlocks: 5, dataCodewordsPerBlock: 42 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 5, dataCodewordsPerBlock: 24 },
-                    { numBlocks: 7, dataCodewordsPerBlock: 25 },
+                  { numBlocks: 5, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 7, dataCodewordsPerBlock: 25 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 24,
                 ecBlocks: [
-                    { numBlocks: 11, dataCodewordsPerBlock: 12 },
-                    { numBlocks: 7, dataCodewordsPerBlock: 13 },
+                  { numBlocks: 11, dataCodewordsPerBlock: 12 },
+                  { numBlocks: 7, dataCodewordsPerBlock: 13 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x10B78,
-        versionNumber: 16,
-        alignmentPatternCenters: [6, 26, 50, 74],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x10b78,
+            versionNumber: 16,
+            alignmentPatternCenters: [6, 26, 50, 74],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 24,
                 ecBlocks: [
-                    { numBlocks: 5, dataCodewordsPerBlock: 98 },
-                    { numBlocks: 1, dataCodewordsPerBlock: 99 },
+                  { numBlocks: 5, dataCodewordsPerBlock: 98 },
+                  { numBlocks: 1, dataCodewordsPerBlock: 99 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 7, dataCodewordsPerBlock: 45 },
-                    { numBlocks: 3, dataCodewordsPerBlock: 46 },
+                  { numBlocks: 7, dataCodewordsPerBlock: 45 },
+                  { numBlocks: 3, dataCodewordsPerBlock: 46 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 24,
                 ecBlocks: [
-                    { numBlocks: 15, dataCodewordsPerBlock: 19 },
-                    { numBlocks: 2, dataCodewordsPerBlock: 20 },
+                  { numBlocks: 15, dataCodewordsPerBlock: 19 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 20 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 3, dataCodewordsPerBlock: 15 },
-                    { numBlocks: 13, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 3, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 13, dataCodewordsPerBlock: 16 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x1145D,
-        versionNumber: 17,
-        alignmentPatternCenters: [6, 30, 54, 78],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x1145d,
+            versionNumber: 17,
+            alignmentPatternCenters: [6, 30, 54, 78],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 1, dataCodewordsPerBlock: 107 },
-                    { numBlocks: 5, dataCodewordsPerBlock: 108 },
+                  { numBlocks: 1, dataCodewordsPerBlock: 107 },
+                  { numBlocks: 5, dataCodewordsPerBlock: 108 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 10, dataCodewordsPerBlock: 46 },
-                    { numBlocks: 1, dataCodewordsPerBlock: 47 },
+                  { numBlocks: 10, dataCodewordsPerBlock: 46 },
+                  { numBlocks: 1, dataCodewordsPerBlock: 47 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 1, dataCodewordsPerBlock: 22 },
-                    { numBlocks: 15, dataCodewordsPerBlock: 23 },
+                  { numBlocks: 1, dataCodewordsPerBlock: 22 },
+                  { numBlocks: 15, dataCodewordsPerBlock: 23 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 2, dataCodewordsPerBlock: 14 },
-                    { numBlocks: 17, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 14 },
+                  { numBlocks: 17, dataCodewordsPerBlock: 15 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x12A17,
-        versionNumber: 18,
-        alignmentPatternCenters: [6, 30, 56, 82],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x12a17,
+            versionNumber: 18,
+            alignmentPatternCenters: [6, 30, 56, 82],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 5, dataCodewordsPerBlock: 120 },
-                    { numBlocks: 1, dataCodewordsPerBlock: 121 },
+                  { numBlocks: 5, dataCodewordsPerBlock: 120 },
+                  { numBlocks: 1, dataCodewordsPerBlock: 121 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 26,
                 ecBlocks: [
-                    { numBlocks: 9, dataCodewordsPerBlock: 43 },
-                    { numBlocks: 4, dataCodewordsPerBlock: 44 },
+                  { numBlocks: 9, dataCodewordsPerBlock: 43 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 44 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 17, dataCodewordsPerBlock: 22 },
-                    { numBlocks: 1, dataCodewordsPerBlock: 23 },
+                  { numBlocks: 17, dataCodewordsPerBlock: 22 },
+                  { numBlocks: 1, dataCodewordsPerBlock: 23 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 2, dataCodewordsPerBlock: 14 },
-                    { numBlocks: 19, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 14 },
+                  { numBlocks: 19, dataCodewordsPerBlock: 15 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x13532,
-        versionNumber: 19,
-        alignmentPatternCenters: [6, 30, 58, 86],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x13532,
+            versionNumber: 19,
+            alignmentPatternCenters: [6, 30, 58, 86],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 3, dataCodewordsPerBlock: 113 },
-                    { numBlocks: 4, dataCodewordsPerBlock: 114 },
+                  { numBlocks: 3, dataCodewordsPerBlock: 113 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 114 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 26,
                 ecBlocks: [
-                    { numBlocks: 3, dataCodewordsPerBlock: 44 },
-                    { numBlocks: 11, dataCodewordsPerBlock: 45 },
+                  { numBlocks: 3, dataCodewordsPerBlock: 44 },
+                  { numBlocks: 11, dataCodewordsPerBlock: 45 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 26,
                 ecBlocks: [
-                    { numBlocks: 17, dataCodewordsPerBlock: 21 },
-                    { numBlocks: 4, dataCodewordsPerBlock: 22 },
+                  { numBlocks: 17, dataCodewordsPerBlock: 21 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 22 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 26,
                 ecBlocks: [
-                    { numBlocks: 9, dataCodewordsPerBlock: 13 },
-                    { numBlocks: 16, dataCodewordsPerBlock: 14 },
+                  { numBlocks: 9, dataCodewordsPerBlock: 13 },
+                  { numBlocks: 16, dataCodewordsPerBlock: 14 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x149A6,
-        versionNumber: 20,
-        alignmentPatternCenters: [6, 34, 62, 90],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x149a6,
+            versionNumber: 20,
+            alignmentPatternCenters: [6, 34, 62, 90],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 3, dataCodewordsPerBlock: 107 },
-                    { numBlocks: 5, dataCodewordsPerBlock: 108 },
+                  { numBlocks: 3, dataCodewordsPerBlock: 107 },
+                  { numBlocks: 5, dataCodewordsPerBlock: 108 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 26,
                 ecBlocks: [
-                    { numBlocks: 3, dataCodewordsPerBlock: 41 },
-                    { numBlocks: 13, dataCodewordsPerBlock: 42 },
+                  { numBlocks: 3, dataCodewordsPerBlock: 41 },
+                  { numBlocks: 13, dataCodewordsPerBlock: 42 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 15, dataCodewordsPerBlock: 24 },
-                    { numBlocks: 5, dataCodewordsPerBlock: 25 },
+                  { numBlocks: 15, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 5, dataCodewordsPerBlock: 25 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 15, dataCodewordsPerBlock: 15 },
-                    { numBlocks: 10, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 15, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 10, dataCodewordsPerBlock: 16 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x15683,
-        versionNumber: 21,
-        alignmentPatternCenters: [6, 28, 50, 72, 94],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x15683,
+            versionNumber: 21,
+            alignmentPatternCenters: [6, 28, 50, 72, 94],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 4, dataCodewordsPerBlock: 116 },
-                    { numBlocks: 4, dataCodewordsPerBlock: 117 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 116 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 117 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 26,
                 ecBlocks: [{ numBlocks: 17, dataCodewordsPerBlock: 42 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 17, dataCodewordsPerBlock: 22 },
-                    { numBlocks: 6, dataCodewordsPerBlock: 23 },
+                  { numBlocks: 17, dataCodewordsPerBlock: 22 },
+                  { numBlocks: 6, dataCodewordsPerBlock: 23 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 19, dataCodewordsPerBlock: 16 },
-                    { numBlocks: 6, dataCodewordsPerBlock: 17 },
+                  { numBlocks: 19, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 6, dataCodewordsPerBlock: 17 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x168C9,
-        versionNumber: 22,
-        alignmentPatternCenters: [6, 26, 50, 74, 98],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x168c9,
+            versionNumber: 22,
+            alignmentPatternCenters: [6, 26, 50, 74, 98],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 2, dataCodewordsPerBlock: 111 },
-                    { numBlocks: 7, dataCodewordsPerBlock: 112 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 111 },
+                  { numBlocks: 7, dataCodewordsPerBlock: 112 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [{ numBlocks: 17, dataCodewordsPerBlock: 46 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 7, dataCodewordsPerBlock: 24 },
-                    { numBlocks: 16, dataCodewordsPerBlock: 25 },
+                  { numBlocks: 7, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 16, dataCodewordsPerBlock: 25 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 24,
                 ecBlocks: [{ numBlocks: 34, dataCodewordsPerBlock: 13 }],
-            },
-        ],
-    },
-    {
-        infoBits: 0x177EC,
-        versionNumber: 23,
-        alignmentPatternCenters: [6, 30, 54, 74, 102],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x177ec,
+            versionNumber: 23,
+            alignmentPatternCenters: [6, 30, 54, 74, 102],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 4, dataCodewordsPerBlock: 121 },
-                    { numBlocks: 5, dataCodewordsPerBlock: 122 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 121 },
+                  { numBlocks: 5, dataCodewordsPerBlock: 122 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 4, dataCodewordsPerBlock: 47 },
-                    { numBlocks: 14, dataCodewordsPerBlock: 48 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 47 },
+                  { numBlocks: 14, dataCodewordsPerBlock: 48 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 11, dataCodewordsPerBlock: 24 },
-                    { numBlocks: 14, dataCodewordsPerBlock: 25 },
+                  { numBlocks: 11, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 14, dataCodewordsPerBlock: 25 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 16, dataCodewordsPerBlock: 15 },
-                    { numBlocks: 14, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 16, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 14, dataCodewordsPerBlock: 16 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x18EC4,
-        versionNumber: 24,
-        alignmentPatternCenters: [6, 28, 54, 80, 106],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x18ec4,
+            versionNumber: 24,
+            alignmentPatternCenters: [6, 28, 54, 80, 106],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 6, dataCodewordsPerBlock: 117 },
-                    { numBlocks: 4, dataCodewordsPerBlock: 118 },
+                  { numBlocks: 6, dataCodewordsPerBlock: 117 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 118 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 6, dataCodewordsPerBlock: 45 },
-                    { numBlocks: 14, dataCodewordsPerBlock: 46 },
+                  { numBlocks: 6, dataCodewordsPerBlock: 45 },
+                  { numBlocks: 14, dataCodewordsPerBlock: 46 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 11, dataCodewordsPerBlock: 24 },
-                    { numBlocks: 16, dataCodewordsPerBlock: 25 },
+                  { numBlocks: 11, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 16, dataCodewordsPerBlock: 25 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 30, dataCodewordsPerBlock: 16 },
-                    { numBlocks: 2, dataCodewordsPerBlock: 17 },
+                  { numBlocks: 30, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 17 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x191E1,
-        versionNumber: 25,
-        alignmentPatternCenters: [6, 32, 58, 84, 110],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x191e1,
+            versionNumber: 25,
+            alignmentPatternCenters: [6, 32, 58, 84, 110],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 26,
                 ecBlocks: [
-                    { numBlocks: 8, dataCodewordsPerBlock: 106 },
-                    { numBlocks: 4, dataCodewordsPerBlock: 107 },
+                  { numBlocks: 8, dataCodewordsPerBlock: 106 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 107 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 8, dataCodewordsPerBlock: 47 },
-                    { numBlocks: 13, dataCodewordsPerBlock: 48 },
+                  { numBlocks: 8, dataCodewordsPerBlock: 47 },
+                  { numBlocks: 13, dataCodewordsPerBlock: 48 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 7, dataCodewordsPerBlock: 24 },
-                    { numBlocks: 22, dataCodewordsPerBlock: 25 },
+                  { numBlocks: 7, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 22, dataCodewordsPerBlock: 25 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 22, dataCodewordsPerBlock: 15 },
-                    { numBlocks: 13, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 22, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 13, dataCodewordsPerBlock: 16 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x1AFAB,
-        versionNumber: 26,
-        alignmentPatternCenters: [6, 30, 58, 86, 114],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x1afab,
+            versionNumber: 26,
+            alignmentPatternCenters: [6, 30, 58, 86, 114],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 10, dataCodewordsPerBlock: 114 },
-                    { numBlocks: 2, dataCodewordsPerBlock: 115 },
+                  { numBlocks: 10, dataCodewordsPerBlock: 114 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 115 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 19, dataCodewordsPerBlock: 46 },
-                    { numBlocks: 4, dataCodewordsPerBlock: 47 },
+                  { numBlocks: 19, dataCodewordsPerBlock: 46 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 47 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 28, dataCodewordsPerBlock: 22 },
-                    { numBlocks: 6, dataCodewordsPerBlock: 23 },
+                  { numBlocks: 28, dataCodewordsPerBlock: 22 },
+                  { numBlocks: 6, dataCodewordsPerBlock: 23 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 33, dataCodewordsPerBlock: 16 },
-                    { numBlocks: 4, dataCodewordsPerBlock: 17 },
+                  { numBlocks: 33, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 17 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x1B08E,
-        versionNumber: 27,
-        alignmentPatternCenters: [6, 34, 62, 90, 118],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x1b08e,
+            versionNumber: 27,
+            alignmentPatternCenters: [6, 34, 62, 90, 118],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 8, dataCodewordsPerBlock: 122 },
-                    { numBlocks: 4, dataCodewordsPerBlock: 123 },
+                  { numBlocks: 8, dataCodewordsPerBlock: 122 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 123 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 22, dataCodewordsPerBlock: 45 },
-                    { numBlocks: 3, dataCodewordsPerBlock: 46 },
+                  { numBlocks: 22, dataCodewordsPerBlock: 45 },
+                  { numBlocks: 3, dataCodewordsPerBlock: 46 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 8, dataCodewordsPerBlock: 23 },
-                    { numBlocks: 26, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 8, dataCodewordsPerBlock: 23 },
+                  { numBlocks: 26, dataCodewordsPerBlock: 24 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 12, dataCodewordsPerBlock: 15 },
-                    { numBlocks: 28, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 12, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 28, dataCodewordsPerBlock: 16 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x1CC1A,
-        versionNumber: 28,
-        alignmentPatternCenters: [6, 26, 50, 74, 98, 122],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x1cc1a,
+            versionNumber: 28,
+            alignmentPatternCenters: [6, 26, 50, 74, 98, 122],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 3, dataCodewordsPerBlock: 117 },
-                    { numBlocks: 10, dataCodewordsPerBlock: 118 },
+                  { numBlocks: 3, dataCodewordsPerBlock: 117 },
+                  { numBlocks: 10, dataCodewordsPerBlock: 118 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 3, dataCodewordsPerBlock: 45 },
-                    { numBlocks: 23, dataCodewordsPerBlock: 46 },
+                  { numBlocks: 3, dataCodewordsPerBlock: 45 },
+                  { numBlocks: 23, dataCodewordsPerBlock: 46 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 4, dataCodewordsPerBlock: 24 },
-                    { numBlocks: 31, dataCodewordsPerBlock: 25 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 31, dataCodewordsPerBlock: 25 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 11, dataCodewordsPerBlock: 15 },
-                    { numBlocks: 31, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 11, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 31, dataCodewordsPerBlock: 16 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x1D33F,
-        versionNumber: 29,
-        alignmentPatternCenters: [6, 30, 54, 78, 102, 126],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x1d33f,
+            versionNumber: 29,
+            alignmentPatternCenters: [6, 30, 54, 78, 102, 126],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 7, dataCodewordsPerBlock: 116 },
-                    { numBlocks: 7, dataCodewordsPerBlock: 117 },
+                  { numBlocks: 7, dataCodewordsPerBlock: 116 },
+                  { numBlocks: 7, dataCodewordsPerBlock: 117 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 21, dataCodewordsPerBlock: 45 },
-                    { numBlocks: 7, dataCodewordsPerBlock: 46 },
+                  { numBlocks: 21, dataCodewordsPerBlock: 45 },
+                  { numBlocks: 7, dataCodewordsPerBlock: 46 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 1, dataCodewordsPerBlock: 23 },
-                    { numBlocks: 37, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 1, dataCodewordsPerBlock: 23 },
+                  { numBlocks: 37, dataCodewordsPerBlock: 24 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 19, dataCodewordsPerBlock: 15 },
-                    { numBlocks: 26, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 19, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 26, dataCodewordsPerBlock: 16 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x1ED75,
-        versionNumber: 30,
-        alignmentPatternCenters: [6, 26, 52, 78, 104, 130],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x1ed75,
+            versionNumber: 30,
+            alignmentPatternCenters: [6, 26, 52, 78, 104, 130],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 5, dataCodewordsPerBlock: 115 },
-                    { numBlocks: 10, dataCodewordsPerBlock: 116 },
+                  { numBlocks: 5, dataCodewordsPerBlock: 115 },
+                  { numBlocks: 10, dataCodewordsPerBlock: 116 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 19, dataCodewordsPerBlock: 47 },
-                    { numBlocks: 10, dataCodewordsPerBlock: 48 },
+                  { numBlocks: 19, dataCodewordsPerBlock: 47 },
+                  { numBlocks: 10, dataCodewordsPerBlock: 48 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 15, dataCodewordsPerBlock: 24 },
-                    { numBlocks: 25, dataCodewordsPerBlock: 25 },
+                  { numBlocks: 15, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 25, dataCodewordsPerBlock: 25 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 23, dataCodewordsPerBlock: 15 },
-                    { numBlocks: 25, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 23, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 25, dataCodewordsPerBlock: 16 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x1F250,
-        versionNumber: 31,
-        alignmentPatternCenters: [6, 30, 56, 82, 108, 134],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x1f250,
+            versionNumber: 31,
+            alignmentPatternCenters: [6, 30, 56, 82, 108, 134],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 13, dataCodewordsPerBlock: 115 },
-                    { numBlocks: 3, dataCodewordsPerBlock: 116 },
+                  { numBlocks: 13, dataCodewordsPerBlock: 115 },
+                  { numBlocks: 3, dataCodewordsPerBlock: 116 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 2, dataCodewordsPerBlock: 46 },
-                    { numBlocks: 29, dataCodewordsPerBlock: 47 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 46 },
+                  { numBlocks: 29, dataCodewordsPerBlock: 47 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 42, dataCodewordsPerBlock: 24 },
-                    { numBlocks: 1, dataCodewordsPerBlock: 25 },
+                  { numBlocks: 42, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 1, dataCodewordsPerBlock: 25 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 23, dataCodewordsPerBlock: 15 },
-                    { numBlocks: 28, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 23, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 28, dataCodewordsPerBlock: 16 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x209D5,
-        versionNumber: 32,
-        alignmentPatternCenters: [6, 34, 60, 86, 112, 138],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x209d5,
+            versionNumber: 32,
+            alignmentPatternCenters: [6, 34, 60, 86, 112, 138],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [{ numBlocks: 17, dataCodewordsPerBlock: 115 }],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 10, dataCodewordsPerBlock: 46 },
-                    { numBlocks: 23, dataCodewordsPerBlock: 47 },
+                  { numBlocks: 10, dataCodewordsPerBlock: 46 },
+                  { numBlocks: 23, dataCodewordsPerBlock: 47 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 10, dataCodewordsPerBlock: 24 },
-                    { numBlocks: 35, dataCodewordsPerBlock: 25 },
+                  { numBlocks: 10, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 35, dataCodewordsPerBlock: 25 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 19, dataCodewordsPerBlock: 15 },
-                    { numBlocks: 35, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 19, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 35, dataCodewordsPerBlock: 16 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x216F0,
-        versionNumber: 33,
-        alignmentPatternCenters: [6, 30, 58, 86, 114, 142],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x216f0,
+            versionNumber: 33,
+            alignmentPatternCenters: [6, 30, 58, 86, 114, 142],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 17, dataCodewordsPerBlock: 115 },
-                    { numBlocks: 1, dataCodewordsPerBlock: 116 },
+                  { numBlocks: 17, dataCodewordsPerBlock: 115 },
+                  { numBlocks: 1, dataCodewordsPerBlock: 116 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 14, dataCodewordsPerBlock: 46 },
-                    { numBlocks: 21, dataCodewordsPerBlock: 47 },
+                  { numBlocks: 14, dataCodewordsPerBlock: 46 },
+                  { numBlocks: 21, dataCodewordsPerBlock: 47 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 29, dataCodewordsPerBlock: 24 },
-                    { numBlocks: 19, dataCodewordsPerBlock: 25 },
+                  { numBlocks: 29, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 19, dataCodewordsPerBlock: 25 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 11, dataCodewordsPerBlock: 15 },
-                    { numBlocks: 46, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 11, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 46, dataCodewordsPerBlock: 16 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x228BA,
-        versionNumber: 34,
-        alignmentPatternCenters: [6, 34, 62, 90, 118, 146],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x228ba,
+            versionNumber: 34,
+            alignmentPatternCenters: [6, 34, 62, 90, 118, 146],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 13, dataCodewordsPerBlock: 115 },
-                    { numBlocks: 6, dataCodewordsPerBlock: 116 },
+                  { numBlocks: 13, dataCodewordsPerBlock: 115 },
+                  { numBlocks: 6, dataCodewordsPerBlock: 116 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 14, dataCodewordsPerBlock: 46 },
-                    { numBlocks: 23, dataCodewordsPerBlock: 47 },
+                  { numBlocks: 14, dataCodewordsPerBlock: 46 },
+                  { numBlocks: 23, dataCodewordsPerBlock: 47 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 44, dataCodewordsPerBlock: 24 },
-                    { numBlocks: 7, dataCodewordsPerBlock: 25 },
+                  { numBlocks: 44, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 7, dataCodewordsPerBlock: 25 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 59, dataCodewordsPerBlock: 16 },
-                    { numBlocks: 1, dataCodewordsPerBlock: 17 },
+                  { numBlocks: 59, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 1, dataCodewordsPerBlock: 17 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x2379F,
-        versionNumber: 35,
-        alignmentPatternCenters: [6, 30, 54, 78, 102, 126, 150],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x2379f,
+            versionNumber: 35,
+            alignmentPatternCenters: [6, 30, 54, 78, 102, 126, 150],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 12, dataCodewordsPerBlock: 121 },
-                    { numBlocks: 7, dataCodewordsPerBlock: 122 },
+                  { numBlocks: 12, dataCodewordsPerBlock: 121 },
+                  { numBlocks: 7, dataCodewordsPerBlock: 122 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 12, dataCodewordsPerBlock: 47 },
-                    { numBlocks: 26, dataCodewordsPerBlock: 48 },
+                  { numBlocks: 12, dataCodewordsPerBlock: 47 },
+                  { numBlocks: 26, dataCodewordsPerBlock: 48 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 39, dataCodewordsPerBlock: 24 },
-                    { numBlocks: 14, dataCodewordsPerBlock: 25 },
+                  { numBlocks: 39, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 14, dataCodewordsPerBlock: 25 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 22, dataCodewordsPerBlock: 15 },
-                    { numBlocks: 41, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 22, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 41, dataCodewordsPerBlock: 16 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x24B0B,
-        versionNumber: 36,
-        alignmentPatternCenters: [6, 24, 50, 76, 102, 128, 154],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x24b0b,
+            versionNumber: 36,
+            alignmentPatternCenters: [6, 24, 50, 76, 102, 128, 154],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 6, dataCodewordsPerBlock: 121 },
-                    { numBlocks: 14, dataCodewordsPerBlock: 122 },
+                  { numBlocks: 6, dataCodewordsPerBlock: 121 },
+                  { numBlocks: 14, dataCodewordsPerBlock: 122 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 6, dataCodewordsPerBlock: 47 },
-                    { numBlocks: 34, dataCodewordsPerBlock: 48 },
+                  { numBlocks: 6, dataCodewordsPerBlock: 47 },
+                  { numBlocks: 34, dataCodewordsPerBlock: 48 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 46, dataCodewordsPerBlock: 24 },
-                    { numBlocks: 10, dataCodewordsPerBlock: 25 },
+                  { numBlocks: 46, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 10, dataCodewordsPerBlock: 25 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 2, dataCodewordsPerBlock: 15 },
-                    { numBlocks: 64, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 2, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 64, dataCodewordsPerBlock: 16 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x2542E,
-        versionNumber: 37,
-        alignmentPatternCenters: [6, 28, 54, 80, 106, 132, 158],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x2542e,
+            versionNumber: 37,
+            alignmentPatternCenters: [6, 28, 54, 80, 106, 132, 158],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 17, dataCodewordsPerBlock: 122 },
-                    { numBlocks: 4, dataCodewordsPerBlock: 123 },
+                  { numBlocks: 17, dataCodewordsPerBlock: 122 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 123 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 29, dataCodewordsPerBlock: 46 },
-                    { numBlocks: 14, dataCodewordsPerBlock: 47 },
+                  { numBlocks: 29, dataCodewordsPerBlock: 46 },
+                  { numBlocks: 14, dataCodewordsPerBlock: 47 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 49, dataCodewordsPerBlock: 24 },
-                    { numBlocks: 10, dataCodewordsPerBlock: 25 },
+                  { numBlocks: 49, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 10, dataCodewordsPerBlock: 25 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 24, dataCodewordsPerBlock: 15 },
-                    { numBlocks: 46, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 24, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 46, dataCodewordsPerBlock: 16 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x26A64,
-        versionNumber: 38,
-        alignmentPatternCenters: [6, 32, 58, 84, 110, 136, 162],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x26a64,
+            versionNumber: 38,
+            alignmentPatternCenters: [6, 32, 58, 84, 110, 136, 162],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 4, dataCodewordsPerBlock: 122 },
-                    { numBlocks: 18, dataCodewordsPerBlock: 123 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 122 },
+                  { numBlocks: 18, dataCodewordsPerBlock: 123 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 13, dataCodewordsPerBlock: 46 },
-                    { numBlocks: 32, dataCodewordsPerBlock: 47 },
+                  { numBlocks: 13, dataCodewordsPerBlock: 46 },
+                  { numBlocks: 32, dataCodewordsPerBlock: 47 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 48, dataCodewordsPerBlock: 24 },
-                    { numBlocks: 14, dataCodewordsPerBlock: 25 },
+                  { numBlocks: 48, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 14, dataCodewordsPerBlock: 25 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 42, dataCodewordsPerBlock: 15 },
-                    { numBlocks: 32, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 42, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 32, dataCodewordsPerBlock: 16 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x27541,
-        versionNumber: 39,
-        alignmentPatternCenters: [6, 26, 54, 82, 110, 138, 166],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x27541,
+            versionNumber: 39,
+            alignmentPatternCenters: [6, 26, 54, 82, 110, 138, 166],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 20, dataCodewordsPerBlock: 117 },
-                    { numBlocks: 4, dataCodewordsPerBlock: 118 },
+                  { numBlocks: 20, dataCodewordsPerBlock: 117 },
+                  { numBlocks: 4, dataCodewordsPerBlock: 118 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 40, dataCodewordsPerBlock: 47 },
-                    { numBlocks: 7, dataCodewordsPerBlock: 48 },
+                  { numBlocks: 40, dataCodewordsPerBlock: 47 },
+                  { numBlocks: 7, dataCodewordsPerBlock: 48 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 43, dataCodewordsPerBlock: 24 },
-                    { numBlocks: 22, dataCodewordsPerBlock: 25 },
+                  { numBlocks: 43, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 22, dataCodewordsPerBlock: 25 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 10, dataCodewordsPerBlock: 15 },
-                    { numBlocks: 67, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 10, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 67, dataCodewordsPerBlock: 16 },
                 ],
-            },
-        ],
-    },
-    {
-        infoBits: 0x28C69,
-        versionNumber: 40,
-        alignmentPatternCenters: [6, 30, 58, 86, 114, 142, 170],
-        errorCorrectionLevels: [
-            {
+              },
+            ],
+          },
+          {
+            infoBits: 0x28c69,
+            versionNumber: 40,
+            alignmentPatternCenters: [6, 30, 58, 86, 114, 142, 170],
+            errorCorrectionLevels: [
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 19, dataCodewordsPerBlock: 118 },
-                    { numBlocks: 6, dataCodewordsPerBlock: 119 },
+                  { numBlocks: 19, dataCodewordsPerBlock: 118 },
+                  { numBlocks: 6, dataCodewordsPerBlock: 119 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 28,
                 ecBlocks: [
-                    { numBlocks: 18, dataCodewordsPerBlock: 47 },
-                    { numBlocks: 31, dataCodewordsPerBlock: 48 },
+                  { numBlocks: 18, dataCodewordsPerBlock: 47 },
+                  { numBlocks: 31, dataCodewordsPerBlock: 48 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 34, dataCodewordsPerBlock: 24 },
-                    { numBlocks: 34, dataCodewordsPerBlock: 25 },
+                  { numBlocks: 34, dataCodewordsPerBlock: 24 },
+                  { numBlocks: 34, dataCodewordsPerBlock: 25 },
                 ],
-            },
-            {
+              },
+              {
                 ecCodewordsPerBlock: 30,
                 ecBlocks: [
-                    { numBlocks: 20, dataCodewordsPerBlock: 15 },
-                    { numBlocks: 61, dataCodewordsPerBlock: 16 },
+                  { numBlocks: 20, dataCodewordsPerBlock: 15 },
+                  { numBlocks: 61, dataCodewordsPerBlock: 16 },
                 ],
-            },
-        ],
-    },
-];
+              },
+            ],
+          },
+        ];
 
+        /***/
+      },
+      /* 11 */
+      /***/ function (module, exports, __webpack_require__) {
+        "use strict";
 
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var BitMatrix_1 = __webpack_require__(0);
-function squareToQuadrilateral(p1, p2, p3, p4) {
-    var dx3 = p1.x - p2.x + p3.x - p4.x;
-    var dy3 = p1.y - p2.y + p3.y - p4.y;
-    if (dx3 === 0 && dy3 === 0) { // Affine
-        return {
-            a11: p2.x - p1.x,
-            a12: p2.y - p1.y,
-            a13: 0,
-            a21: p3.x - p2.x,
-            a22: p3.y - p2.y,
-            a23: 0,
-            a31: p1.x,
-            a32: p1.y,
-            a33: 1,
-        };
-    }
-    else {
-        var dx1 = p2.x - p3.x;
-        var dx2 = p4.x - p3.x;
-        var dy1 = p2.y - p3.y;
-        var dy2 = p4.y - p3.y;
-        var denominator = dx1 * dy2 - dx2 * dy1;
-        var a13 = (dx3 * dy2 - dx2 * dy3) / denominator;
-        var a23 = (dx1 * dy3 - dx3 * dy1) / denominator;
-        return {
-            a11: p2.x - p1.x + a13 * p2.x,
-            a12: p2.y - p1.y + a13 * p2.y,
-            a13: a13,
-            a21: p4.x - p1.x + a23 * p4.x,
-            a22: p4.y - p1.y + a23 * p4.y,
-            a23: a23,
-            a31: p1.x,
-            a32: p1.y,
-            a33: 1,
-        };
-    }
-}
-function quadrilateralToSquare(p1, p2, p3, p4) {
-    // Here, the adjoint serves as the inverse:
-    var sToQ = squareToQuadrilateral(p1, p2, p3, p4);
-    return {
-        a11: sToQ.a22 * sToQ.a33 - sToQ.a23 * sToQ.a32,
-        a12: sToQ.a13 * sToQ.a32 - sToQ.a12 * sToQ.a33,
-        a13: sToQ.a12 * sToQ.a23 - sToQ.a13 * sToQ.a22,
-        a21: sToQ.a23 * sToQ.a31 - sToQ.a21 * sToQ.a33,
-        a22: sToQ.a11 * sToQ.a33 - sToQ.a13 * sToQ.a31,
-        a23: sToQ.a13 * sToQ.a21 - sToQ.a11 * sToQ.a23,
-        a31: sToQ.a21 * sToQ.a32 - sToQ.a22 * sToQ.a31,
-        a32: sToQ.a12 * sToQ.a31 - sToQ.a11 * sToQ.a32,
-        a33: sToQ.a11 * sToQ.a22 - sToQ.a12 * sToQ.a21,
-    };
-}
-function times(a, b) {
-    return {
-        a11: a.a11 * b.a11 + a.a21 * b.a12 + a.a31 * b.a13,
-        a12: a.a12 * b.a11 + a.a22 * b.a12 + a.a32 * b.a13,
-        a13: a.a13 * b.a11 + a.a23 * b.a12 + a.a33 * b.a13,
-        a21: a.a11 * b.a21 + a.a21 * b.a22 + a.a31 * b.a23,
-        a22: a.a12 * b.a21 + a.a22 * b.a22 + a.a32 * b.a23,
-        a23: a.a13 * b.a21 + a.a23 * b.a22 + a.a33 * b.a23,
-        a31: a.a11 * b.a31 + a.a21 * b.a32 + a.a31 * b.a33,
-        a32: a.a12 * b.a31 + a.a22 * b.a32 + a.a32 * b.a33,
-        a33: a.a13 * b.a31 + a.a23 * b.a32 + a.a33 * b.a33,
-    };
-}
-function extract(image, location) {
-    var qToS = quadrilateralToSquare({ x: 3.5, y: 3.5 }, { x: location.dimension - 3.5, y: 3.5 }, { x: location.dimension - 6.5, y: location.dimension - 6.5 }, { x: 3.5, y: location.dimension - 3.5 });
-    var sToQ = squareToQuadrilateral(location.topLeft, location.topRight, location.alignmentPattern, location.bottomLeft);
-    var transform = times(sToQ, qToS);
-    var matrix = BitMatrix_1.BitMatrix.createEmpty(location.dimension, location.dimension);
-    var mappingFunction = function (x, y) {
-        var denominator = transform.a13 * x + transform.a23 * y + transform.a33;
-        return {
-            x: (transform.a11 * x + transform.a21 * y + transform.a31) / denominator,
-            y: (transform.a12 * x + transform.a22 * y + transform.a32) / denominator,
-        };
-    };
-    for (var y = 0; y < location.dimension; y++) {
-        for (var x = 0; x < location.dimension; x++) {
-            var xValue = x + 0.5;
-            var yValue = y + 0.5;
-            var sourcePixel = mappingFunction(xValue, yValue);
-            matrix.set(x, y, image.get(Math.floor(sourcePixel.x), Math.floor(sourcePixel.y)));
+        Object.defineProperty(exports, "__esModule", { value: true });
+        var BitMatrix_1 = __webpack_require__(0);
+        function squareToQuadrilateral(p1, p2, p3, p4) {
+          var dx3 = p1.x - p2.x + p3.x - p4.x;
+          var dy3 = p1.y - p2.y + p3.y - p4.y;
+          if (dx3 === 0 && dy3 === 0) {
+            // Affine
+            return {
+              a11: p2.x - p1.x,
+              a12: p2.y - p1.y,
+              a13: 0,
+              a21: p3.x - p2.x,
+              a22: p3.y - p2.y,
+              a23: 0,
+              a31: p1.x,
+              a32: p1.y,
+              a33: 1,
+            };
+          } else {
+            var dx1 = p2.x - p3.x;
+            var dx2 = p4.x - p3.x;
+            var dy1 = p2.y - p3.y;
+            var dy2 = p4.y - p3.y;
+            var denominator = dx1 * dy2 - dx2 * dy1;
+            var a13 = (dx3 * dy2 - dx2 * dy3) / denominator;
+            var a23 = (dx1 * dy3 - dx3 * dy1) / denominator;
+            return {
+              a11: p2.x - p1.x + a13 * p2.x,
+              a12: p2.y - p1.y + a13 * p2.y,
+              a13: a13,
+              a21: p4.x - p1.x + a23 * p4.x,
+              a22: p4.y - p1.y + a23 * p4.y,
+              a23: a23,
+              a31: p1.x,
+              a32: p1.y,
+              a33: 1,
+            };
+          }
         }
-    }
-    return {
-        matrix: matrix,
-        mappingFunction: mappingFunction,
-    };
-}
-exports.extract = extract;
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var MAX_FINDERPATTERNS_TO_SEARCH = 4;
-var MIN_QUAD_RATIO = 0.5;
-var MAX_QUAD_RATIO = 1.5;
-var distance = function (a, b) { return Math.sqrt(Math.pow((b.x - a.x), 2) + Math.pow((b.y - a.y), 2)); };
-function sum(values) {
-    return values.reduce(function (a, b) { return a + b; });
-}
-// Takes three finder patterns and organizes them into topLeft, topRight, etc
-function reorderFinderPatterns(pattern1, pattern2, pattern3) {
-    var _a, _b, _c, _d;
-    // Find distances between pattern centers
-    var oneTwoDistance = distance(pattern1, pattern2);
-    var twoThreeDistance = distance(pattern2, pattern3);
-    var oneThreeDistance = distance(pattern1, pattern3);
-    var bottomLeft;
-    var topLeft;
-    var topRight;
-    // Assume one closest to other two is B; A and C will just be guesses at first
-    if (twoThreeDistance >= oneTwoDistance && twoThreeDistance >= oneThreeDistance) {
-        _a = [pattern2, pattern1, pattern3], bottomLeft = _a[0], topLeft = _a[1], topRight = _a[2];
-    }
-    else if (oneThreeDistance >= twoThreeDistance && oneThreeDistance >= oneTwoDistance) {
-        _b = [pattern1, pattern2, pattern3], bottomLeft = _b[0], topLeft = _b[1], topRight = _b[2];
-    }
-    else {
-        _c = [pattern1, pattern3, pattern2], bottomLeft = _c[0], topLeft = _c[1], topRight = _c[2];
-    }
-    // Use cross product to figure out whether bottomLeft (A) and topRight (C) are correct or flipped in relation to topLeft (B)
-    // This asks whether BC x BA has a positive z component, which is the arrangement we want. If it's negative, then
-    // we've got it flipped around and should swap topRight and bottomLeft.
-    if (((topRight.x - topLeft.x) * (bottomLeft.y - topLeft.y)) - ((topRight.y - topLeft.y) * (bottomLeft.x - topLeft.x)) < 0) {
-        _d = [topRight, bottomLeft], bottomLeft = _d[0], topRight = _d[1];
-    }
-    return { bottomLeft: bottomLeft, topLeft: topLeft, topRight: topRight };
-}
-// Computes the dimension (number of modules on a side) of the QR Code based on the position of the finder patterns
-function computeDimension(topLeft, topRight, bottomLeft, matrix) {
-    var moduleSize = (sum(countBlackWhiteRun(topLeft, bottomLeft, matrix, 5)) / 7 + // Divide by 7 since the ratio is 1:1:3:1:1
-        sum(countBlackWhiteRun(topLeft, topRight, matrix, 5)) / 7 +
-        sum(countBlackWhiteRun(bottomLeft, topLeft, matrix, 5)) / 7 +
-        sum(countBlackWhiteRun(topRight, topLeft, matrix, 5)) / 7) / 4;
-    if (moduleSize < 1) {
-        throw new Error("Invalid module size");
-    }
-    var topDimension = Math.round(distance(topLeft, topRight) / moduleSize);
-    var sideDimension = Math.round(distance(topLeft, bottomLeft) / moduleSize);
-    var dimension = Math.floor((topDimension + sideDimension) / 2) + 7;
-    switch (dimension % 4) {
-        case 0:
-            dimension++;
-            break;
-        case 2:
-            dimension--;
-            break;
-    }
-    return { dimension: dimension, moduleSize: moduleSize };
-}
-// Takes an origin point and an end point and counts the sizes of the black white run from the origin towards the end point.
-// Returns an array of elements, representing the pixel size of the black white run.
-// Uses a variant of http://en.wikipedia.org/wiki/Bresenham's_line_algorithm
-function countBlackWhiteRunTowardsPoint(origin, end, matrix, length) {
-    var switchPoints = [{ x: Math.floor(origin.x), y: Math.floor(origin.y) }];
-    var steep = Math.abs(end.y - origin.y) > Math.abs(end.x - origin.x);
-    var fromX;
-    var fromY;
-    var toX;
-    var toY;
-    if (steep) {
-        fromX = Math.floor(origin.y);
-        fromY = Math.floor(origin.x);
-        toX = Math.floor(end.y);
-        toY = Math.floor(end.x);
-    }
-    else {
-        fromX = Math.floor(origin.x);
-        fromY = Math.floor(origin.y);
-        toX = Math.floor(end.x);
-        toY = Math.floor(end.y);
-    }
-    var dx = Math.abs(toX - fromX);
-    var dy = Math.abs(toY - fromY);
-    var error = Math.floor(-dx / 2);
-    var xStep = fromX < toX ? 1 : -1;
-    var yStep = fromY < toY ? 1 : -1;
-    var currentPixel = true;
-    // Loop up until x == toX, but not beyond
-    for (var x = fromX, y = fromY; x !== toX + xStep; x += xStep) {
-        // Does current pixel mean we have moved white to black or vice versa?
-        // Scanning black in state 0,2 and white in state 1, so if we find the wrong
-        // color, advance to next state or end if we are in state 2 already
-        var realX = steep ? y : x;
-        var realY = steep ? x : y;
-        if (matrix.get(realX, realY) !== currentPixel) {
-            currentPixel = !currentPixel;
-            switchPoints.push({ x: realX, y: realY });
-            if (switchPoints.length === length + 1) {
-                break;
+        function quadrilateralToSquare(p1, p2, p3, p4) {
+          // Here, the adjoint serves as the inverse:
+          var sToQ = squareToQuadrilateral(p1, p2, p3, p4);
+          return {
+            a11: sToQ.a22 * sToQ.a33 - sToQ.a23 * sToQ.a32,
+            a12: sToQ.a13 * sToQ.a32 - sToQ.a12 * sToQ.a33,
+            a13: sToQ.a12 * sToQ.a23 - sToQ.a13 * sToQ.a22,
+            a21: sToQ.a23 * sToQ.a31 - sToQ.a21 * sToQ.a33,
+            a22: sToQ.a11 * sToQ.a33 - sToQ.a13 * sToQ.a31,
+            a23: sToQ.a13 * sToQ.a21 - sToQ.a11 * sToQ.a23,
+            a31: sToQ.a21 * sToQ.a32 - sToQ.a22 * sToQ.a31,
+            a32: sToQ.a12 * sToQ.a31 - sToQ.a11 * sToQ.a32,
+            a33: sToQ.a11 * sToQ.a22 - sToQ.a12 * sToQ.a21,
+          };
+        }
+        function times(a, b) {
+          return {
+            a11: a.a11 * b.a11 + a.a21 * b.a12 + a.a31 * b.a13,
+            a12: a.a12 * b.a11 + a.a22 * b.a12 + a.a32 * b.a13,
+            a13: a.a13 * b.a11 + a.a23 * b.a12 + a.a33 * b.a13,
+            a21: a.a11 * b.a21 + a.a21 * b.a22 + a.a31 * b.a23,
+            a22: a.a12 * b.a21 + a.a22 * b.a22 + a.a32 * b.a23,
+            a23: a.a13 * b.a21 + a.a23 * b.a22 + a.a33 * b.a23,
+            a31: a.a11 * b.a31 + a.a21 * b.a32 + a.a31 * b.a33,
+            a32: a.a12 * b.a31 + a.a22 * b.a32 + a.a32 * b.a33,
+            a33: a.a13 * b.a31 + a.a23 * b.a32 + a.a33 * b.a33,
+          };
+        }
+        function extract(image, location) {
+          var qToS = quadrilateralToSquare(
+            { x: 3.5, y: 3.5 },
+            { x: location.dimension - 3.5, y: 3.5 },
+            { x: location.dimension - 6.5, y: location.dimension - 6.5 },
+            { x: 3.5, y: location.dimension - 3.5 }
+          );
+          var sToQ = squareToQuadrilateral(
+            location.topLeft,
+            location.topRight,
+            location.alignmentPattern,
+            location.bottomLeft
+          );
+          var transform = times(sToQ, qToS);
+          var matrix = BitMatrix_1.BitMatrix.createEmpty(
+            location.dimension,
+            location.dimension
+          );
+          var mappingFunction = function (x, y) {
+            var denominator =
+              transform.a13 * x + transform.a23 * y + transform.a33;
+            return {
+              x:
+                (transform.a11 * x + transform.a21 * y + transform.a31) /
+                denominator,
+              y:
+                (transform.a12 * x + transform.a22 * y + transform.a32) /
+                denominator,
+            };
+          };
+          for (var y = 0; y < location.dimension; y++) {
+            for (var x = 0; x < location.dimension; x++) {
+              var xValue = x + 0.5;
+              var yValue = y + 0.5;
+              var sourcePixel = mappingFunction(xValue, yValue);
+              matrix.set(
+                x,
+                y,
+                image.get(Math.floor(sourcePixel.x), Math.floor(sourcePixel.y))
+              );
             }
+          }
+          return {
+            matrix: matrix,
+            mappingFunction: mappingFunction,
+          };
         }
-        error += dy;
-        if (error > 0) {
-            if (y === toY) {
+        exports.extract = extract;
+
+        /***/
+      },
+      /* 12 */
+      /***/ function (module, exports, __webpack_require__) {
+        "use strict";
+
+        Object.defineProperty(exports, "__esModule", { value: true });
+        var MAX_FINDERPATTERNS_TO_SEARCH = 4;
+        var MIN_QUAD_RATIO = 0.5;
+        var MAX_QUAD_RATIO = 1.5;
+        var distance = function (a, b) {
+          return Math.sqrt(Math.pow(b.x - a.x, 2) + Math.pow(b.y - a.y, 2));
+        };
+        function sum(values) {
+          return values.reduce(function (a, b) {
+            return a + b;
+          });
+        }
+        // Takes three finder patterns and organizes them into topLeft, topRight, etc
+        function reorderFinderPatterns(pattern1, pattern2, pattern3) {
+          var _a, _b, _c, _d;
+          // Find distances between pattern centers
+          var oneTwoDistance = distance(pattern1, pattern2);
+          var twoThreeDistance = distance(pattern2, pattern3);
+          var oneThreeDistance = distance(pattern1, pattern3);
+          var bottomLeft;
+          var topLeft;
+          var topRight;
+          // Assume one closest to other two is B; A and C will just be guesses at first
+          if (
+            twoThreeDistance >= oneTwoDistance &&
+            twoThreeDistance >= oneThreeDistance
+          ) {
+            (_a = [pattern2, pattern1, pattern3]),
+              (bottomLeft = _a[0]),
+              (topLeft = _a[1]),
+              (topRight = _a[2]);
+          } else if (
+            oneThreeDistance >= twoThreeDistance &&
+            oneThreeDistance >= oneTwoDistance
+          ) {
+            (_b = [pattern1, pattern2, pattern3]),
+              (bottomLeft = _b[0]),
+              (topLeft = _b[1]),
+              (topRight = _b[2]);
+          } else {
+            (_c = [pattern1, pattern3, pattern2]),
+              (bottomLeft = _c[0]),
+              (topLeft = _c[1]),
+              (topRight = _c[2]);
+          }
+          // Use cross product to figure out whether bottomLeft (A) and topRight (C) are correct or flipped in relation to topLeft (B)
+          // This asks whether BC x BA has a positive z component, which is the arrangement we want. If it's negative, then
+          // we've got it flipped around and should swap topRight and bottomLeft.
+          if (
+            (topRight.x - topLeft.x) * (bottomLeft.y - topLeft.y) -
+              (topRight.y - topLeft.y) * (bottomLeft.x - topLeft.x) <
+            0
+          ) {
+            (_d = [topRight, bottomLeft]),
+              (bottomLeft = _d[0]),
+              (topRight = _d[1]);
+          }
+          return {
+            bottomLeft: bottomLeft,
+            topLeft: topLeft,
+            topRight: topRight,
+          };
+        }
+        // Computes the dimension (number of modules on a side) of the QR Code based on the position of the finder patterns
+        function computeDimension(topLeft, topRight, bottomLeft, matrix) {
+          var moduleSize =
+            (sum(countBlackWhiteRun(topLeft, bottomLeft, matrix, 5)) / 7 + // Divide by 7 since the ratio is 1:1:3:1:1
+              sum(countBlackWhiteRun(topLeft, topRight, matrix, 5)) / 7 +
+              sum(countBlackWhiteRun(bottomLeft, topLeft, matrix, 5)) / 7 +
+              sum(countBlackWhiteRun(topRight, topLeft, matrix, 5)) / 7) /
+            4;
+          if (moduleSize < 1) {
+            throw new Error("Invalid module size");
+          }
+          var topDimension = Math.round(
+            distance(topLeft, topRight) / moduleSize
+          );
+          var sideDimension = Math.round(
+            distance(topLeft, bottomLeft) / moduleSize
+          );
+          var dimension = Math.floor((topDimension + sideDimension) / 2) + 7;
+          switch (dimension % 4) {
+            case 0:
+              dimension++;
+              break;
+            case 2:
+              dimension--;
+              break;
+          }
+          return { dimension: dimension, moduleSize: moduleSize };
+        }
+        // Takes an origin point and an end point and counts the sizes of the black white run from the origin towards the end point.
+        // Returns an array of elements, representing the pixel size of the black white run.
+        // Uses a variant of http://en.wikipedia.org/wiki/Bresenham's_line_algorithm
+        function countBlackWhiteRunTowardsPoint(origin, end, matrix, length) {
+          var switchPoints = [
+            { x: Math.floor(origin.x), y: Math.floor(origin.y) },
+          ];
+          var steep = Math.abs(end.y - origin.y) > Math.abs(end.x - origin.x);
+          var fromX;
+          var fromY;
+          var toX;
+          var toY;
+          if (steep) {
+            fromX = Math.floor(origin.y);
+            fromY = Math.floor(origin.x);
+            toX = Math.floor(end.y);
+            toY = Math.floor(end.x);
+          } else {
+            fromX = Math.floor(origin.x);
+            fromY = Math.floor(origin.y);
+            toX = Math.floor(end.x);
+            toY = Math.floor(end.y);
+          }
+          var dx = Math.abs(toX - fromX);
+          var dy = Math.abs(toY - fromY);
+          var error = Math.floor(-dx / 2);
+          var xStep = fromX < toX ? 1 : -1;
+          var yStep = fromY < toY ? 1 : -1;
+          var currentPixel = true;
+          // Loop up until x == toX, but not beyond
+          for (var x = fromX, y = fromY; x !== toX + xStep; x += xStep) {
+            // Does current pixel mean we have moved white to black or vice versa?
+            // Scanning black in state 0,2 and white in state 1, so if we find the wrong
+            // color, advance to next state or end if we are in state 2 already
+            var realX = steep ? y : x;
+            var realY = steep ? x : y;
+            if (matrix.get(realX, realY) !== currentPixel) {
+              currentPixel = !currentPixel;
+              switchPoints.push({ x: realX, y: realY });
+              if (switchPoints.length === length + 1) {
                 break;
+              }
             }
-            y += yStep;
-            error -= dx;
+            error += dy;
+            if (error > 0) {
+              if (y === toY) {
+                break;
+              }
+              y += yStep;
+              error -= dx;
+            }
+          }
+          var distances = [];
+          for (var i = 0; i < length; i++) {
+            if (switchPoints[i] && switchPoints[i + 1]) {
+              distances.push(distance(switchPoints[i], switchPoints[i + 1]));
+            } else {
+              distances.push(0);
+            }
+          }
+          return distances;
         }
-    }
-    var distances = [];
-    for (var i = 0; i < length; i++) {
-        if (switchPoints[i] && switchPoints[i + 1]) {
-            distances.push(distance(switchPoints[i], switchPoints[i + 1]));
+        // Takes an origin point and an end point and counts the sizes of the black white run in the origin point
+        // along the line that intersects with the end point. Returns an array of elements, representing the pixel sizes
+        // of the black white run. Takes a length which represents the number of switches from black to white to look for.
+        function countBlackWhiteRun(origin, end, matrix, length) {
+          var _a;
+          var rise = end.y - origin.y;
+          var run = end.x - origin.x;
+          var towardsEnd = countBlackWhiteRunTowardsPoint(
+            origin,
+            end,
+            matrix,
+            Math.ceil(length / 2)
+          );
+          var awayFromEnd = countBlackWhiteRunTowardsPoint(
+            origin,
+            { x: origin.x - run, y: origin.y - rise },
+            matrix,
+            Math.ceil(length / 2)
+          );
+          var middleValue = towardsEnd.shift() + awayFromEnd.shift() - 1; // Substract one so we don't double count a pixel
+          return (_a = awayFromEnd.concat(middleValue)).concat.apply(
+            _a,
+            towardsEnd
+          );
         }
-        else {
-            distances.push(0);
+        // Takes in a black white run and an array of expected ratios. Returns the average size of the run as well as the "error" -
+        // that is the amount the run diverges from the expected ratio
+        function scoreBlackWhiteRun(sequence, ratios) {
+          var averageSize = sum(sequence) / sum(ratios);
+          var error = 0;
+          ratios.forEach(function (ratio, i) {
+            error += Math.pow(sequence[i] - ratio * averageSize, 2);
+          });
+          return { averageSize: averageSize, error: error };
         }
-    }
-    return distances;
-}
-// Takes an origin point and an end point and counts the sizes of the black white run in the origin point
-// along the line that intersects with the end point. Returns an array of elements, representing the pixel sizes
-// of the black white run. Takes a length which represents the number of switches from black to white to look for.
-function countBlackWhiteRun(origin, end, matrix, length) {
-    var _a;
-    var rise = end.y - origin.y;
-    var run = end.x - origin.x;
-    var towardsEnd = countBlackWhiteRunTowardsPoint(origin, end, matrix, Math.ceil(length / 2));
-    var awayFromEnd = countBlackWhiteRunTowardsPoint(origin, { x: origin.x - run, y: origin.y - rise }, matrix, Math.ceil(length / 2));
-    var middleValue = towardsEnd.shift() + awayFromEnd.shift() - 1; // Substract one so we don't double count a pixel
-    return (_a = awayFromEnd.concat(middleValue)).concat.apply(_a, towardsEnd);
-}
-// Takes in a black white run and an array of expected ratios. Returns the average size of the run as well as the "error" -
-// that is the amount the run diverges from the expected ratio
-function scoreBlackWhiteRun(sequence, ratios) {
-    var averageSize = sum(sequence) / sum(ratios);
-    var error = 0;
-    ratios.forEach(function (ratio, i) {
-        error += Math.pow((sequence[i] - ratio * averageSize), 2);
-    });
-    return { averageSize: averageSize, error: error };
-}
-// Takes an X,Y point and an array of sizes and scores the point against those ratios.
-// For example for a finder pattern takes the ratio list of 1:1:3:1:1 and checks horizontal, vertical and diagonal ratios
-// against that.
-function scorePattern(point, ratios, matrix) {
-    try {
-        var horizontalRun = countBlackWhiteRun(point, { x: -1, y: point.y }, matrix, ratios.length);
-        var verticalRun = countBlackWhiteRun(point, { x: point.x, y: -1 }, matrix, ratios.length);
-        var topLeftPoint = {
-            x: Math.max(0, point.x - point.y) - 1,
-            y: Math.max(0, point.y - point.x) - 1,
-        };
-        var topLeftBottomRightRun = countBlackWhiteRun(point, topLeftPoint, matrix, ratios.length);
-        var bottomLeftPoint = {
-            x: Math.min(matrix.width, point.x + point.y) + 1,
-            y: Math.min(matrix.height, point.y + point.x) + 1,
-        };
-        var bottomLeftTopRightRun = countBlackWhiteRun(point, bottomLeftPoint, matrix, ratios.length);
-        var horzError = scoreBlackWhiteRun(horizontalRun, ratios);
-        var vertError = scoreBlackWhiteRun(verticalRun, ratios);
-        var diagDownError = scoreBlackWhiteRun(topLeftBottomRightRun, ratios);
-        var diagUpError = scoreBlackWhiteRun(bottomLeftTopRightRun, ratios);
-        var ratioError = Math.sqrt(horzError.error * horzError.error +
-            vertError.error * vertError.error +
-            diagDownError.error * diagDownError.error +
-            diagUpError.error * diagUpError.error);
-        var avgSize = (horzError.averageSize + vertError.averageSize + diagDownError.averageSize + diagUpError.averageSize) / 4;
-        var sizeError = (Math.pow((horzError.averageSize - avgSize), 2) +
-            Math.pow((vertError.averageSize - avgSize), 2) +
-            Math.pow((diagDownError.averageSize - avgSize), 2) +
-            Math.pow((diagUpError.averageSize - avgSize), 2)) / avgSize;
-        return ratioError + sizeError;
-    }
-    catch (_a) {
-        return Infinity;
-    }
-}
-function recenterLocation(matrix, p) {
-    var leftX = Math.round(p.x);
-    while (matrix.get(leftX, Math.round(p.y))) {
-        leftX--;
-    }
-    var rightX = Math.round(p.x);
-    while (matrix.get(rightX, Math.round(p.y))) {
-        rightX++;
-    }
-    var x = (leftX + rightX) / 2;
-    var topY = Math.round(p.y);
-    while (matrix.get(Math.round(x), topY)) {
-        topY--;
-    }
-    var bottomY = Math.round(p.y);
-    while (matrix.get(Math.round(x), bottomY)) {
-        bottomY++;
-    }
-    var y = (topY + bottomY) / 2;
-    return { x: x, y: y };
-}
-function locate(matrix) {
-    var finderPatternQuads = [];
-    var activeFinderPatternQuads = [];
-    var alignmentPatternQuads = [];
-    var activeAlignmentPatternQuads = [];
-    var _loop_1 = function (y) {
-        var length_1 = 0;
-        var lastBit = false;
-        var scans = [0, 0, 0, 0, 0];
-        var _loop_2 = function (x) {
-            var v = matrix.get(x, y);
-            if (v === lastBit) {
+        // Takes an X,Y point and an array of sizes and scores the point against those ratios.
+        // For example for a finder pattern takes the ratio list of 1:1:3:1:1 and checks horizontal, vertical and diagonal ratios
+        // against that.
+        function scorePattern(point, ratios, matrix) {
+          try {
+            var horizontalRun = countBlackWhiteRun(
+              point,
+              { x: -1, y: point.y },
+              matrix,
+              ratios.length
+            );
+            var verticalRun = countBlackWhiteRun(
+              point,
+              { x: point.x, y: -1 },
+              matrix,
+              ratios.length
+            );
+            var topLeftPoint = {
+              x: Math.max(0, point.x - point.y) - 1,
+              y: Math.max(0, point.y - point.x) - 1,
+            };
+            var topLeftBottomRightRun = countBlackWhiteRun(
+              point,
+              topLeftPoint,
+              matrix,
+              ratios.length
+            );
+            var bottomLeftPoint = {
+              x: Math.min(matrix.width, point.x + point.y) + 1,
+              y: Math.min(matrix.height, point.y + point.x) + 1,
+            };
+            var bottomLeftTopRightRun = countBlackWhiteRun(
+              point,
+              bottomLeftPoint,
+              matrix,
+              ratios.length
+            );
+            var horzError = scoreBlackWhiteRun(horizontalRun, ratios);
+            var vertError = scoreBlackWhiteRun(verticalRun, ratios);
+            var diagDownError = scoreBlackWhiteRun(
+              topLeftBottomRightRun,
+              ratios
+            );
+            var diagUpError = scoreBlackWhiteRun(bottomLeftTopRightRun, ratios);
+            var ratioError = Math.sqrt(
+              horzError.error * horzError.error +
+                vertError.error * vertError.error +
+                diagDownError.error * diagDownError.error +
+                diagUpError.error * diagUpError.error
+            );
+            var avgSize =
+              (horzError.averageSize +
+                vertError.averageSize +
+                diagDownError.averageSize +
+                diagUpError.averageSize) /
+              4;
+            var sizeError =
+              (Math.pow(horzError.averageSize - avgSize, 2) +
+                Math.pow(vertError.averageSize - avgSize, 2) +
+                Math.pow(diagDownError.averageSize - avgSize, 2) +
+                Math.pow(diagUpError.averageSize - avgSize, 2)) /
+              avgSize;
+            return ratioError + sizeError;
+          } catch (_a) {
+            return Infinity;
+          }
+        }
+        function recenterLocation(matrix, p) {
+          var leftX = Math.round(p.x);
+          while (matrix.get(leftX, Math.round(p.y))) {
+            leftX--;
+          }
+          var rightX = Math.round(p.x);
+          while (matrix.get(rightX, Math.round(p.y))) {
+            rightX++;
+          }
+          var x = (leftX + rightX) / 2;
+          var topY = Math.round(p.y);
+          while (matrix.get(Math.round(x), topY)) {
+            topY--;
+          }
+          var bottomY = Math.round(p.y);
+          while (matrix.get(Math.round(x), bottomY)) {
+            bottomY++;
+          }
+          var y = (topY + bottomY) / 2;
+          return { x: x, y: y };
+        }
+        function locate(matrix) {
+          var finderPatternQuads = [];
+          var activeFinderPatternQuads = [];
+          var alignmentPatternQuads = [];
+          var activeAlignmentPatternQuads = [];
+          var _loop_1 = function (y) {
+            var length_1 = 0;
+            var lastBit = false;
+            var scans = [0, 0, 0, 0, 0];
+            var _loop_2 = function (x) {
+              var v = matrix.get(x, y);
+              if (v === lastBit) {
                 length_1++;
-            }
-            else {
+              } else {
                 scans = [scans[1], scans[2], scans[3], scans[4], length_1];
                 length_1 = 1;
                 lastBit = v;
                 // Do the last 5 color changes ~ match the expected ratio for a finder pattern? 1:1:3:1:1 of b:w:b:w:b
                 var averageFinderPatternBlocksize = sum(scans) / 7;
-                var validFinderPattern = Math.abs(scans[0] - averageFinderPatternBlocksize) < averageFinderPatternBlocksize &&
-                    Math.abs(scans[1] - averageFinderPatternBlocksize) < averageFinderPatternBlocksize &&
-                    Math.abs(scans[2] - 3 * averageFinderPatternBlocksize) < 3 * averageFinderPatternBlocksize &&
-                    Math.abs(scans[3] - averageFinderPatternBlocksize) < averageFinderPatternBlocksize &&
-                    Math.abs(scans[4] - averageFinderPatternBlocksize) < averageFinderPatternBlocksize &&
-                    !v; // And make sure the current pixel is white since finder patterns are bordered in white
+                var validFinderPattern =
+                  Math.abs(scans[0] - averageFinderPatternBlocksize) <
+                    averageFinderPatternBlocksize &&
+                  Math.abs(scans[1] - averageFinderPatternBlocksize) <
+                    averageFinderPatternBlocksize &&
+                  Math.abs(scans[2] - 3 * averageFinderPatternBlocksize) <
+                    3 * averageFinderPatternBlocksize &&
+                  Math.abs(scans[3] - averageFinderPatternBlocksize) <
+                    averageFinderPatternBlocksize &&
+                  Math.abs(scans[4] - averageFinderPatternBlocksize) <
+                    averageFinderPatternBlocksize &&
+                  !v; // And make sure the current pixel is white since finder patterns are bordered in white
                 // Do the last 3 color changes ~ match the expected ratio for an alignment pattern? 1:1:1 of w:b:w
                 var averageAlignmentPatternBlocksize = sum(scans.slice(-3)) / 3;
-                var validAlignmentPattern = Math.abs(scans[2] - averageAlignmentPatternBlocksize) < averageAlignmentPatternBlocksize &&
-                    Math.abs(scans[3] - averageAlignmentPatternBlocksize) < averageAlignmentPatternBlocksize &&
-                    Math.abs(scans[4] - averageAlignmentPatternBlocksize) < averageAlignmentPatternBlocksize &&
-                    v; // Is the current pixel black since alignment patterns are bordered in black
+                var validAlignmentPattern =
+                  Math.abs(scans[2] - averageAlignmentPatternBlocksize) <
+                    averageAlignmentPatternBlocksize &&
+                  Math.abs(scans[3] - averageAlignmentPatternBlocksize) <
+                    averageAlignmentPatternBlocksize &&
+                  Math.abs(scans[4] - averageAlignmentPatternBlocksize) <
+                    averageAlignmentPatternBlocksize &&
+                  v; // Is the current pixel black since alignment patterns are bordered in black
                 if (validFinderPattern) {
-                    // Compute the start and end x values of the large center black square
-                    var endX_1 = x - scans[3] - scans[4];
-                    var startX_1 = endX_1 - scans[2];
-                    var line = { startX: startX_1, endX: endX_1, y: y };
-                    // Is there a quad directly above the current spot? If so, extend it with the new line. Otherwise, create a new quad with
-                    // that line as the starting point.
-                    var matchingQuads = activeFinderPatternQuads.filter(function (q) {
-                        return (startX_1 >= q.bottom.startX && startX_1 <= q.bottom.endX) ||
-                            (endX_1 >= q.bottom.startX && startX_1 <= q.bottom.endX) ||
-                            (startX_1 <= q.bottom.startX && endX_1 >= q.bottom.endX && ((scans[2] / (q.bottom.endX - q.bottom.startX)) < MAX_QUAD_RATIO &&
-                                (scans[2] / (q.bottom.endX - q.bottom.startX)) > MIN_QUAD_RATIO));
-                    });
-                    if (matchingQuads.length > 0) {
-                        matchingQuads[0].bottom = line;
-                    }
-                    else {
-                        activeFinderPatternQuads.push({ top: line, bottom: line });
-                    }
+                  // Compute the start and end x values of the large center black square
+                  var endX_1 = x - scans[3] - scans[4];
+                  var startX_1 = endX_1 - scans[2];
+                  var line = { startX: startX_1, endX: endX_1, y: y };
+                  // Is there a quad directly above the current spot? If so, extend it with the new line. Otherwise, create a new quad with
+                  // that line as the starting point.
+                  var matchingQuads = activeFinderPatternQuads.filter(function (
+                    q
+                  ) {
+                    return (
+                      (startX_1 >= q.bottom.startX &&
+                        startX_1 <= q.bottom.endX) ||
+                      (endX_1 >= q.bottom.startX &&
+                        startX_1 <= q.bottom.endX) ||
+                      (startX_1 <= q.bottom.startX &&
+                        endX_1 >= q.bottom.endX &&
+                        scans[2] / (q.bottom.endX - q.bottom.startX) <
+                          MAX_QUAD_RATIO &&
+                        scans[2] / (q.bottom.endX - q.bottom.startX) >
+                          MIN_QUAD_RATIO)
+                    );
+                  });
+                  if (matchingQuads.length > 0) {
+                    matchingQuads[0].bottom = line;
+                  } else {
+                    activeFinderPatternQuads.push({ top: line, bottom: line });
+                  }
                 }
                 if (validAlignmentPattern) {
-                    // Compute the start and end x values of the center black square
-                    var endX_2 = x - scans[4];
-                    var startX_2 = endX_2 - scans[3];
-                    var line = { startX: startX_2, y: y, endX: endX_2 };
-                    // Is there a quad directly above the current spot? If so, extend it with the new line. Otherwise, create a new quad with
-                    // that line as the starting point.
-                    var matchingQuads = activeAlignmentPatternQuads.filter(function (q) {
-                        return (startX_2 >= q.bottom.startX && startX_2 <= q.bottom.endX) ||
-                            (endX_2 >= q.bottom.startX && startX_2 <= q.bottom.endX) ||
-                            (startX_2 <= q.bottom.startX && endX_2 >= q.bottom.endX && ((scans[2] / (q.bottom.endX - q.bottom.startX)) < MAX_QUAD_RATIO &&
-                                (scans[2] / (q.bottom.endX - q.bottom.startX)) > MIN_QUAD_RATIO));
+                  // Compute the start and end x values of the center black square
+                  var endX_2 = x - scans[4];
+                  var startX_2 = endX_2 - scans[3];
+                  var line = { startX: startX_2, y: y, endX: endX_2 };
+                  // Is there a quad directly above the current spot? If so, extend it with the new line. Otherwise, create a new quad with
+                  // that line as the starting point.
+                  var matchingQuads = activeAlignmentPatternQuads.filter(
+                    function (q) {
+                      return (
+                        (startX_2 >= q.bottom.startX &&
+                          startX_2 <= q.bottom.endX) ||
+                        (endX_2 >= q.bottom.startX &&
+                          startX_2 <= q.bottom.endX) ||
+                        (startX_2 <= q.bottom.startX &&
+                          endX_2 >= q.bottom.endX &&
+                          scans[2] / (q.bottom.endX - q.bottom.startX) <
+                            MAX_QUAD_RATIO &&
+                          scans[2] / (q.bottom.endX - q.bottom.startX) >
+                            MIN_QUAD_RATIO)
+                      );
+                    }
+                  );
+                  if (matchingQuads.length > 0) {
+                    matchingQuads[0].bottom = line;
+                  } else {
+                    activeAlignmentPatternQuads.push({
+                      top: line,
+                      bottom: line,
                     });
-                    if (matchingQuads.length > 0) {
-                        matchingQuads[0].bottom = line;
-                    }
-                    else {
-                        activeAlignmentPatternQuads.push({ top: line, bottom: line });
-                    }
+                  }
                 }
+              }
+            };
+            for (var x = -1; x <= matrix.width; x++) {
+              _loop_2(x);
             }
-        };
-        for (var x = -1; x <= matrix.width; x++) {
-            _loop_2(x);
-        }
-        finderPatternQuads.push.apply(finderPatternQuads, activeFinderPatternQuads.filter(function (q) { return q.bottom.y !== y && q.bottom.y - q.top.y >= 2; }));
-        activeFinderPatternQuads = activeFinderPatternQuads.filter(function (q) { return q.bottom.y === y; });
-        alignmentPatternQuads.push.apply(alignmentPatternQuads, activeAlignmentPatternQuads.filter(function (q) { return q.bottom.y !== y; }));
-        activeAlignmentPatternQuads = activeAlignmentPatternQuads.filter(function (q) { return q.bottom.y === y; });
-    };
-    for (var y = 0; y <= matrix.height; y++) {
-        _loop_1(y);
-    }
-    finderPatternQuads.push.apply(finderPatternQuads, activeFinderPatternQuads.filter(function (q) { return q.bottom.y - q.top.y >= 2; }));
-    alignmentPatternQuads.push.apply(alignmentPatternQuads, activeAlignmentPatternQuads);
-    var finderPatternGroups = finderPatternQuads
-        .filter(function (q) { return q.bottom.y - q.top.y >= 2; }) // All quads must be at least 2px tall since the center square is larger than a block
-        .map(function (q) {
-        var x = (q.top.startX + q.top.endX + q.bottom.startX + q.bottom.endX) / 4;
-        var y = (q.top.y + q.bottom.y + 1) / 2;
-        if (!matrix.get(Math.round(x), Math.round(y))) {
-            return;
-        }
-        var lengths = [q.top.endX - q.top.startX, q.bottom.endX - q.bottom.startX, q.bottom.y - q.top.y + 1];
-        var size = sum(lengths) / lengths.length;
-        var score = scorePattern({ x: Math.round(x), y: Math.round(y) }, [1, 1, 3, 1, 1], matrix);
-        return { score: score, x: x, y: y, size: size };
-    })
-        .filter(function (q) { return !!q; }) // Filter out any rejected quads from above
-        .sort(function (a, b) { return a.score - b.score; })
-        // Now take the top finder pattern options and try to find 2 other options with a similar size.
-        .map(function (point, i, finderPatterns) {
-        if (i > MAX_FINDERPATTERNS_TO_SEARCH) {
+            finderPatternQuads.push.apply(
+              finderPatternQuads,
+              activeFinderPatternQuads.filter(function (q) {
+                return q.bottom.y !== y && q.bottom.y - q.top.y >= 2;
+              })
+            );
+            activeFinderPatternQuads = activeFinderPatternQuads.filter(
+              function (q) {
+                return q.bottom.y === y;
+              }
+            );
+            alignmentPatternQuads.push.apply(
+              alignmentPatternQuads,
+              activeAlignmentPatternQuads.filter(function (q) {
+                return q.bottom.y !== y;
+              })
+            );
+            activeAlignmentPatternQuads = activeAlignmentPatternQuads.filter(
+              function (q) {
+                return q.bottom.y === y;
+              }
+            );
+          };
+          for (var y = 0; y <= matrix.height; y++) {
+            _loop_1(y);
+          }
+          finderPatternQuads.push.apply(
+            finderPatternQuads,
+            activeFinderPatternQuads.filter(function (q) {
+              return q.bottom.y - q.top.y >= 2;
+            })
+          );
+          alignmentPatternQuads.push.apply(
+            alignmentPatternQuads,
+            activeAlignmentPatternQuads
+          );
+          var finderPatternGroups = finderPatternQuads
+            .filter(function (q) {
+              return q.bottom.y - q.top.y >= 2;
+            }) // All quads must be at least 2px tall since the center square is larger than a block
+            .map(function (q) {
+              var x =
+                (q.top.startX + q.top.endX + q.bottom.startX + q.bottom.endX) /
+                4;
+              var y = (q.top.y + q.bottom.y + 1) / 2;
+              if (!matrix.get(Math.round(x), Math.round(y))) {
+                return;
+              }
+              var lengths = [
+                q.top.endX - q.top.startX,
+                q.bottom.endX - q.bottom.startX,
+                q.bottom.y - q.top.y + 1,
+              ];
+              var size = sum(lengths) / lengths.length;
+              var score = scorePattern(
+                { x: Math.round(x), y: Math.round(y) },
+                [1, 1, 3, 1, 1],
+                matrix
+              );
+              return { score: score, x: x, y: y, size: size };
+            })
+            .filter(function (q) {
+              return !!q;
+            }) // Filter out any rejected quads from above
+            .sort(function (a, b) {
+              return a.score - b.score;
+            })
+            // Now take the top finder pattern options and try to find 2 other options with a similar size.
+            .map(function (point, i, finderPatterns) {
+              if (i > MAX_FINDERPATTERNS_TO_SEARCH) {
+                return null;
+              }
+              var otherPoints = finderPatterns
+                .filter(function (p, ii) {
+                  return i !== ii;
+                })
+                .map(function (p) {
+                  return {
+                    x: p.x,
+                    y: p.y,
+                    score:
+                      p.score + Math.pow(p.size - point.size, 2) / point.size,
+                    size: p.size,
+                  };
+                })
+                .sort(function (a, b) {
+                  return a.score - b.score;
+                });
+              if (otherPoints.length < 2) {
+                return null;
+              }
+              var score =
+                point.score + otherPoints[0].score + otherPoints[1].score;
+              return {
+                points: [point].concat(otherPoints.slice(0, 2)),
+                score: score,
+              };
+            })
+            .filter(function (q) {
+              return !!q;
+            }) // Filter out any rejected finder patterns from above
+            .sort(function (a, b) {
+              return a.score - b.score;
+            });
+          if (finderPatternGroups.length === 0) {
             return null;
-        }
-        var otherPoints = finderPatterns
-            .filter(function (p, ii) { return i !== ii; })
-            .map(function (p) { return ({ x: p.x, y: p.y, score: p.score + (Math.pow((p.size - point.size), 2)) / point.size, size: p.size }); })
-            .sort(function (a, b) { return a.score - b.score; });
-        if (otherPoints.length < 2) {
+          }
+          var _a = reorderFinderPatterns(
+              finderPatternGroups[0].points[0],
+              finderPatternGroups[0].points[1],
+              finderPatternGroups[0].points[2]
+            ),
+            topRight = _a.topRight,
+            topLeft = _a.topLeft,
+            bottomLeft = _a.bottomLeft;
+          var alignment = findAlignmentPattern(
+            matrix,
+            alignmentPatternQuads,
+            topRight,
+            topLeft,
+            bottomLeft
+          );
+          var result = [];
+          if (alignment) {
+            result.push({
+              alignmentPattern: {
+                x: alignment.alignmentPattern.x,
+                y: alignment.alignmentPattern.y,
+              },
+              bottomLeft: { x: bottomLeft.x, y: bottomLeft.y },
+              dimension: alignment.dimension,
+              topLeft: { x: topLeft.x, y: topLeft.y },
+              topRight: { x: topRight.x, y: topRight.y },
+            });
+          }
+          // We normally use the center of the quads as the location of the tracking points, which is optimal for most cases and will account
+          // for a skew in the image. However, In some cases, a slight skew might not be real and instead be caused by image compression
+          // errors and/or low resolution. For those cases, we'd be better off centering the point exactly in the middle of the black area. We
+          // compute and return the location data for the naively centered points as it is little additional work and allows for multiple
+          // attempts at decoding harder images.
+          var midTopRight = recenterLocation(matrix, topRight);
+          var midTopLeft = recenterLocation(matrix, topLeft);
+          var midBottomLeft = recenterLocation(matrix, bottomLeft);
+          var centeredAlignment = findAlignmentPattern(
+            matrix,
+            alignmentPatternQuads,
+            midTopRight,
+            midTopLeft,
+            midBottomLeft
+          );
+          if (centeredAlignment) {
+            result.push({
+              alignmentPattern: {
+                x: centeredAlignment.alignmentPattern.x,
+                y: centeredAlignment.alignmentPattern.y,
+              },
+              bottomLeft: { x: midBottomLeft.x, y: midBottomLeft.y },
+              topLeft: { x: midTopLeft.x, y: midTopLeft.y },
+              topRight: { x: midTopRight.x, y: midTopRight.y },
+              dimension: centeredAlignment.dimension,
+            });
+          }
+          if (result.length === 0) {
             return null;
+          }
+          return result;
         }
-        var score = point.score + otherPoints[0].score + otherPoints[1].score;
-        return { points: [point].concat(otherPoints.slice(0, 2)), score: score };
-    })
-        .filter(function (q) { return !!q; }) // Filter out any rejected finder patterns from above
-        .sort(function (a, b) { return a.score - b.score; });
-    if (finderPatternGroups.length === 0) {
-        return null;
-    }
-    var _a = reorderFinderPatterns(finderPatternGroups[0].points[0], finderPatternGroups[0].points[1], finderPatternGroups[0].points[2]), topRight = _a.topRight, topLeft = _a.topLeft, bottomLeft = _a.bottomLeft;
-    var alignment = findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, bottomLeft);
-    var result = [];
-    if (alignment) {
-        result.push({
-            alignmentPattern: { x: alignment.alignmentPattern.x, y: alignment.alignmentPattern.y },
-            bottomLeft: { x: bottomLeft.x, y: bottomLeft.y },
-            dimension: alignment.dimension,
-            topLeft: { x: topLeft.x, y: topLeft.y },
-            topRight: { x: topRight.x, y: topRight.y },
-        });
-    }
-    // We normally use the center of the quads as the location of the tracking points, which is optimal for most cases and will account
-    // for a skew in the image. However, In some cases, a slight skew might not be real and instead be caused by image compression
-    // errors and/or low resolution. For those cases, we'd be better off centering the point exactly in the middle of the black area. We
-    // compute and return the location data for the naively centered points as it is little additional work and allows for multiple
-    // attempts at decoding harder images.
-    var midTopRight = recenterLocation(matrix, topRight);
-    var midTopLeft = recenterLocation(matrix, topLeft);
-    var midBottomLeft = recenterLocation(matrix, bottomLeft);
-    var centeredAlignment = findAlignmentPattern(matrix, alignmentPatternQuads, midTopRight, midTopLeft, midBottomLeft);
-    if (centeredAlignment) {
-        result.push({
-            alignmentPattern: { x: centeredAlignment.alignmentPattern.x, y: centeredAlignment.alignmentPattern.y },
-            bottomLeft: { x: midBottomLeft.x, y: midBottomLeft.y },
-            topLeft: { x: midTopLeft.x, y: midTopLeft.y },
-            topRight: { x: midTopRight.x, y: midTopRight.y },
-            dimension: centeredAlignment.dimension,
-        });
-    }
-    if (result.length === 0) {
-        return null;
-    }
-    return result;
-}
-exports.locate = locate;
-function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, bottomLeft) {
-    var _a;
-    // Now that we've found the three finder patterns we can determine the blockSize and the size of the QR code.
-    // We'll use these to help find the alignment pattern but also later when we do the extraction.
-    var dimension;
-    var moduleSize;
-    try {
-        (_a = computeDimension(topLeft, topRight, bottomLeft, matrix), dimension = _a.dimension, moduleSize = _a.moduleSize);
-    }
-    catch (e) {
-        return null;
-    }
-    // Now find the alignment pattern
-    var bottomRightFinderPattern = {
-        x: topRight.x - topLeft.x + bottomLeft.x,
-        y: topRight.y - topLeft.y + bottomLeft.y,
-    };
-    var modulesBetweenFinderPatterns = ((distance(topLeft, bottomLeft) + distance(topLeft, topRight)) / 2 / moduleSize);
-    var correctionToTopLeft = 1 - (3 / modulesBetweenFinderPatterns);
-    var expectedAlignmentPattern = {
-        x: topLeft.x + correctionToTopLeft * (bottomRightFinderPattern.x - topLeft.x),
-        y: topLeft.y + correctionToTopLeft * (bottomRightFinderPattern.y - topLeft.y),
-    };
-    var alignmentPatterns = alignmentPatternQuads
-        .map(function (q) {
-        var x = (q.top.startX + q.top.endX + q.bottom.startX + q.bottom.endX) / 4;
-        var y = (q.top.y + q.bottom.y + 1) / 2;
-        if (!matrix.get(Math.floor(x), Math.floor(y))) {
-            return;
+        exports.locate = locate;
+        function findAlignmentPattern(
+          matrix,
+          alignmentPatternQuads,
+          topRight,
+          topLeft,
+          bottomLeft
+        ) {
+          var _a;
+          // Now that we've found the three finder patterns we can determine the blockSize and the size of the QR code.
+          // We'll use these to help find the alignment pattern but also later when we do the extraction.
+          var dimension;
+          var moduleSize;
+          try {
+            (_a = computeDimension(topLeft, topRight, bottomLeft, matrix)),
+              (dimension = _a.dimension),
+              (moduleSize = _a.moduleSize);
+          } catch (e) {
+            return null;
+          }
+          // Now find the alignment pattern
+          var bottomRightFinderPattern = {
+            x: topRight.x - topLeft.x + bottomLeft.x,
+            y: topRight.y - topLeft.y + bottomLeft.y,
+          };
+          var modulesBetweenFinderPatterns =
+            (distance(topLeft, bottomLeft) + distance(topLeft, topRight)) /
+            2 /
+            moduleSize;
+          var correctionToTopLeft = 1 - 3 / modulesBetweenFinderPatterns;
+          var expectedAlignmentPattern = {
+            x:
+              topLeft.x +
+              correctionToTopLeft * (bottomRightFinderPattern.x - topLeft.x),
+            y:
+              topLeft.y +
+              correctionToTopLeft * (bottomRightFinderPattern.y - topLeft.y),
+          };
+          var alignmentPatterns = alignmentPatternQuads
+            .map(function (q) {
+              var x =
+                (q.top.startX + q.top.endX + q.bottom.startX + q.bottom.endX) /
+                4;
+              var y = (q.top.y + q.bottom.y + 1) / 2;
+              if (!matrix.get(Math.floor(x), Math.floor(y))) {
+                return;
+              }
+              var lengths = [
+                q.top.endX - q.top.startX,
+                q.bottom.endX - q.bottom.startX,
+                q.bottom.y - q.top.y + 1,
+              ];
+              var size = sum(lengths) / lengths.length;
+              var sizeScore = scorePattern(
+                { x: Math.floor(x), y: Math.floor(y) },
+                [1, 1, 1],
+                matrix
+              );
+              var score =
+                sizeScore + distance({ x: x, y: y }, expectedAlignmentPattern);
+              return { x: x, y: y, score: score };
+            })
+            .filter(function (v) {
+              return !!v;
+            })
+            .sort(function (a, b) {
+              return a.score - b.score;
+            });
+          // If there are less than 15 modules between finder patterns it's a version 1 QR code and as such has no alignmemnt pattern
+          // so we can only use our best guess.
+          var alignmentPattern =
+            modulesBetweenFinderPatterns >= 15 && alignmentPatterns.length
+              ? alignmentPatterns[0]
+              : expectedAlignmentPattern;
+          return { alignmentPattern: alignmentPattern, dimension: dimension };
         }
-        var lengths = [q.top.endX - q.top.startX, q.bottom.endX - q.bottom.startX, (q.bottom.y - q.top.y + 1)];
-        var size = sum(lengths) / lengths.length;
-        var sizeScore = scorePattern({ x: Math.floor(x), y: Math.floor(y) }, [1, 1, 1], matrix);
-        var score = sizeScore + distance({ x: x, y: y }, expectedAlignmentPattern);
-        return { x: x, y: y, score: score };
-    })
-        .filter(function (v) { return !!v; })
-        .sort(function (a, b) { return a.score - b.score; });
-    // If there are less than 15 modules between finder patterns it's a version 1 QR code and as such has no alignmemnt pattern
-    // so we can only use our best guess.
-    var alignmentPattern = modulesBetweenFinderPatterns >= 15 && alignmentPatterns.length ? alignmentPatterns[0] : expectedAlignmentPattern;
-    return { alignmentPattern: alignmentPattern, dimension: dimension };
-}
 
-
-/***/ })
-/******/ ])["default"];
+        /***/
+      },
+      /******/
+    ]
+  )["default"];
 });

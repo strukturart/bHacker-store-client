@@ -405,17 +405,14 @@ let st = 0;
 function nav(param) {
     let articles;
 
-
-
     if (window_status == "article-list" || window_status == "search") {
         articles = document.querySelectorAll("article[tabindex]");
     }
-    alert(window_status)
+    alert(window_status);
     if (window_status == "options") {
         let k = document.activeElement.parentElement.id;
         articles = document.getElementById(k).children;
-        alert(k)
-
+        alert(k);
     }
 
     if (window_status == "rating") {
@@ -438,8 +435,6 @@ function nav(param) {
         var scrollDiv = articles[focused].offsetTop + 30;
         window.scrollTo({ top: scrollDiv, behavior: "smooth" });
     }
-
-
 
     random_background();
 }
@@ -793,7 +788,6 @@ jQuery(function() {
                 break;
 
             case "ArrowDown":
-
                 if (window_status == "about") {
                     break;
                 }
@@ -833,7 +827,6 @@ jQuery(function() {
                     window_status == "search" ||
                     window_status == "article-list" ||
                     window_status == "options"
-
                 ) {
                     nav("-1");
                     break;
@@ -878,7 +871,8 @@ jQuery(function() {
                     start_scan(function(callback) {
                         let slug = callback.replace("bhackers:", "");
                         show_article(slug);
-                    })
+                        window_status = "single-article";
+                    });
 
                     bottom_bar("", "", "");
                     break;
@@ -939,9 +933,9 @@ jQuery(function() {
             case "Backspace":
                 if (window_status == "scan") {
                     evt.preventDefault();
-                    document.getElementById("qr-screen").hidden = true;
+                    document.getElementById("qr-screen").style.display = "none";
                     show_article_list();
-                    window_status == "search"
+                    window_status = "search";
                     break;
                 }
 
