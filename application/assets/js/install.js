@@ -62,7 +62,7 @@ const install = (() => {
       .import(packageFile)
       .then(function (e) {
         bottom_bar("options", "", "open");
-        window_status = "post_installation";
+        after_installation = true;
 
         console.info("Installation was successfull", arguments);
         document.getElementById("loading").style.display = "none";

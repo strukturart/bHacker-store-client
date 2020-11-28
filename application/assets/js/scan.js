@@ -1,5 +1,9 @@
 const qr = ((_) => {
+  let video;
   let start_scan = function (callback) {
+    window_status = "scan";
+    bottom_bar("", "", "");
+
     document.getElementById("qr-screen").style.display = "block";
 
     navigator.getUserMedia =
@@ -11,7 +15,7 @@ const qr = ((_) => {
       navigator.getUserMedia(
         { audio: false, video: { width: 400, height: 400 } },
         function (stream) {
-          var video = document.querySelector("video");
+          video = document.querySelector("video");
           video.srcObject = stream;
 
           video.onloadedmetadata = function (e) {
@@ -38,19 +42,8 @@ const qr = ((_) => {
 
               if (code) {
                 callback(code.data);
-                document.getElementById("qr-screen").style.display = "none";
-                video.getTracks().forEach((track) => track.stop());
+                stop_scan("single-article");
               }
-
-              var check_stream = setInterval(function () {
-                if (
-                  document.getElementById("qr-screen").style.display == "none"
-                ) {
-                  video.getTracks().forEach((video) => video.stop());
-                  alert("");
-                  clearInterval(check_stream);
-                }
-              }, 1000);
             }, 1000);
           };
         },
@@ -63,5 +56,19 @@ const qr = ((_) => {
     }
   };
 
-  return { start_scan };
+  function stop_scan(route) {
+    window_status = route;
+
+    const stream = video.srcObject;
+    const tracks = stream.getTracks();
+
+    tracks.forEach(function (track) {
+      track.stop();
+      document.getElementById("qr-screen").style.display = "none";
+    });
+
+    video.srcObject = null;
+  }
+
+  return { start_scan, stop_scan };
 })();

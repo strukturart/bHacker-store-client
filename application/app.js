@@ -13,6 +13,7 @@ let apps_rating = new Array();
 let co;
 let contributors = new Array();
 let potato = "";
+let after_installation = false;
 
 //background colors
 let col = [
@@ -325,6 +326,8 @@ function nav_panels(left_right) {
   window.scrollTo(0, 0);
   focused = 0;
 
+  document.getElementById("navigation").style.display = "none!important";
+
   if (left_right == "left") {
     current_panel--;
   }
@@ -344,10 +347,10 @@ function nav_panels(left_right) {
 
   if (current_panel == 0) {
     document.querySelector("input").focus();
-    document.querySelector("div#navigation").style.display = "none";
+    document.getElementById("navigation").style.display = "none";
     document.querySelector("div#app").style.margin = "5px 0 0 0";
   }
-
+  //rating view
   if (current_panel == 1) {
     document.querySelector("input").focus();
     document.querySelector("div#navigation").style.display = "none";
@@ -372,9 +375,6 @@ function nav_panels(left_right) {
     for (var i = 0; i < elm5.length; i++) {
       elm5[i].style.display = "block";
     }
-
-    document.querySelector("div#navigation").style.display = "block";
-    document.querySelector("div#app").style.margin = "30px 0 0 0";
   }
 
   if (current_panel > 1 || current_panel == 0) {
@@ -392,6 +392,9 @@ function nav_panels(left_right) {
     for (var i = 0; i < elm4.length; i++) {
       elm4[i].style.display = "none";
     }
+  }
+
+  if (current_panel > 1) {
     document.querySelector("div#navigation").style.display = "block";
     document.querySelector("div#app").style.margin = "30px 0 0 0";
   }
@@ -442,13 +445,17 @@ function random_background() {
   function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
   }
+  let elem = document.querySelectorAll("article");
 
   if (document.activeElement.tagName == "ARTICLE") {
-    let elem = document.querySelectorAll("article");
     for (let i = 1; i < elem.length; i++) {
       elem[i].style.background = "white";
     }
     document.activeElement.style.background = col[randomNumber(0, 5)];
+  } else {
+    for (let i = 1; i < elem.length; i++) {
+      elem[i].style.background = "white";
+    }
   }
 }
 
@@ -519,6 +526,8 @@ function ratings_callback(data) {
 function show_article(app) {
   //if (document.activeElement.getAttribute("data-slug") == null) return false;
   //qr scan
+  window_status = "single-article";
+
   document.getElementById(app).focus();
 
   document.getElementById("app-panels-inner").style.height = "94vh";
@@ -555,7 +564,7 @@ function show_article(app) {
     if (!offline) {
       bottom_bar("options", "", "install");
     } else {
-      bottom_bar("", "", "");
+      bottom_bar("", "you are offline", "");
     }
     window_status = "single-article";
   }
@@ -566,6 +575,7 @@ function show_article(app) {
 ////////////////////
 
 function show_article_list() {
+  after_installation = false;
   //focused = 3;
 
   //to do come back frome article get the right tabindex
@@ -727,6 +737,8 @@ search_listener.addEventListener("focus", (event) => {
   bottom_bar("scan", "select", "about");
   window.scrollTo(0, 0);
   window_status = "search";
+  document.getElementById("navigation").style.display = "none";
+  document.querySelector("div#app").style.margin = "5px 0 0 0";
 });
 
 search_listener.addEventListener("blur", (event) => {
@@ -769,7 +781,11 @@ jQuery(function () {
 
     switch (evt.key) {
       case "Enter":
-        if (window_status == "about" || window_status == "search") {
+        if (
+          window_status == "about" ||
+          window_status == "search" ||
+          window_status == "scan"
+        ) {
           break;
         }
         if (window_status == "article-list") {
@@ -787,7 +803,7 @@ jQuery(function () {
         break;
 
       case "ArrowDown":
-        if (window_status == "about") {
+        if (window_status == "about" || window_status == "scan") {
           break;
         }
 
@@ -809,6 +825,8 @@ jQuery(function () {
         break;
 
       case "ArrowUp":
+        if (window_status == "scan") break;
+
         if (window_status == "single-article") {
           document.querySelector("div#app-panels-inner").scrollBy(0, -15);
           break;
@@ -834,6 +852,8 @@ jQuery(function () {
         break;
 
       case "ArrowLeft":
+        if (window_status == "scan") break;
+
         if (isInSearchField) {
           evt.preventDefault;
           break;
@@ -849,6 +869,8 @@ jQuery(function () {
         break;
 
       case "ArrowRight":
+        if (window_status == "scan") break;
+
         if (isInSearchField) break;
 
         if (evt.target.id == "search" && evt.target.value == "") {
@@ -864,10 +886,12 @@ jQuery(function () {
       case "8":
       case "SoftLeft":
         if (window_status == "about") break;
+        if (window_status == "scan") break;
+
         if (window_status == "search") {
           window_status = "scan";
 
-          start_scan(function (callback) {
+          qr.start_scan(function (callback) {
             let slug = callback.replace("bhackers:", "");
             show_article(slug);
             window_status = "single-article";
@@ -903,7 +927,14 @@ jQuery(function () {
 
       case "9":
       case "SoftRight":
+        if (window_status == "scan") break;
+
         if (window_status == "about") break;
+
+        if (after_installation == true) {
+          launch_app();
+          break;
+        }
 
         if (window_status == "article-list" || window_status == "search") {
           open_about();
@@ -915,26 +946,19 @@ jQuery(function () {
           break;
         }
 
-        if (window_status == "post_installation") {
-          launch_app();
-          break;
-        }
         if ((window_status = "rating")) {
           close_rating();
           break;
         }
 
         break;
-
       case "1":
         break;
 
       case "Backspace":
         if (window_status == "scan") {
           evt.preventDefault();
-          document.getElementById("qr-screen").style.display = "none";
-          document.querySelector("article#search").focus();
-          window_status = "search";
+          qr.stop_scan("search");
           show_article_list();
           break;
         }
