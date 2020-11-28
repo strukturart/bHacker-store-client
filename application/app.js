@@ -273,7 +273,7 @@ function article_animation() {
 function set_tabindex() {
   let articles_panel = document.querySelectorAll("article");
 
-  focused = 0;
+  //focused = 0;
 
   var tab = 0;
   for (let i = 0; i < articles_panel.length; i++)
@@ -402,9 +402,10 @@ function nav_panels(left_right) {
   random_background();
 }
 
+///////////////
 //up - down
+///////////////
 let focused = 0;
-let st = 0;
 
 function nav(param) {
   let articles;
@@ -459,75 +460,42 @@ function random_background() {
   }
 }
 
-document.querySelector("article").onfocus = function () {
-  document.querySelector("article").style.background = "red";
-};
-
-document.querySelector("article#search").onfocus = function () {
-  document.querySelector("article#search input").focus();
-};
-
-///////////////////////////
-////RATING////////////////
-//////////////////////////
-
-let rating_stars = 0;
-document
-  .querySelector("div#rating-wrapper input.star")
-  .addEventListener("keyup", function () {
-    var val = Number(this.value);
-    var i = 0;
-    for (; i <= val; i++) {
-      if (i > 0) {
-        document.querySelector(`div#stars span:nth-child(${i})`).style.color =
-          "yellow";
-      }
-    }
-    for (; i <= 5; i++) {
-      document.querySelector(`div#stars span:nth-child(${i})`).style.color =
-        "white";
-    }
-    rating_stars = document.querySelector("div#rating-wrapper input.star")
-      .value;
-    document.querySelector("div#rating-wrapper input.star").value = "";
-  });
-
-function rating_write_callback(data) {
-  if (data == 201) {
-    toaster("Thank you for your rating!", 3000);
-    close_rating();
-  }
-  if (data == 400) {
-    toaster("I can't send anything without a rating", 3000);
-  }
-  if (data == 409) {
-    toaster("You already posted a review for this app", 3000);
-  }
-  if (data == "Network Error") {
-    toaster("Network Error", 3000);
-  }
-}
-
 ////////////////////
-///Read Rating/////
+////ROUTING///
 ///////////////////
 
-function ratings_callback(data) {
-  if (data.ratings.length > 0) {
-    let ofind = apps_data.find((o) => o.slug === data.appid);
-    if (ofind) ofind["rating"] = data.ratings;
-  }
-}
+window.addEventListener(
+  "hashchange",
+  function () {
+    if (location.hash === "#list") {
+      console.log("List");
+    }
+
+    if (location.hash === "#article-") {
+      console.log("article");
+    }
+
+    if (location.hash === "#option") {
+      console.log("article");
+    }
+    if (location.hash === "#rating") {
+      console.log("article");
+    }
+    if (location.hash === "#scan") {
+      console.log("article");
+    }
+  },
+  false
+);
 
 ////////////////////
 ////SHOW ARTICLE///
 ///////////////////
 
 function show_article(app) {
-  //if (document.activeElement.getAttribute("data-slug") == null) return false;
-  //qr scan
-  window_status = "single-article";
+  window.location.hash = "#article/" + app;
 
+  window_status = "single-article";
   document.getElementById(app).focus();
 
   document.getElementById("app-panels-inner").style.height = "94vh";
@@ -576,27 +544,19 @@ function show_article(app) {
 
 function show_article_list() {
   after_installation = false;
-  //focused = 3;
-
-  //to do come back frome article get the right tabindex
   article_id = document.activeElement.getAttribute("id");
 
+  window.location.hash = "#list/" + article_id;
+
   if (article_id) {
-    focused = document.getElementById(article_id).getAttribute("tabindex");
+    document.getElementById(article_id).focus();
+    focused = document.getElementById(article_id).getAttribute("tabindex") - 1;
   }
 
   document.getElementById("app-panels-inner").style.height = "84vh";
   if (current_panel == 0) {
     document.querySelector("div#app").style.margin = "5px 0 0 0";
   }
-  if (current_panel != 0) {
-    document.querySelector("div#app").style.margin = "30px 0 0 0";
-    document.querySelector("div#navigation").style.display = "block";
-  }
-  document.getElementById("app-panels-inner").scrollTo(0, 0);
-
-  document.getElementById(article_id).focus();
-  focused = document.getElementById(article_id).getAttribute("tabindex") - 1;
 
   let elm1 = document.querySelectorAll("article");
   for (var i = 0; i < elm1.length; i++) {
@@ -618,40 +578,14 @@ function show_article_list() {
     elm4[i].style.display = "none";
   }
 
+  if (current_panel > 1) {
+    document.getElementById("navigation").style.display = "block";
+    document.querySelector("div#app").style.margin = "30px 0 0 0";
+  }
+
   panels_list(panels[current_panel]);
   bottom_bar("", "select", "about");
   window_status = "article-list";
-}
-
-//////////////////
-//download app///
-/////////////////
-
-function install_app() {
-  if (!offline) {
-    install.download_file(
-      document.activeElement.getAttribute("data-download"),
-      document.activeElement.getAttribute("data-slug")
-    );
-  }
-}
-
-function open_url() {
-  let url = document.activeElement.getAttribute("data-url");
-  if (url.startsWith("mailto:")) {
-    var mail = new MozActivity({
-      name: "view",
-      data: {
-        type: "url",
-        url: url,
-      },
-    });
-    mail.onerror = () => {
-      console.log("Error: " + this.error, 3000);
-    };
-    return;
-  }
-  window.open(document.activeElement.getAttribute("data-url"), "_self ");
 }
 
 function open_rating() {
@@ -696,6 +630,7 @@ function close_options() {
 
 function open_options() {
   window_status = "options";
+  window.location.hash = "#options";
 
   let elm = document.querySelectorAll("div.options");
   for (var i = 0; i < elm.length; i++) {
@@ -715,6 +650,8 @@ function open_options() {
 }
 
 function open_about() {
+  window.location.hash = "#about";
+
   document.querySelector("div#about").style.display = "block";
   document.querySelector("div#about div#inner").focus();
   document.getElementById("top").scrollIntoView();
@@ -731,6 +668,12 @@ function close_about() {
   window_status = "about";
 }
 
+//search listener
+
+document.querySelector("article#search").onfocus = function () {
+  document.querySelector("article#search input").focus();
+};
+
 const search_listener = document.querySelector("article#search input");
 
 search_listener.addEventListener("focus", (event) => {
@@ -739,12 +682,56 @@ search_listener.addEventListener("focus", (event) => {
   window_status = "search";
   document.getElementById("navigation").style.display = "none";
   document.querySelector("div#app").style.margin = "5px 0 0 0";
+  document.querySelector("article#search").style.background = "black";
 });
 
 search_listener.addEventListener("blur", (event) => {
   bottom_bar("", "select", "about");
   window_status = "article-list";
+  document.querySelector("article#search").style.background = "gray";
 });
+
+////////////////////
+///Read Rating/////
+///////////////////
+
+function ratings_callback(data) {
+  if (data.ratings.length > 0) {
+    let ofind = apps_data.find((o) => o.slug === data.appid);
+    if (ofind) ofind["rating"] = data.ratings;
+  }
+}
+
+//////////////////
+//download app///
+/////////////////
+
+function install_app() {
+  if (!offline) {
+    install.download_file(
+      document.activeElement.getAttribute("data-download"),
+      document.activeElement.getAttribute("data-slug")
+    );
+  }
+}
+
+function open_url() {
+  let url = document.activeElement.getAttribute("data-url");
+  if (url.startsWith("mailto:")) {
+    var mail = new MozActivity({
+      name: "view",
+      data: {
+        type: "url",
+        url: url,
+      },
+    });
+    mail.onerror = () => {
+      console.log("Error: " + this.error, 3000);
+    };
+    return;
+  }
+  window.open(document.activeElement.getAttribute("data-url"), "_self ");
+}
 
 ///launch app after installation
 
@@ -816,7 +803,8 @@ jQuery(function () {
           window_status == "single-article" ||
           window_status == "search" ||
           window_status == "article-list" ||
-          window_status == "options"
+          window_status == "options" ||
+          window_status == "rating"
         ) {
           nav("+1");
           break;
@@ -843,7 +831,8 @@ jQuery(function () {
           window_status == "single-article" ||
           window_status == "search" ||
           window_status == "article-list" ||
-          window_status == "options"
+          window_status == "options" ||
+          window_status == "rating"
         ) {
           nav("-1");
           break;

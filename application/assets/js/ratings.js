@@ -172,3 +172,44 @@ function get_ratings(app_slug, callback) {
   // Sending data with the request
   xhr.send("");
 }
+
+///////////////////////////
+////RATING////////////////
+//////////////////////////
+
+let rating_stars = 0;
+document
+  .querySelector("div#rating-wrapper input.star")
+  .addEventListener("keyup", function () {
+    var val = Number(this.value);
+    var i = 0;
+    for (; i <= val; i++) {
+      if (i > 0) {
+        document.querySelector(`div#stars span:nth-child(${i})`).style.color =
+          "yellow";
+      }
+    }
+    for (; i <= 5; i++) {
+      document.querySelector(`div#stars span:nth-child(${i})`).style.color =
+        "white";
+    }
+    rating_stars = document.querySelector("div#rating-wrapper input.star")
+      .value;
+    document.querySelector("div#rating-wrapper input.star").value = "";
+  });
+
+function rating_write_callback(data) {
+  if (data == 201) {
+    toaster("Thank you for your rating!", 3000);
+    close_rating();
+  }
+  if (data == 400) {
+    toaster("I can't send anything without a rating", 3000);
+  }
+  if (data == 409) {
+    toaster("You already posted a review for this app", 3000);
+  }
+  if (data == "Network Error") {
+    toaster("Network Error", 3000);
+  }
+}
