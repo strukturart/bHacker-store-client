@@ -50,6 +50,7 @@ const install = (() => {
     };
 
     xhttp.onerror = function () {
+      alert("can't download app");
       toaster(" status: " + xhttp.status + xhttp.getAllResponseHeaders(), 3000);
       document.getElementById("loading").style.display = "none";
     };
@@ -58,18 +59,20 @@ const install = (() => {
   }
 
   function installPkg(packageFile) {
+    if (!navigator.mozApps.mgmt.import()) {
+      alert("This KaiOs version do not support import()");
+      return false;
+    }
+
     navigator.mozApps.mgmt
       .import(packageFile)
       .then(function (e) {
         bottom_bar("options", "", "open");
-        window_status = "post_installation";
+        after_installation = true;
 
         console.info("Installation was successfull", arguments);
         document.getElementById("loading").style.display = "none";
-        toaster(
-          "<br><br><br><br>THANK YOU<br> for installing the app.<br><br> If you like it I would be happy about a donation, press the option button.<br><br><br><br><br><br>",
-          6000
-        );
+        alert("App installed successfully.");
       })
       .catch((error) => {
         document.getElementById("loading").style.display = "none";
@@ -88,8 +91,6 @@ const install = (() => {
           // TODO open an guide that explains it, with links to a backup guide.
         }
       });
-    // todo? check if app was installed:
-    // mozAppsWrapper.getInstalled().then(apps => console.log(apps));
   }
 
   return { installPkg, download_file };

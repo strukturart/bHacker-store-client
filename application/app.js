@@ -13,6 +13,7 @@ let apps_rating = new Array();
 let co;
 let contributors = new Array();
 let potato = "";
+let after_installation = false;
 
 //background colors
 let col = [
@@ -272,7 +273,7 @@ function article_animation() {
 function set_tabindex() {
   let articles_panel = document.querySelectorAll("article");
 
-  focused = 0;
+  //focused = 0;
 
   var tab = 0;
   for (let i = 0; i < articles_panel.length; i++)
@@ -325,6 +326,8 @@ function nav_panels(left_right) {
   window.scrollTo(0, 0);
   focused = 0;
 
+  document.getElementById("navigation").style.display = "none!important";
+
   if (left_right == "left") {
     current_panel--;
   }
@@ -344,10 +347,10 @@ function nav_panels(left_right) {
 
   if (current_panel == 0) {
     document.querySelector("input").focus();
-    document.querySelector("div#navigation").style.display = "none";
+    document.getElementById("navigation").style.display = "none";
     document.querySelector("div#app").style.margin = "5px 0 0 0";
   }
-
+  //rating view
   if (current_panel == 1) {
     document.querySelector("input").focus();
     document.querySelector("div#navigation").style.display = "none";
@@ -372,9 +375,6 @@ function nav_panels(left_right) {
     for (var i = 0; i < elm5.length; i++) {
       elm5[i].style.display = "block";
     }
-
-    document.querySelector("div#navigation").style.display = "block";
-    document.querySelector("div#app").style.margin = "30px 0 0 0";
   }
 
   if (current_panel > 1 || current_panel == 0) {
@@ -392,6 +392,9 @@ function nav_panels(left_right) {
     for (var i = 0; i < elm4.length; i++) {
       elm4[i].style.display = "none";
     }
+  }
+
+  if (current_panel > 1) {
     document.querySelector("div#navigation").style.display = "block";
     document.querySelector("div#app").style.margin = "30px 0 0 0";
   }
@@ -399,9 +402,10 @@ function nav_panels(left_right) {
   random_background();
 }
 
+///////////////
 //up - down
+///////////////
 let focused = 0;
-let st = 0;
 
 function nav(param) {
   let articles;
@@ -409,7 +413,6 @@ function nav(param) {
   if (window_status == "article-list" || window_status == "search") {
     articles = document.querySelectorAll("article[tabindex]");
   }
-
   if (window_status == "options") {
     let k = document.activeElement.parentElement.id;
     articles = document.getElementById(k).children;
@@ -443,84 +446,56 @@ function random_background() {
   function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
   }
+  let elem = document.querySelectorAll("article");
 
   if (document.activeElement.tagName == "ARTICLE") {
-    let elem = document.querySelectorAll("article");
     for (let i = 1; i < elem.length; i++) {
       elem[i].style.background = "white";
     }
     document.activeElement.style.background = col[randomNumber(0, 5)];
-  }
-}
-
-document.querySelector("article").onfocus = function () {
-  alert("hey");
-  document.querySelector("article").style.background = "red";
-};
-
-document.querySelector("article#search").onfocus = function () {
-  document.querySelector("article#search input").focus();
-};
-
-///////////////////////////
-////RATING////////////////
-//////////////////////////
-
-let rating_stars = 0;
-document
-  .querySelector("div#rating-wrapper input.star")
-  .addEventListener("keyup", function () {
-    var val = Number(this.value);
-    var i = 0;
-    for (; i <= val; i++) {
-      if (i > 0) {
-        document.querySelector(`div#stars span:nth-child(${i})`).style.color =
-          "yellow";
-      }
+  } else {
+    for (let i = 1; i < elem.length; i++) {
+      elem[i].style.background = "white";
     }
-    for (; i <= 5; i++) {
-      document.querySelector(`div#stars span:nth-child(${i})`).style.color =
-        "white";
-    }
-    rating_stars = document.querySelector("div#rating-wrapper input.star")
-      .value;
-    document.querySelector("div#rating-wrapper input.star").value = "";
-  });
-
-function rating_write_callback(data) {
-  if (data == 201) {
-    toaster("Thank you for your rating!", 3000);
-    close_rating();
-  }
-  if (data == 400) {
-    toaster("I can't send anything without a rating", 3000);
-  }
-  if (data == 409) {
-    toaster("You already posted a review for this app", 3000);
-  }
-  if (data == "Network Error") {
-    toaster("Network Error", 3000);
   }
 }
 
 ////////////////////
-///Read Rating/////
+////ROUTING///
 ///////////////////
 
-function ratings_callback(data) {
-  if (data.ratings.length > 0) {
-    let ofind = apps_data.find((o) => o.slug === data.appid);
-    if (ofind) ofind["rating"] = data.ratings;
-  }
-}
+window.addEventListener(
+  "hashchange",
+  function () {
+    if (location.hash === "#list") {
+      console.log("List");
+    }
+
+    if (location.hash === "#article-") {
+      console.log("article");
+    }
+
+    if (location.hash === "#option") {
+      console.log("article");
+    }
+    if (location.hash === "#rating") {
+      console.log("article");
+    }
+    if (location.hash === "#scan") {
+      console.log("article");
+    }
+  },
+  false
+);
 
 ////////////////////
 ////SHOW ARTICLE///
 ///////////////////
 
 function show_article(app) {
-  //if (document.activeElement.getAttribute("data-slug") == null) return false;
-  //qr scan
+  window.location.hash = "#article/" + app;
+
+  window_status = "single-article";
   document.getElementById(app).focus();
 
   document.getElementById("app-panels-inner").style.height = "94vh";
@@ -557,7 +532,7 @@ function show_article(app) {
     if (!offline) {
       bottom_bar("options", "", "install");
     } else {
-      bottom_bar("", "", "");
+      bottom_bar("", "you are offline", "");
     }
     window_status = "single-article";
   }
@@ -568,27 +543,20 @@ function show_article(app) {
 ////////////////////
 
 function show_article_list() {
-  //focused = 3;
-
-  //to do come back frome article get the right tabindex
+  after_installation = false;
   article_id = document.activeElement.getAttribute("id");
 
+  window.location.hash = "#list/" + article_id;
+
   if (article_id) {
-    focused = document.getElementById(article_id).getAttribute("tabindex");
+    document.getElementById(article_id).focus();
+    focused = document.getElementById(article_id).getAttribute("tabindex") - 1;
   }
 
   document.getElementById("app-panels-inner").style.height = "84vh";
   if (current_panel == 0) {
     document.querySelector("div#app").style.margin = "5px 0 0 0";
   }
-  if (current_panel != 0) {
-    document.querySelector("div#app").style.margin = "30px 0 0 0";
-    document.querySelector("div#navigation").style.display = "block";
-  }
-  document.getElementById("app-panels-inner").scrollTo(0, 0);
-
-  document.getElementById(article_id).focus();
-  focused = document.getElementById(article_id).getAttribute("tabindex") - 1;
 
   let elm1 = document.querySelectorAll("article");
   for (var i = 0; i < elm1.length; i++) {
@@ -610,40 +578,14 @@ function show_article_list() {
     elm4[i].style.display = "none";
   }
 
+  if (current_panel > 1) {
+    document.getElementById("navigation").style.display = "block";
+    document.querySelector("div#app").style.margin = "30px 0 0 0";
+  }
+
   panels_list(panels[current_panel]);
   bottom_bar("", "select", "about");
   window_status = "article-list";
-}
-
-//////////////////
-//download app///
-/////////////////
-
-function install_app() {
-  if (!offline) {
-    install.download_file(
-      document.activeElement.getAttribute("data-download"),
-      document.activeElement.getAttribute("data-slug")
-    );
-  }
-}
-
-function open_url() {
-  let url = document.activeElement.getAttribute("data-url");
-  if (url.startsWith("mailto:")) {
-    var mail = new MozActivity({
-      name: "view",
-      data: {
-        type: "url",
-        url: url,
-      },
-    });
-    mail.onerror = () => {
-      console.log("Error: " + this.error, 3000);
-    };
-    return;
-  }
-  window.open(document.activeElement.getAttribute("data-url"), "_self ");
 }
 
 function open_rating() {
@@ -687,6 +629,9 @@ function close_options() {
 }
 
 function open_options() {
+  window_status = "options";
+  window.location.hash = "#options";
+
   let elm = document.querySelectorAll("div.options");
   for (var i = 0; i < elm.length; i++) {
     elm[i].style.display = "none";
@@ -702,10 +647,11 @@ function open_options() {
     .children[0].focus();
 
   bottom_bar("", "", "");
-  window_status = "options";
 }
 
 function open_about() {
+  window.location.hash = "#about";
+
   document.querySelector("div#about").style.display = "block";
   document.querySelector("div#about div#inner").focus();
   document.getElementById("top").scrollIntoView();
@@ -722,18 +668,70 @@ function close_about() {
   window_status = "about";
 }
 
+//search listener
+
+document.querySelector("article#search").onfocus = function () {
+  document.querySelector("article#search input").focus();
+};
+
 const search_listener = document.querySelector("article#search input");
 
 search_listener.addEventListener("focus", (event) => {
   bottom_bar("scan", "select", "about");
   window.scrollTo(0, 0);
   window_status = "search";
+  document.getElementById("navigation").style.display = "none";
+  document.querySelector("div#app").style.margin = "5px 0 0 0";
+  document.querySelector("article#search").style.background = "black";
 });
 
 search_listener.addEventListener("blur", (event) => {
   bottom_bar("", "select", "about");
   window_status = "article-list";
+  document.querySelector("article#search").style.background = "gray";
 });
+
+////////////////////
+///Read Rating/////
+///////////////////
+
+function ratings_callback(data) {
+  if (data.ratings.length > 0) {
+    let ofind = apps_data.find((o) => o.slug === data.appid);
+    if (ofind) ofind["rating"] = data.ratings;
+  }
+}
+
+//////////////////
+//download app///
+/////////////////
+
+function install_app() {
+  if (!offline) {
+    install.download_file(
+      document.activeElement.getAttribute("data-download"),
+      document.activeElement.getAttribute("data-slug")
+    );
+  }
+}
+
+function open_url() {
+  let url = document.activeElement.getAttribute("data-url");
+  if (url.startsWith("mailto:")) {
+    var mail = new MozActivity({
+      name: "view",
+      data: {
+        type: "url",
+        url: url,
+      },
+    });
+    mail.onerror = () => {
+      console.log("Error: " + this.error, 3000);
+    };
+    return;
+  }
+  window.open(document.activeElement.getAttribute("data-url"), "_self ");
+}
 
 ///launch app after installation
 
@@ -770,7 +768,11 @@ jQuery(function () {
 
     switch (evt.key) {
       case "Enter":
-        if (window_status == "about" || window_status == "search") {
+        if (
+          window_status == "about" ||
+          window_status == "search" ||
+          window_status == "scan"
+        ) {
           break;
         }
         if (window_status == "article-list") {
@@ -788,7 +790,7 @@ jQuery(function () {
         break;
 
       case "ArrowDown":
-        if (window_status == "about") {
+        if (window_status == "about" || window_status == "scan") {
           break;
         }
 
@@ -800,7 +802,9 @@ jQuery(function () {
         if (
           window_status == "single-article" ||
           window_status == "search" ||
-          window_status == "article-list"
+          window_status == "article-list" ||
+          window_status == "options" ||
+          window_status == "rating"
         ) {
           nav("+1");
           break;
@@ -809,6 +813,8 @@ jQuery(function () {
         break;
 
       case "ArrowUp":
+        if (window_status == "scan") break;
+
         if (window_status == "single-article") {
           document.querySelector("div#app-panels-inner").scrollBy(0, -15);
           break;
@@ -824,7 +830,9 @@ jQuery(function () {
         if (
           window_status == "single-article" ||
           window_status == "search" ||
-          window_status == "article-list"
+          window_status == "article-list" ||
+          window_status == "options" ||
+          window_status == "rating"
         ) {
           nav("-1");
           break;
@@ -833,6 +841,8 @@ jQuery(function () {
         break;
 
       case "ArrowLeft":
+        if (window_status == "scan") break;
+
         if (isInSearchField) {
           evt.preventDefault;
           break;
@@ -848,6 +858,8 @@ jQuery(function () {
         break;
 
       case "ArrowRight":
+        if (window_status == "scan") break;
+
         if (isInSearchField) break;
 
         if (evt.target.id == "search" && evt.target.value == "") {
@@ -863,12 +875,15 @@ jQuery(function () {
       case "8":
       case "SoftLeft":
         if (window_status == "about") break;
+        if (window_status == "scan") break;
+
         if (window_status == "search") {
           window_status = "scan";
 
-          start_scan(function (callback) {
+          qr.start_scan(function (callback) {
             let slug = callback.replace("bhackers:", "");
             show_article(slug);
+            window_status = "single-article";
           });
 
           bottom_bar("", "", "");
@@ -901,7 +916,14 @@ jQuery(function () {
 
       case "9":
       case "SoftRight":
+        if (window_status == "scan") break;
+
         if (window_status == "about") break;
+
+        if (after_installation == true) {
+          launch_app();
+          break;
+        }
 
         if (window_status == "article-list" || window_status == "search") {
           open_about();
@@ -913,24 +935,19 @@ jQuery(function () {
           break;
         }
 
-        if (window_status == "post_installation") {
-          launch_app();
-          break;
-        }
         if ((window_status = "rating")) {
           close_rating();
           break;
         }
 
         break;
-
       case "1":
         break;
 
       case "Backspace":
         if (window_status == "scan") {
           evt.preventDefault();
-          document.getElementById("qr-screen").hidden = true;
+          qr.stop_scan("search");
           show_article_list();
           break;
         }
