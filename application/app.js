@@ -477,11 +477,13 @@ window.addEventListener(
         }
         //list
         if (location.hash === "#list") {
-            console.log("List");
+            show_article_list()
         }
         //article
-        if (location.hash === "#article-") {
-            console.log("article");
+        if (location.hash.includes("#article")) {
+            let getVar = location.hash.split("/")
+            show_article(getVar[1])
+
         }
         //about
         if (location.hash === "#about") {
@@ -494,7 +496,7 @@ window.addEventListener(
         }
         //rating
         if (location.hash === "#rating") {
-            console.log("article");
+            open_rating();
         }
         //scan
         if (location.hash === "#scan") {
@@ -562,7 +564,7 @@ function show_article_list() {
     after_installation = false;
     article_id = document.activeElement.getAttribute("id");
 
-    window.location.hash = "#list/" + article_id;
+    window.location.hash = "#list";
 
     if (article_id) {
         document.getElementById(article_id).focus();
@@ -749,7 +751,6 @@ jQuery(function() {
     //////////////////////////
     ////KEYPAD TRIGGER////////////
     /////////////////////////
-    //lazy loding
 
     function handleKeyDown(evt) {
         const isInSearchField = evt.target.id == "search" && evt.target.value != "";
@@ -768,19 +769,19 @@ jQuery(function() {
         switch (evt.key) {
             case "Enter":
                 if (
-                    window_status == "about" ||
-                    window_status == "search" ||
-                    window_status == "scan"
+                    window.location.hash == "about" ||
+                    window.location.hash == "search" ||
+                    window.location.hash == "scan"
                 ) {
                     break;
                 }
-                if (window_status == "article-list") {
-                    show_article(document.activeElement.getAttribute("data-slug"));
+                if (window.location.hash == "#list" || window.location.hash == "") {
+                    window.location.hash = "#article/" + document.activeElement.getAttribute("data-slug");
                 }
 
-                if (window_status == "options") {
+                if (window.location.hash == "#options") {
                     if (document.activeElement.hasAttribute("data-slug")) {
-                        open_rating();
+                        window.location.hash = "#rating"
                     }
                     if (document.activeElement.hasAttribute("data-url")) {
                         open_url();
@@ -789,21 +790,19 @@ jQuery(function() {
                 break;
 
             case "ArrowDown":
-                if (window_status == "about" || window_status == "scan") {
+                if (window.location.hash == "#about" || window.location.hash == "#scan") {
                     break;
                 }
 
-                if (window_status == "single-article") {
+                if (window.location.hash.includes("#article")) {
                     document.querySelector("div#app-panels-inner").scrollBy(0, 15);
                     break;
                 }
 
                 if (
-                    window_status == "single-article" ||
-                    window_status == "search" ||
-                    window_status == "article-list" ||
-                    window_status == "options" ||
-                    window_status == "rating"
+                    window.location.hash !== "#scan" ||
+                    window.location.hash !== "#about" ||
+                    window.location.hash == ""
                 ) {
                     nav("+1");
                     break;
@@ -812,26 +811,22 @@ jQuery(function() {
                 break;
 
             case "ArrowUp":
-                if (window_status == "scan") break;
+                if (window.location.hash === "#scan") break;
+                if (window.location.hash === "#about") break;
 
-                if (window_status == "single-article") {
+
+                if (window.location.hash.includes("#article")) {
                     document.querySelector("div#app-panels-inner").scrollBy(0, -15);
                     break;
                 }
 
-                if (window_status == "about") {
-                    break;
-                }
-                if (window_status == "single-article") {
-                    break;
-                }
+
 
                 if (
-                    window_status == "single-article" ||
-                    window_status == "search" ||
-                    window_status == "article-list" ||
-                    window_status == "options" ||
-                    window_status == "rating"
+                    window.location.hash !== "#scan" ||
+                    window.location.hash !== "#about" ||
+                    window.location.hash === ""
+
                 ) {
                     nav("-1");
                     break;
@@ -942,8 +937,7 @@ jQuery(function() {
                 }
 
                 break;
-            case "1":
-                break;
+
 
             case "Backspace":
                 if (window_status == "scan") {
@@ -960,12 +954,12 @@ jQuery(function() {
                 }
 
                 if (
-                    window_status == "single-article" ||
-                    window_status == "post_installation"
+                    window_status == "single-article"
+
                 ) {
                     evt.preventDefault();
-
-                    show_article_list();
+                    window.location.hash = "#list";
+                    //show_article_list();
                     break;
                 }
 
