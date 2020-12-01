@@ -230,7 +230,7 @@ div#app {
     background: white;
     padding: 0px;
     color: black;
-    height: 90vh;
+    height: 95vh;
     width: 100vw;
     overflow: hidden;
     font-weight: normal;
@@ -247,7 +247,7 @@ div#app div#app-panels article {
     margin: 0px 0 10px 0px;
     font-weight: normal;
     min-width: 100vw;
-    max-height: 96%;
+    max-height: 97%;
     padding: 4px 4px 4px 4px;
     overflow-y: hidden;
     overflow-x: hidden;
@@ -258,13 +258,14 @@ div#app div#app-panels article {
 article#search {
     font-weight: normal;
     min-width: 100vw;
-    height: 39px;
+    height: 47px;
     background: silver;
     overflow: hidden;
     text-align: center;
 }
 
 article#search input {
+    margin: 5px 0 0 0;
     height: 30px;
     padding: 3px;
     width: 70%;

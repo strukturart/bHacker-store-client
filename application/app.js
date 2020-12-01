@@ -21,9 +21,9 @@ let col = [
     "rgba(120, 120, 151,1)",
     "rgba(221,91,169,1)",
     "rgba(129,204,177,1)",
-    "rgb(100,175,130,1)",
-    "rgb(206,94,66,1)",
-    "rgba(136,196,162,1)"
+    "rgba(100,175,130,1)",
+    "rgba(206,94,66,1)",
+    "rgba(136,196,162,1)",
 ];
 
 //store current article
@@ -305,7 +305,7 @@ function renderHello() {
     var template = document.getElementById("template").innerHTML;
     var rendered = Mustache.render(template, { data: apps_data });
     document.getElementById("apps").innerHTML = rendered;
-    searchGetData();
+    //searchGetData();
 }
 
 //////////////////////////
@@ -359,7 +359,11 @@ function nav_panels(left_right) {
     panels_list(panels[current_panel]);
 
     if (current_panel == 0) {
-        document.querySelector("input").focus();
+        //document.querySelector("input").focus();
+
+        let articles = document.querySelectorAll("article");
+        articles[1].focus()
+        focused = 1;
         document.getElementById("navigation").style.display = "none";
         document.querySelector("div#app").style.margin = "5px 0 0 0";
     }
@@ -537,7 +541,7 @@ function show_article(app) {
     window_status = "single-article";
     document.getElementById(app).focus();
 
-    document.getElementById("app-panels-inner").style.height = "95vh";
+    document.getElementById("app-panels-inner").style.height = "98vh";
     document.querySelector("div#app-panels-inner").scrollTo(0, 0);
     document.querySelector("div#app").style.margin = "0 0 0 0";
     document.querySelector("div#panels-indicator").style.display = "none";

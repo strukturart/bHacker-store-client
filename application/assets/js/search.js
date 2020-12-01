@@ -1,31 +1,43 @@
-let search_match = function() {
-
+const search = ((_) => {
+  let search_match = function () {
     let elements = document.getElementsByTagName("article");
 
-    for (var i = 0; i < elements.length; i++) {
-        elements[i].style.display = "none"
-        elements[0].style.display = "block"
-
-        if (String(elements[i].dataset.slug).search(this.value) == 0 || String(elements[i].dataset.tags).search(this.value) == 0)
-
-        {
-            elements[i].style.display == "block"
-            return true;
-
-        }
-
-        //elements[i].style.display = "block"
-
-
-
+    if (!this.value) {
+      for (var i = 0; i < elements.length; i++) {
+        elements[i].style.display = "block";
+      }
+      return false;
     }
 
-}
+    for (var i = 0; i < elements.length; i++) {
+      //elements[i].style.display = "none"
+      elements[0].style.display = "block";
 
+      if (
+        String(elements[i].dataset.slug).indexOf(this.value) != -1 ||
+        String(elements[i].dataset.tags).indexOf(this.value) != -1
+      ) {
+        console.log(elements[i]);
+        elements[i].style.display = "block";
 
+        $("div#app-panels article").removeAttr("tabindex");
+        $("div#app-panels article")
+          .filter(":visible")
+          .each(function (index) {
+            $(this).prop("tabindex", index);
+          });
+      } else {
+        elements[i].style.display = "none";
+      }
+    }
+  };
 
-document.querySelector("article#search input").addEventListener("input", search_match);
+  document
+    .querySelector("article#search input")
+    .addEventListener("input", search_match);
 
+  return { search_match };
+})();
 
 /*
 //https://github.com/devbridge/jquery-Autocomplete
@@ -72,7 +84,7 @@ function buildAutocomplete(element, source, container) {
     },
   });
 }
-*/
+
 var search_list = [];
 var filter_search_list = [];
 
@@ -96,3 +108,5 @@ function searchGetData() {
         //buildAutocomplete("article#search input", search_list, "div#app-panels");
     }, 2000);
 }
+
+*/
