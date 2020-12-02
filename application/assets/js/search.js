@@ -10,12 +10,12 @@ const search = ((_) => {
     }
 
     for (var i = 0; i < elements.length; i++) {
-      //elements[i].style.display = "none"
       elements[0].style.display = "block";
 
       if (
-        String(elements[i].dataset.slug).indexOf(this.value) != -1 ||
-        String(elements[i].dataset.tags).indexOf(this.value) != -1
+        String(elements[i].dataset.slug).indexOf(this.value.toLowerCase()) !=
+          -1 ||
+        String(elements[i].dataset.tags).indexOf(this.value.toLowerCase()) != -1
       ) {
         console.log(elements[i]);
         elements[i].style.display = "block";
