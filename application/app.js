@@ -366,7 +366,7 @@ function nav_panels(left_right) {
     articles[1].focus();
     focused = 1;
     document.getElementById("navigation").style.display = "none";
-    document.querySelector("div#app").style.margin = "5px 0 0 0";
+    //document.querySelector("div#app").style.margin = "5px 0 0 0";
   }
   //rating view
   if (current_panel == 1) {
