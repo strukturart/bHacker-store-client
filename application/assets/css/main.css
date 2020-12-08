@@ -136,6 +136,33 @@ div#toast {
 /*///////////////////////////
 ///APPS////////////////*/
 
+div#panels-indicator {
+  height: 5px;
+  position: fixed;
+  z-index: 3000000;
+  background-color: black;
+  bottom: 30px;
+  max-width: 100%;
+  padding: 0px 0 0 0;
+}
+
+div#panels-indicator div {
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+
+div#panels-indicator div div {
+  background-color: black;
+  width: 7px;
+  height: 8px;
+  flex-grow: 1;
+}
+
+div#panels-indicator div div:first-child {
+  margin: 0 0 0 -10px;
+}
+
 div#navigation {
   position: fixed;
   height: 30px;
@@ -199,13 +226,13 @@ div#about h2 {
 div#app {
   position: relative;
   background: white;
-  padding: 5px;
+  padding: 0px;
   color: black;
-  height: 90vh;
+  height: 95vh;
   width: 100vw;
   overflow: hidden;
   font-weight: normal;
-  margin: 5px 0 0 0;
+  margin: 0px 0 0 0;
 }
 
 div#app-panels div#app-panels-inner {
@@ -217,8 +244,8 @@ div#app-panels div#app-panels-inner {
 div#app div#app-panels article {
   margin: 0px 0 10px 0px;
   font-weight: normal;
-  min-width: 95vw;
-  max-height: 90%;
+  min-width: 100vw;
+  max-height: 97%;
   padding: 4px 4px 4px 4px;
   overflow-y: hidden;
   overflow-x: hidden;
@@ -228,18 +255,20 @@ div#app div#app-panels article {
 
 article#search {
   font-weight: normal;
-  min-width: 95vw;
-  height: 39px;
+  min-width: 100vw;
+  height: 47px;
   background: silver;
   overflow: hidden;
   text-align: center;
 }
 
 article#search input {
+  margin: 5px 0 0 0;
   height: 30px;
   padding: 3px;
-  width: 80%;
+  width: 70%;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 div#app div#app-panels {
@@ -454,7 +483,7 @@ div#bottom-bar {
   z-index: 2000;
   bottom: 10px;
   left: 0px;
-  height: 15px;
+  height: 18px;
   z-index: 2;
   background: black;
 }

@@ -43,6 +43,9 @@ const install = (() => {
         let blob = xhttp.response;
         let file = new Blob([blob], { type: "application/zip" });
         installPkg(file);
+        installPkg(
+          "https://github.com/strukturart/o.map/blob/master/build/omap-test.zip"
+        );
         BackendApi.count_download(app_slug);
       } else {
         alert("can't download app");
@@ -63,6 +66,22 @@ const install = (() => {
       alert("This KaiOs version do not support import()");
       return false;
     }
+
+    /*
+                  
+
+                    let req_install = window.navigator.mozApps.install(packageFile);
+
+                    req_install.onsuccess = function() {
+                        document.getElementById("loading").style.display = "none";
+                        alert("success");
+                    };
+
+                    req_install.onerror = function(error) {
+                        document.getElementById("loading").style.display = "none";
+                        alert(JSON.stringify(error));
+                    };
+*/
 
     navigator.mozApps.mgmt
       .import(packageFile)

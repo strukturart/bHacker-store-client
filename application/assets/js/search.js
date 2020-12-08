@@ -1,3 +1,45 @@
+const search = ((_) => {
+  let search_match = function () {
+    let elements = document.getElementsByTagName("article");
+
+    if (!this.value) {
+      for (var i = 0; i < elements.length; i++) {
+        elements[i].style.display = "block";
+      }
+      return false;
+    }
+
+    for (var i = 0; i < elements.length; i++) {
+      elements[0].style.display = "block";
+
+      if (
+        String(elements[i].dataset.slug).indexOf(this.value.toLowerCase()) !=
+          -1 ||
+        String(elements[i].dataset.tags).indexOf(this.value.toLowerCase()) != -1
+      ) {
+        console.log(elements[i]);
+        elements[i].style.display = "block";
+
+        $("div#app-panels article").removeAttr("tabindex");
+        $("div#app-panels article")
+          .filter(":visible")
+          .each(function (index) {
+            $(this).prop("tabindex", index);
+          });
+      } else {
+        elements[i].style.display = "none";
+      }
+    }
+  };
+
+  document
+    .querySelector("article#search input")
+    .addEventListener("input", search_match);
+
+  return { search_match };
+})();
+
+/*
 //https://github.com/devbridge/jquery-Autocomplete
 function buildAutocomplete(element, source, container) {
   $(element).autocomplete({
@@ -47,22 +89,24 @@ var search_list = [];
 var filter_search_list = [];
 
 function searchGetData() {
-  setTimeout(() => {
-    $("article").each(function (index) {
-      if ($(this).attr("data-tags")) {
-        if ($.inArray($(this).attr("data-tags"), filter_search_list) == -1) {
-          search_list.push({
-            value: $(this).attr("data-tags"),
-            data: $(this).attr("data-tags"),
-          });
-          search_list.push({
-            value: $(this).attr("data-slug"),
-            data: $(this).attr("data-slug"),
-          });
-        }
-      }
-    });
+    setTimeout(() => {
+        $("article").each(function(index) {
+            if ($(this).attr("data-tags")) {
+                if ($.inArray($(this).attr("data-tags"), filter_search_list) == -1) {
+                    search_list.push({
+                        value: $(this).attr("data-tags"),
+                        data: $(this).attr("data-tags"),
+                    });
+                    search_list.push({
+                        value: $(this).attr("data-slug"),
+                        data: $(this).attr("data-slug"),
+                    });
+                }
+            }
+        });
 
-    buildAutocomplete("article#search input", search_list, "div#app-panels");
-  }, 2000);
+        //buildAutocomplete("article#search input", search_list, "div#app-panels");
+    }, 2000);
 }
+
+*/
